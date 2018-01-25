@@ -1,0 +1,87 @@
+var FriendlyErrors = require('friendly-errors-webpack-plugin')
+var path = require('path')
+var projectRoot = path.resolve(__dirname, './')
+
+module.exports = {
+
+  entry: {
+	  inventory: './src/main.js',
+  },
+  output: {
+    path: './dist',
+    publicPath: '/dist/',
+    filename: '[name].build.js'
+  },
+  node: {
+    fs: 'empty'
+  },
+  module: {
+    // 一些特定的编译规则
+    // preLoaders: [
+    //   {
+    //     test: /\.vue$/,
+    //     loader: 'eslint',
+    //     include: [
+    //       path.join(projectRoot, 'src')
+    //     ],
+    //     exclude: /node_modules/
+    //   },
+    //   {
+    //     test: /\.js$/,
+    //     loader: 'eslint',
+    //     include: [
+    //       path.join(projectRoot, 'src')
+    //     ],
+    //     exclude: /node_modules/
+    //   }
+    // ],
+    loaders: [
+      {
+        // 让webpack去验证文件是否是.js结尾将其转换
+        test: /\.js$/,
+        // 通过babel转换
+        loaders: ['imports-loader?define=>false', 'babel'],
+        // 不用转换的node_modules文件夹
+        exclude: /node_modules/
+      },
+      {
+    	 test: /\.vue$/,
+     	 loader: 'vue'
+      },
+      {
+        test: /\.s[a|c]ss$/,
+        loader: 'style!css!sass'
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url',
+        query: {
+          limit: 10000,
+          name: 'img/[name].[hash:7].[ext]'
+        }
+      },
+    ]
+  },
+  vue: {
+    loaders: {
+      sass: 'style!css!sass'
+    }
+  },
+  eslint: {
+    formatter: require('eslint-friendly-formatter')
+  },
+  vue: {
+	 loaders: {
+		js: 'babel'
+	 }
+  },
+  resolve: {
+  	//alias: {
+	//	vue: '../node_modules/vue/dist/vue.min.js'
+  	//}
+	  extensions: ['', '.js']
+  },
+  plugins: [
+    new FriendlyErrors()
+  ]
+}

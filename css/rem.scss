@@ -1,0 +1,19 @@
+//$width 设计图宽
+$widthDesign:144;
+//缩放高度处理函数，得出数据单位rem
+@function t($width){
+  @return  $width/$widthDesign+rem;
+}
+
+//防止元素高度塌陷
+@mixin clearFix() {
+  &:after{
+    content: "";
+    clear:both;
+    display: block;
+  }
+}
+/*//使用防止元素高度塌陷
+.div3 {
+  @include clearFix();
+}*/
