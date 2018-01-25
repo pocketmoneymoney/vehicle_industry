@@ -62,16 +62,13 @@ module.exports = {
       },
     ]
   },
-  vue: {
-    loaders: {
-      sass: 'style!css!sass'
-    }
-  },
   eslint: {
     formatter: require('eslint-friendly-formatter')
   },
   vue: {
 	 loaders: {
+    sass: 'style!css!sass',
+    scss: 'style!css!sass',
 		js: 'babel'
 	 }
   },

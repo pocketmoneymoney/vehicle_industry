@@ -1,5 +1,5 @@
 //$width 设计图宽
-$widthDesign:144;
+$widthDesign:120;
 //缩放高度处理函数，得出数据单位rem
 @function t($width){
   @return  $width/$widthDesign+rem;

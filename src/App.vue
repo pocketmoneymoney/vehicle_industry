@@ -1,15 +1,26 @@
 <template>
-  <div style="width:100%;background-color:#f9f9f8;">
-    <main-header></main-header>
-    <div class="main clearfix">
-      <main-nav id="mainnav" :tabs="tabs" :defaultTab="defaultTab" @viewchange="viewChange"></main-nav>
+  <div>
+    <div class="back_wrapper">
+      <top-bar></top-bar>
+      <main-header></main-header>
+      <div class="main clearfix">
+        <main-nav></main-nav>
+        <left-nav :tabs="tabs" :defaultTab="defaultTab" @viewchange="viewChange"></left-nav>
+        <div class="main_right">
+          <latest-purchase></latest-purchase>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import MainNav from './main_nav.vue'
+import TopBar from './topbar.vue'
+import LeftNav from './left_nav.vue'
 import MainHeader from './header.vue'
+import MainNav from './main_nav.vue'
+
+import LatestPurchase from './latest_purchase.vue'
 
 export default {
   data: function() {
@@ -43,11 +54,17 @@ export default {
 	  console.log(this.itemSeries);
 	}
   },
-  components: {MainNav, MainHeader}
+  components: {LeftNav, MainHeader, TopBar, MainNav, LatestPurchase}
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '../css/rem.scss';
+
+.back_wrapper{
+  width: t(1200);
+  background-color:#f9f9f8;
+}
 .main{
 	width: 1200px;
 	margin: 0 auto;
@@ -68,4 +85,17 @@ export default {
   clear: both;
 }
 
+.main_right{
+	float: right;
+	width: 970px;
+	margin-bottom: 20px;
+}
+
+h3{
+	height: 14px;
+	line-height: 14px;
+	font-size: 14px;
+	color: #333333;
+  margin: 0;
+}
 </style>

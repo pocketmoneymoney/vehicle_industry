@@ -1,83 +1,54 @@
 <template>
-    <div class="main_nav">
-        <div class="main_nav_title">
-            All Categories
-        </div>
-        <ul class="left_main_nav">
-          <li
-            v-for="tab in tabs"
-            @click="choose(tab)"><a href='#'>{{tab.name}}</a></li>
-        </ul>
-    </div>
+  <div class="index_nav">
+      <ul>
+          <li>
+              <a href="#">首页</a>
+          </li>
+          <li>
+              <a href="../inquiry/company_list.aspx">OE供应商</a>
+          </li>
+          <li>
+              <a href="../inquiry/inquiry_list.aspx">采购项目专区</a>
+          </li>
+          <li>
+              <a href="../inquiry/inquiry_list.aspx">采购配对会</a>
+          </li>
+          <li>
+              <a href="../inquiry/inquiry_list.aspx">走进主机厂</a>
+          </li>
+          <li>
+              <a href="../inquiry/inquiry_list.aspx">人才猎头</a>
+          </li>
+      </ul>
+  </div>
 </template>
 
-<script src='./main_nav.js'></script>
-
 <style>
-ul{
-	list-style: none;
+.index_nav{
+	height: 40px;
+	border-bottom: 2px solid #73c5ec;
+	padding-bottom: 1px;
+	margin-bottom: 10px;
 }
-
-a{
-	text-decoration: none;
+.index_nav ul{
+	height: 36px;
+	background: #449cd7;
+  padding-left: 0;
 }
-
-a:hover{
-	text-decoration: none;
-}
-
-/*左侧导航*/
-.main_nav{
+.index_nav li{
 	float: left;
-	width: 214px;
-	height: 742px;
-	border: 1px solid #fff;
-	padding: 0 12px;
-	box-shadow:  0 0 3px #999;
-	background: #fff url('../img/main_nav_bg.jpg') right bottom no-repeat;
-	z-index: 1000;
-}
-.main_nav_title{
-	height: 42px;
-	border-bottom:2px solid #449cd7;
-	line-height: 42px;
+	padding:0 20px;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
 	font-size: 15px;
-	color: #449cd7;
-	padding-left: 37px;
-	background: url('../img/nav_icon.png') 10px 15px no-repeat;
+	font-weight: bold;
 }
-.left_main_nav{
-	padding-top: 5px;
-  padding-left: 5px;
-
+.index_nav li:hover{
+	background: #73c5ec;
 }
-.left_main_nav li{
-	/*width: 202px;*/
-	height: 44px;
-	line-height: 44px;
-	padding-left: 0px;
-	background:#fff url('../img/nav_arrow.jpg') right center no-repeat;
-	border:1px solid #fff;
-	border-left: 2px solid #fff;
-	position: relative;
-
-}
-.left_main_nav li a{
-	color: #333;
-	font-size: 14px;
+.index_nav li a{
 	display: block;
+	color: #fff;
 }
-
-.left_main_nav li:hover{
-	border:1px solid #fff;
-	border-left: 2px solid #449cd7;
-	box-shadow: 0 0 1px #999;
-	position: relative;
-	width: 220px;
-	margin-left: -27px;
-	padding-left: 37px;
-	background:#fff url('../img/nav_arrow.jpg') 233px center no-repeat;
-	z-index: 10;
-}
-
 </style>
