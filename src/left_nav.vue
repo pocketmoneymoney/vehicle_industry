@@ -34,7 +34,8 @@ a:hover{
 	border: 1px solid #fff;
 	padding: 0 12px;
 	box-shadow:  0 0 3px #999;
-	background: #fff url('../img/main_nav_bg.jpg') right bottom no-repeat;
+	/*background: #fff url('../img/main_nav_bg.jpg') right bottom no-repeat;*/
+  background-color: #fff;
 	z-index: 1000;
 }
 .main_nav_title{

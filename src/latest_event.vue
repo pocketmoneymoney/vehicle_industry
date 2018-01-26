@@ -10,7 +10,7 @@ import ListPanel from './list_panel.vue'
 export default {
   data() {
     return {
-      product: "purchase"
+      product: "event"
     }
   },
   components: {ListPanel}

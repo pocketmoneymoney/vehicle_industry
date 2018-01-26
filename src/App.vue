@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="back_wrapper">
       <top-bar></top-bar>
       <main-header></main-header>
@@ -8,10 +7,13 @@
         <left-nav :tabs="tabs" :defaultTab="defaultTab" @viewchange="viewChange"></left-nav>
         <div class="main_right">
           <latest-purchase></latest-purchase>
+          <supplier-recom></supplier-recom>
+          <latest-event></latest-event>
         </div>
       </div>
+      <interview></interview>
+      <last-footer></last-footer>
     </div>
-  </div>
 </template>
 
 <script>
@@ -21,17 +23,27 @@ import MainHeader from './header.vue'
 import MainNav from './main_nav.vue'
 
 import LatestPurchase from './latest_purchase.vue'
+import LatestEvent from './latest_event.vue'
+
+import SupplierRecom from './supplier_recommend.vue'
+
+import Interview from './interview.vue'
+import LastFooter from './footer.vue'
 
 export default {
   data: function() {
     return {
 	    tabs: [
 	      {index: 1,
-		   name: 'Engine System'},
+		   name: '新能源'},
 	      {index: 2,
-		   name: 'Car Accessories'},
+		   name: '智能网联'},
+	      {index: 3,
+		   name: '发动机系统'},
+	      {index: 4,
+		   name: '汽车配件'},
 	      {index: 5,
-		   name: '电子和电子产品'},
+		   name: '电和电子产品'},
 	      {index: 6,
 		   name: '身体&配件'},
 	      {index: 7,
@@ -40,10 +52,12 @@ export default {
 		   name: '制动系统'},
 	      {index: 9,
 		   name: '转向系统'},
-	      {index: 3,
+	      {index: 10,
 		   name: '材料和设备'},
-	      {index: 4,
-		   name: '处理部件和模具'},
+	      {index: 11,
+		   name: '处理部分和模具'},
+	      {index: 12,
+		   name: '通用部分'},
 	    ],
 	    defaultTab: 1
     }
@@ -51,10 +65,9 @@ export default {
   methods: {
 	viewChange: function(index) {
 	  this.itemSeries = this.items[index];
-	  console.log(this.itemSeries);
 	}
   },
-  components: {LeftNav, MainHeader, TopBar, MainNav, LatestPurchase}
+  components: {LeftNav, MainHeader, TopBar, MainNav, LatestPurchase, LatestEvent, SupplierRecom, Interview, LastFooter}
 }
 </script>
 
@@ -97,5 +110,6 @@ h3{
 	font-size: 14px;
 	color: #333333;
   margin: 0;
+  font-weight: bold;
 }
 </style>
