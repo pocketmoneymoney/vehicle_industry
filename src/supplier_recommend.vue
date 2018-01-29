@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="clearfix">
     <right-panel :product="product" :height=140></right-panel>
   </div>
 </template>

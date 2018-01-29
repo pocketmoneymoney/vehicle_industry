@@ -7,6 +7,7 @@ module.exports = {
   entry: {
 	  inventory: './src/main.js',
 	  purchase: './src/purchase.js',
+	  company: './src/company.js',
   },
   output: {
     path: './dist',

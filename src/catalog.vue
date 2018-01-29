@@ -1,49 +1,23 @@
 <template>
-  <div class="list_purchase_product clearfix">
+  <div class="catalog clearfix">
     <h3>
-        <span>采购项目</span>
-        <a href="../inquiry/product_list.aspx">More &gt;</a>
+        <span>分类</span>
+        <a href="../inquiry/catalog_list.aspx">More &gt;</a>
     </h3>
-    <div class="tabbd middle_list_content tabbd">
-        <div class="item">
-            <!--div class="product_content_title">
-                <div class="view">
-                    <p>View as</p>
-                    <a href="" class="list_icon"></a>
-                    <a href="" class="label_icon"></a>
-                </div>
-                <div class="simple_page">
-                    
-                </div>
-            </div-->
-            <ul class="product_list">
-                
-                <li v-for="purchaseProduct in purchaseProducts">
-                   <div class="product_list_left">
-                       <!--a href="pro_com_detail.aspx?op=32863"><img src='../admin/file/img/20180129103901822.jpg' /></a-->
-                       <h4><a href="pro_com_detail.aspx?op=32863">{{ purchaseProduct.product }}</a></h4>
-                       <em><span>OEM No/Model:</span></em>
-                       <em><span>Application:</span></em>
-                   </div>
-                   <div class="product_company">
-                       <a href="../supplierEC/show_index.aspx?op=2382"><p>{{ purchaseProduct.company }}</p></a>
-                       <!--em>
-                           <img src='../admin/file/icon/China.gif' alt="" class="flag_contury">China
-                       </em-->
-                       <a href="contact2.aspx?bid=2382&pid=32863" class="contact_btn">我要报名</a>
-                       
-                   </div>
-               </li>
-            </ul>
-        </div>
-     </div>
+    <div class="catalog_main">
+        <ul class="catalog_list">
+            <li v-for="subcatalog in catalog">
+               <sub-catalog :subcatalog=subcatalog></sub-catalog>
+           </li>
+        </ul>
+    </div>
   </div>
 </template>
 
-<script src="./list_purchase_product.js"></script>
+<script src="./catalog.js"></script>
 
 <style>
-.list_purchase_product{
+.catalog {
 	width: 898px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
@@ -51,19 +25,14 @@
 	padding: 19px 20px;
 	margin-bottom: 8px;
 }
-.list_purchase_product h3 span{
+.catalog h3 span{
 	float: left;
 }
-.list_purchase_product h3 a{
+.catalog h3 a{
 	color: #999999;
 	font-size: 12px;
 	float: right;
 	font-weight: normal;
-}
-
-.middle_list_content{
-	background: #fff;
-	padding: 20px;
 }
 
 .product_content_title{
@@ -97,13 +66,19 @@
 	background: url('../styImg/show/label_icon.jpg') no-repeat;
 }
 */
-.product_list li{
+.catalog_main {
+  padding-left: 20px;
+}
+.catalog_list {
+  padding-left: 0;
+}
+.catalog_list li{
 	border-bottom: 1px dashed #e5e5e5;
 	padding: 20px 0;
 	overflow: hidden;
 }
 /*
-.product_list li:hover{
+.catalog_list li:hover{
 	box-shadow: 0 0 5px #999;
 	padding: 20px 30px;
 	width: 788px;
@@ -112,14 +87,14 @@
 	background: #fff;
 }
 */
-.product_list_left{
+.catalog_list_left{
 	float: left;
 	width: 502px;
 	height: 180px;
 	border-right: 1px solid #e5e5e5;
 	padding-right: 40px;
 }
-.product_list_left img{
+.catalog_list_left img{
 	display: block;
 	float: left;
 	width: 178px;
@@ -127,7 +102,7 @@
 	border:1px solid #e5e5e5;
 	margin-right: 20px;
 }
-.product_list_left h4{
+.catalog_list_left h4{
 	height: 44px;
 	line-height: 20px;
 	font-size: 14px;
@@ -135,14 +110,14 @@
 	overflow: hidden;
 	margin-bottom: 10px;
 }
-.product_list_left h4 a{
+.catalog_list_left h4 a{
 	color: #449cd7;
 }
-.product_list_left h4 a:hover{
+.catalog_list_left h4 a:hover{
 	color: #73c5ec;
 }
 
-.product_list_left em{
+.catalog_list_left em{
 	display: block;
 	height: 24px;
 	line-height: 24px;
@@ -150,10 +125,10 @@
 	font-size: 12px;
 	color: #333333
 }
-.product_list_left em span{
+.catalog_list_left em span{
 	color: #999;
 }
-.product_list_left p{
+.catalog_list_left p{
 	height: 60px;
 	line-height: 20px;
 	font-size: 12px;

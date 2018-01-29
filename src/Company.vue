@@ -6,9 +6,10 @@
         <main-nav></main-nav>
         <div>
           <event-enroll-panel></event-enroll-panel>
+          <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
-          <div class="clearfix">
-            <purchase-product></purchase-product>
+          <div>
+            <catalog></catalog>
           </div>
         </div>
       </div>
@@ -23,7 +24,8 @@ import MainHeader from './header.vue'
 import MainNav from './main_nav.vue'
 
 import EventEnrollPanel from './event_enroll_panel.vue'
-import PurchaseProduct from './list_purchase_product.vue'
+import LatestPurchase from './latest_purchase.vue'
+import Catalog from './catalog.vue'
 
 import SupplierRecom from './supplier_recommend.vue'
 
@@ -43,7 +45,7 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, PurchaseProduct, SupplierRecom, Interview, LastFooter}
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, Catalog, SupplierRecom, Interview, LastFooter}
 }
 </script>
 

@@ -20,14 +20,14 @@
 </template>
 
 <style scoped>
-.project_enroll{ margin-top:10px; margin-bottom:10px; width:250px; float:left; background:#fff; padding:9px 15px 2px 15px;overflow:hidden; position:relative;}
+.project_enroll{ margin-top:10px; width:200px; margin-bottom:10px; float:left; background:#fff; padding:9px 15px 2px 15px;overflow:hidden; position:relative;}
 /*.project_enroll:hover{ background-color:#fbfbfb; border-bottom:#dbdbdb 3px solid;}*/
 .project_enroll a{ width:100%; display:block;}
 .project_enroll h4{ font-size:16px; color:#000; padding-bottom:0.25em; margin:0;}
 .project_enroll p{ font-size:11px; color:#888888; line-height:20px;}
-.project_enroll dd{ float:left; width:70%; padding-top:4px;}
+.project_enroll dd{ padding-top:4px;}
 .project_enroll dd.dd{  font-family:Arial;}
-.project_enroll dt{ float:left; width:30%; text-align:center; }
+.project_enroll dt{ width:64px; float:right; text-align:center; }
 .project_enroll dt b{ font-weight:normal; font-size:11px; line-height:23px; color:#999;}
 .project_enroll dt .span01{ display:block; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px;}
 .project_enroll span a{ padding:0px;}

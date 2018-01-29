@@ -5,8 +5,8 @@
         <a href="../inquiry/product_list.aspx">More &gt;</a>
     </h3>
     <event-enroll></event-enroll>
-    <div class="seperate"></div>
-    <event-enroll></event-enroll>
+    <!--div class="seperate"></div>
+    <event-enroll></event-enroll-->
   </div>
 </template>
 
@@ -20,12 +20,13 @@ export default {
 
 <style>
 .event_enroll_panel{
-	width: 544px;
+	width: 235px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;
 	padding: 19px 20px;
 	margin-bottom: 8px;
+  margin-right: 4px;
 }
 .event_enroll_panel h3 {
   padding-bottom: 25px;

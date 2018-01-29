@@ -5,7 +5,7 @@
               <a href="./index.html">首页</a>
           </li>
           <li>
-              <a href="../inquiry/company_list.aspx">OE供应商</a>
+              <a href="./company.html">OE供应商</a>
           </li>
           <li>
               <a href="./purchase.html">采购项目专区</a>
