@@ -21,8 +21,8 @@
 
 <style scoped>
 .project_enroll{ margin-top:10px; margin-bottom:10px; width:250px; float:left; background:#fff; padding:9px 15px 2px 15px;overflow:hidden; position:relative;}
-.project_enroll:hover{ background-color:#fbfbfb; border-bottom:#dbdbdb 3px solid;}
-.project_enroll a{ color:#000; width:100%; display:block;}
+/*.project_enroll:hover{ background-color:#fbfbfb; border-bottom:#dbdbdb 3px solid;}*/
+.project_enroll a{ width:100%; display:block;}
 .project_enroll h4{ font-size:16px; color:#000; padding-bottom:0.25em; margin:0;}
 .project_enroll p{ font-size:11px; color:#888888; line-height:20px;}
 .project_enroll dd{ float:left; width:70%; padding-top:4px;}
