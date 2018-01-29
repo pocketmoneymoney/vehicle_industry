@@ -4,9 +4,8 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav></main-nav>
-        <left-nav :tabs="tabs" :defaultTab="defaultTab" @viewchange="viewChange"></left-nav>
-        <div class="main_right">
-          <latest-purchase></latest-purchase>
+        <div>
+          <event-enroll-panel></event-enroll-panel>
           <supplier-recom></supplier-recom>
           <latest-event></latest-event>
           <latest-position></latest-position>
@@ -19,11 +18,10 @@
 
 <script>
 import TopBar from './topbar.vue'
-import LeftNav from './left_nav.vue'
 import MainHeader from './header.vue'
 import MainNav from './main_nav.vue'
 
-import LatestPurchase from './latest_purchase.vue'
+import EventEnrollPanel from './event_enroll_panel.vue'
 import LatestEvent from './latest_event.vue'
 import LatestPosition from './latest_position.vue'
 
@@ -35,33 +33,9 @@ import LastFooter from './footer.vue'
 export default {
   data: function() {
     return {
-	    tabs: [
-	      {index: 1,
-		   name: '新能源'},
-	      {index: 2,
-		   name: '智能网联'},
-	      {index: 3,
-		   name: '发动机系统'},
-	      {index: 4,
-		   name: '汽车配件'},
-	      {index: 5,
-		   name: '电和电子产品'},
-	      {index: 6,
-		   name: '身体&配件'},
-	      {index: 7,
-		   name: '动力传动系统'},
-	      {index: 8,
-		   name: '制动系统'},
-	      {index: 9,
-		   name: '转向系统'},
-	      {index: 10,
-		   name: '材料和设备'},
-	      {index: 11,
-		   name: '处理部分和模具'},
-	      {index: 12,
-		   name: '通用部分'},
-	    ],
-	    defaultTab: 1
+      topProduct: "eventEnroll",
+      topTitle: "活动预告及报名",
+      topComponent: "event-enroll-panel"
     }
   },
   methods: {
@@ -69,7 +43,7 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {LeftNav, MainHeader, TopBar, MainNav, LatestPurchase, LatestEvent, LatestPosition, SupplierRecom, Interview, LastFooter}
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestEvent, LatestPosition, SupplierRecom, Interview, LastFooter}
 }
 </script>
 

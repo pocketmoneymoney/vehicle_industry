@@ -2,13 +2,13 @@
   <div class="index_nav">
       <ul>
           <li>
-              <a href="#">首页</a>
+              <a href="./index.html">首页</a>
           </li>
           <li>
               <a href="../inquiry/company_list.aspx">OE供应商</a>
           </li>
           <li>
-              <a href="../inquiry/inquiry_list.aspx">采购项目专区</a>
+              <a href="./purchase.html">采购项目专区</a>
           </li>
           <li>
               <a href="../inquiry/inquiry_list.aspx">采购配对会</a>
@@ -34,6 +34,7 @@
 	height: 36px;
 	background: #449cd7;
   padding-left: 0;
+  list-style: none;
 }
 .index_nav li{
 	float: left;
