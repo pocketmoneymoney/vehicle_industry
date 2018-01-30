@@ -8,6 +8,8 @@ module.exports = {
 	  inventory: './src/main.js',
 	  purchase: './src/purchase.js',
 	  company: './src/company.js',
+	  company_list: './src/company_list.js',
+	  position: './src/position.js',
   },
   output: {
     path: './dist',

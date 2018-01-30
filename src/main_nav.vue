@@ -17,7 +17,7 @@
               <a href="../inquiry/inquiry_list.aspx">走进主机厂</a>
           </li>
           <li>
-              <a href="../inquiry/inquiry_list.aspx">人才猎头</a>
+              <a href="./position.html">人才猎头</a>
           </li>
       </ul>
   </div>

@@ -2,7 +2,7 @@
   <div class="catalog clearfix">
     <h3>
         <span>分类</span>
-        <a href="../inquiry/catalog_list.aspx">More &gt;</a>
+        <search></search>
     </h3>
     <div class="catalog_main">
         <ul class="catalog_list">
@@ -25,16 +25,22 @@
 	padding: 19px 20px;
 	margin-bottom: 8px;
 }
+.catalog h3 {
+  height: 42px;
+}
 .catalog h3 span{
 	float: left;
+  padding-top: 15px;
+  padding-left: 15px;
 }
+/*
 .catalog h3 a{
 	color: #999999;
 	font-size: 12px;
 	float: right;
 	font-weight: normal;
 }
-
+*/
 .product_content_title{
 	height: 36px;
 	background: #f5f5f5;

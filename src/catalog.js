@@ -1,4 +1,5 @@
 import SubCatalog from './subcatalog.vue'
+import Search from './search.vue'
 
 export default {
   data() {
@@ -19,5 +20,5 @@ export default {
   },
   mounted: function() {
   },
-  components: {SubCatalog}
+  components: {SubCatalog, Search}
 }
