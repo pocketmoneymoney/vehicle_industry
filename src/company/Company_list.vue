@@ -6,9 +6,10 @@
         <main-nav></main-nav>
         <div>
           <event-enroll-panel></event-enroll-panel>
+          <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
-          <div class="clearfix">
-            <purchase-product></purchase-product>
+          <div>
+            <ListCompany></ListCompany>
           </div>
         </div>
       </div>
@@ -18,37 +19,48 @@
 </template>
 
 <script>
-import TopBar from './topbar.vue'
-import MainHeader from './header.vue'
-import MainNav from './main_nav.vue'
+import TopBar from '../util/topbar.vue'
+import MainHeader from '../util/header.vue'
+import MainNav from '../util/main_nav.vue'
 
-import EventEnrollPanel from './event_enroll_panel.vue'
-import PurchaseProduct from './list_purchase_product.vue'
+import EventEnrollPanel from '../util/event_enroll_panel.vue'
+import LatestPurchase from '../util/latest_purchase.vue'
+import ListCompany from './list_company.vue'
 
-import SupplierRecom from './supplier_recommend.vue'
+import SupplierRecom from '../util/supplier_recommend.vue'
 
-import Interview from './interview.vue'
-import LastFooter from './footer.vue'
+import Interview from '../util/interview.vue'
+import LastFooter from '../util/footer.vue'
 
 export default {
   data: function() {
     return {
       topProduct: "eventEnroll",
       topTitle: "活动预告及报名",
-      topComponent: "event-enroll-panel"
+      topComponent: "event-enroll-panel",
+      condition: {}
     }
   },
   methods: {
-	viewChange: function(index) {
-	  this.itemSeries = this.items[index];
-	}
+    getUrlParam: function() {
+      var params = window.location.search;
+      params = params.replace('?', '');
+      var allParams = params.split('&');
+      for (let index in allParams) {
+        var paramObj = allParams[index].split('=');
+        this.condition[paramObj[0]] = paramObj[1]
+      }
+    }
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, PurchaseProduct, SupplierRecom, Interview, LastFooter}
+  mounted: function() {
+    this.getUrlParam();
+  },
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, ListCompany, SupplierRecom, Interview, LastFooter}
 }
 </script>
 
 <style lang="scss">
-@import '../css/rem.scss';
+@import '../../css/rem.scss';
 
 .back_wrapper{
   width: t(1200);

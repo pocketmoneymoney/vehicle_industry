@@ -3,7 +3,9 @@
      <h4>{{ subcatalog.main }}</h4>
      <ul class="subcatalog_list clearfix">
         <li v-for="option in subcatalog.sub">
-           {{ option }}
+          <a :href="url+option">
+            {{ option }}
+          </a>
         </li>
      </ul>
   </div>
@@ -71,6 +73,12 @@
 	padding: 0px 10px;
 	overflow: hidden;
   float:left;
+}
+.subcatalog_list li a {
+  color: #000
+}
+.subcatalog_list li a:hover {
+  color: #000
 }
 /*
 .subcatalog_list li:hover{

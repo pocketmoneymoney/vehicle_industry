@@ -6,10 +6,10 @@ module.exports = {
 
   entry: {
 	  inventory: './src/main.js',
-	  purchase: './src/purchase.js',
-	  company: './src/company.js',
-	  company_list: './src/company_list.js',
-	  position: './src/position.js',
+	  purchase: './src/purchase/purchase.js',
+	  company: './src/company/company.js',
+	  company_list: './src/company/company_list.js',
+	  position: './src/position/position.js',
   },
   output: {
     path: './dist',

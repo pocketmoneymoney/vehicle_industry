@@ -18,19 +18,19 @@
 </template>
 
 <script>
-import TopBar from './topbar.vue'
-import LeftNav from './left_nav.vue'
-import MainHeader from './header.vue'
-import MainNav from './main_nav.vue'
+import TopBar from './util/topbar.vue'
+import LeftNav from './index/left_nav.vue'
+import MainHeader from './util/header.vue'
+import MainNav from './util/main_nav.vue'
 
-import LatestPurchase from './latest_purchase.vue'
-import LatestEvent from './latest_event.vue'
-import LatestPosition from './latest_position.vue'
+import LatestPurchase from './util/latest_purchase.vue'
+import LatestEvent from './index/latest_event.vue'
+import LatestPosition from './index/latest_position.vue'
 
-import SupplierRecom from './supplier_recommend.vue'
+import SupplierRecom from './util/supplier_recommend.vue'
 
-import Interview from './interview.vue'
-import LastFooter from './footer.vue'
+import Interview from './util/interview.vue'
+import LastFooter from './util/footer.vue'
 
 export default {
   data: function() {

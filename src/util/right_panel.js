@@ -1,5 +1,3 @@
-import ListPurchase from './list_purchase.vue'
-
 export default {
   props: ['product', 'height'],
   computed: {
@@ -8,14 +6,11 @@ export default {
         return "供应商推荐";
       }
     },
-    listProductView: function() {
-      if (this.product === "purchase") {
-        return "list-purchase";
-      }
+    component: function() {
     }
   },
   mounted: function() {
     $('.right_panel').height(this.height);
   },
-  components: {ListPurchase}
+  components: {}
 }

@@ -2,22 +2,22 @@
   <div class="index_nav">
       <ul>
           <li>
-              <a href="./index.html">首页</a>
+              <a href="/src/index.html">首页</a>
           </li>
           <li>
-              <a href="./company.html">OE供应商</a>
+              <a href="/src/company/index.html">OE供应商</a>
           </li>
           <li>
-              <a href="./purchase.html">采购项目专区</a>
+              <a href="/src/purchase/index.html">采购项目专区</a>
           </li>
           <li>
-              <a href="../inquiry/inquiry_list.aspx">采购配对会</a>
+              <a href="./inquiry/inquiry_list.aspx">采购配对会</a>
           </li>
           <li>
-              <a href="../inquiry/inquiry_list.aspx">走进主机厂</a>
+              <a href="./inquiry/inquiry_list.aspx">走进主机厂</a>
           </li>
           <li>
-              <a href="./position.html">人才猎头</a>
+              <a href="/src/position/index.html">人才猎头</a>
           </li>
       </ul>
   </div>

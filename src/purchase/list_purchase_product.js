@@ -1,4 +1,4 @@
-import Page from './page.vue'
+import Page from '../util/page.vue'
 
 export default {
   data() {

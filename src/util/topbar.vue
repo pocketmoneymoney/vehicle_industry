@@ -76,7 +76,7 @@
 */
 .account_icon{
 	color: #666666;
-	background: url('../img/account_icon.png') 0 8px no-repeat;
+	background: url('../../img/account_icon.png') 0 8px no-repeat;
 	padding-left: 20px;
 }
 

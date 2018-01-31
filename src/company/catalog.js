@@ -1,5 +1,5 @@
 import SubCatalog from './subcatalog.vue'
-import Search from './search.vue'
+import Search from '../util/search.vue'
 
 export default {
   data() {

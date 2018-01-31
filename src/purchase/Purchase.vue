@@ -6,10 +6,9 @@
         <main-nav></main-nav>
         <div>
           <event-enroll-panel></event-enroll-panel>
-          <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
-          <div>
-            <catalog></catalog>
+          <div class="clearfix">
+            <purchase-product></purchase-product>
           </div>
         </div>
       </div>
@@ -19,18 +18,17 @@
 </template>
 
 <script>
-import TopBar from './topbar.vue'
-import MainHeader from './header.vue'
-import MainNav from './main_nav.vue'
+import TopBar from '../util/topbar.vue'
+import MainHeader from '../util/header.vue'
+import MainNav from '../util/main_nav.vue'
 
-import EventEnrollPanel from './event_enroll_panel.vue'
-import LatestPurchase from './latest_purchase.vue'
-import Catalog from './catalog.vue'
+import EventEnrollPanel from '../util/event_enroll_panel.vue'
+import PurchaseProduct from './list_purchase_product.vue'
 
-import SupplierRecom from './supplier_recommend.vue'
+import SupplierRecom from '../util/supplier_recommend.vue'
 
-import Interview from './interview.vue'
-import LastFooter from './footer.vue'
+import Interview from '../util/interview.vue'
+import LastFooter from '../util/footer.vue'
 
 export default {
   data: function() {
@@ -45,12 +43,12 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, Catalog, SupplierRecom, Interview, LastFooter}
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, PurchaseProduct, SupplierRecom, Interview, LastFooter}
 }
 </script>
 
 <style lang="scss">
-@import '../css/rem.scss';
+@import '../../css/rem.scss';
 
 .back_wrapper{
   width: t(1200);

@@ -4,7 +4,7 @@
         <span>{{ title }}</span>
         <a href="../inquiry/product_list.aspx">More &gt;</a>
     </h3>
-    <component :is="listProductView"></component>
+    <component :is="component"></component>
   </div>
 </template>
 
