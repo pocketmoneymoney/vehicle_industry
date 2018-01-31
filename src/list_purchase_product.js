@@ -1,3 +1,5 @@
+import Page from './page.vue'
+
 export default {
   data() {
     var purchaseProducts = [];
@@ -12,10 +14,17 @@ export default {
     };
     purchaseProducts.push(product);
     return {
-      purchaseProducts: purchaseProducts
+      purchaseProducts: purchaseProducts,
+      curPage: 8,
+      totalPage: 11
+    }
+  },
+  methods: {
+    changePage: function(page) {
+      this.curPage = page;
     }
   },
   mounted: function() {
   },
-  components: {}
+  components: {Page}
 }

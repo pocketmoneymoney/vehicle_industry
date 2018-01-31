@@ -37,6 +37,7 @@
             </ul>
         </div>
      </div>
+     <page :curPage="curPage" :totalPage="totalPage" @pageChanged="changePage"></page>
   </div>
 </template>
 
