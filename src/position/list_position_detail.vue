@@ -11,34 +11,35 @@
                 <li class="cur"><a href="position_list.aspx">Company List</a></li>
             </ul>
         </div-->
-                <ul class="product_list">
-                    
-                    <li v-for="position in positions">
-                        <h4 class="position_title"><a href="../supplierEC/show_index.aspx?op=2382">{{ position.name }}</a></h4>
-                        <div class="position_list_left">
-                            <p>
-                                <!--a href="pro_com_detail.aspx?op=32846"><img width="110px" src='../admin/file/img/20180129095347897.jpg' /></a-->
-                                <em>Window Switch For Chevrolet/GMC 15151356 IWSGM021</em>
-                            </p>
-                            
-                        </div>
-                        <div class="position_list_right">
-                            <dl>
-                                <dt>主要产品</dt>
-                                <dd>{{ position.products }}</dd>
-                            </dl>
-                            <!--dl>
-                                <dt>Total Revenue:</dt>
-                                <dd>USD 1000,000 - 2500,000</dd>
-                            </dl>
-                            <dl>
-                                <dt>Bussiness Type:</dt>
-                                <dd>Manfacturer,Trading Company</dd>
-                            </dl-->
-                            
-                        </div>
-                    </li>
-                </ul>
+     <ul class="product_list">
+         
+         <li v-for="position in positions">
+             <h4 class="position_title"><a href="../supplierEC/show_index.aspx?op=2382">{{ position.name }}</a></h4>
+             <div class="position_list_left">
+                 <p>
+                     <!--a href="pro_com_detail.aspx?op=32846"><img width="110px" src='../admin/file/img/20180129095347897.jpg' /></a-->
+                     <em>Window Switch For Chevrolet/GMC 15151356 IWSGM021</em>
+                 </p>
+                 
+             </div>
+             <div class="position_list_right">
+                 <dl>
+                     <dt>主要产品</dt>
+                     <dd>{{ position.products }}</dd>
+                 </dl>
+                 <!--dl>
+                     <dt>Total Revenue:</dt>
+                     <dd>USD 1000,000 - 2500,000</dd>
+                 </dl>
+                 <dl>
+                     <dt>Bussiness Type:</dt>
+                     <dd>Manfacturer,Trading Company</dd>
+                 </dl-->
+                 
+             </div>
+         </li>
+     </ul>
+     <page :curPage="curPage" :totalPage="totalPage" @pageChanged="changePage"></page>
   </div>
 </template>
 

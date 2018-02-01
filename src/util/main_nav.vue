@@ -11,7 +11,7 @@
               <a href="/src/purchase/index.html">采购项目专区</a>
           </li>
           <li>
-              <a href="./inquiry/inquiry_list.aspx">采购配对会</a>
+              <a href="/src/meeting/index.html">采购配对会</a>
           </li>
           <li>
               <a href="./inquiry/inquiry_list.aspx">走进主机厂</a>

@@ -1,4 +1,5 @@
 import Search from '../util/search.vue'
+import Page from '../util/page.vue'
 
 export default {
   data() {
@@ -9,10 +10,17 @@ export default {
     };
     companys.push(company);
     return {
-      companys: companys
+      companys: companys,
+      curPage: 8,
+      totalPage: 11
+    }
+  },
+  methods: {
+    changePage: function(page) {
+      this.curPage = page;
     }
   },
   mounted: function() {
   },
-  components: {Search}
+  components: {Search, Page}
 }

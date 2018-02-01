@@ -1,3 +1,5 @@
+import Page from '../util/page.vue'
+
 export default {
   data() {
     var positions = [];
@@ -7,10 +9,17 @@ export default {
     };
     positions.push(position);
     return {
-      positions: positions
+      positions: positions,
+      curPage: 8,
+      totalPage: 11
+    }
+  },
+  methods: {
+    changePage: function(page) {
+      this.curPage = page;
     }
   },
   mounted: function() {
   },
-  components: {}
+  components: {Page}
 }
