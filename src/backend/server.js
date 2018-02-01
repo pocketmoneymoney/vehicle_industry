@@ -6,8 +6,9 @@ module.exports = function(app, express, config) {
     var path = require('path');
     var util = require('util');
     var log4js = require('log4js');
-    var log4jsConfig = require('./log4js.config');
+
     var database = require('./db');
+    var purchase = require('./purchase');
 
     var router = express.Router({mergeParams: true});
 
@@ -37,10 +38,12 @@ module.exports = function(app, express, config) {
             console.log('-----------------------------------------------------------');
         }
 
+    	logger.info('Start to enable REST API');
+    	app.use('/api', router);
 
+	mountRouters(router);
     });
 
-    logger.info('Started REST API');
 
     function setLogConfig () {
         var logDir = util.format('%s/logs/', path.resolve('../..'));
@@ -62,5 +65,9 @@ module.exports = function(app, express, config) {
         });
 
         console.log("Log Configuration and save to %s", logDir);
+    }
+
+    function mountRouters (router) {
+        purchase.mount(express, router);
     }
 };

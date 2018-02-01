@@ -21,8 +21,8 @@ def insert_bulk_of_purchase(collection):
            published	        date
            expired	        date
     """
-    purchases = [{"company":"GuangDong Baolong Car Ltm.",
-                  "name":"Flight Seat",
+    purchases = [{"company":"ShanDong Baolong Car Ltm.",
+                  "name":"Car Seat",
                   "material": "Bulk",
                   "size": "299",
                   "amount": "500",

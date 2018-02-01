@@ -3,11 +3,11 @@
 var util = require('util');
 var log4js = require('log4js');
 var mongoose = require('mongoose');
+var handler = require('./handler.js'); 
 
 var logger = log4js.getLogger('service');
 
 var database = module.exports = {};
-
 
 database.init = function (ip, port, db, callback) {
     logger.info('Initialize db service', ip, port, db);
@@ -30,3 +30,5 @@ database.init = function (ip, port, db, callback) {
         callback(err, null);
     });
 };
+
+database.handler = handler;
