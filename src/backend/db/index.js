@@ -4,6 +4,7 @@ var util = require('util');
 var log4js = require('log4js');
 var mongoose = require('mongoose');
 var handler = require('./handler.js'); 
+var dao = require('./dao.js'); 
 
 var logger = log4js.getLogger('service');
 
@@ -32,3 +33,5 @@ database.init = function (ip, port, db, callback) {
 };
 
 database.handler = handler;
+database.daoTemplate = dao;
+

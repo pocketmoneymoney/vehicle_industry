@@ -12,19 +12,19 @@ function dbHandler() {
 		     'size':		String,
 		     'amount':		String,
 		     'type':		String,
-		     'published':	String,
-		     'expired':		String
+		     'publishedTime':	String,
+		     'expiredTime':	String
 		}, 'purchase', 'purchase');
 }
 
 dbHandler.prototype = Object.create(db.handler.prototype);
 dbHandler.prototype.constructor = dbHandler;
 
-dbHandler.prototype.getPurchaseOrders = function(start, num, callback) {
-    this.findMultiple(num, callback);
+dbHandler.prototype.getPurchaseList = function(page, num, callback) {
+    db.daoTemplate.getPageItems(this, page, num, callback);
 };
 
-dbHandler.prototype.getPurchaseOrdersAmount = function(callback) {
+dbHandler.prototype.getPurchaseAmount = function(callback) {
     this.count(callback);
 };
 

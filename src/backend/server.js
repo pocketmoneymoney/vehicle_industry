@@ -8,7 +8,6 @@ module.exports = function(app, express, config) {
     var log4js = require('log4js');
 
     var database = require('./db');
-    var purchase = require('./purchase');
 
     var router = express.Router({mergeParams: true});
 
@@ -68,6 +67,10 @@ module.exports = function(app, express, config) {
     }
 
     function mountRouters (router) {
+    	var purchase = require('./purchase');
+	var interview = require('./interview');
+
         purchase.mount(express, router);
+        interview.mount(express, router);
     }
 };

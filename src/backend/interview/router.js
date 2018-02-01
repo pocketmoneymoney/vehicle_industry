@@ -14,13 +14,13 @@ module.exports = function(express) {
          var page = req.query.page? parseInt(req.query.page) : 1;
          var num = req.query.num? parseInt(req.query.num) : 1;
          var start = page * num;
-         dao.getPurchaseList(start, num, function (err, result) {
+         dao.getInterviewList(start, num, function (err, result) {
              res.send(JSON.stringify(result));
          });
     });
 
     router.get('/amount', function (req, res) {
-        dao.getPurchaseAmount(function (err, result) {
+        dao.getInterviewAmount(function (err, result) {
             res.send(JSON.stringify(result));
 	});
     });
