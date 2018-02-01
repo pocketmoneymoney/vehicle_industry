@@ -25,5 +25,11 @@ module.exports = function(express) {
 	});
     });
 
+    router.get('/detail/:id', function (req, res) {
+         dao.getPurchaseDetail(req.params.id, function (err, result) {
+            res.send("Detail View:" + JSON.stringify(result));
+         });
+    });
+
     return router;
 };

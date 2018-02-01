@@ -20,15 +20,15 @@ function dbHandler() {
 dbHandler.prototype = Object.create(db.handler.prototype);
 dbHandler.prototype.constructor = dbHandler;
 
-dbHandler.prototype.getPurchaseList = function(page, num, callback) {
+dbHandler.prototype.getFactoryList = function(page, num, callback) {
     db.daoTemplate.getPageItems.call(this, page, num, callback);
 };
 
-dbHandler.prototype.getPurchaseAmount = function(callback) {
+dbHandler.prototype.getFactoryAmount = function(callback) {
     this.count(callback);
 };
 
-dbHandler.prototype.getPurchaseDetail = function (id, callback) {
+dbHandler.prototype.getFactoryDetail = function (id, callback) {
     this.findOne({'_id':id}, callback);
 }
 

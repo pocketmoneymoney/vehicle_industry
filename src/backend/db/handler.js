@@ -58,11 +58,12 @@ DBHandler.prototype.findMultiple = function(conditions, projection, options,
         limit = projection;
         projection = null;
         options = null;
-      } else if (typeof options === 'function') {
+      } else if (typeof limit === 'function') {
         callback = limit;
         limit = options;
         options = null;
       }
+
     var query = this.model
         .find(conditions, projection, options)
         .limit(limit);

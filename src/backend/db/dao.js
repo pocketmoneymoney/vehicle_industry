@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 
 var template = module.exports = {};
 
-template.getPageItems = function (handler, page, num, callback) {
+template.getPageItems = function (page, num, callback) {
     var total = (page + 1) * num;
-    handler.findMultiple(total, function (err, data) {
+    this.findMultiple(total, function (err, data) {
         if (err) {
            callback("Failed to get any data from database", []);
         } else {

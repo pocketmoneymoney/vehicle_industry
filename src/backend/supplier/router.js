@@ -14,19 +14,19 @@ module.exports = function(express) {
          var page = req.query.page? parseInt(req.query.page) : 1;
          var num = req.query.num? parseInt(req.query.num) : 1;
          var start = page * num;
-         dao.getInterviewList(start, num, function (err, result) {
+         dao.getSupplierList(start, num, function (err, result) {
              res.send(JSON.stringify(result));
          });
     });
 
     router.get('/amount', function (req, res) {
-        dao.getInterviewAmount(function (err, result) {
+        dao.getSupplierAmount(function (err, result) {
             res.send(JSON.stringify(result));
 	});
     });
 
     router.get('/detail/:id', function (req, res) {
-         dao.getInterviewDetail(req.params.id, function (err, result) {
+         dao.getSupplierDetail(req.params.id, function (err, result) {
             res.send("Detail View:" + JSON.stringify(result));
          });
     });
