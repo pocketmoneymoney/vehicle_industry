@@ -13,6 +13,8 @@ module.exports = {
 	  position: './src/position/position.js',
 	  meeting: './src/meeting/meeting.js',
 	  visiting: './src/visiting/visiting.js',
+
+	  user: './src/management/user.js',
   },
   output: {
     path: './dist',

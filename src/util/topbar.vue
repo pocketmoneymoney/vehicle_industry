@@ -36,7 +36,7 @@ export default {
   methods: {
     login: function() {
       if (this.username === '' || this.password === '') {
-        alert('empty username or password');
+        alert('用户名或密码为空');
         return;
       }
     }
