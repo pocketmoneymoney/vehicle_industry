@@ -3,13 +3,14 @@
   	<div class="main clearfix">
   		<a>欢迎来到OE汽车</a>
   		<div class="top_right">
-        <div class="login">
+  			<a v-if="isLogin && isAdmin" href="../register/login.aspx">管理员页面</a>
+  			<a v-if="isLogin" href="../register/login.aspx" class="account_icon">我的账户</a>
+        <div v-else class="login">
            <input type="text" placeholder="请输入用户名" v-model="username"/>
            <input type="password" placeholder="请输入密码" v-model="password"/>
   			   <a @click="login">登录</a>
   			   <a href="/src/register.html">注册</a>
         </div>
-  			<a href="../register/login.aspx" id="TitleControl1_lab_my" class="account_icon">我的账户</a>
   		</div>
   	</div>
   </div>
@@ -18,7 +19,16 @@
 <script>
 export default {
   data() {
+      var isLogin = false;
+      var isAdmin = false;
+      if (getCookie('SessionId') != '') {
+        isLogin = true;
+        if (getCookie('Role') == 'admin') {
+          isAdmin = true;
+        }
+      }
     return {
+      isLogin: isLogin,
       username: "",
       password: ""
     }
