@@ -6,8 +6,10 @@ module.exports = function(app, express, config) {
     var log4js = require('log4js');
 
     var database = require('./db');
+    var userAuthentication = require('./user');
 
     var router = express.Router({mergeParams: true});
+    var userRouter = express.Router({mergeParams: true});
 
     // ----------------------------------------------------
     // Initialization
@@ -33,8 +35,11 @@ module.exports = function(app, express, config) {
         }
 
     	logger.info('Start to enable REST API');
-    	app.use('/api', router);
 
+    	app.use('/api', router);
+        app.use('/user', userRouter);
+
+        userAuthentication.mount(express, userRouter);
 	mountRouters(router);
        
         app.use(function (req, res, next) {

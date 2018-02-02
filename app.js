@@ -4,35 +4,56 @@ var https = require('https');
 var express = require('express');
 var path = require('path');
 var log4js = require('log4js');
+var ejs = require('ejs');
+var flash = require('connect-flash');
 
 var server = require('./routes/server.js');
+var logger = log4js.getLogger('server');
 
 var app = express();
 
+/////////////////////////////////////////////////////////
+//    Setup express service configurations.
+/////////////////////////////////////////////////////////
 setLogConfig();
 
-startServer();
+app.engine(".html", ejs.__express);
+app.set("view engine", "html");
 
-function startServer() {
-    console.log('Start Server ...');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var passport = require('passport');
 
-    var logger = log4js.getLogger('server');
+// Load authentication strategy.
+require('./routes/user/auth.js');
 
-    app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO}));
+console.log('Configure express app');
 
-    app.use('/static', express.static('public'));
+app.use(session({ secret: 'oeqiche as', cookie: { maxAge: 90000 }}))
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
-    app.get('/', function (req, res) { 
-        res.send('Hello World!');
-    }); 
+app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO}));
+app.use('/static', express.static('public'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 
-    server(app, express);
+console.log('Start Server ...');
 
-    app.listen(8088, function() {
-        console.log('Server Started');
-    });
-}
+server(app, express);
+
+app.get('/', function (req, res) {
+   res.send('hello world');
+});
+
+app.listen(8088, function() {
+    console.log('Server Started');
+});
 
 
 function setLogConfig () {
