@@ -5,11 +5,11 @@
       <div class="main clearfix">
         <main-nav></main-nav>
         <div>
-         <user-panel></user-panel>
+          <event-enroll-panel></event-enroll-panel>
           <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
           <div>
-            <list-position-detail></list-position-detail>
+            <history-visiting></history-visiting>
           </div>
         </div>
       </div>
@@ -23,9 +23,9 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 
-import UserPanel from './user_panel.vue'
+import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LatestPurchase from '../util/latest_purchase.vue'
-import ListPositionDetail from './list_position_detail.vue'
+import HistoryVisiting from '../util/carousel.vue'
 
 import SupplierRecom from '../util/supplier_recommend.vue'
 
@@ -35,6 +35,9 @@ import LastFooter from '../util/footer.vue'
 export default {
   data: function() {
     return {
+      topProduct: "eventEnroll",
+      topTitle: "活动预告及报名",
+      topComponent: "event-enroll-panel"
     }
   },
   methods: {
@@ -42,7 +45,7 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, UserPanel, LatestPurchase, ListPositionDetail, SupplierRecom, Interview, LastFooter}
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, HistoryVisiting, SupplierRecom, Interview, LastFooter}
 }
 </script>
 

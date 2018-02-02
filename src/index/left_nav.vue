@@ -6,7 +6,14 @@
         <ul class="left_main_nav">
           <li
             v-for="tab in tabs"
-            @click="choose(tab)"><a href='#'>{{tab.name}}</a></li>
+            @click="choose(tab)">
+              <a href='#'>{{tab.name}}</a>
+              <div class="three_nav three_nav1">
+                <ul>
+                  <li><a href="/src/company/list.html?product=AAA">AAA</a></li>
+                </ul>
+              </div>
+          </li>
         </ul>
     </div>
 </template>
@@ -76,9 +83,31 @@ a:hover{
 	position: relative;
 	width: 220px;
 	margin-left: -27px;
-	padding-left: 37px;
+	padding-left: 28px;
 	background:#fff url('../../img/nav_arrow.jpg') 233px center no-repeat;
 	z-index: 10;
 }
 
+.three_nav{
+	background: #fff;
+	position: absolute;
+	height: 478px;
+	border:1px solid #fff;
+	z-index: 1000;
+	left: 219px;
+	display: none;
+	padding-left: 20px;
+	box-shadow: 0 0 3px #999;
+	top: -2px;
+	width: 214px;
+}
+.left_main_nav li:hover .three_nav{
+  display:block;
+}
+.left_main_nav li:hover .three_nav:hover{
+  display:block;
+}
+.three_nav ul{
+  padding-left: 0;
+}
 </style>

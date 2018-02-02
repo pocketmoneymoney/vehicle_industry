@@ -14,7 +14,7 @@
               <a href="/src/meeting/index.html">采购配对会</a>
           </li>
           <li>
-              <a href="./inquiry/inquiry_list.aspx">走进主机厂</a>
+              <a href="/src/visiting/index.html">走进主机厂</a>
           </li>
           <li>
               <a href="/src/position/index.html">人才猎头</a>

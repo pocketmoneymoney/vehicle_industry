@@ -2,7 +2,7 @@
   <div class="project_enroll">
     <!--span class="long"></span-->
     <dl class="clearfix">
-        <dd>
+        <!--dd>
             <h4>
                 <a target="_blank" href="http://i.gasgoo.com/purchas/production/301787.html#">
                   活动1
@@ -11,9 +11,12 @@
             <p>
                 公司1
             </p>
-        </dd>
+        </dd-->
         <dt>
-            <span class="span01"><a target="_blank" href="http://i.gasgoo.com/purchas/production/301787.html">我要报名</a></span>
+            <span class="span01"><a target="_blank" href="http://i.gasgoo.com/purchas/production/301787.html">登陆人才库</a></span>
+        </dt>
+        <dt>
+            <span class="span01"><a target="_blank" href="http://i.gasgoo.com/purchas/production/301787.html">注册人才库</a></span>
         </dt>
     </dl>
   </div>
@@ -27,7 +30,7 @@
 .project_enroll p{ font-size:11px; color:#888888; line-height:20px;}
 .project_enroll dd{ padding-top:4px;}
 .project_enroll dd.dd{  font-family:Arial;}
-.project_enroll dt{ width:64px; float:right; text-align:center; }
+.project_enroll dt{ width:164px; text-align:center; padding-top:15px;}
 .project_enroll dt b{ font-weight:normal; font-size:11px; line-height:23px; color:#999;}
 .project_enroll dt .span01{ display:block; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px;}
 .project_enroll span a{ padding:0px;}

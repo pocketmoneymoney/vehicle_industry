@@ -11,6 +11,7 @@ module.exports = {
 	  company_list: './src/company/company_list.js',
 	  position: './src/position/position.js',
 	  meeting: './src/meeting/meeting.js',
+	  visiting: './src/visiting/visiting.js',
   },
   output: {
     path: './dist',
