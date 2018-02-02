@@ -1,14 +1,38 @@
 <template>
   <div class="top_bar">
   	<div class="main clearfix">
+  		<a>欢迎来到OE汽车</a>
   		<div class="top_right">
-  			<a>欢迎来到OE汽车</a>
-  			<a href="../register/login.aspx" id="TitleControl1_lab_sign">Sign in</a>
+        <div class="login">
+           <input type="text" placeholder="请输入用户名" v-model="username"/>
+           <input type="password" placeholder="请输入密码" v-model="password"/>
+  			   <a @click="login">登录</a>
+  			   <a href="/src/register.html">注册</a>
+        </div>
   			<a href="../register/login.aspx" id="TitleControl1_lab_my" class="account_icon">我的账户</a>
   		</div>
   	</div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      username: "",
+      password: ""
+    }
+  },
+  methods: {
+    login: function() {
+      if (this.username === '' || this.password === '') {
+        alert('empty username or password');
+        return;
+      }
+    }
+  }
+}
+</script>
 
 <style>
 .top_bar{
@@ -54,12 +78,34 @@
 	padding-left: 20px;
 }*/
 
+.main a {
+	font-size: 12px;
+	line-height: 30px;
+}
 /*顶部右侧*/
 .top_right{
 	float: right;
 	height: 30px;
 	line-height: 30px;
 	font-size: 12px;
+}
+.login {
+	display: block;
+	height: 30px;
+	float: left;
+}
+.login input{
+  float:left;
+  height: 26px;
+  margin-top: 2px;
+  font-size:12px;
+  line-height:18px;
+  margin-right:10px;
+}
+.login a{
+  float:left;
+  margin-right:10px;
+  cursor: pointer;
 }
 .top_right a{
 	display: block;
