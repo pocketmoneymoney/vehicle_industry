@@ -3,8 +3,6 @@
 
 module.exports = function(app, express, config) {
     var _ = require('underscore');
-    var path = require('path');
-    var util = require('util');
     var log4js = require('log4js');
 
     var database = require('./db');
@@ -14,11 +12,8 @@ module.exports = function(app, express, config) {
     // ----------------------------------------------------
     // Initialization
     // ----------------------------------------------------
-    setLogConfig();
 
-    var logger = log4js.getLogger('server');
-
-    app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO}));
+    var logger = require('log4js').getLogger('server');
 
     database.init('localhost', 27017, 'oeqiche', function (err) {
         if (err) {
@@ -41,30 +36,13 @@ module.exports = function(app, express, config) {
     	app.use('/api', router);
 
 	mountRouters(router);
-    });
-
-
-    function setLogConfig () {
-        var logDir = util.format('%s/logs/', path.resolve('../..'));
-        log4js.configure({
-            appenders: {  
-		serverLog:
-                { type: 'file',
-                  filename: 'server.log',
-                  layout: {
-                      type: 'pattern',
-                      pattern: "[%d{yyyy-MM-ddThh:mm:ss.SSSO}] [%p] %c - %m"
-                }}
-            },
-            categories: {
-                server: {appenders: ['serverLog'], level: 'info'},
-                default: {appenders: ['serverLog'], level: 'info'},
-            },
-            "replaceConsole": true
+       
+        app.use(function (req, res, next) {
+            res.status(404).send("Address not found");
+            next();
         });
 
-        console.log("Log Configuration and save to %s", logDir);
-    }
+    });
 
     function mountRouters (router) {
     	var purchase = require('./purchase');
