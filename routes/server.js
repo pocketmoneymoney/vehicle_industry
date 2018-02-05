@@ -52,8 +52,10 @@ module.exports = function(app, express, config) {
     function mountRouters (router) {
     	var purchase = require('./purchase');
 	var interview = require('./interview');
+	var category = require('./category');
 
         purchase.mount(express, router);
         interview.mount(express, router);
+        category.mount(express, router);
     }
 };

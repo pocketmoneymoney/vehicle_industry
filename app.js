@@ -24,6 +24,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
+var multer = require('multer');
 
 // Load authentication strategy.
 require('./routes/user/auth.js');
@@ -39,14 +40,14 @@ app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO}));
 app.use('/static', express.static('public'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer({'dest': './'}).any());
 app.use(cookieParser());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
-
 
 console.log('Start Server ...');
 
