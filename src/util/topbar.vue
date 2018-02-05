@@ -19,16 +19,11 @@
 <script>
 export default {
   data() {
-      var isLogin = false;
-      var isAdmin = false;
-      if (getCookie('SessionId') != '') {
-        isLogin = true;
-        if (getCookie('Role') == 'admin') {
-          isAdmin = true;
-        }
-      }
+    var isLogin = false;
+    var isAdmin = false;
     return {
       isLogin: isLogin,
+      isAdmin: isAdmin,
       username: "",
       password: ""
     }
@@ -39,6 +34,26 @@ export default {
         alert('用户名或密码为空');
         return;
       }
+      post('/user/admin/login', {username: this.username, password: this.password}, function(data) {
+        if (data.token) {
+          setCookie('token', data.token, 3000);
+          this.isLogin = true;
+        }
+      }, false);
+    },
+  },
+  mounted: function() {
+    var self = this;
+    if (getCookie('token') != "") {
+      post('/user/admin/book', {}, function(data) {
+        if (data.username) {
+          self.isLogin = true;
+          console.log(self.isLogin);
+          if (data.role === 'admin') {
+            self.isAdmin = true;
+          }
+        }
+      }, true);
     }
   }
 }
