@@ -1,10 +1,10 @@
 <template>
   <div class="subcatalog clearfix">
-     <h4>{{ subcatalog.main }}</h4>
+     <h4>{{ catalog.name }}</h4>
      <ul class="subcatalog_list clearfix">
-        <li v-for="option in subcatalog.sub">
-          <a :href="url+option">
-            {{ option }}
+        <li v-for="option in subcatalog">
+          <a :href="url+catalog.name+param+option.name">
+            {{ option.name }}
           </a>
         </li>
      </ul>

@@ -6,8 +6,8 @@
     </h3>
     <div class="catalog_main">
         <ul class="catalog_list">
-            <li v-for="subcatalog in catalog">
-               <sub-catalog :subcatalog=subcatalog></sub-catalog>
+            <li v-for="tab in tabs">
+               <sub-catalog :catalog=tab></sub-catalog>
            </li>
         </ul>
     </div>

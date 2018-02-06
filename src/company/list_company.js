@@ -2,6 +2,7 @@ import Search from '../util/search.vue'
 import Page from '../util/page.vue'
 
 export default {
+  props: ['catalog', 'subcatalog'],
   data() {
     var companys = [];
     var company = {

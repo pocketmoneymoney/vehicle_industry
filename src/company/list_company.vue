@@ -12,6 +12,25 @@
                 <li class="cur"><a href="company_list.aspx">Company List</a></li>
             </ul>
         </div-->
+				<div class="crumb">
+					<a href="../index/index.aspx">{{ catalog }}</a> > <a>{{ subcatalog }}</a>
+				</div>
+        <div class="screening_box">
+            <dl>
+                <dd>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=ISO9001&str6=&str7=&str=">ISO9001</a>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=ISO14001&str6=&str7=&str=">ISO14001</a>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=OHSAS18001&str6=&str7=&str=">OHSAS18001</a>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=3C&str6=&str7=&str=">3C</a>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=CE&str6=&str7=&str=">CE</a>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=TS16949&str6=&str7=&str=">TS16949</a>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=QS9000&str6=&str7=&str=">QS9000</a>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=VDA6.1&str6=&str7=&str=">VDA6.1</a>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=VDA6.3&str6=&str7=&str=">VDA6.3</a>
+                    <a href="company_list.aspx?str2=&str3=&str4=&str5=E-mark&str6=&str7=&str=">E-mark</a>
+                </dd>
+            </dl>
+        </div>
         <ul class="product_list">
             
             <li v-for="company in companys">
@@ -111,12 +130,6 @@
   padding-top: 15px;
   padding-left: 15px;
 }
-.list_company h3 a{
-	color: #999999;
-	font-size: 12px;
-	float: right;
-	font-weight: normal;
-}
 
 .middle_list_content{
 	background: #fff;
@@ -156,7 +169,7 @@
 */
 .product_list li{
 	border-bottom: 1px dashed #e5e5e5;
-	padding: 20px 0;
+	/*padding: 20px 0;*/
 	overflow: hidden;
 }
 /*
@@ -175,6 +188,7 @@
 	line-height: 22px;	
 	height: 22px;
 	margin-bottom: 15px;
+  margin-top: 0;
 }
 .company_title a{
 	color: #449cd7;
@@ -231,5 +245,50 @@
 	line-height: 22px;
 	color: #333;
 }
+
+.crumb{
+	margin: 10px 0;
+	float: none;
+  color: #666;
+  padding-left: 16px;
+}
+.crumb a {
+  font-size: 12px;
+  line-height: 20px;
+  color: #666;
+}
+.screening_box{
+	border:1px solid #449cd7;
+	background: #eff8fc;
+	padding: 10px 20px 0 20px;
+  margin-left: 35px;
+}
+.screening_box dl{
+	overflow: hidden;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.screening_box dl dt{
+	float: left;
+	width: 140px;
+	height: 22px;
+	line-height: 22px;
+	color: #526177
+}
+.screening_box dl dd{
+	float: left;
+	width: 830px;
+	line-height: 22px;
+}
+.screening_box dl dd a{
+	display: inline-block;
+	margin: 0 10px;
+	color: #888888
+}
+.screening_box dl dd a:hover{
+	color: #449cd7
+}
+
+
 
 </style>

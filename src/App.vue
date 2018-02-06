@@ -4,7 +4,7 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav></main-nav>
-        <left-nav :tabs="tabs" :defaultTab="defaultTab" @viewchange="viewChange"></left-nav>
+        <left-nav @viewchange="viewChange"></left-nav>
         <div class="main_right">
           <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
@@ -35,6 +35,7 @@ import LastFooter from './util/footer.vue'
 export default {
   data: function() {
     return {
+      /*
 	    tabs: [
 	      {index: 1,
 		   name: '新能源'},
@@ -62,6 +63,7 @@ export default {
 		   name: '通用部分'},
 	    ],
 	    defaultTab: 1
+      */
     }
   },
   methods: {

@@ -10,7 +10,7 @@
               <a href='#'>{{tab.name}}</a>
               <div class="three_nav three_nav1">
                 <ul>
-                  <li><a href="/src/company/list.html?product=AAA">AAA</a></li>
+                  <li v-for="subtab in subtabs[tab.id]"><a :href="url + tab.name + param + subtab.name">{{ subtab.name }}</a></li>
                 </ul>
               </div>
           </li>
@@ -109,5 +109,15 @@ a:hover{
 }
 .three_nav ul{
   padding-left: 0;
+}
+.three_nav ul li {
+	height: 44px;
+	line-height: 44px;
+  padding-top: 10px;
+	padding-left: 0px;
+	background:#fff;
+	border:1px solid #fff;
+	border-left: 2px solid #fff;
+	position: relative;
 }
 </style>

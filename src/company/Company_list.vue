@@ -9,7 +9,7 @@
           <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
           <div>
-            <ListCompany></ListCompany>
+            <ListCompany :catalog=catalog :subcatalog=subcatalog></ListCompany>
           </div>
         </div>
       </div>
@@ -38,7 +38,8 @@ export default {
       topProduct: "eventEnroll",
       topTitle: "活动预告及报名",
       topComponent: "event-enroll-panel",
-      condition: {}
+      catalog: '',
+      subcatalog: ''
     }
   },
   methods: {
@@ -48,7 +49,12 @@ export default {
       var allParams = params.split('&');
       for (let index in allParams) {
         var paramObj = allParams[index].split('=');
-        this.condition[paramObj[0]] = paramObj[1]
+        if (paramObj[0] === 'catalog') {
+          this.catalog = paramObj[1]
+        }
+        else if (paramObj[0] === 'subcatalog') {
+          this.subcatalog = paramObj[1]
+        }
       }
     }
   },

@@ -114,7 +114,7 @@ export default {
 }*/
 
 .main a {
-	font-size: 12px;
+	font-size: 13px;
 	line-height: 30px;
 }
 /*顶部右侧*/

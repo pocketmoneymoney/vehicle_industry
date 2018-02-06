@@ -51,5 +51,7 @@
 .index_nav li a{
 	display: block;
 	color: #fff;
+  font-size: 15px;
+  line-height: 34px;
 }
 </style>

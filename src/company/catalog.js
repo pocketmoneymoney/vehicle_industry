@@ -3,6 +3,7 @@ import Search from '../util/search.vue'
 
 export default {
   data() {
+    /*
     var catalog = [];
     var subcatalog = {
       main: '发动机',
@@ -14,11 +15,20 @@ export default {
       sub: ['蓄电池', '仪表', '暖风空调系统']
     };
     catalog.push(subcatalog);
+    */
     return {
-      catalog: catalog 
+      tabs: [],
+      subtabs: [],
+      subtabsClone: []
     }
   },
   mounted: function() {
+    var self = this;
+    get('/api/menu/category', {}, function(data) {
+      self.tabs = data;
+      for (let index in self.tabs) {
+      }
+    }, false);
   },
   components: {SubCatalog, Search}
 }
