@@ -10,18 +10,18 @@ module.exports = function(express) {
 
     var router = express.Router({mergeParams: true});
 
-    router.get('/:id', function (req, res) {
-		dao.getSubtype(req.params.id, function (err, result) {
+    router.get('/:categoryID/:subtypeID', function (req, res) {
+		dao.getSubtype(req.params.subtypeID, function (err, result) {
             res.send(JSON.stringify(result));
         });
     });
 
 
-	router.post('/', function (req, res) {
-		var categoryID = req.body['categoryID'];
+	router.post('/:categoryID', function (req, res) {
+		var categoryID = req.params.categoryID;
 		var subtype = req.body['subtype'];
 		var items = req.body['items'] ? req.body['items'] : [];
-		if (categoryID && subtype) {
+		if (subtype) {
 			dao.addSubtype(categoryID, subtype, items, function (err) {
 				if (err) {
 					res.status(422).send(err);
@@ -33,27 +33,29 @@ module.exports = function(express) {
 	});
 
 
-    router.put('/:id', function (req, res) {
-		var categoryID = req.body['categoryID'];
+    router.put('/:categoryID/:subtypeID', function (req, res) {
+		var categoryID = req.params.categoryID;
+		var subtypeID = req.params.subtypeID;
 		var subtypeName = req.body['subtype'];
 		var items = req.body['items'] ? req.body['items'] : [];
 
-		if (categoryID && subtypeName) {
-            dao.modifySubtype(categoryID, subtypeName, req.params.id, items, function (err) {
+		if (subtypeName) {
+            dao.modifySubtype(categoryID, subtypeName, subtypeID, items, function (err) {
                 if (err) {
                     res.status(503).send("Failed to modify category");
                 } else {
-		    res.status(200).send();
-		}
+		    		res.status(200).send();
+				}
             });
         } else {
             res.status(400).send("no data to modify");
 		}
     });
 
-    router.delete('/:id', function (req, res) {
-		var categoryID = req.body['categoryID'];
-        dao.deleteSubtype(categoryID, req.params.id, function (err) {
+    router.delete('/:categoryID/:subtypeID', function (req, res) {
+		var categoryID = req.params.categoryID;
+		var subtypeID = req.params.subtypeID;
+        dao.deleteSubtype(categoryID, subtypeID, function (err) {
             if (err) {
                 res.status(503).send("Failed to remove category");
             } else {
