@@ -4,7 +4,7 @@
   		<a>欢迎来到OE汽车</a>
   		<div class="top_right">
   			<a v-if="isLogin && isAdmin" href="../register/login.aspx">管理员页面</a>
-  			<a v-if="isLogin" href="../register/login.aspx" class="account_icon">我的账户</a>
+  			<a v-if="isLogin" @click="logout" class="account_icon">退出登录</a>
         <div v-else class="login">
            <input type="text" placeholder="请输入用户名" v-model="username"/>
            <input type="password" placeholder="请输入密码" v-model="password"/>
@@ -34,13 +34,23 @@ export default {
         alert('用户名或密码为空');
         return;
       }
+      var self = this;
       post('/user/admin/login', {username: this.username, password: this.password}, function(data) {
         if (data.token) {
           setCookie('token', data.token, 3000);
-          this.isLogin = true;
+          self.isLogin = true;
+          console.log(data);
+          if (data.role === 'admin') {
+            self.isAdmin = true;
+          }
         }
       }, false);
     },
+    logout: function() {
+      delCookie('token');
+      this.isLogin = false;
+      this.isAdmin = false;
+    }
   },
   mounted: function() {
     var self = this;
@@ -136,6 +146,7 @@ export default {
 	display: block;
 	height: 30px;
 	float: left;
+  margin-right: 10px;
 }
 /*
 .vip_entry{

@@ -73,6 +73,15 @@ export default {
         alert('两次密码不一致');
         return;
       }
+      var self = this;
+      post('/user/admin/register', {username: this.newUsername, password: this.newPassword1, email: this.newEmail, role: this.role}, function(data) {
+        if (data.success) {
+          window.location.href = '/src/index.html';
+        }
+        else {
+          alert(data.msg);
+        }
+      }, false);
     }
   },
   components: {MainHeader, TopBar, LastFooter} 

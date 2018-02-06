@@ -1,5 +1,8 @@
 'use strict';
 
+var User = require("../../models/user");
+var config = require('../../config');
+
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 require('./passport')(passport);
@@ -28,10 +31,44 @@ module.exports = function () {
          res.render('./admin_main.html');
     });
 
-    router.post('/login', function(req, res) {
-       var username = req.body.username;
-       var password = req.body.password;
+    router.post('/register', function(req, res) {
+        if (!req.body.username || !req.body.password) {
+            res.json({success: false, msg: 'Please pass username and password.'});
+        } else {
+            var newUser = new User({
+                username: req.body.username,
+                password: req.body.password,
+                email: req.body.email,
+                role: req.body.role
+            });
+            newUser.save(function(err) {
+                if (err) {
+                    return res.json({success: false, msg: 'Username or email already exists.'});
+                }
+                res.json({success: true, msg: 'Successful created new user.'});
+            });
+        }
+    });
 
+    router.post('/login', function(req, res) {
+
+       User.findOne({username: req.body.username}, function(err, user) {
+           if (err) throw err;
+           if (!user) {
+               res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
+           } else {
+               user.comparePassword(req.body.password, function (err, isMatch) {
+                   if (isMatch && !err) {
+                       var plainUser = {username: user.username, password: user.password, role: user.role, email: user.email};
+                       var token = jwt.sign(plainUser, config.secret);
+                       res.json({success: true, token: 'JWT ' + token, role: user.role});
+                   } else {
+                       res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
+                   }
+               });
+           }
+       });
+       /*
         var user = {
             id: '1',
             username: 'admin',
@@ -47,13 +84,13 @@ module.exports = function () {
         }
         var token = jwt.sign(user, 'nodeauthsecret');
         res.json({success: true, token: 'JWT ' + token});
+        */
     });
 
     router.post('/book', passport.authenticate('jwt', { session: false}), function(req, res) {
       var token = getToken(req.headers);
       if (token) {
-        jwt.verify(token, 'nodeauthsecret', function(err, decoded) {
-            console.log(decoded);
+        jwt.verify(token, config.secret, function(err, decoded) {
             res.json(decoded);
         });
       }
