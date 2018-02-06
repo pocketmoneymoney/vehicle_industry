@@ -19,32 +19,24 @@ module.exports = function(express) {
 			} else {
             	ret = _.map(result, function (category) {
                 	if (detail == 0) {
-                    	return {'name': category['name'],
-			    	'id': category['id']};
+                    	return {
+							'name': category['name'],
+			    			'id': category['id'] };
                 	} else {
                     	return {
                         	'name': category['name'],
 		        			'id': category['id'],
                         	'item': 
-                            	_.map(category['subtype'], 
-									function (subtype) {
-				    	if (detail == 1) { 
-				        	return { 
-								'name': subtype['name'],
-						 		'id': subtype['id']};
-                    	} else { 
-                        	return {
-                               'name': subtype['name'],
-				            	'id': subtype['id'],
-				            	'item':
-                                	_.map(subtype['item'], 
-                                    	function (item) {
-                                        	return { 'name': item['name'],
-                                                     'id': item['id']};
-					    	   	 	})
-                      			};
-				   	 		}
-		            	})};
+                            	_.map(category['subtype'], function (subtype) {
+				    				if (detail == 1) { 
+				        				return { 
+											'name': subtype['name'],
+						 					'id': subtype['id']};
+                    				} else { 
+										return subtype;
+				   	 				}
+		            			})
+						};
                  	};
             	});
             	res.send(JSON.stringify(ret));
