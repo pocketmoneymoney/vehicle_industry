@@ -74,8 +74,13 @@ export default {
         return;
       }
       var self = this;
-      post('/user/admin/register', {username: this.newUsername, password: this.newPassword1, email: this.newEmail, role: this.role}, function(data) {
+      post('/user/register', {username: this.newUsername, password: this.newPassword1, email: this.newEmail, role: this.role}, function(data) {
         if (data.success) {
+          setCookie('token', data.token, 3000);
+          self.isLogin = true;
+          if (data.role === 'admin') {
+            self.isAdmin = true;
+          }
           window.location.href = '/src/index.html';
         }
         else {

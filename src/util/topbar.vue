@@ -35,7 +35,7 @@ export default {
         return;
       }
       var self = this;
-      post('/user/admin/login', {username: this.username, password: this.password}, function(data) {
+      post('/user/login', {username: this.username, password: this.password}, function(data) {
         if (data.token) {
           setCookie('token', data.token, 3000);
           self.isLogin = true;
@@ -55,7 +55,7 @@ export default {
   mounted: function() {
     var self = this;
     if (getCookie('token') != "") {
-      post('/user/admin/book', {}, function(data) {
+      post('/user/book', {}, function(data) {
         if (data.username) {
           self.isLogin = true;
           console.log(self.isLogin);
