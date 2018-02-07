@@ -58,7 +58,7 @@ dbHandler.prototype.getCategory = function(id, callback) {
 
 dbHandler.prototype.getSubtype = function(id, callback) {
     this.findOne({'subtype.id':id}, function (err, data) {
-        if (err || data == []) {
+        if (err || !data) {
 			callback("Get no data from db");
 		} else {
 			var subtype = _.find(data['subtype'], function (iter) {
@@ -74,7 +74,7 @@ dbHandler.prototype.addSubtype = function (categoryID, subtypeName, items, callb
 	var self = this;
 
 	self.findOne({'id':categoryID}, function(err, category) {
-		if (err || category == []) {
+		if (err || !category) {
 			callback("Failed to get category from dabase");
 		} else {
 			var existedSubtype = _.find(category['subtype'], function(subtype) {
@@ -111,7 +111,7 @@ dbHandler.prototype.modifySubtype = function (categoryID, subtypeName,
 	var self = this;
 
 	self.findOne({'id':categoryID}, function(err, category) {
-		if (err || category == []) {
+		if (err || !category) {
 			callback("Failed to get category from dabase");
 		} else {
 			var existedSubtype = _.find(category['subtype'], function(subtype) {
@@ -146,7 +146,7 @@ dbHandler.prototype.deleteSubtype = function (categoryID, subtypeID, callback) {
 	var self = this;
 
 	self.findOne({'id':categoryID}, function(err, category) {
-		if (err || category == []) {
+		if (err || !category) {
 			callback("Failed to get category from dabase");
 		} else {
 			var existedSubtype = _.find(category['subtype'], function(subtype) {

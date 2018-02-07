@@ -55,11 +55,13 @@ module.exports = function(app, express, config) {
 		var interview = require('./interview');
 		var upload = require('./upload');
 		var menu = require('./menu');
+		var admin = require('./admin');
 
         purchase.mount(express, router);
         interview.mount(express, router);
         upload.mount(express, router);
         menu.mount(express, router);
         supplier.mount(express, router);
+        admin.mount(express, router);
     }
 };
