@@ -13,21 +13,12 @@
             </ul>
         </div-->
 				<div class="crumb">
-					<a href="../index/index.aspx">{{ catalog }}</a> > <a>{{ subcatalog }}</a>
+					<a href="/src/company/index.html">公司</a> > <a>{{ catalogName }}</a> > <a>{{ subcatalogName }}</a>
 				</div>
         <div class="screening_box">
             <dl>
                 <dd>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=ISO9001&str6=&str7=&str=">ISO9001</a>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=ISO14001&str6=&str7=&str=">ISO14001</a>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=OHSAS18001&str6=&str7=&str=">OHSAS18001</a>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=3C&str6=&str7=&str=">3C</a>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=CE&str6=&str7=&str=">CE</a>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=TS16949&str6=&str7=&str=">TS16949</a>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=QS9000&str6=&str7=&str=">QS9000</a>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=VDA6.1&str6=&str7=&str=">VDA6.1</a>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=VDA6.3&str6=&str7=&str=">VDA6.3</a>
-                    <a href="company_list.aspx?str2=&str3=&str4=&str5=E-mark&str6=&str7=&str=">E-mark</a>
+                    <a v-for="item in items" @click="chooseItem(item)" :class="{current_item: currentItem.id === item.id}">{{ item.name }}</a>
                 </dd>
             </dl>
         </div>
@@ -256,6 +247,7 @@
   font-size: 12px;
   line-height: 20px;
   color: #666;
+  text-decoration: none;
 }
 .screening_box{
 	border:1px solid #449cd7;
@@ -283,12 +275,16 @@
 .screening_box dl dd a{
 	display: inline-block;
 	margin: 0 10px;
-	color: #888888
+	color: #888888;
+  cursor:pointer;
 }
 .screening_box dl dd a:hover{
-	color: #449cd7
+  text-decoration: none;
 }
-
+/* only ".current_item" will be overwritten by ".screening_box dl dd a"*/
+.screening_box dl dd .current_item {
+  color: #449cd7;
+}
 
 
 </style>

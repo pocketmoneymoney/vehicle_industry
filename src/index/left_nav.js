@@ -1,8 +1,10 @@
 export default {
   data: function() {
     return {
-      url: '/src/company/list.html?catalog=',
-      param: '&subcatalog=',
+      url: '/src/company/list.html?catalogId=',
+      param1: '&subcatalogId=',
+      param2: '&catalogName=',
+      param3: '&subcatalogName=',
       tabs: [],
       subtabsClone: {},
       subtabs: {}

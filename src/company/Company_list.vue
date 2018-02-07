@@ -9,7 +9,7 @@
           <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
           <div>
-            <ListCompany :catalog=catalog :subcatalog=subcatalog></ListCompany>
+            <ListCompany :catalogId=catalogId :subcatalogId=subcatalogId :catalogName=catalogName :subcatalogName=subcatalogName></ListCompany>
           </div>
         </div>
       </div>
@@ -38,8 +38,10 @@ export default {
       topProduct: "eventEnroll",
       topTitle: "活动预告及报名",
       topComponent: "event-enroll-panel",
-      catalog: '',
-      subcatalog: ''
+      catalogId: '',
+      subcatalogId: '',
+      catalogName: '',
+      subcatalogName: ''
     }
   },
   methods: {
@@ -49,11 +51,17 @@ export default {
       var allParams = params.split('&');
       for (let index in allParams) {
         var paramObj = allParams[index].split('=');
-        if (paramObj[0] === 'catalog') {
-          this.catalog = paramObj[1]
+        if (paramObj[0] === 'catalogId') {
+          this.catalogId = paramObj[1]
         }
-        else if (paramObj[0] === 'subcatalog') {
-          this.subcatalog = paramObj[1]
+        else if (paramObj[0] === 'subcatalogId') {
+          this.subcatalogId = paramObj[1]
+        }
+        else if (paramObj[0] === 'catalogName') {
+          this.catalogName = decodeURI(paramObj[1])
+        }
+        else if (paramObj[0] === 'subcatalogName') {
+          this.subcatalogName = decodeURI(paramObj[1])
         }
       }
     }
