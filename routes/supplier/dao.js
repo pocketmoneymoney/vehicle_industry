@@ -2,19 +2,22 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var db = require('../db');
+var db = require('../common/db');
+var helper = require('../common/helper');
 
 function dbHandler() {
      db.handler.call(this, {
-                     'company':		String,
-		     'name':		String,
-		     'material': 	String,
-		     'size':		String,
-		     'amount':		String,
-		     'type':		String,
-		     'publishedTime':	String,
-		     'expiredTime':	String
-		}, 'purchase', 'purchase');
+		'name':			String,
+		'id':			{type:String, unique:true},
+		'brief':		String,
+		'customer':		String,
+		'market':		String,
+		'product':		String,
+		'location':		String,
+		'owner':		String,
+		'avatar':		String,
+		'certification':	Array
+	}, 'supplier', 'supplier');
 }
 
 dbHandler.prototype = Object.create(db.handler.prototype);
@@ -31,5 +34,23 @@ dbHandler.prototype.getSupplierAmount = function(callback) {
 dbHandler.prototype.getSupplierDetail = function (id, callback) {
     this.findOne({'_id':id}, callback);
 }
+
+dbHandler.prototype.addSupplier = function (name, brief, location, customer,
+	market, product, owner, avatar, certification, callback) {
+	
+	this.create({
+		'name': name,
+		'id': helper.uniqueID(name),
+		'brief': brief,
+		'location': location,
+		'customer': customer,
+		'market': market,
+		'product': product,
+		'owner': owner,
+		'avatar': avatar,
+		'certification': certification
+		}, callback);
+};
+
 
 module.exports = new dbHandler();

@@ -1,5 +1,6 @@
 'use strict'
 
+var http = require('http');
 var https = require('https');
 var express = require('express');
 var path = require('path');
@@ -24,7 +25,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
-var multer = require('multer');
 
 // Load authentication strategy.
 require('./routes/user/auth.js');
@@ -41,7 +41,6 @@ app.use('/static', express.static('public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(multer({'dest': './'}).any());
 app.use(cookieParser());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -60,6 +59,8 @@ app.get('/', function (req, res) {
 app.listen(8088, function() {
     console.log('Server Started');
 });
+//var server = http.createServer(app);
+//server.listen(8088, '192.168.190.128');
 
 
 function setLogConfig () {

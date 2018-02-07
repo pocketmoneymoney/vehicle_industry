@@ -3,8 +3,8 @@
 var mongoose = require('mongoose');
 var _ = require('underscore');
 
-var helper = require('../helper');
-var db = require('../db');
+var helper = require('../common/helper');
+var db = require('../common/db');
 
 function dbHandler() {
      db.handler.call(this, {

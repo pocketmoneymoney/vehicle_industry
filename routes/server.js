@@ -5,7 +5,7 @@ module.exports = function(app, express, config) {
     var _ = require('underscore');
     var log4js = require('log4js');
 
-    var database = require('./db');
+    var database = require('./common/db');
     var userAuthentication = require('./user');
 
     var router = express.Router({mergeParams: true});
@@ -40,7 +40,7 @@ module.exports = function(app, express, config) {
         app.use('/user', userRouter);
 
         userAuthentication.mount(express, userRouter);
-	mountRouters(router);
+		mountRouters(router);
        
         app.use(function (req, res, next) {
             res.status(404).send("Address not found");
@@ -51,11 +51,15 @@ module.exports = function(app, express, config) {
 
     function mountRouters (router) {
     	var purchase = require('./purchase');
+    	var supplier = require('./supplier');
 		var interview = require('./interview');
+		var upload = require('./upload');
 		var menu = require('./menu');
 
         purchase.mount(express, router);
         interview.mount(express, router);
+        upload.mount(express, router);
         menu.mount(express, router);
+        supplier.mount(express, router);
     }
 };

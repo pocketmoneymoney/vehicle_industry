@@ -2,12 +2,12 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var db = require('../db');
+var db = require('../common/db');
 
 function dbHandler() {
      db.handler.call(this, {
 		     'title':		String,
-                     'author':		String,
+             'author':		String,
 		     'PublishedTime':	String,
 		     'content': 	String,
 		     'picture':		Array

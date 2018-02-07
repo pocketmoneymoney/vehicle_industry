@@ -2,7 +2,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var db = require('../db');
+var db = require('../common/db');
 
 function dbHandler() {
      db.handler.call(this, {
