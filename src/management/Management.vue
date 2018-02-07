@@ -1,28 +1,10 @@
 <template>
     <div class="back_wrapper">
+      <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
-        <h3>用户列表</h3>
-        <table id="userlist">
-          <thead>
-             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th data-class-name="priority">Salary</th>
-                <th>操作</th>
-             </tr>
-          </thead>
-          <tbody>
-            <tr v-for="user in users">
-              <th v-for = "attr in user">{{ attr }}
-              </th>
-              <th @click="deleteUser(user)" class="delete_button">删除</th>
-            </tr>
-          </tbody>
-        </table>
+        <main-nav @viewChanged="chooseView"></main-nav>
+        <component :is=currentView></component>
       </div>
       <last-footer></last-footer>
     </div>
@@ -31,8 +13,12 @@
 <script>
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
+import MainNav from './nav.vue'
 
 import LastFooter from '../util/footer.vue'
+
+import NoAuthorized from './no_authorized.vue'
+import User from './user.vue'
 
 export default {
   data: function() {
@@ -55,18 +41,28 @@ export default {
       ]
     ];
     return {
-      users: users
+      users: users,
+      currentView: "no-authorized",
     }
   },
   methods: {
-    deleteUser: function() {
+    chooseView: function(view) {
+      if (this.currentView != "no-authorized") {
+        this.currentView = view;
+      }
     }
   },
   mounted: function() {
-    $('#userlist').DataTable({
-    });
+    var self = this;
+    if (getCookie('token') != "") {
+      post('/user/book', {}, function(data) {
+        if (data.username) {
+          self.currentView = "user";
+        }
+      }, true);
+    }
   },
-  components: {MainHeader, TopBar, LastFooter} 
+  components: {TopBar, MainHeader, MainNav, LastFooter, NoAuthorized, User} 
 }
 </script>
 

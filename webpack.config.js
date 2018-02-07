@@ -14,7 +14,7 @@ module.exports = {
 	  meeting: './src/meeting/meeting.js',
 	  visiting: './src/visiting/visiting.js',
 
-	  user: './src/management/user.js',
+	  management: './src/management/index.js',
   },
   output: {
     path: './dist',
