@@ -32,7 +32,7 @@ dbHandler.prototype.getSupplierAmount = function(callback) {
 };
 
 dbHandler.prototype.getSupplierDetail = function (id, callback) {
-    this.findOne({'_id':id}, callback);
+    this.findOne({'id':id}, callback);
 }
 
 dbHandler.prototype.addSupplier = function (name, brief, location, customer,
@@ -52,5 +52,26 @@ dbHandler.prototype.addSupplier = function (name, brief, location, customer,
 		}, callback);
 };
 
+
+dbHandler.prototype.modifySupplier = function (id, name, brief, location, customer,
+	market, product, owner, avatar, certification, callback) {
+	
+	this.update({'id':id}, {$set: {
+		'name': name,
+		'id': helper.uniqueID(name),
+		'brief': brief,
+		'location': location,
+		'customer': customer,
+		'market': market,
+		'product': product,
+		'owner': owner,
+		'avatar': avatar,
+		'certification': certification
+		}}, callback);
+};
+
+dbHandler.prototype.deleteSupplier = function (id, callback) {
+    this.remove({'id':id}, callback);
+}
 
 module.exports = new dbHandler();

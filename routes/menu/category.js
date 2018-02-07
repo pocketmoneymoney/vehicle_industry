@@ -103,8 +103,8 @@ module.exports = function(express) {
             if (err) {
                 res.status(503).send("Failed to remove category");
             } else {
-		res.status(200).send();
-	    }
+				res.status(200).send();
+	    	}
     	});
     });
 

@@ -37,7 +37,7 @@ module.exports = function(express) {
 		});
     });
 
-    router.get('/detail/:id', function (req, res) {
+    router.get('/:id', function (req, res) {
          dao.getSupplierDetail(req.params.id, function (err, result) {
             res.send("Detail View:" + JSON.stringify(result));
          });
@@ -56,7 +56,6 @@ module.exports = function(express) {
 
 		var owner 		= req.user;
 		
-console.log(req.files);
 		var avatarPath = null;
 		if (req.files['avatar'] && req.files['avatar'][0]) {
 			avatarPath = path.join(req.files['avatar'][0].destination, 
@@ -78,8 +77,52 @@ console.log(req.files);
 				res.status(201).send();
 			}
 		});
-			
-		res.send("OK");
+	});
+
+	router.put('/:id', upload.fields([
+			{name:'avatar', maxCount:1}, 
+			{name: 'certification', maxCount:10}]), function (req, res, next) {
+		var name 		= req.body.name;
+		var brief 		= req.body.brief;
+		var location 	= req.body.location;
+		var customer 	= req.body.customer;
+		var market 		= req.body.market;
+		var product 	= req.body.product;
+		var id			= req.params.id;
+
+		var owner 		= req.user;
+		
+		var avatarPath = null;
+		if (req.files['avatar'] && req.files['avatar'][0]) {
+			avatarPath = path.join(req.files['avatar'][0].destination, 
+								   req.files['avatar'][0].filename);
+		}
+		
+		var certificationPath = null;
+		if (req.files['certification']) {
+			certificationPath = _.map(req.files['certification'], function(ca) {
+				return path.join(ca.destination, ca.filename);
+			});
+		}
+
+		dao.modifySupplier(id, name, brief, location, customer, market, product, owner,
+			avatarPath, certificationPath, function (err) {
+			if (err) {
+				res.status(401).send("Failed to add supplier to database");
+			} else {
+				res.status(201).send();
+			}
+		});
+	});
+
+	router.delete('/:id', function (req, res) {
+		dao.deleteSupplier(req.params.id, function (err) {
+            if (err) {
+                res.status(503).send("Failed to remove category");
+            } else {
+				res.status(200).send();
+	    	}
+		});	
 	});
 
     return router;
