@@ -4,7 +4,7 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav @viewChanged="chooseView"></main-nav>
-        <component :is=currentView></component>
+        <component :is=currentView @newCompany="newCompany"></component>
       </div>
       <last-footer></last-footer>
     </div>
@@ -19,6 +19,10 @@ import LastFooter from '../util/footer.vue'
 
 import NoAuthorized from './no_authorized.vue'
 import User from './user.vue'
+import Company from './company.vue'
+import Purchase from './purchase.vue'
+
+import NewCompany from './new_company.vue'
 
 export default {
   data: function() {
@@ -50,6 +54,11 @@ export default {
       if (this.currentView != "no-authorized") {
         this.currentView = view;
       }
+    },
+    newCompany: function() {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "new-company";
+      }
     }
   },
   mounted: function() {
@@ -62,7 +71,7 @@ export default {
       }, true);
     }
   },
-  components: {TopBar, MainHeader, MainNav, LastFooter, NoAuthorized, User} 
+  components: {TopBar, MainHeader, MainNav, LastFooter, NoAuthorized, User, Company, Purchase, NewCompany} 
 }
 </script>
 
