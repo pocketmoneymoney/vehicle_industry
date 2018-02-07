@@ -12,12 +12,12 @@ module.exports = function(express) {
 
     router.get('/', function (req, res) {
         var detail = req.query.detail? parseInt(req.query.detail) : 0;
-        dao.getCategories(function(err, result) {
+        dao.getCategories(function(err, categories) {
             var ret = [];
-			if ((err) || (!result)) {
+			if ((err) || (!categories)) {
             	res.status(401).send("No category was found");
 			} else {
-            	ret = _.map(result, function (category) {
+            	ret = _.map(categories, function (category) {
                 	if (detail == 0) {
                     	return {
 							'name': category['name'],
@@ -37,20 +37,29 @@ module.exports = function(express) {
 				   	 				}
 		            			})
 						};
-                 	};
+                 	}
             	});
             	res.send(JSON.stringify(ret));
 			}
         });
     });
 
+    router.get('/:id/name', function (req, res) {
+        dao.getCategory(req.params.id, function(err, category) {
+			if ((err) || (!category)) {
+            	res.status(401).send("No category was found");
+			} else {
+				res.send(JSON.stringify(category['name']));
+			}
+		});
+	});
 
     router.get('/:id', function (req, res) {
         dao.getCategory(req.params.id, function(err, category) {
 			if ((err) || (!category)) {
             	res.status(401).send("No category was found");
 			} else {
-            	var ret = _.map(category['subtype'], 
+            	var subtype = _.map(category['subtype'], 
 					function (subtype) {
                 		return {
                     	    'name': subtype['name'],
@@ -61,12 +70,14 @@ module.exports = function(express) {
                                                    'id': item['id']};
 					    	       })
                          	};
-				});	
+					});
+				var ret = { 'name': category['name'],
+							'id': category['id'],
+							'subtype': subtype};
             	res.send(JSON.stringify(ret));
 			}
         });
     });
-
 
     router.post('/', function (req, res) {
         var category = req.body['name'];
@@ -77,25 +88,25 @@ module.exports = function(express) {
                 } else {
                     res.status(201).send();
                 }
-	    });  
+	    	});  
         } else {
             res.status(400).send("Invalid input category");
         }
     });
 
     router.put('/:id', function (req, res) {
-        var name = req.body['newName'];
+        var name = req.body['name'];
         if (name) {
             dao.modifyCategory(req.params.id, name, function (err) {
                 if (err) {
                     res.status(503).send("Failed to modify category");
                 } else {
-		    res.status(200).send();
-		}
+		    		res.status(200).send();
+				}
             });
         } else {
             res.status(400).send("no data to modify");
-	}
+		}
     });
 
     router.delete('/:id', function (req, res) {
