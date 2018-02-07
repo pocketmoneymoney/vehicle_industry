@@ -3,7 +3,7 @@
   	<div class="main clearfix">
   		<a>欢迎来到OE汽车</a>
   		<div class="top_right">
-  			<a v-if="isLogin && isAdmin" href="../register/login.aspx">管理员页面</a>
+  			<a v-if="isLogin && isAdmin" href="/src/management/index.html">管理员页面</a>
   			<a v-if="isLogin" @click="logout" class="account_icon">退出登录</a>
         <div v-else class="login">
            <input type="text" placeholder="请输入用户名" v-model="username"/>
