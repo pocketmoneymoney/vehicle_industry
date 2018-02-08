@@ -5,10 +5,10 @@
               <a href="/src/index.html">首页</a>
           </li>
           <li>
-              <a :name="user" @click="chooseView" :class="{current: currentView === user}">用户</a>
+              <a :name="user" @click="chooseView" :class="{current: currentView === user}">用户管理</a>
           </li>
           <li>
-              <a :name="company" @click="chooseView" :class="{current: currentView === company}">OE供应商</a>
+              <a :name="company" @click="chooseView" :class="{current: currentView === company}">供应商管理</a>
           </li>
           <li>
               <a :name="purchase" @click="chooseView" :class="{current: currentView === purchase}">采购项目专区</a>
@@ -21,6 +21,9 @@
           </li>
           <li>
               <a :name="position" @click="chooseView" :class="{current: currentView === position}">人才猎头</a>
+          </li>
+          <li>
+              <a :name="qrcode" @click="chooseView" :class="{current: currentView === qrcode}">二维码</a>
           </li>
       </ul>
   </div>
@@ -36,6 +39,7 @@ export default {
       purchase: "purchase",
       meeting: "meeting",
       visiting: "visiting",
+      qrcode: "qrcode",
       position: "position"
     }
   },

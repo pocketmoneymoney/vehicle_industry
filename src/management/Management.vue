@@ -4,7 +4,10 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav @viewChanged="chooseView"></main-nav>
-        <component :is=currentView @newCompany="newCompany"></component>
+        <left-nav></left-nav>
+		<div class="main_right">
+          <component :is=currentView @newCompany="newCompany"></component>
+		</div>
       </div>
       <last-footer></last-footer>
     </div>
@@ -14,6 +17,7 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from './nav.vue'
+import LeftNav from './left_nav.vue'
 
 import LastFooter from '../util/footer.vue'
 
@@ -23,6 +27,7 @@ import Company from './company.vue'
 import Purchase from './purchase.vue'
 
 import NewCompany from './new_company.vue'
+import Qrcode from './qrcode.vue'
 
 export default {
   data: function() {
@@ -71,7 +76,8 @@ export default {
       }, true);
     }
   },
-  components: {TopBar, MainHeader, MainNav, LastFooter, NoAuthorized, User, Company, Purchase, NewCompany} 
+  components: {LeftNav, TopBar, MainHeader, MainNav, LastFooter, 
+			   NoAuthorized, User, Company, Purchase, NewCompany, Qrcode} 
 }
 </script>
 
@@ -87,6 +93,34 @@ export default {
 	margin: 0 auto;
 }
 
+/* clearfix elimate float:left has no height */
+.clearfix:before,
+.clearfix:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.main_right{
+	float: right;
+	width: 970px;
+	margin-bottom: 20px;
+}
+
+#userlist tbody th {
+  font-weight: 400;
+}
+.delete_button {
+  cursor: pointer;
+}
+</style>
 #userlist tbody th {
   font-weight: 400;
 }

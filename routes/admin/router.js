@@ -23,10 +23,11 @@ module.exports = function(express) {
     var router = express.Router({mergeParams: true});
 
 	router.post('/qrcode', upload.single('avatar'), function (req, res) {
+console.log(req);
 		if (!req.file) {
 			res.status(422).send("No avatar file attached");
 		} else {
-			var qrPath = path.join(req.file.destination, req.file.filename);
+			var qrPath = '/' + path.join(req.file.destination, req.file.filename);
 			dao.updateQRCode(qrPath, function (err) {
 				if (err) {
 					res.status(422).send(err);
