@@ -26,10 +26,13 @@
             
             <li v-for="company in companys">
                 <h4 class="company_title"><a href="../supplierEC/show_index.aspx?op=2382">{{ company.name }}</a></h4>
+                <div class="basic_info">
+                    <span class="address">{{ company.location }}</span>
+                </div>
                 <div class="company_list_left">
                     <p>
-                        <!--a href="pro_com_detail.aspx?op=32846"><img width="110px" src='../admin/file/img/20180129095347897.jpg' /></a-->
-                        <em>Window Switch For Chevrolet/GMC 15151356 IWSGM021</em>
+                        <img width="110px" :src='imgUrl + company.avatar' />
+                        <em></em>
                     </p>
                     
                 </div>
@@ -163,6 +166,9 @@
 	/*padding: 20px 0;*/
 	overflow: hidden;
 }
+.product_list h4 {
+  margin-bottom: 0;
+}
 /*
 .product_list li:hover{
 	box-shadow: 0 0 5px #999;
@@ -285,6 +291,15 @@
 .screening_box dl dd .current_item {
   color: #449cd7;
 }
-
+.basic_info {
+  margin-bottom: 10px;
+}
+.address{ 
+  background:url(/img/supplier_icon.gif) no-repeat 0 -117px; 
+  padding-left:15px;
+  margin-right: 10px;
+  font-size: 12px;
+  color: #999999;
+}
 
 </style>

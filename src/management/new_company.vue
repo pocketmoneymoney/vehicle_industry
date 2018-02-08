@@ -12,7 +12,7 @@
           <dl class="clearfix">
               <dt><b>*</b><span>简介：</span></dt>
               <dd>
-                  <input v-model="decscription" class="text" style="z-index: 10000" name="email" type="text" />
+                  <input v-model="brief" class="text" style="z-index: 10000" name="email" type="text" />
               </dd>
           </dl>
           <dl class="clearfix">
@@ -34,6 +34,12 @@
                       <input type="checkbox" :value="product.id" v-model="chosenProducts" /><span class="rad">{{ product.name }}&nbsp;</span></label>
               </dd>
           </dl>
+          <dl class="clearfix">
+              <dt><b>*</b><span>公司logo：</span></dt>
+              <dd>
+                  <input ref="file" type="file" name="file" style="z-index:10000" />
+              </dd>
+          </dl>
         </div>
         <span class="span01"><a @click="newCompany">新增</a></span>
     </div>
@@ -44,7 +50,7 @@ export default {
   data: function() {
     return {
       name: '',
-      decscription: '',
+      brief: '',
       location: '',
       customer: '',
       products: [],
@@ -55,29 +61,29 @@ export default {
   methods: {
     newCompany: function() {
       console.log(this.chosenProducts);
-      if (this.name === '' || this.decscription === '' || this.location === '' || this.customer === '' || this.chosenProducts === []) {
+      if (this.name === '' || this.brief === '' || this.location === '' || this.customer === '' || this.chosenProducts === []) {
         alert('请填写完整资料');
         return;
       }
-      if (this.location !== this.customer) {
-        alert('两次密码不一致');
-        return;
-      }
+      var oMyForm = new FormData();
+      oMyForm.append("name", this.name);
+      oMyForm.append("location", this.location);
+      oMyForm.append("brief", this.brief);
+      oMyForm.append("customer", this.customer);
+      oMyForm.append("avatar", this.$refs.file.files[0]);
       var self = this;
       /*
-      post('/user/register', {username: this.name, password: this.location, email: this.decscription, role: this.role}, function(data) {
-        if (data.success) {
-          setCookie('token', data.token, 3000);
-          self.isLogin = true;
-          if (data.role === 'admin') {
-            self.isAdmin = true;
-          }
-          window.location.href = '/src/index.html';
-        }
-        else {
-          alert(data.msg);
-        }
-      }, true);*/
+      $.ajax({
+        url: "http://localhost:8088/api/supplier",
+        type: "POST",
+        data: oMyForm,
+        processData: false,  // 告诉jQuery不要去处理发送的数据
+        contentType: false   // 告诉jQuery不要去设置Content-Type请求头
+      });
+      */
+      postWithFile('/api/supplier', oMyForm, function(data) {
+        console.log(data);
+      }, true);
     }
   },
   mounted: function() {

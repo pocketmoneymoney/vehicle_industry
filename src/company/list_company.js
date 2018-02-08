@@ -11,7 +11,8 @@ export default {
     };
     companys.push(company);
     return {
-      companys: companys,
+      imgUrl: '/',
+      companys: [],
       curPage: 8,
       totalPage: 11,
       currentItem: {},
@@ -26,7 +27,18 @@ export default {
     },
     chooseItem: function(item) {
       this.currentItem = item;
+    },
+    searchCompany: function() {
+      var self = this;
+      //TODO: add param catalogId
+      get('/api/supplier/overview', {}, function(data) {
+        self.companys = data;
+        console.log(data);
+      }, false);
     }
+  },
+  mounted: function() {
+    this.searchCompany();
   },
   watch: {
     catalogId:  function() {
