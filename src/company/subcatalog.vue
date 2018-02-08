@@ -3,7 +3,7 @@
      <h4>{{ catalog.name }}</h4>
      <ul class="subcatalog_list clearfix">
         <li v-for="option in subcatalog">
-          <a :href="url+catalog.id+param1+option.id+param2+catalog.name+param3+option.name">
+          <a :href="url+catalog.id+param+option.id">
             {{ option.name }}
           </a>
         </li>

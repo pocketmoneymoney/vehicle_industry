@@ -3,7 +3,7 @@
       <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
-        <main-nav></main-nav>
+        <main-nav :currentView="viewName"></main-nav>
         <div>
           <event-enroll-panel></event-enroll-panel>
           <supplier-recom></supplier-recom>
@@ -33,6 +33,7 @@ import LastFooter from '../util/footer.vue'
 export default {
   data: function() {
     return {
+      viewName: "purchase",
       topProduct: "eventEnroll",
       topTitle: "活动预告及报名",
       topComponent: "event-enroll-panel"

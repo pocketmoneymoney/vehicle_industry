@@ -3,13 +3,13 @@
       <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
-        <main-nav></main-nav>
+        <main-nav :currentView="viewName"></main-nav>
         <div>
           <event-enroll-panel></event-enroll-panel>
           <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
           <div>
-            <ListCompany :catalogId=catalogId :subcatalogId=subcatalogId :catalogName=catalogName :subcatalogName=subcatalogName></ListCompany>
+            <ListCompany :catalogId=catalogId :subcatalogId=subcatalogId></ListCompany>
           </div>
         </div>
       </div>
@@ -35,13 +35,12 @@ import LastFooter from '../util/footer.vue'
 export default {
   data: function() {
     return {
+      viewName: "company",
       topProduct: "eventEnroll",
       topTitle: "活动预告及报名",
       topComponent: "event-enroll-panel",
       catalogId: '',
-      subcatalogId: '',
-      catalogName: '',
-      subcatalogName: ''
+      subcatalogId: ''
     }
   },
   methods: {
@@ -56,12 +55,6 @@ export default {
         }
         else if (paramObj[0] === 'subcatalogId') {
           this.subcatalogId = paramObj[1]
-        }
-        else if (paramObj[0] === 'catalogName') {
-          this.catalogName = decodeURI(paramObj[1])
-        }
-        else if (paramObj[0] === 'subcatalogName') {
-          this.subcatalogName = decodeURI(paramObj[1])
         }
       }
     }

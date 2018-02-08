@@ -3,16 +3,14 @@ export default {
   data() {
     return {
       url: "/src/company/list.html?catalogId=",
-      param1: '&subcatalogId=',
-      param2: '&catalogName=',
-      param3: '&subcatalogName=',
+      param: '&subcatalogId=',
       subcatalog: []
     }
   },
   mounted: function() {
     var self = this;
     get('/api/menu/category/' + self.catalog.id, {}, function(data) {
-      self.subcatalog = data
+      self.subcatalog = data.subtype
     }, false);
   },
 }

@@ -2,7 +2,7 @@ import Search from '../util/search.vue'
 import Page from '../util/page.vue'
 
 export default {
-  props: ['catalogId', 'subcatalogId', 'catalogName', 'subcatalogName'],
+  props: ['catalogId', 'subcatalogId'],
   data() {
     var companys = [];
     var company = {
@@ -15,7 +15,9 @@ export default {
       curPage: 8,
       totalPage: 11,
       currentItem: {},
-      items: []
+      items: [],
+      catalogName: '',
+      subcatalogName: ''
     }
   },
   methods: {
@@ -31,6 +33,13 @@ export default {
         var self = this;
         console.log(this.catalogId);
         console.log(this.subcatalogId);
+        get('/api/menu/subtype/' + this.catalogId + '/' + this.subcatalogId + '/name', {}, function(data) {
+          console.log(data);
+          self.subcatalogName = data;
+        }, false);
+        get('/api/menu/category/' + this.catalogId + '/name', {}, function(data) {
+          self.catalogName = data;
+        }, false);
         get('/api/menu/subtype/' + this.catalogId + '/' + this.subcatalogId, {}, function(data) {
           if (data.item) {
             console.log(data.item);
@@ -38,7 +47,6 @@ export default {
             console.log(self.items);
           }
         }, false);
-        console.log('return');
     }
   },
   components: {Search, Page}

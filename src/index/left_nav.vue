@@ -10,7 +10,7 @@
               <a href='#'>{{tab.name}}</a>
               <div class="three_nav three_nav1">
                 <ul>
-                  <li v-for="subtab in subtabs[tab.id]"><a :href="url + tab.id + param1 + subtab.id + param2 + tab.name + param3 + subtab.name">{{ subtab.name }}</a></li>
+                  <li v-for="subtab in subtabs[tab.id]"><a :href="url + tab.id + param + subtab.id">{{ subtab.name }}</a></li>
                 </ul>
               </div>
           </li>

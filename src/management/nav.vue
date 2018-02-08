@@ -2,22 +2,25 @@
   <div class="index_nav">
       <ul>
           <li>
-              <a name="user" @click="chooseView">用户</a>
+              <a href="/src/index.html">首页</a>
           </li>
           <li>
-              <a name="company" @click="chooseView">OE供应商</a>
+              <a :name="user" @click="chooseView" :class="{current: currentView === user}">用户</a>
           </li>
           <li>
-              <a name="purchase" @click="chooseView">采购项目专区</a>
+              <a :name="company" @click="chooseView" :class="{current: currentView === company}">OE供应商</a>
           </li>
           <li>
-              <a name="meeting" @click="chooseView">采购配对会</a>
+              <a :name="purchase" @click="chooseView" :class="{current: currentView === purchase}">采购项目专区</a>
           </li>
           <li>
-              <a name="visiting" @click="chooseView">走进主机厂</a>
+              <a :name="meeting" @click="chooseView" :class="{current: currentView === meeting}">采购配对会</a>
           </li>
           <li>
-              <a name="position" @click="chooseView">人才猎头</a>
+              <a :name="visiting" @click="chooseView" :class="{current: currentView === visiting}">走进主机厂</a>
+          </li>
+          <li>
+              <a :name="position" @click="chooseView" :class="{current: currentView === position}">人才猎头</a>
           </li>
       </ul>
   </div>
@@ -27,11 +30,19 @@
 export default {
   data: function() {
     return {
+      currentView: "user",
+      user: "user",
+      company: "company",
+      purchase: "purchase",
+      meeting: "meeting",
+      visiting: "visiting",
+      position: "position"
     }
   },
   methods: {
     chooseView: function(event) {
-      this.$emit("viewChanged", event.target.name);
+      this.currentView = event.target.name
+      this.$emit("viewChanged", this.currentView);
     },
   }
 }
@@ -67,5 +78,9 @@ export default {
 	color: #fff;
   font-size: 15px;
   line-height: 34px;
+  cursor: pointer;
+}
+.current {
+  text-decoration: underline;
 }
 </style>

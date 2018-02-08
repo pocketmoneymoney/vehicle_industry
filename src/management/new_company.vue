@@ -2,39 +2,36 @@
     <div>
         <h3>新增公司</h3>
         <div class="formbox">
-          <dl>
+          <dl class="clearfix">
               <dt><b>*</b><span>公司名：</span></dt>
               <dd>
-                  <input v-model="newUsername" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="name" class="text" style="z-index: 10000" maxlength="20"
                       type="text" />
               </dd>
           </dl>
-          <dl>
+          <dl class="clearfix">
               <dt><b>*</b><span>简介：</span></dt>
               <dd>
-                  <input v-model="newEmail" class="text" style="z-index: 10000" name="email" type="text" />
+                  <input v-model="decscription" class="text" style="z-index: 10000" name="email" type="text" />
               </dd>
           </dl>
-          <dl>
+          <dl class="clearfix">
               <dt><b>*</b><span>所在地：</span></dt>
               <dd><input class="text"
-                  value="" style="z-index: 10000" v-model="newPassword1" type="text" />
+                  value="" style="z-index: 10000" v-model="location" type="text" />
               </dd>
           </dl>
-          <dl>
+          <dl class="clearfix">
               <dt><b>*</b><span>配套客户：</span></dt>
-              <dd><input class="text" v-model="newPassword2"
+              <dd><input class="text" v-model="customer"
                   style="z-index: 10000" type="text" />
               </dd>
           </dl>
-          <dl>
-              <dt><b>*</b><span>角色：</span></dt>
+          <dl class="clearfix">
+              <dt><b>*</b><span>主营业务：</span></dt>
               <dd>
-                  <label class="dda">
-                      <input type="radio" value="supplier" v-model="role" /><span class="rad">I'm Supplier&nbsp;</span></label>
-                  <label class="ddb" style="margin-left: 25px;">
-                      <input type="radio" value="buyer" v-model="role" /><span class="rad">I'm Buyer </span>
-                  </label>
+                  <label v-for="product in products" class="dda">
+                      <input type="checkbox" :value="product.id" v-model="chosenProducts" /><span class="rad">{{ product.name }}&nbsp;</span></label>
               </dd>
           </dl>
         </div>
@@ -46,26 +43,29 @@
 export default {
   data: function() {
     return {
-      newUsername: '',
-      newEmail: '',
-      newPassword1: '',
-      newPassword2: '',
-      role: ''
+      name: '',
+      decscription: '',
+      location: '',
+      customer: '',
+      products: [],
+      productsClone: [],
+      chosenProducts: []
     }
   },
   methods: {
     newCompany: function() {
-      if (this.newUsername === '' || this.newEmail === '' || this.newPassword1 === '' || this.newPassword2 === '' || this.role === '') {
+      console.log(this.chosenProducts);
+      if (this.name === '' || this.decscription === '' || this.location === '' || this.customer === '' || this.chosenProducts === []) {
         alert('请填写完整资料');
         return;
       }
-      if (this.newPassword1 !== this.newPassword2) {
+      if (this.location !== this.customer) {
         alert('两次密码不一致');
         return;
       }
       var self = this;
       /*
-      post('/user/register', {username: this.newUsername, password: this.newPassword1, email: this.newEmail, role: this.role}, function(data) {
+      post('/user/register', {username: this.name, password: this.location, email: this.decscription, role: this.role}, function(data) {
         if (data.success) {
           setCookie('token', data.token, 3000);
           self.isLogin = true;
@@ -79,12 +79,32 @@ export default {
         }
       }, true);*/
     }
+  },
+  mounted: function() {
+    var self = this;
+    get('/api/menu/category', {}, function(data) {
+      self.tabs = data;
+      for (let index in self.tabs) {
+        let tab = self.tabs[index];
+        get('/api/menu/category/' + tab.id, {}, function(data) {
+          for (let id in data.subtype) {
+            var subtab = data.subtype[id];
+            self.productsClone.push({name: subtab.name, id: subtab.id});
+          }
+
+          //only change of whole data can make vue detect change
+          self.products = [];
+          self.products = self.productsClone;
+          console.log(self.products);
+        }, false);
+      }
+    }, false);
   }
 }
 </script>
 
 <style>
-.formbox dl {width:435px;height:32px;line-height:26px;margin-top:10px;}
+.formbox dl {width:435px;line-height:26px;margin-top:10px;}
 .formbox dt,.formbox dd {float:left;}
 .formbox dt {width:190px;text-align:right;font:bolder 14px/26px arial;color:#222;}
 .formbox dd {width:229px;color:#000;}

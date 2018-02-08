@@ -3,7 +3,7 @@
       <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
-        <main-nav></main-nav>
+        <main-nav :currentView="viewName"></main-nav>
         <left-nav @viewchange="viewChange"></left-nav>
         <div class="main_right">
           <latest-purchase></latest-purchase>
@@ -64,6 +64,7 @@ export default {
 	    ],
 	    defaultTab: 1
       */
+      viewName: "index"
     }
   },
   methods: {

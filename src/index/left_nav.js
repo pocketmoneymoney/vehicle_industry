@@ -2,9 +2,7 @@ export default {
   data: function() {
     return {
       url: '/src/company/list.html?catalogId=',
-      param1: '&subcatalogId=',
-      param2: '&catalogName=',
-      param3: '&subcatalogName=',
+      param: '&subcatalogId=',
       tabs: [],
       subtabsClone: {},
       subtabs: {}
@@ -18,8 +16,8 @@ export default {
         let tab = self.tabs[index];
         self.subtabsClone[tab.id] = [];
         get('/api/menu/category/' + tab.id, {}, function(data) {
-          for (let id in data) {
-            var subtab = data[id];
+          for (let id in data.subtype) {
+            var subtab = data.subtype[id];
             self.subtabsClone[tab.id].push({name: subtab.name, id: subtab.id});
           }
 
