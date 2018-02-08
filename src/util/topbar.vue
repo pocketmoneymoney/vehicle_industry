@@ -4,6 +4,7 @@
   		<a>欢迎来到OE汽车</a>
   		<div class="top_right">
   			<a v-if="isLogin && isAdmin" href="/src/management/index.html">管理员页面</a>
+  			<a v-if="isLogin && isBuyer" href="/src/buyer/index.html">我的首页</a>
   			<a v-if="isLogin" @click="logout" class="account_icon">退出登录</a>
         <div v-else class="login">
            <input type="text" placeholder="请输入用户名" v-model="username"/>
@@ -21,9 +22,11 @@ export default {
   data() {
     var isLogin = false;
     var isAdmin = false;
+    var isBuyer = false;
     return {
       isLogin: isLogin,
       isAdmin: isAdmin,
+      isBuyer: isBuyer,
       username: "",
       password: ""
     }
@@ -42,8 +45,11 @@ export default {
           console.log(data);
           if (data.role === 'admin') {
             self.isAdmin = true;
-          }
+          } else if (data.role == 'buyer') {
+            self.isBuyer = true;
+		  }
         }
+console.log("mounted", self.isBuyer);
       }, false);
     },
     logout: function() {
@@ -61,10 +67,13 @@ export default {
           console.log(self.isLogin);
           if (data.role === 'admin') {
             self.isAdmin = true;
-          }
+          } else if (data.role == 'buyer') {
+            self.isBuyer = true;
+		  }
         }
       }, true);
     }
+console.log("mounted", self.isBuyer);
   }
 }
 </script>

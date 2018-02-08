@@ -3,6 +3,8 @@
       <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
+      <main-nav></main-nav>
+      <div class="main clearfix">
         <h3>注册新用户</h3>
         <div class="formbox">
           <dl>
@@ -34,15 +36,16 @@
               <dt><b>*</b><span>角色：</span></dt>
               <dd>
                   <label class="dda">
-                      <input type="radio" value="supplier" v-model="role" /><span class="rad">I'm Supplier&nbsp;</span></label>
+                      <input type="radio" value="supplier" v-model="role" /><span class="rad">我是供应商&nbsp;</span></label>
                   <label class="ddb" style="margin-left: 25px;">
-                      <input type="radio" value="buyer" v-model="role" /><span class="rad">I'm Buyer </span>
+                      <input type="radio" value="buyer" v-model="role" /><span class="rad">我是采购商 </span>
                   </label>
               </dd>
           </dl>
         </div>
         <span class="span01"><a @click="register">注册</a></span>
       </div>
+	  </div>
       <last-footer></last-footer>
     </div>
 </template>
@@ -50,6 +53,7 @@
 <script>
 import TopBar from './util/topbar.vue'
 import MainHeader from './util/header.vue'
+import MainNav from './util/main_nav.vue'
 
 import LastFooter from './util/footer.vue'
 
@@ -89,7 +93,7 @@ export default {
       }, false);
     }
   },
-  components: {MainHeader, TopBar, LastFooter} 
+  components: {MainHeader, MainNav, TopBar, LastFooter} 
 }
 </script>
 

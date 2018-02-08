@@ -14,7 +14,7 @@ module.exports = {
 	  position: './src/position/position.js',
 	  meeting: './src/meeting/meeting.js',
 	  visiting: './src/visiting/visiting.js',
-
+	  buyer: './src/buyer/index.js',
 	  management: './src/management/index.js',
   },
   output: {
