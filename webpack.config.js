@@ -10,6 +10,7 @@ module.exports = {
 	  purchase: './src/purchase/purchase.js',
 	  company: './src/company/company.js',
 	  company_list: './src/company/company_list.js',
+	  company_detail: './src/company/company_detail.js',
 	  position: './src/position/position.js',
 	  meeting: './src/meeting/meeting.js',
 	  visiting: './src/visiting/visiting.js',

@@ -25,7 +25,7 @@
         <ul class="product_list">
             
             <li v-for="company in companys">
-                <h4 class="company_title"><a href="../supplierEC/show_index.aspx?op=2382">{{ company.name }}</a></h4>
+                <h4 class="company_title"><a :href="detailUrl + company.id">{{ company.name }}</a></h4>
                 <div class="basic_info">
                     <span class="address">{{ company.location }}</span>
                 </div>

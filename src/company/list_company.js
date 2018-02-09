@@ -12,6 +12,7 @@ export default {
     companys.push(company);
     return {
       imgUrl: '/',
+      detailUrl: '/src/company/detail.html?companyId=',
       companys: [],
       curPage: 8,
       totalPage: 11,
@@ -31,7 +32,7 @@ export default {
     searchCompany: function() {
       var self = this;
       //TODO: add param catalogId
-      get('/api/supplier/overview', {}, function(data) {
+      get('/api/supplier/list', {}, function(data) {
         self.companys = data;
         console.log(data);
       }, false);

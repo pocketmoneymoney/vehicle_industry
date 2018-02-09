@@ -22,7 +22,7 @@ module.exports = function(express) {
 	var upload = multer({ storage: storage })
     var router = express.Router({mergeParams: true});
 
-    router.get('/overview', function (req, res) {
+    router.get('/list', function (req, res) {
          var page = req.query.page? parseInt(req.query.page) : 1;
          var num = req.query.num? parseInt(req.query.num) : 1;
          var start = page * num;
@@ -39,7 +39,7 @@ module.exports = function(express) {
 
     router.get('/:id', function (req, res) {
          dao.getSupplierDetail(req.params.id, function (err, result) {
-            res.send("Detail View:" + JSON.stringify(result));
+            res.send(JSON.stringify(result));
          });
     });
 
