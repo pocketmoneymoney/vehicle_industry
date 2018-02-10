@@ -14,21 +14,31 @@
         </div>
   		</div>
   	</div>
+  	<div class="main clearfix">
+		<img :src="logo">
+        <div class="top_right_two">
+        <advertise></advertise>
+		</div>
+    </div>
   </div>
 </template>
 
 <script>
+import Advertise from './advertise.vue'
+
 export default {
   data() {
     var isLogin = false;
     var isAdmin = false;
     var isBuyer = false;
+    var logo = "";
     return {
       isLogin: isLogin,
       isAdmin: isAdmin,
       isBuyer: isBuyer,
       username: "",
-      password: ""
+      password: "",
+      logo: ""
     }
   },
   methods: {
@@ -49,7 +59,6 @@ export default {
             self.isBuyer = true;
 		  }
         }
-console.log("mounted", self.isBuyer);
       }, false);
     },
     logout: function() {
@@ -60,6 +69,11 @@ console.log("mounted", self.isBuyer);
   },
   mounted: function() {
     var self = this;
+
+	get('/api/admin/logo', {}, function(data) {
+		self.logo = data;
+    }, false);
+
     if (getCookie('token') != "") {
       post('/user/book', {}, function(data) {
         if (data.username) {
@@ -73,8 +87,8 @@ console.log("mounted", self.isBuyer);
         }
       }, true);
     }
-console.log("mounted", self.isBuyer);
-  }
+  },
+  components: {Advertise}
 }
 </script>
 
@@ -133,6 +147,15 @@ console.log("mounted", self.isBuyer);
 	line-height: 30px;
 	font-size: 12px;
 }
+
+.top_right_two{
+    float:right;
+	height: 30px;
+    width: 400px; 
+	margin-right: 150px;
+	margin-top: 20px;
+}
+
 .login {
 	display: block;
 	height: 30px;

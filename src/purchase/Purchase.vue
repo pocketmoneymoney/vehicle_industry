@@ -6,10 +6,8 @@
         <main-nav :currentView="viewName"></main-nav>
         <div>
           <event-enroll-panel></event-enroll-panel>
+          <purchase-product></purchase-product>
           <supplier-recom></supplier-recom>
-          <div class="clearfix">
-            <purchase-product></purchase-product>
-          </div>
         </div>
       </div>
       <interview></interview>

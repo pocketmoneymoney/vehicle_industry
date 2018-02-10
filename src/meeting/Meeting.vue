@@ -9,7 +9,6 @@
           <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
           <div>
-            <history-meeting></history-meeting>
           </div>
         </div>
       </div>
@@ -25,7 +24,6 @@ import MainNav from '../util/main_nav.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LatestPurchase from '../util/latest_purchase.vue'
-import HistoryMeeting from '../util/carousel.vue'
 
 import SupplierRecom from '../util/supplier_recommend.vue'
 
@@ -46,7 +44,8 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, HistoryMeeting, SupplierRecom, Interview, LastFooter}
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
+			   SupplierRecom, Interview, LastFooter}
 }
 </script>
 
@@ -81,6 +80,11 @@ export default {
 	float: right;
 	width: 970px;
 	margin-bottom: 20px;
+}
+
+.enroll{
+	width: 500px;
+	height: 50px;
 }
 
 h3{

@@ -1,24 +1,12 @@
 <template>
     <div class="main_nav">
-        <div class="main_nav_title">
-            所有分类
-        </div>
-        <ul class="left_main_nav">
-          <li
-            v-for="tab in tabs"
-            @click="choose(tab)">
-              <a href='#'>{{tab.name}}</a>
-              <div class="three_nav three_nav1">
-                <ul>
-                  <li v-for="subtab in subtabs[tab.id]"><a :href="url + tab.id + param + subtab.id">{{ subtab.name }}</a></li>
-                </ul>
-              </div>
-          </li>
+        <ul class="right_main_nav">
+          <supplier-recom></supplier-recom>
         </ul>
     </div>
 </template>
 
-<script src='./left_nav.js'></script>
+<script src='./right_nav.js'></script>
 
 <style>
 ul{
@@ -35,14 +23,13 @@ a:hover{
 
 /*左侧导航*/
 .main_nav{
-	float: left;
-	width: 214px;
+	float: right;
+	width: 100px;
 	height: 742px;
 	border: 1px solid #fff;
 	padding: 0 12px;
 	box-shadow:  0 0 3px #999;
-	/*background: #fff url('../../img/main_nav_bg.jpg') right bottom no-repeat;*/
-  background-color: #fff;
+    background-color: #fff;
 	z-index: 1000;
 }
 .main_nav_title{
@@ -54,12 +41,12 @@ a:hover{
 	padding-left: 37px;
 	background: url('../../img/nav_icon.png') 10px 15px no-repeat;
 }
-.left_main_nav{
+.right_main_nav{
 	padding-top: 5px;
-  padding-left: 5px;
+    padding-left: 5px;
 
 }
-.left_main_nav li{
+.right_main_nav li{
 	/*width: 202px;*/
 	height: 44px;
 	line-height: 44px;
@@ -70,13 +57,13 @@ a:hover{
 	position: relative;
 
 }
-.left_main_nav li a{
+.right_main_nav li a{
 	color: #333;
 	font-size: 14px;
 	display: block;
 }
 
-.left_main_nav li:hover{
+.right_main_nav li:hover{
 	border:1px solid #fff;
 	border-left: 2px solid #449cd7;
 	box-shadow: 0 0 1px #999;
@@ -101,10 +88,10 @@ a:hover{
 	top: -2px;
 	width: 214px;
 }
-.left_main_nav li:hover .three_nav{
+.right_main_nav li:hover .three_nav{
   display:block;
 }
-.left_main_nav li:hover .three_nav:hover{
+.right_main_nav li:hover .three_nav:hover{
   display:block;
 }
 .three_nav ul{
