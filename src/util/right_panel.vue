@@ -1,10 +1,18 @@
 <template>
+  <div>
   <div class="right_panel">
     <h3>
         <span>{{ title }}</span>
         <a href="../inquiry/product_list.aspx">More &gt;</a>
     </h3>
     <component :is="component"></component>
+  </div>
+  <div class="right_panel">
+    <h3>
+        <span>关注OE汽车微信公众号</span>
+		<img :src="qrcode"/>
+    </h3>
+  </div>
   </div>
 </template>
 
