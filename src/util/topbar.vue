@@ -52,13 +52,14 @@ export default {
         if (data.token) {
           setCookie('token', data.token, 3000);
           self.isLogin = true;
-          console.log(data);
           if (data.role === 'admin') {
             self.isAdmin = true;
           } else if (data.role == 'buyer') {
             self.isBuyer = true;
 		  }
-        }
+        } else {
+		  alert('用户登陆失败，请输入正确的用户名和密码');
+		}
       }, false);
     },
     logout: function() {
