@@ -3,8 +3,8 @@
       <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
-        <main-nav @viewChanged="chooseView"></main-nav>
-        <left-nav></left-nav>
+        <main-nav></main-nav>
+        <left-nav @viewChanged="chooseView"></left-nav>
 		<div class="main_right">
           <component :is=currentView @newCompany="newCompany"></component>
 		</div>
@@ -16,7 +16,7 @@
 <script>
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
-import MainNav from './nav.vue'
+import MainNav from '../util/main_nav.vue'
 import LeftNav from './left_nav.vue'
 
 import LastFooter from '../util/footer.vue'
@@ -55,9 +55,14 @@ export default {
     }
   },
   methods: {
-    chooseView: function(view) {
+    chooseView: function(tab) {
       if (this.currentView != "no-authorized") {
-        this.currentView = view;
+        if (tab.id === 1) {
+          this.currentView = 'user';
+        }
+        else if (tab.id === 2) {
+          this.currentView = 'company';
+        }
       }
     },
     newCompany: function() {

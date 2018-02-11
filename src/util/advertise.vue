@@ -1,39 +1,31 @@
 <template>
-<div class="banner-padding-top">
-<div class="container-lg">
-  <div id="slides-thumbnail">
-    <div v-for="ad in ads" >
-    <a><img :src="ad.path" /></a>
-    </div> 
-  </div>
-  </div>
-  </div>
+  <Ad :imgPaths="adPaths" :carouselId="advertiseCarouselId"></Ad>
 </template>
 
 <script>
+import Ad from './carousel.vue'
+
 export default {
   data() {
     var ads = [];
     return {
-	  ads: []
+      advertiseCarouselId: 'advertise',
+	    ads: [],
+      adPaths: []
     }	
   },
 
   mounted: function() {
     var self = this;
-    var slidesWrap = $('.banner-padding-top');
-    var $backDropLeft, $backDropRight, backDropWidth, calcSlidesBackdrop;
-    $('#slides-thumbnail').bxSlider({
-        auto: true,
-        pause: 3000,
-        autoHover: true,
-        wrapSelector: '.slides-thumbnail',
-    });
-	get('/api/admin/advertise', {}, function(data) {
-	   console.log(data);
-		self.ads = data;
+	  get('/api/admin/advertise', {}, function(data) {
+	     console.log(data);
+	  	self.ads = data;
+      for (let index in data) {
+        self.adPaths.push(data[index].path);
+      }
     }, false);
-  }
+  },
+  components: {Ad}
 }
 </script>
 

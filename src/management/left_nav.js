@@ -16,8 +16,8 @@ export default {
 				   {'name':'采购产品列表', 'id':9}, {'name': '二维码', 'id':10}];
   },
   methods: {
-    choose: function (index) {
-      this.$emit('statuschange', this.tabs[index].index);
+    choose: function (tab) {
+      this.$emit('viewChanged', tab);
     }
   }
 }

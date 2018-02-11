@@ -9,7 +9,7 @@
           <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
           <div>
-            <history-visiting></history-visiting>
+            <history-visiting :imgPaths="historyImgPaths" :carouselId="historyCarouselId"></history-visiting>
           </div>
         </div>
       </div>
@@ -38,7 +38,9 @@ export default {
       viewName: "visiting",
       topProduct: "eventEnroll",
       topTitle: "活动预告及报名",
-      topComponent: "event-enroll-panel"
+      topComponent: "event-enroll-panel",
+      historyCarouselId: 'history_visiting',
+      historyImgPaths: ['/img/1.jpg', '/img/2.jpg', '/img/3.jpg']
     }
   },
   methods: {

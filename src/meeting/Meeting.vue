@@ -9,6 +9,7 @@
           <latest-purchase></latest-purchase>
           <supplier-recom></supplier-recom>
           <div>
+            <history-meeting :imgPaths="historyImgPaths" :carouselId="historyCarouselId"></history-meeting>
           </div>
         </div>
       </div>
@@ -24,6 +25,7 @@ import MainNav from '../util/main_nav.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LatestPurchase from '../util/latest_purchase.vue'
+import HistoryMeeting from '../util/carousel.vue'
 
 import SupplierRecom from '../util/supplier_recommend.vue'
 
@@ -36,7 +38,9 @@ export default {
       viewName: "meeting",
       topProduct: "eventEnroll",
       topTitle: "活动预告及报名",
-      topComponent: "event-enroll-panel"
+      topComponent: "event-enroll-panel",
+      historyCarouselId: 'history_meeting',
+      historyImgPaths: ['/img/1.jpg', '/img/2.jpg', '/img/3.jpg']
     }
   },
   methods: {
@@ -44,7 +48,7 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, HistoryMeeting,
 			   SupplierRecom, Interview, LastFooter}
 }
 </script>

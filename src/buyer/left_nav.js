@@ -31,8 +31,8 @@ export default {
     }, false);
   },
   methods: {
-    choose: function (index) {
-      this.$emit('statuschange', this.tabs[index].index);
+    choose: function (tab) {
+      this.$emit('viewChanged', tab);
     }
   }
 }

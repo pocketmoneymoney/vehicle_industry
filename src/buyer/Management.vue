@@ -4,7 +4,7 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
-        <left-nav></left-nav>
+        <left-nav @viewChanged="chooseView"></left-nav>
 		<div class="main_right">
 		  <buyer-info></buyer-info>
 		</div>
@@ -56,9 +56,9 @@ export default {
     }
   },
   methods: {
-    chooseView: function(view) {
+    chooseView: function(tab) {
       if (this.currentView != "no-authorized") {
-        this.currentView = view;
+        // this.currentView = tab;
       }
     },
     newCompany: function() {
