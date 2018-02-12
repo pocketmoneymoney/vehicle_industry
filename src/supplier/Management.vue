@@ -3,10 +3,10 @@
       <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
-        <main-nav></main-nav>
+        <main-nav :currentView="viewName"></main-nav>
         <left-nav @viewChanged="chooseView"></left-nav>
 		<div class="main_right">
-          <component :is=currentView @newCompany="newCompany"></component>
+		  <supplier-info></supplier-info>
 		</div>
       </div>
       <last-footer></last-footer>
@@ -18,16 +18,12 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import LeftNav from './left_nav.vue'
-
 import LastFooter from '../util/footer.vue'
-
 import NoAuthorized from './no_authorized.vue'
-import User from './user.vue'
-import Company from './company.vue'
-import Purchase from './purchase.vue'
 
-import NewCompany from './new_company.vue'
-import Qrcode from './qrcode.vue'
+import Purchase from './purchase.vue'
+import SupplierInfo from './supplier-info.vue'
+
 
 export default {
   data: function() {
@@ -57,19 +53,7 @@ export default {
   methods: {
     chooseView: function(tab) {
       if (this.currentView != "no-authorized") {
-        if (tab.id === 1) {
-          this.currentView = 'user';
-        }
-        else if (tab.id === 2) {
-          this.currentView = 'company';
-        } else if (tab.id === 10) {
-          this.currentView = 'qrcode';
-		}
-      }
-    },
-    newCompany: function() {
-      if (this.currentView != "no-authorized") {
-        this.currentView = "new-company";
+        // this.currentView = tab;
       }
     }
   },
@@ -83,8 +67,7 @@ export default {
       }, true);
     }
   },
-  components: {LeftNav, TopBar, MainHeader, MainNav, LastFooter, 
-			   NoAuthorized, User, Company, Purchase, NewCompany, Qrcode} 
+  components: {LeftNav, SupplierInfo, TopBar, MainHeader, MainNav, LastFooter, NoAuthorized, Purchase} 
 }
 </script>
 
@@ -121,13 +104,6 @@ export default {
 	margin-bottom: 20px;
 }
 
-#userlist tbody th {
-  font-weight: 400;
-}
-.delete_button {
-  cursor: pointer;
-}
-</style>
 #userlist tbody th {
   font-weight: 400;
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>供应商列表</h3>
+        <h3>用户列表</h3>
         <table id="userlist">
           <thead>
              <tr>

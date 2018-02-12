@@ -15,6 +15,7 @@ module.exports = {
 	  meeting: './src/meeting/meeting.js',
 	  visiting: './src/visiting/visiting.js',
 	  buyer: './src/buyer/index.js',
+	  supplier: './src/supplier/index.js',
 	  management: './src/management/index.js',
   },
   output: {

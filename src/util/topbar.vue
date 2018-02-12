@@ -5,7 +5,8 @@
   		<div class="top_right">
   			<a v-if="isLogin && isAdmin" href="/src/management/index.html">管理员页面</a>
   			<a v-if="isLogin && isBuyer" href="/src/buyer/index.html">我的首页</a>
-  			<a v-if="isLogin" @click="logout" class="account_icon">退出登录</a>
+  			<a v-if="isLogin && isSupplier" href="/src/supplier/index.html">我的首页</a>
+  			<a v-if="isLogin" @click="logout" href="/src/index.html" class="account_icon">退出登录</a>
         <div v-else class="login">
            <input type="text" placeholder="请输入用户名" v-model="username"/>
            <input type="password" placeholder="请输入密码" v-model="password"/>
@@ -31,11 +32,13 @@ export default {
     var isLogin = false;
     var isAdmin = false;
     var isBuyer = false;
+    var isSupplier = false;
     var logo = "";
     return {
       isLogin: isLogin,
       isAdmin: isAdmin,
       isBuyer: isBuyer,
+      isSupplier: isSupplier,
       username: "",
       password: "",
       logo: ""
@@ -56,6 +59,8 @@ export default {
             self.isAdmin = true;
           } else if (data.role == 'buyer') {
             self.isBuyer = true;
+		  } else if (data.role == 'supplier') {
+            self.isSupplier = true;
 		  }
         } else {
 		  alert('用户登陆失败，请输入正确的用户名和密码');
@@ -66,6 +71,8 @@ export default {
       delCookie('token');
       this.isLogin = false;
       this.isAdmin = false;
+      this.isBuyer = false;
+      this.isSupplier = false;
     }
   },
   mounted: function() {
