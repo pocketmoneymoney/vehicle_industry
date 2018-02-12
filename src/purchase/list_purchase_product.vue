@@ -45,11 +45,11 @@
 
 <style>
 .list_purchase_product{
-	width: 898px;
+	max-width: 740px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;
-	padding: 19px 20px;
+	padding: 19px 20px 5px 5px;
 	margin-bottom: 8px;
 }
 .list_purchase_product h3 span{

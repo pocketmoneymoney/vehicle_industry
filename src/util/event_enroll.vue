@@ -5,22 +5,21 @@
         <dd>
             <h4>
                 <a target="_blank" href="http://i.gasgoo.com/purchas/production/301787.html#">
-                  活动1
+                  企业升级-智能网联产业化之路
                 </a>
             </h4>
-            <p>
-                公司1
-            </p>
+            <p> 2018.03.01-2018.03.0116天后开始 </p>
+			<p> 上海市环球港凯悦酒店公司 </p>
         </dd>
         <dt>
-            <span class="span01"><a target="_blank" href="http://i.gasgoo.com/purchas/production/301787.html">我要报名</a></span>
+            <span class="span01"><a>报名</a></span>
         </dt>
     </dl>
   </div>
 </template>
 
 <style scoped>
-.project_enroll{ margin-top:10px; width:200px; margin-bottom:10px; float:left; background:#fff; padding:9px 15px 2px 15px;overflow:hidden; position:relative;}
+.project_enroll{ margin-top:10px; width:200px; margin-bottom:10px; float:left; background:#fff; padding:9px 2px 2px 2px;overflow:hidden; position:relative;}
 /*.project_enroll:hover{ background-color:#fbfbfb; border-bottom:#dbdbdb 3px solid;}*/
 .project_enroll a{ width:100%; display:block;}
 .project_enroll h4{ font-size:16px; color:#000; padding-bottom:0.25em; margin:0;}

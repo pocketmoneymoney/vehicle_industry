@@ -45,8 +45,8 @@ export default {
 </script>
 
 <style>
-.banner-padding-top{ overflow:hidden; }
-.container-lg { width:1100px;}
+.banner-padding-top{ float:left; overflow:hidden; }
+.container-lg { width:740px;}
 .container, .container-lg { margin-right: auto;  margin-left: auto;}
 .bx-wrapper { position: relative;}
 #slides-thumbnail>div:first-child{ position:static; clip:auto;}

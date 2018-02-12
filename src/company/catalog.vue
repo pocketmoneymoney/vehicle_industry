@@ -18,7 +18,7 @@
 
 <style>
 .catalog {
-	width: 898px;
+	width: 740px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;

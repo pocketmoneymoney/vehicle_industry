@@ -20,13 +20,13 @@ export default {
 
 <style>
 .event_enroll_panel{
-	width: 235px;
+	float: left;
+	width: 230px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
-	float: left;
 	padding: 19px 20px;
 	margin-bottom: 8px;
-  margin-right: 4px;
+    margin-right: 4px;
 }
 .event_enroll_panel h3 {
   padding-bottom: 25px;

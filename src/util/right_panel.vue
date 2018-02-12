@@ -1,9 +1,8 @@
 <template>
-  <div>
+  <div class="right_pabel_nav">
   <div class="right_panel">
     <h3>
-        <span>{{ title }}</span>
-        <a href="../inquiry/product_list.aspx">More &gt;</a>
+        <span>供应商推荐</span>
     </h3>
     <component :is="component"></component>
   </div>
@@ -16,14 +15,48 @@
   </div>
 </template>
 
-<script src='./right_panel.js'></script>
+<script>
+export default {
+  props: ['product', 'height'],
+  computed: {
+    title: function() {
+      if (this.product === "supplier") {
+        return "供应商推荐";
+      }
+    },
+    component: function() {
+    }
+  },
+  mounted: function() {
+    var self = this;
+    $('.right_panel').height(this.height);
+	get('/api/admin/qrcode', {}, function(data) {
+		self.qrcode = data;
+    }, false);
+  },
+  data: function() {
+    var qrcode = '';
+    return {
+      qrcode: ''
+    }
+  },
+  components: {}
+}
+</script>
 
 <style scoped>
+.right_panel_nav {
+	float: right;
+	width: 200px;
+    height: 400px;
+}
+
 .right_panel{
-	width: 258px;
+	float: right;
+	width: 200px;
+    height: 150px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
-	float: right;
 	padding: 10px 9px;
 	margin-bottom: 8px;
 }

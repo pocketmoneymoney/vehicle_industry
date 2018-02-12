@@ -36,7 +36,7 @@ a:hover{
 /*左侧导航*/
 .main_nav{
 	float: left;
-	width: 214px;
+	width: 230px;
 	height: 742px;
 	border: 1px solid #fff;
 	padding: 0 12px;

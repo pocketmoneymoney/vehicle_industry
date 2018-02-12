@@ -7,7 +7,7 @@
         <div>
           <event-enroll-panel></event-enroll-panel>
           <purchase-product></purchase-product>
-          <supplier-recom></supplier-recom>
+		  <right-panel></right-panel>
         </div>
       </div>
       <interview></interview>
@@ -19,14 +19,13 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
+import RightPanel from '../util/right_panel.vue'
+import LastFooter from '../util/footer.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import PurchaseProduct from './list_purchase_product.vue'
 
-import SupplierRecom from '../util/supplier_recommend.vue'
-
 import Interview from '../util/interview.vue'
-import LastFooter from '../util/footer.vue'
 
 export default {
   data: function() {
@@ -42,7 +41,8 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, PurchaseProduct, SupplierRecom, Interview, LastFooter}
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, PurchaseProduct, 
+			   RightPanel, Interview, LastFooter}
 }
 </script>
 

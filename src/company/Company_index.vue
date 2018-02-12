@@ -6,14 +6,13 @@
         <main-nav :currentView="viewName"></main-nav>
         <div>
           <event-enroll-panel></event-enroll-panel>
-          <latest-purchase></latest-purchase>
-          <supplier-recom></supplier-recom>
-          <div>
+          <div class="main_right">
+            <latest-purchase></latest-purchase>
             <catalog></catalog>
           </div>
+	      <right-panel></right-panel>
         </div>
       </div>
-      <interview></interview>
       <last-footer></last-footer>
     </div>
 </template>
@@ -22,15 +21,15 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
+import LastFooter from '../util/footer.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LatestPurchase from '../util/latest_purchase.vue'
 import Catalog from './catalog.vue'
 
-import SupplierRecom from '../util/supplier_recommend.vue'
+import RightPanel from '../util/right_panel.vue'
 
 import Interview from '../util/interview.vue'
-import LastFooter from '../util/footer.vue'
 
 export default {
   data: function() {
@@ -46,7 +45,8 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, Catalog, SupplierRecom, Interview, LastFooter}
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, Catalog, 
+			   RightPanel, Interview, LastFooter}
 }
 </script>
 
@@ -78,9 +78,10 @@ export default {
 }
 
 .main_right{
-	float: right;
-	width: 970px;
+	float: left;
+	width: 740px;
 	margin-bottom: 20px;
+	padding: 0px 12px 10px 10px;
 }
 
 h3{
