@@ -15,6 +15,20 @@
               </dd>
           </dl>
           <dl>
+              <dt><b>*</b><span>联系人真实姓名：</span></dt>
+              <dd>
+                  <input v-model="newName" class="text" style="z-index: 10000" maxlength="20"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>联系电话：</span></dt>
+              <dd>
+                  <input v-model="phone" class="text" style="z-index: 10000" maxlength="20"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
               <dt><b>*</b><span>邮箱：</span></dt>
               <dd>
                   <input v-model="newEmail" class="text" style="z-index: 10000" name="email" type="text" />
@@ -42,6 +56,32 @@
                   </label>
               </dd>
           </dl>
+          <div v-if="role === 'supplier'">
+              <dl>
+                  <dt><b>*</b><span>公司名称：</span></dt>
+                  <dd>
+                      <input v-model="companyName" class="text" style="z-index: 10000" name="email" type="text" />
+                  </dd>
+              </dl>
+              <dl>
+                  <dt><b>*</b><span>主营产品：</span></dt>
+                  <dd>
+                      <input v-model="product" class="text" style="z-index: 10000" name="email" type="text" />
+                  </dd>
+              </dl>
+              <dl>
+                  <dt><b>*</b><span>配套客户：</span></dt>
+                  <dd>
+                      <input v-model="customer" class="text" style="z-index: 10000" name="email" type="text" />
+                  </dd>
+              </dl>
+              <dl>
+                  <dt><b>*</b><span>资质证书：</span></dt>
+                  <dd>
+                      <input v-model="certi" class="text" style="z-index: 10000" name="email" type="text" />
+                  </dd>
+              </dl>
+          </div>
         </div>
         <span class="span01"><a @click="register">注册</a></span>
       </div>
@@ -64,7 +104,13 @@ export default {
       newEmail: '',
       newPassword1: '',
       newPassword2: '',
-      role: ''
+      role: '',
+      newName: '',
+      phone: '',
+      companyName: '',
+      product: '',
+      customer: '',
+      certi: ''
     }
   },
   methods: {
@@ -76,6 +122,12 @@ export default {
       if (this.newPassword1 !== this.newPassword2) {
         alert('两次密码不一致');
         return;
+      }
+      if (this.role === "supplier") {
+        if (this.companyName === '' || this.product === '' || this.customer === '' || this.certi === '') {
+          alert('请填写完整资料');
+          return;
+        }
       }
       var self = this;
       post('/user/register', {username: this.newUsername, password: this.newPassword1, email: this.newEmail, role: this.role}, function(data) {

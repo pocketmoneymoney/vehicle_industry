@@ -6,7 +6,7 @@
         <main-nav></main-nav>
         <left-nav @viewChanged="chooseView"></left-nav>
 		<div class="main_right">
-          <component :is=currentView @newCompany="newCompany"></component>
+          <component :is=currentView></component>
 		</div>
       </div>
       <last-footer></last-footer>
@@ -26,7 +26,6 @@ import User from './user.vue'
 import Company from './company.vue'
 import Purchase from './purchase.vue'
 
-import NewCompany from './new_company.vue'
 import Qrcode from './qrcode.vue'
 
 export default {
@@ -66,12 +65,12 @@ export default {
           this.currentView = 'qrcode';
 		}
       }
-    },
-    newCompany: function() {
+    }
+    /*newCompany: function() {
       if (this.currentView != "no-authorized") {
         this.currentView = "new-company";
       }
-    }
+    }*/
   },
   mounted: function() {
     var self = this;
@@ -84,7 +83,7 @@ export default {
     }
   },
   components: {LeftNav, TopBar, MainHeader, MainNav, LastFooter, 
-			   NoAuthorized, User, Company, Purchase, NewCompany, Qrcode} 
+			   NoAuthorized, User, Company, Purchase, Qrcode} 
 }
 </script>
 

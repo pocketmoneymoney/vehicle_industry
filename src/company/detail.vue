@@ -1,10 +1,13 @@
 <template>
   <div class="clearfix">
   <div class="company_brief clearfix">
-    <h1>{{ company.name }}</h1>
-    <p>{{ company.brief }}</p>
+    <h1>AAAA{{ company.name }}</h1>
+    <div><a v-if="isOwner" href="/src/company/edit_brief.html">修改</a></div>
+    <img :src="imgUrl + company.avatar" />
+    <span>BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB{{ company.brief }}</span>
   </div>
   <div class="company_basic clearfix">
+    <div><a v-if="isOwner" href="/src/company/edit_info.html">修改</a></div>
     <ul>
       <li>
         <span>公司地区</span>{{company.location}}
@@ -14,6 +17,8 @@
       </li>
     </ul>
   </div>
+  <list-ele type="product" :listEle="company.products" :isOwner="isOwner"></list-ele>
+  <list-ele type="equipment" :listEle="company.equipments" :isOwner="isOwner"></list-ele>
   </div>
 </template>
 
@@ -72,6 +77,20 @@
 	margin-bottom: 8px;
 }
 
+.company_brief img{
+  float: right;
+	margin:0 auto 5px auto;
+	border:1px solid #e5e5e5;
+	width: 112px;
+	height: 112px;
+}
+.company_brief h1 {
+  float: left;
+  margin-right: 20px;
+}
+.company_brief span {
+  width: 856px;
+}
 .company_basic{
 	width: 278px;
 	border: 1px solid #e5e5e5;
@@ -110,4 +129,29 @@
   float: left;
 }
 
+.company_brief div a{
+	float: left;
+	width: 64px;
+	background: #e2f5ff; /*url('../styImg/xunpan/message_icon.png') 15px center no-repeat;*/
+	font-size: 13px;
+	line-height: 26px;
+	margin-top: 30px;
+	border-radius: 3px;
+  border:1px solid #c8eafa;
+  text-align:center;
+  color:#3d9ccc;
+}
+.company_basic div a{
+	float: right;
+	width: 64px;
+	display: inline-block;
+	background: #e2f5ff; /*url('../styImg/xunpan/message_icon.png') 15px center no-repeat;*/
+	font-size: 13px;
+	line-height: 26px;
+	margin-top: 30px;
+	border-radius: 3px;
+  border:1px solid #c8eafa;
+  text-align:center;
+  color:#3d9ccc;
+}
 </style>

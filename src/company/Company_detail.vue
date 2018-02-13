@@ -4,7 +4,7 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
-        <detail :companyId=companyId></detail>
+        <detail :companyId=companyId :isOwner=isOwner></detail>
       </div>
       <last-footer></last-footer>
     </div>
@@ -23,7 +23,8 @@ export default {
   data: function() {
     return {
       viewName: "company",
-      companyId: ''
+      companyId: '',
+      isOwner: false
     }
   },
   methods: {
@@ -37,7 +38,14 @@ export default {
           this.companyId = paramObj[1];
         }
       }
-      console.log(this.companyId);
+      var self = this;
+      if (this.companyId === '') {
+        if (getCookie('token') != "") {
+          post('/user/book', {}, function(data) {
+            self.isOwner = true;
+          }, true);
+        }
+      }
     }
   },
   mounted: function() {

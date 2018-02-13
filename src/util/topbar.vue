@@ -5,7 +5,13 @@
   		<div class="top_right">
   			<a v-if="isLogin && isAdmin" href="/src/management/index.html">管理员页面</a>
   			<a v-if="isLogin && isBuyer" href="/src/buyer/index.html">我的首页</a>
-  			<a v-if="isLogin && isSupplier" href="/src/supplier/index.html">我的首页</a>
+  			<!--a v-if="isLogin && isSupplier" href="/src/supplier/index.html">我的首页</a-->
+        <div v-if="isLogin && isSupplier" class="supplier_self_sub">
+          <ul>
+            <li><a href="/src/supplier/index.html">个人信息</a></li>
+            <li><a href="/src/company/detail.html">我的公司</a></li>
+          </ul>
+        </div>
   			<a v-if="isLogin" @click="logout" href="/src/index.html" class="account_icon">退出登录</a>
         <div v-else class="login">
            <input type="text" placeholder="请输入用户名" v-model="username"/>
@@ -59,9 +65,9 @@ export default {
             self.isAdmin = true;
           } else if (data.role == 'buyer') {
             self.isBuyer = true;
-		  } else if (data.role == 'supplier') {
+		      } else if (data.role == 'supplier') {
             self.isSupplier = true;
-		  }
+		      }
         } else {
 		  alert('用户登陆失败，请输入正确的用户名和密码');
 		}
@@ -91,7 +97,9 @@ export default {
             self.isAdmin = true;
           } else if (data.role == 'buyer') {
             self.isBuyer = true;
-		  }
+		      } else if (data.role == 'supplier') {
+            self.isSupplier = true;
+		      }
         }
       }, true);
     }
@@ -202,4 +210,34 @@ export default {
 	padding-left: 20px;
 }
 
+.supplier_self_sub{
+	background: #fff;
+	position: absolute;
+	height: 90px;
+	border:1px solid #fff;
+	z-index: 1000;
+	box-shadow: 0 0 3px #999;
+	width: 144px;
+  top: 30px;
+  display: none;
+}
+.top_right:hover .supplier_self_sub{
+  display:block;
+}
+.top_right:hover .supplier_self_sub:hover{
+  display:block;
+}
+.supplier_self_sub ul{
+  padding-left: 5px;
+  list-style: none;
+}
+.supplier_self_sub ul li {
+	height: 44px;
+	line-height: 44px;
+	padding-left: 0px;
+	background:#fff;
+	border:1px solid #fff;
+	border-left: 2px solid #fff;
+	position: relative;
+}
 </style>

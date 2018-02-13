@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>公司列表</h3>
-        <span><a class="new_company" @click="newCompany">新增</a></span>
+        <!--span><a class="new_company" @click="newCompany">新增</a></span-->
         <table id="userlist">
           <thead>
              <tr>
@@ -51,9 +51,11 @@ export default {
     }
   },
   methods: {
+    /*
     newCompany: function() {
       this.$emit("newCompany");
     },
+    */
     deleteUser: function() {
     }
   },

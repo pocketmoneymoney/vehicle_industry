@@ -1,8 +1,7 @@
-import Search from '../util/search.vue'
-import Page from '../util/page.vue'
+import ListEle from './list_product.vue'
 
 export default {
-  props: ['companyId'],
+  props: ['companyId', 'isOwner'],
   data() {
     return {
       imgUrl: '/',
@@ -23,6 +22,7 @@ export default {
       get('/api/supplier/' + this.companyId, {}, function(data) {
         self.company = data;
       }, false);
+      self.company = {products: [{'name':'xx','usage':'yy'}]};
     }
   },
   mounted: function() {
@@ -33,5 +33,5 @@ export default {
        this.searchCompany();
     },
   },
-  components: {Search, Page}
+  components: {ListEle}
 }
