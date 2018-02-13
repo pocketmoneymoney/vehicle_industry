@@ -20,6 +20,10 @@ var UserSchema = new Schema({
     role: {
         type: String,
         required: true
+    },
+    id: {
+        type: String,
+        required: true
     }
 });
 

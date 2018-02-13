@@ -3,12 +3,11 @@
 
 var mongoose = require('mongoose');
 var db = require('../common/db');
-var helper = require('../common/helper');
 
 function dbHandler() {
      db.handler.call(this, {
-		'name':			String,
-		'id':			{type:String, unique:true},
+		'name':			{type:String, unique:true},
+		'id':			{type:String, unique:true, required:true},
 		'brief':		String,
 		'customer':		String,
 		'market':		String,
@@ -35,12 +34,12 @@ dbHandler.prototype.getSupplierDetail = function (id, callback) {
     this.findOne({'id':id}, callback);
 }
 
-dbHandler.prototype.addSupplier = function (name, brief, location, customer,
+dbHandler.prototype.addSupplier = function (name, id, brief, location, customer,
 	market, product, owner, avatar, certification, callback) {
 	
 	this.create({
 		'name': name,
-		'id': helper.uniqueID(name),
+		'id': id,
 		'brief': brief,
 		'location': location,
 		'customer': customer,
@@ -58,7 +57,6 @@ dbHandler.prototype.modifySupplier = function (id, name, brief, location, custom
 	
 	this.update({'id':id}, {$set: {
 		'name': name,
-		'id': helper.uniqueID(name),
 		'brief': brief,
 		'location': location,
 		'customer': customer,
@@ -67,7 +65,7 @@ dbHandler.prototype.modifySupplier = function (id, name, brief, location, custom
 		'owner': owner,
 		'avatar': avatar,
 		'certification': certification
-		}}, callback);
+		}}, {upsert:true}, callback);
 };
 
 dbHandler.prototype.deleteSupplier = function (id, callback) {

@@ -44,9 +44,15 @@ module.exports = function(express) {
     });
 
 
-	router.post('/', upload.fields([
+	////////////////////////////////////////////////////////////////////////////
+	// Do not use POST, always use PUT.
+	// The assumption is that a default blank supplier doc has been created when 
+	// user register.
+	////////////////////////////////////////////////////////////////////////////
+	router.post('/:id', upload.fields([
 			{name:'avatar', maxCount:1}, 
 			{name: 'certification', maxCount:10}]), function (req, res, next) {
+		var id 			= req.params.id;
 		var name 		= req.body.name;
 		var brief 		= req.body.brief;
 		var location 	= req.body.location;
@@ -69,7 +75,7 @@ module.exports = function(express) {
 			});
 		}
 
-		dao.addSupplier(name, brief, location, customer, market, product, owner,
+		dao.addSupplier(name, id, brief, location, customer, market, product, owner,
 			avatarPath, certificationPath, function (err) {
 			if (err) {
 				res.status(401).send("Failed to add supplier to database");

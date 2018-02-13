@@ -3,9 +3,11 @@
 
 var User = require("./model");
 var config = require('../../config');
+var helper = require('../common/helper');
 
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
+
 require('./passport')(passport);
 
 module.exports = function () {
@@ -32,19 +34,28 @@ module.exports = function () {
         if (!req.body.username || !req.body.password) {
             res.json({success: false, msg: 'Please pass username and password.'});
         } else {
+			var newID = helper.uniqueID(req.body.username);
             var newUser = new User({
                 username: req.body.username,
                 password: req.body.password,
                 email: req.body.email,
-                role: req.body.role
+                role: req.body.role,
+                id: newID
             });
             newUser.save(function(err) {
                 if (err) {
                     return res.json({success: false, msg: 'Username or email already exists.'});
                 }
-                var plainUser = {username: req.body.username, password: req.body.password, role: req.body.role, email: req.body.email};
+                var plainUser = {
+					username: req.body.username, 
+					password: req.body.password, 
+					role: req.body.role, 
+					email: req.body.email
+				};
                 var token = jwt.sign(plainUser, config.secret);
-                res.json({success: true, token: 'JWT ' + token, role: req.body.role, msg: 'Successful created new user.'});
+                res.json({success: true, token: 'JWT ' + token, 
+						  role: req.body.role, id:newID, 
+						  msg: 'Successful created new user.'});
             });
         }
     });
@@ -57,11 +68,18 @@ module.exports = function () {
            } else {
                user.comparePassword(req.body.password, function (err, isMatch) {
                    if (isMatch && !err) {
-                       var plainUser = {username: user.username, password: user.password, role: user.role, email: user.email};
+                       var plainUser = {
+							username: user.username, 
+							password: user.password, 
+							role: user.role, 
+							email: user.email
+						};
                        var token = jwt.sign(plainUser, config.secret);
-                       res.json({success: true, token: 'JWT ' + token, role: user.role});
+                       res.json({success: true, token: 'JWT ' + token, 
+								 role: user.role, id:user.id});
                    } else {
-                       res.send({success: false, msg: 'Authentication failed. Wrong password.'});
+                       res.send({success: false, id:user.id,
+								 msg: 'Authentication failed. Wrong password.'});
                    }
                });
            }
