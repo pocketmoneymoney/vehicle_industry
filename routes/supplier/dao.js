@@ -53,7 +53,7 @@ dbHandler.prototype.addSupplier = function (name, id, brief, location, customer,
 
 
 dbHandler.prototype.modifySupplier = function (id, name, brief, location, customer,
-	market, product, owner, avatar, certification, callback) {
+	market, product, owner, callback) {
 	
 	this.update({'id':id}, {$set: {
 		'name': name,
@@ -63,8 +63,6 @@ dbHandler.prototype.modifySupplier = function (id, name, brief, location, custom
 		'market': market,
 		'product': product,
 		'owner': owner,
-		'avatar': avatar,
-		'certification': certification
 		}}, {upsert:true}, callback);
 };
 

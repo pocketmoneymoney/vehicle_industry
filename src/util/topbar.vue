@@ -4,8 +4,8 @@
   		<a>欢迎来到OE汽车</a>
   		<div class="top_right">
   			<a v-if="isLogin && isAdmin" href="/src/management/index.html">管理员页面</a>
-  			<a v-if="isLogin && isBuyer" href="/src/buyer/index.html">我的首页</a>
-  			<!--a v-if="isLogin && isSupplier" href="/src/supplier/index.html">我的首页</a-->
+  			<a v-if="isLogin && isBuyer" href="/src/buyer/index.html">我的菜单</a>
+  			<a v-if="isLogin && isSupplier" href="/src/supplier/index.html">我的菜单</a>
         <div v-if="isLogin && isSupplier" class="supplier_self_sub">
           <ul>
             <li><a href="/src/supplier/index.html">个人信息</a></li>
@@ -17,7 +17,7 @@
            <input type="text" placeholder="请输入用户名" v-model="username"/>
            <input type="password" placeholder="请输入密码" v-model="password"/>
   			   <a @click="login">登录</a>
-  			   <a href="/src/register.html">注册</a>
+  			   <a href="/src/register/register.html">注册</a>
         </div>
   		</div>
   	</div>
@@ -40,6 +40,8 @@ export default {
     var isBuyer = false;
     var isSupplier = false;
     var logo = "";
+	var id = "";
+
     return {
       isLogin: isLogin,
       isAdmin: isAdmin,
@@ -47,7 +49,8 @@ export default {
       isSupplier: isSupplier,
       username: "",
       password: "",
-      logo: ""
+      logo: "",
+	  id: ""
     }
   },
   methods: {
@@ -56,18 +59,31 @@ export default {
         alert('用户名或密码为空');
         return;
       }
+
       var self = this;
-      post('/user/login', {username: this.username, password: this.password}, function(data) {
+      post('/user/login', {
+		username: this.username, 
+		password: this.password}, function(data) {
+
         if (data.token) {
           setCookie('token', data.token, 3000);
+          setCookie('role', data.role, 3000);
+
           self.isLogin = true;
+      	  this.isAdmin = false;
+      	  this.isBuyer = false;
+      	  this.isSupplier = false;
+
           if (data.role === 'admin') {
             self.isAdmin = true;
+            window.location.href = '/src/management/index.html';
           } else if (data.role == 'buyer') {
             self.isBuyer = true;
-		      } else if (data.role == 'supplier') {
+            window.location.href = '/src/buyer/index.html';
+		  } else if (data.role == 'supplier') {
             self.isSupplier = true;
-		      }
+            window.location.href = '/src/supplier/index.html';
+		  }
         } else {
 		  alert('用户登陆失败，请输入正确的用户名和密码');
 		}
@@ -75,6 +91,8 @@ export default {
     },
     logout: function() {
       delCookie('token');
+      delCookie('role');
+
       this.isLogin = false;
       this.isAdmin = false;
       this.isBuyer = false;
@@ -89,18 +107,33 @@ export default {
     }, false);
 
     if (getCookie('token') != "") {
+      self.isLogin = true;
+
+	  var role = getCookie('role');
+      if (role == 'admin') {
+        self.isAdmin = true;
+        self.isBuyer = false;
+	  } else if (role == 'buyer') {
+        self.isAdmin = false;
+		self.isBuyer = true;
+		self.isSupplier = true;
+	  } else if (role == 'supplier') {
+        self.isAdmin = false;
+        self.isBuyer = false;
+        self.isSupplier = true;
+      }
+
       post('/user/book', {}, function(data) {
         if (data.username) {
-          self.isLogin = true;
-          console.log(self.isLogin);
-          if (data.role === 'admin') {
-            self.isAdmin = true;
-          } else if (data.role == 'buyer') {
-            self.isBuyer = true;
-		      } else if (data.role == 'supplier') {
-            self.isSupplier = true;
-		      }
-        }
+          if (data.role != role) {
+            console.error("Miss matched roles", data.role, role);
+            self.isLogin = false;
+          } else {
+            self.id = data.id;
+		  }
+        } else {
+          self.isLogin = false;
+		}
       }, true);
     }
   },

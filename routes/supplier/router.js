@@ -49,9 +49,7 @@ module.exports = function(express) {
 	// The assumption is that a default blank supplier doc has been created when 
 	// user register.
 	////////////////////////////////////////////////////////////////////////////
-	router.post('/:id', upload.fields([
-			{name:'avatar', maxCount:1}, 
-			{name: 'certification', maxCount:10}]), function (req, res, next) {
+	router.post('/ss/:id', function (req, res, next) {
 		var id 			= req.params.id;
 		var name 		= req.body.name;
 		var brief 		= req.body.brief;
@@ -61,7 +59,6 @@ module.exports = function(express) {
 		var product 	= req.body.product;
 
 		var owner 		= req.user;
-		
 		var avatarPath = null;
 		if (req.files['avatar'] && req.files['avatar'][0]) {
 			avatarPath = path.join(req.files['avatar'][0].destination, 
@@ -85,9 +82,7 @@ module.exports = function(express) {
 		});
 	});
 
-	router.put('/:id', upload.fields([
-			{name:'avatar', maxCount:1}, 
-			{name: 'certification', maxCount:10}]), function (req, res, next) {
+	router.post('/:id', function (req, res, next) {
 		var name 		= req.body.name;
 		var brief 		= req.body.brief;
 		var location 	= req.body.location;
@@ -95,28 +90,14 @@ module.exports = function(express) {
 		var market 		= req.body.market;
 		var product 	= req.body.product;
 		var id			= req.params.id;
-
 		var owner 		= req.user;
-		
-		var avatarPath = null;
-		if (req.files['avatar'] && req.files['avatar'][0]) {
-			avatarPath = path.join(req.files['avatar'][0].destination, 
-								   req.files['avatar'][0].filename);
-		}
-		
-		var certificationPath = null;
-		if (req.files['certification']) {
-			certificationPath = _.map(req.files['certification'], function(ca) {
-				return path.join(ca.destination, ca.filename);
-			});
-		}
-
+	
 		dao.modifySupplier(id, name, brief, location, customer, market, product, owner,
-			avatarPath, certificationPath, function (err) {
+		  function (err) {
 			if (err) {
-				res.status(401).send("Failed to add supplier to database");
+				res.json({success: false, msg:"Failed to add supplier to database"});
 			} else {
-				res.status(201).send();
+				res.json({success: true});
 			}
 		});
 	});
@@ -124,9 +105,9 @@ module.exports = function(express) {
 	router.delete('/:id', function (req, res) {
 		dao.deleteSupplier(req.params.id, function (err) {
             if (err) {
-                res.status(503).send("Failed to remove category");
+				res.json({success: false, msg:"Failed to remove supplier"});
             } else {
-				res.status(200).send();
+				res.json({success: true});
 	    	}
 		});	
 	});

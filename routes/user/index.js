@@ -1,11 +1,11 @@
 
 'use strict';
 
-var adminRouter = require('./admin.js');
+var userRouter = require('./user.js');
 
 var user = module.exports = {};
 
 user.mount = function (express, router) {
-     var myAdminRouter = adminRouter(express);
-     router.use('/', myAdminRouter);
+     var myUserRouter = userRouter(express);
+     router.use('/', myUserRouter);
 };

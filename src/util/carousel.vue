@@ -1,13 +1,10 @@
 <template>
-<div class="banner-padding-top">
-<div class="container-lg">
-  <div :id="carouselId">
-    <!--a><img src="/img/1.jpg" /></a>
-    <a><img src="/img/2.jpg" /></a>
-    <a><img src="/img/3.jpg" /></a-->
-    <a v-for='imgPath in imgPaths'><img :src="imgPath"></a>
-  </div>
-  </div>
+  <div class="banner-padding-top">
+    <div class="container-lg">
+      <div :id="carouselId">
+        <a v-for='imgPath in imgPaths'><img :src="imgPath"></a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -88,8 +85,5 @@ export default {
 @media (min-width: 1100px){.slides-thumbnail .bx-next {right:-85px;}}
 .slides-thumbnail .bx-prev { left: 13px;}
 .slides-thumbnail .bx-next { right: 13px;}
-
-
-
 
 </style>

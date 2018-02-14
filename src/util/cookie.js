@@ -1,7 +1,7 @@
 function setCookie(c_name,value,expire) {
       var date=new Date()
       date.setSeconds(date.getSeconds()+expire)
-      document.cookie=c_name+ "="+escape(value)+"; expires="+date.toGMTString()
+      document.cookie=c_name+ "="+escape(value)+";path=/; expires="+date.toGMTString()
       console.log(document.cookie)
 }
 

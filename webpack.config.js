@@ -6,7 +6,7 @@ module.exports = {
 
   entry: {
 	  inventory: './src/main.js',
-	  register: './src/register.js',
+	  register: './src/register/register.js',
 	  purchase: './src/purchase/purchase.js',
 	  enroll: './src/purchase/enroll.js',
 	  company: './src/company/company.js',

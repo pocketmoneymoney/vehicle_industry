@@ -36,8 +36,17 @@ module.exports = function(app, express, config) {
 
     	logger.info('Start to enable REST API');
 
-    	app.use('/api', router);
-        app.use('/user', userRouter);
+    	app.use('/api', function(req, res, next) {
+			console.log('New API Request:', req.url, req.method);
+			logger.info('New API Request:', req.url, req.method);
+			next();
+		}, router);
+
+        app.use('/user', function(req, res, next) {
+			console.log('New API Request:', req.url, req.method);
+			logger.info('New API Request:', req.url, req.method);
+			next();
+		}, userRouter);
 
         userAuthentication.mount(express, userRouter);
 		mountRouters(router);

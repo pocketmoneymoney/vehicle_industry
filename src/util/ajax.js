@@ -3,7 +3,6 @@ function post(url, param, success, needAuth) {
   if (needAuth) {
     beforeSend = function(xhr) {
       var token = getCookie('token');
-      console.log(token);
       xhr.setRequestHeader("Authorization", token);
     };
   }
@@ -17,12 +16,29 @@ function post(url, param, success, needAuth) {
   });
 }
 
+function put(url, param, success, needAuth) {
+  var beforeSend = function(xhr) {};
+  if (needAuth) {
+    beforeSend = function(xhr) {
+      var token = getCookie('token');
+      xhr.setRequestHeader("Authorization", token);
+    };
+  }
+  $.ajax({
+    type: 'PUT',
+    url: 'http://localhost:8088' + url,
+    data: param,
+    dataType: 'json',
+    beforeSend: beforeSend,
+    success: success
+  });
+}
+
 function postWithFile(url, param, success, needAuth) {
   var beforeSend = function(xhr) {};
   if (needAuth) {
     beforeSend = function(xhr) {
       var token = getCookie('token');
-      console.log(token);
       xhr.setRequestHeader("Authorization", token);
     };
   }
