@@ -6,7 +6,7 @@
         <main-nav></main-nav>
         <left-nav @viewChanged="chooseView"></left-nav>
 		<div class="main_right">
-          <component :is=currentView></component>
+          <component :is=currentView @newActivity="newActivity" @newPosition="newPosition" @positionApplication="positionApplication" :position="position"></component>
 		</div>
       </div>
       <last-footer></last-footer>
@@ -22,68 +22,73 @@ import LeftNav from './left_nav.vue'
 import LastFooter from '../util/footer.vue'
 
 import NoAuthorized from './no_authorized.vue'
-import User from './user.vue'
-import Company from './company.vue'
+import Supplier from './supplier.vue'
+import Buyer from './buyer.vue'
+import Activity from './activity.vue'
+import NewActivity from './new_activity.vue'
+import Position from './position.vue'
+import NewPosition from './new_position.vue'
+import PositionApplication from './position_application.vue'
 import Purchase from './purchase.vue'
 
 import Qrcode from './qrcode.vue'
 
 export default {
   data: function() {
-    var users = [
-      [
-        "Tiger Nixon",
-        "System Architect",
-        "Edinburgh",
-        "5421",
-        "2011/04/25",
-        "$3,120"
-      ],
-      [
-        "Garrett Winters",
-        "Director",
-        "Edinburgh",
-        "8422",
-        "2011/07/25",
-        "$5,300"
-      ]
-    ];
     return {
-      users: users,
       currentView: "no-authorized",
+      position: {}
     }
   },
   methods: {
     chooseView: function(tab) {
       if (this.currentView != "no-authorized") {
         if (tab.id === 1) {
-          this.currentView = 'user';
+          this.currentView = 'supplier';
         }
         else if (tab.id === 2) {
-          this.currentView = 'company';
-        } else if (tab.id === 10) {
+          this.currentView = 'buyer';
+        }
+        else if (tab.id === 3) {
+          this.currentView = 'activity';
+        }
+        else if (tab.id === 4) {
+          this.currentView = 'position';
+        } else if (tab.id === 6) {
           this.currentView = 'qrcode';
-		}
+		    }
       }
-    }
-    /*newCompany: function() {
+    },
+    newActivity: function() {
       if (this.currentView != "no-authorized") {
-        this.currentView = "new-company";
+        this.currentView = "new-activity";
       }
-    }*/
+    },
+    newPosition: function() {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "new-position";
+      }
+    },
+    positionApplication: function(position) {
+      if (this.currentView != "no-authorized") {
+        this.position = position;
+        this.currentView = "position-application";
+      }
+    },
   },
   mounted: function() {
     var self = this;
     if (getCookie('token') != "") {
       post('/user/book', {}, function(data) {
         if (data.username) {
-          self.currentView = "user";
+          self.currentView = "supplier";
         }
       }, true);
     }
   },
   components: {LeftNav, TopBar, MainHeader, MainNav, LastFooter, 
-			   NoAuthorized, User, Company, Purchase, Qrcode} 
+			   NoAuthorized, Supplier, Buyer, Activity, NewActivity, 
+         Position, NewPosition, PositionApplication, Purchase, Qrcode} 
 }
 </script>
 
