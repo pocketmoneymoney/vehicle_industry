@@ -1,21 +1,25 @@
 <template>
     <div>
-        <h3>{{position.name}}</h3>
-        <table id="position_applicationlist">
+        <h3>{{activity.name}}</h3>
+        <table id="activity_applicationlist">
           <thead>
              <tr>
-                <th>申请人</th>
-                <th>申请人邮箱</th>
-                <th>申请人电话</th>
-                <th>简历</th>
+                <th>报名人</th>
+                <th>报名人公司</th>
+                <th>报名人职位</th>
+                <th>报名人邮箱</th>
+                <th>报名人电话</th>
+                <th>报名人留言</th>
              </tr>
           </thead>
           <tbody>
             <tr v-for="application in applications">
               <th>{{application.name}}</th>
+              <th>{{application.company}}</th>
+              <th>{{application.position}}</th>
               <th>{{application.email}}</th>
               <th>{{application.phone}}</th>
-              <th class="delete_button"><a>简历</a></th>
+              <th>{{application.comment}}</th>
             </tr>
           </tbody>
         </table>
@@ -24,18 +28,24 @@
 
 <script>
 export default {
-  props: ['position'],
+  props: ['activity'],
   data: function() {
     var applications = [
     {
         name: "Tiger Nixon",
+		company: "bb",
+		position: "cc",
         email: "主机",
-        phone: "2011/04/25"
+        phone: "2011/04/25",
+		comment: "dd"
     },
     {
         name: "Garrett Winters",
+		company: "BB",
+		position: "CC",
         email: "2011/07/25",
-        phone: "采购"
+        phone: "采购",
+		comment: "dd"
     }
     ];
     return {
@@ -45,14 +55,14 @@ export default {
   methods: {
   },
   mounted: function() {
-    $('#position_applicationlist').DataTable({
+    $('#activity_applicationlist').DataTable({
     });
   },
 }
 </script>
 
 <style lang="scss">
-#position_applicationlist tbody th {
+#activity_applicationlist tbody th {
   font-weight: 400;
 }
 .delete_button {

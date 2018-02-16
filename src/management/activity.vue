@@ -13,7 +13,7 @@
           </thead>
           <tbody>
             <tr v-for="activity in activities">
-              <th>{{activity.name}}</th>
+              <th @click="activityApplication(activity)" class="delete_button">{{activity.name}}</th>
               <th>{{activity.time}}</th>
               <th>{{activity.type}}</th>
               <th @click="deleteActivity(activity)" class="delete_button">删除</th>
@@ -47,6 +47,9 @@ export default {
       this.$emit("newActivity");
     },
     deleteActivity: function(activity) {
+    },
+    activityApplication: function(activity) {
+      this.$emit("activityApplication", activity);
     }
   },
   mounted: function() {

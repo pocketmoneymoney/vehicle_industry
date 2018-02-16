@@ -18,6 +18,7 @@ module.exports = {
 	  position: './src/position/position.js',
 	  meeting: './src/meeting/meeting.js',
 	  visiting: './src/visiting/visiting.js',
+	  activity_enroll: './src/util/activity_enroll.js',
 	  buyer: './src/buyer/index.js',
 	  supplier: './src/supplier/index.js',
 	  management: './src/management/index.js',

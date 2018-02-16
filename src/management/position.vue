@@ -49,7 +49,7 @@ export default {
     deletePosition: function(position) {
     },
     positionApplication: function(position) {
-      this.$emit("positionApplication");
+      this.$emit("positionApplication", position);
     }
   },
   mounted: function() {

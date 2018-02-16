@@ -6,7 +6,7 @@
         <main-nav></main-nav>
         <left-nav @viewChanged="chooseView"></left-nav>
 		<div class="main_right">
-          <component :is=currentView @newActivity="newActivity" @newPosition="newPosition" @positionApplication="positionApplication" :position="position"></component>
+          <component :is=currentView @newActivity="newActivity" @newPosition="newPosition" @positionApplication="positionApplication" @activityApplication="activityApplication" :activity="activity" :position="position"></component>
 		</div>
       </div>
       <last-footer></last-footer>
@@ -26,6 +26,7 @@ import Supplier from './supplier.vue'
 import Buyer from './buyer.vue'
 import Activity from './activity.vue'
 import NewActivity from './new_activity.vue'
+import ActivityApplication from './activity_application.vue'
 import Position from './position.vue'
 import NewPosition from './new_position.vue'
 import PositionApplication from './position_application.vue'
@@ -37,7 +38,8 @@ export default {
   data: function() {
     return {
       currentView: "no-authorized",
-      position: {}
+      position: {},
+	  activity: {}
     }
   },
   methods: {
@@ -75,6 +77,12 @@ export default {
         this.currentView = "position-application";
       }
     },
+    activityApplication: function(activity) {
+      if (this.currentView != "no-authorized") {
+        this.activity = activity;
+        this.currentView = "activity-application";
+      }
+    },
   },
   mounted: function() {
     var self = this;
@@ -88,6 +96,7 @@ export default {
   },
   components: {LeftNav, TopBar, MainHeader, MainNav, LastFooter, 
 			   NoAuthorized, Supplier, Buyer, Activity, NewActivity, 
+			   ActivityApplication, 
          Position, NewPosition, PositionApplication, Purchase, Qrcode} 
 }
 </script>

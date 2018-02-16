@@ -5,13 +5,15 @@
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
         <div>
-          <event-enroll-panel></event-enroll-panel>
+		  <a :href="activityEnrollUrl + latestMeeting.id"><img style="width:990px;float:left;" :src="latestMeeting.img" /></a>
+	      <right-panel></right-panel>
+		  <div class="new_meetings">
+		    <meeting-panel v-for="meeting in newMeetings" :activity="meeting"></meeting-panel>
+		  </div>
           <div class="main_right">
-            <latest-purchase></latest-purchase>
-            <history-meeting :imgPaths="historyImgPaths" :carouselId="historyCarouselId"></history-meeting>
+            <history-meeting :imgPaths="historyImgPaths" carouselId="history_meeting"></history-meeting>
             <interview></interview>
 		  </div>
-	      <right-panel></right-panel>
         </div>
       </div>
       <last-footer></last-footer>
@@ -26,8 +28,7 @@ import Interview from '../util/interview.vue'
 import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
 
-import EventEnrollPanel from '../util/event_enroll_panel.vue'
-import LatestPurchase from '../util/latest_purchase.vue'
+import MeetingPanel from '../util/activity_panel.vue'
 import HistoryMeeting from '../util/carousel.vue'
 
 
@@ -35,10 +36,28 @@ export default {
   data: function() {
     return {
       viewName: "meeting",
-      topProduct: "eventEnroll",
-      topTitle: "活动预告及报名",
-      topComponent: "event-enroll-panel",
-      historyCarouselId: 'history_meeting',
+	  activityEnrollUrl: '/src/util/activity_enroll.html?activityId=',
+	  latestMeeting: {img: '/img/1.jpg', id: 1},
+	  newMeetings: [
+	    {id: 2,
+		 name: 'aaaa',
+		 location: 'bbb',
+		 img: '/img/1.jpg',
+		 time: 'ccccc'
+		},
+	    {id: 3,
+		 name: 'aaaa',
+		 location: 'bbb',
+		 img: '/img/1.jpg',
+		 time: 'ccccc'
+		},
+	    {id: 4,
+		 name: 'aaaa',
+		 location: 'bbb',
+		 img: '/img/1.jpg',
+		 time: 'ccccc'
+		}
+	  ],
       historyImgPaths: ['/img/1.jpg', '/img/2.jpg', '/img/3.jpg']
     }
   },
@@ -47,7 +66,7 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, HistoryMeeting,
+  components: {MainHeader, TopBar, MainNav, MeetingPanel, HistoryMeeting,
 			   RightPanel, Interview, LastFooter}
 }
 </script>
@@ -98,5 +117,9 @@ h3{
 	color: #333333;
   margin: 0;
   font-weight: bold;
+}
+.new_meetings {
+	padding-top: 20px;
+	float: left;
 }
 </style>

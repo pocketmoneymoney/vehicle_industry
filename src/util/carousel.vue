@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  props: ['carouselId', 'imgPaths'],
+  props: ['carouselId', 'imgPaths', 'width'],
   data() {
     return {
     }
@@ -24,13 +24,15 @@ export default {
   methods: {
     showCarousel: function() {
       if (this.imgPaths.length === 0) return;
-      console.log('!!!' + this.imgPaths);
       $('#' + this.carouselId).bxSlider({
           auto: true,
           pause: 3000,
           autoHover: true,
           wrapSelector: '.slides-thumbnail',
       });
+	  if (this.width) {
+		  $('.container-lg').width(this.width);
+	  }
     }
   },
   watch: {
