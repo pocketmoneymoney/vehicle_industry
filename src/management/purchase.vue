@@ -1,23 +1,31 @@
 <template>
     <div>
-        <h3>用户列表</h3>
-        <table id="userlist">
+        <h3>采购项目管理</h3>
+        <table id="purchaselist">
           <thead>
              <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th data-class-name="priority">Salary</th>
+                <th>采购项目名称</th>
+                <th>发布人</th>
+                <th>发布人电话</th>
+                <th>采购公司</th>
+                <th>采购类型</th>
+                <th>采购有效期</th>
+				<th>发布时间</th>
+				<th>注册用户</th>
                 <th>操作</th>
              </tr>
           </thead>
           <tbody>
-            <tr v-for="user in users">
-              <th v-for = "attr in user">{{ attr }}
-              </th>
-              <th @click="deleteUser(user)" class="delete_button">删除</th>
+            <tr v-for="purchase in purchases">
+			  <th class="delete_button" @click="purchaseApplication(purchase)">{{purchase.product}}</th>
+			  <th>{{purchase.name}}</th>
+			  <th>{{purchase.phone}}</th>
+			  <th>{{purchase.company}}</th>
+			  <th>{{purchase.type}}</th>
+			  <th>{{purchase.expire}}</th>
+			  <th>{{purchase.create}}</th>
+			  <th>{{purchase.username}}</th>
+              <th @click="deletePurchase(purchase)" class="delete_button">删除</th>
             </tr>
           </tbody>
         </table>
@@ -27,41 +35,44 @@
 <script>
 export default {
   data: function() {
-    var users = [
-      [
-        "Tiger Nixon",
-        "System Architect",
-        "Edinburgh",
-        "5421",
-        "2011/04/25",
-        "$3,120"
-      ],
-      [
-        "Garrett Winters",
-        "Director",
-        "Edinburgh",
-        "8422",
-        "2011/07/25",
-        "$5,300"
-      ]
+    var purchases = [
+	  {
+        name: "Tiger Nixon",
+        product: "System Architect",
+        company: "Edinburgh",
+        expire: "5421",
+        create: "2011/04/25",
+        type: "$3,120"
+	  },
+	  {
+        name: "Garrett Winters",
+        product: "Director",
+        company: "Edinburgh",
+        expire: "8422",
+        create: "2011/07/25",
+        type: "$5,300"
+	  }
     ];
     return {
-      users: users
+      purchases: purchases 
     }
   },
   methods: {
-    deleteUser: function() {
+    deletePurchase: function(purchase) {
+    },
+    purchaseApplication: function(purchase) {
+      this.$emit("purchaseApplication", purchase);
     }
   },
   mounted: function() {
-    $('#userlist').DataTable({
+    $('#purchaselist').DataTable({
     });
   },
 }
 </script>
 
 <style lang="scss">
-#userlist tbody th {
+#purchaselist tbody th {
   font-weight: 400;
 }
 .delete_button {

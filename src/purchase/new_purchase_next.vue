@@ -121,6 +121,11 @@ export default {
         oMyForm.append("location", this.location);
         oMyForm.append("avatar", this.$refs.productImg.files[0]);
         var self = this;
+
+        var auth = false
+        if (getCookie('token') !== "") {
+			auth = true;
+		}
 	  }
 	}
 }
