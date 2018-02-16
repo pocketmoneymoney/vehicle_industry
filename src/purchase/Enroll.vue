@@ -49,7 +49,7 @@
                 <span>发布时间：</span>{{purchase.tech}}
               </li>
             </ul>
-            <span class="span01"><a @click="enrollPurchase">我要报名</a></span>
+            <span class="enroll_button"><a @click="enrollPurchase">我要报名</a></span>
           </div>
 		  <right-panel></right-panel>
 		</div>
@@ -189,5 +189,5 @@ h3{
   display: block;
   float: left;
 }
-.span01{ display:block; width: 54px; margin-left: 154px; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px; cursor: pointer;}
+.enroll_button{ display:block; width: 54px; margin-left: 154px; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px; cursor: pointer;}
 </style>

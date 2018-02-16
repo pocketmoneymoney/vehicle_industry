@@ -4,9 +4,9 @@
         <span>活动预告及报名</span>
         <a href="../inquiry/product_list.aspx">More &gt;</a>
     </h3>
-    <event-enroll></event-enroll>
-    <!--div class="seperate"></div>
-    <event-enroll></event-enroll-->
+    <event-enroll :activity="latestMeeting"></event-enroll>
+    <div class="seperate"></div>
+    <event-enroll :activity="latestVisiting"></event-enroll>
   </div>
 </template>
 
@@ -14,6 +14,22 @@
 import EventEnroll from './event_enroll.vue'
 
 export default {
+  data() {
+	  return {
+		  latestMeeting: {
+			  id: 1,
+			  name: 'aa',
+			  location: 'bb',
+			  time: 'cc'
+		  },
+		  latestVisiting: {
+			  id: 1,
+			  name: 'aa',
+			  location: 'bb',
+			  time: 'cc'
+		  }
+	  }
+  },
   components: {EventEnroll}
 }
 </script>
@@ -43,9 +59,9 @@ export default {
 }
 .seperate {
   float:left;
-  width:0px;
-  height:68px;
+  width: 200px;
+  height:0px;
   margin-top:10px;
-  border-left:#d7d7d7 1px solid;
+  border-top:#d7d7d7 1px solid;
 }
 </style>

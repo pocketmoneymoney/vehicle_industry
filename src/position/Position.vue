@@ -5,7 +5,7 @@
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
         <div>
-         <user-panel></user-panel>
+         <event-enroll-panel></event-enroll-panel>
           <div class="main_right">
           <latest-purchase></latest-purchase>
           <list-position-detail></list-position-detail>
@@ -26,7 +26,7 @@ import LastFooter from '../util/footer.vue'
 import Interview from '../util/interview.vue'
 import RightPanel from '../util/right_panel.vue'
 
-import UserPanel from './user_panel.vue'
+import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LatestPurchase from '../util/latest_purchase.vue'
 import ListPositionDetail from './list_position_detail.vue'
 
@@ -42,7 +42,7 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, UserPanel, LatestPurchase, 
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
 			   ListPositionDetail, RightPanel, LastFooter}
 }
 </script>

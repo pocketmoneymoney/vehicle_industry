@@ -5,18 +5,29 @@
         <dd>
             <h4>
                 <a target="_blank" href="http://i.gasgoo.com/purchas/production/301787.html#">
-                  企业升级-智能网联产业化之路
+                  {{activity.name}}
                 </a>
             </h4>
-            <p> 2018.03.01-2018.03.0116天后开始 </p>
-			<p> 上海市环球港凯悦酒店公司 </p>
+            <p>{{activity.time}} </p>
+			<p>{{activity.location}} </p>
         </dd>
         <dt>
-            <span class="span01"><a>报名</a></span>
+            <span class="event_enroll_button"><a :href="enrollUrl + activity.id">报名</a></span>
         </dt>
     </dl>
   </div>
 </template>
+
+<script>
+export default {
+	props: ['activity'],
+	data() {
+		return {
+			enrollUrl: '/src/util/activity_enroll.html?activityId='
+		}
+	}
+}
+</script>
 
 <style scoped>
 .project_enroll{ margin-top:10px; width:200px; margin-bottom:10px; float:left; background:#fff; padding:9px 2px 2px 2px;overflow:hidden; position:relative;}
@@ -28,7 +39,7 @@
 .project_enroll dd.dd{  font-family:Arial;}
 .project_enroll dt{ width:64px; float:right; text-align:center; }
 .project_enroll dt b{ font-weight:normal; font-size:11px; line-height:23px; color:#999;}
-.project_enroll dt .span01{ display:block; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px;}
+.project_enroll dt .event_enroll_button{ display:block; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px;}
 .project_enroll span a{ padding:0px;}
 /*
 .project_enroll span.emergency01{ position:absolute; width:32px; height:32px; background:url(../images/pic/emergency.png) no-repeat; right:0em; top:0px; background-size:2em; padding-left:0px;}
