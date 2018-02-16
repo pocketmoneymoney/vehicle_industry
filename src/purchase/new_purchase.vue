@@ -21,7 +21,7 @@
           <dl class="clearfix">
               <dt><b>*</b><span>采购产品名称：</span></dt>
               <dd>
-                  <input v-model="productName" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="product" class="text" style="z-index: 10000" maxlength="20"
                       type="text" />
               </dd>
           </dl>
@@ -64,7 +64,7 @@ export default {
 		return {
 			name: '',
 			phone: '',
-			productName: '',
+			product: '',
 			type: '',
 			expire: '',
 			chosenVehicleTypes: [],
@@ -73,11 +73,11 @@ export default {
 	},
     methods: {
       newPurchase: function() {
-        if (this.name === '' || this.phone === '' || this.productName === '' || this.type === '' || this.expire === '' || this.chosenVehicleTypes === []) {
+        if (this.name === '' || this.phone === '' || this.product === '' || this.type === '' || this.expire === '' || this.chosenVehicleTypes === []) {
           alert('请填写完整资料');
           return;
         }
-		var param = {name: this.name, phone: this.phone, productName: this.productName, type: this.type, expire: this.expire, vehicleTypes: this.chosenVehicleTypes};
+		var param = {name: this.name, phone: this.phone, product: this.product, type: this.type, expire: this.expire, vehicleTypes: this.chosenVehicleTypes};
 		this.$emit('newPurchaseNext', param);
 	  }
 	}

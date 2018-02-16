@@ -30,7 +30,7 @@
                        <!--em>
                            <img src='../admin/file/icon/China.gif' alt="" class="flag_contury">China
                        </em-->
-                       <a href="contact2.aspx?bid=2382&pid=32863" class="contact_btn">我要报名</a>
+                       <a :href="enrollUrl + purchaseProduct.id" class="contact_btn">我要报名</a>
                        
                    </div>
                </li>
