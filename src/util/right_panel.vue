@@ -4,7 +4,7 @@
     <h3>
         <span>供应商推荐</span>
     </h3>
-    <component :is="component"></component>
+	<supplier-recom width="190px" :imgPaths="imgPaths" carouselId="supplier_recom"></supplier-recom>
   </div>
   <div class="right_panel">
     <h3>
@@ -16,16 +16,23 @@
 </template>
 
 <script>
+import SupplierRecom from './carousel.vue'
+
 export default {
   props: ['product', 'height'],
+  data: function() {
+    var qrcode = '';
+    return {
+      qrcode: '',
+	  imgPaths: ['/img/1.jpg', '/img/2.jpg', '/img/3.jpg']
+    }
+  },
   computed: {
     title: function() {
       if (this.product === "supplier") {
         return "供应商推荐";
       }
     },
-    component: function() {
-    }
   },
   mounted: function() {
     var self = this;
@@ -34,13 +41,7 @@ export default {
 		self.qrcode = data;
     }, false);
   },
-  data: function() {
-    var qrcode = '';
-    return {
-      qrcode: ''
-    }
-  },
-  components: {}
+  components: {SupplierRecom}
 }
 </script>
 
