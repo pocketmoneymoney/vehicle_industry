@@ -6,8 +6,10 @@
         <main-nav :currentView="viewName"></main-nav>
         <div>
           <event-enroll-panel></event-enroll-panel>
-          <purchase-product></purchase-product>
+		  <new-purchase-next v-if="newPurchaseNext" :newPurchaseBasicInfo="newPurchaseBasicInfo"></new-purchase-next>
+		  <new-purchase v-else @newPurchaseNext="showNewPurchaseNext"></new-purchase>
 		  <right-panel></right-panel>
+          <purchase-product></purchase-product>
         </div>
       </div>
       <interview></interview>
@@ -23,6 +25,8 @@ import RightPanel from '../util/right_panel.vue'
 import LastFooter from '../util/footer.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
+import NewPurchase from './new_purchase.vue'
+import NewPurchaseNext from './new_purchase_next.vue'
 import PurchaseProduct from './list_purchase_product.vue'
 
 import Interview from '../util/interview.vue'
@@ -33,16 +37,22 @@ export default {
       viewName: "purchase",
       topProduct: "eventEnroll",
       topTitle: "活动预告及报名",
-      topComponent: "event-enroll-panel"
+      topComponent: "event-enroll-panel",
+	  newPurchaseBasicInfo: {},
+	  newPurchaseNext: false
     }
   },
   methods: {
+	showNewPurchaseNext: function(data) {
+		this.newPurchaseBasicInfo = data;
+		this.newPurchaseNext = true;
+	},
 	viewChange: function(index) {
 	  this.itemSeries = this.items[index];
 	}
   },
   components: {MainHeader, TopBar, MainNav, EventEnrollPanel, PurchaseProduct, 
-			   RightPanel, Interview, LastFooter}
+			   NewPurchase, NewPurchaseNext, RightPanel, Interview, LastFooter}
 }
 </script>
 
