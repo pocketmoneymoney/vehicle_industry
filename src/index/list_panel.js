@@ -3,7 +3,7 @@ import ListEvent from './list_event.vue'
 import ListPosition from './list_position.vue'
 
 export default {
-  props: ['product', 'title', 'component', 'height'],
+  props: ['product', 'title', 'mainUrl', 'component', 'height'],
   computed: {
   },
   mounted: function() {

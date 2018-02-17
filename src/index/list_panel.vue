@@ -2,7 +2,7 @@
   <div class="list_panel">
     <h3>
         <span>{{ title }}</span>
-        <a href="../inquiry/product_list.aspx">More &gt;</a>
+        <a :href="mainUrl">More &gt;</a>
     </h3>
     <component :is="component"></component>
   </div>

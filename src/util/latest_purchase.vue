@@ -1,6 +1,6 @@
 <template>
   <div>
-    <list-panel :product="product" :title="title" :component="component" :height=140></list-panel>
+    <list-panel :product="product" :title="title" :mainUrl="mainUrl" :component="component" :height=140></list-panel>
   </div>
 </template>
 
@@ -12,7 +12,8 @@ export default {
     return {
       product: "purchase",
       title: "最新采购",
-      component: "list-purchase"
+      component: "list-purchase",
+	  mainUrl: "/src/purchase/index.html"
     }
   },
   components: {ListPanel}

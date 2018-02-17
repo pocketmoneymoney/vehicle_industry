@@ -1,6 +1,6 @@
 <template>
   <div class="top_bar">
-  	<div class="main clearfix">
+  	<div class="topbar clearfix">
   		<a>欢迎来到OE汽车</a>
   		<div class="top_right">
   			<a v-if="isLogin && isAdmin" href="/src/management/index.html">管理员页面</a>
@@ -152,7 +152,11 @@ export default {
 	padding-left: 20px;
 }*/
 
-.main a {
+.topbar {
+	width: 1200px;
+	margin: 0 auto;
+}
+.topbar a {
 	font-size: 13px;
 	line-height: 30px;
 }
