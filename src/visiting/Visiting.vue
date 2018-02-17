@@ -5,13 +5,15 @@
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
         <div>
-          <event-enroll-panel></event-enroll-panel>
-          <div class="main_right">
-            <latest-purchase></latest-purchase>
-            <history-visiting :imgPaths="historyImgPaths" :carouselId="historyCarouselId"></history-visiting>
-            <interview></interview>
-          </div>
+		  <a :href="activityEnrollUrl + latestVisiting.id"><img style="width:990px;float:left;" :src="latestVisiting.img" /></a>
 	      <right-panel></right-panel>
+		  <div class="new_visitings">
+		    <visiting-panel v-for="visiting in newVisitings" :activity="visiting"></visiting-panel>
+		  </div>
+          <div class="main_right">
+            <history-visiting :imgPaths="historyImgPaths" carouselId="history_visiting"></history-visiting>
+            <interview></interview>
+		  </div>
         </div>
       </div>
       <last-footer></last-footer>
@@ -22,23 +24,40 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
+import Interview from '../util/interview.vue'
 import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
 
-import EventEnrollPanel from '../util/event_enroll_panel.vue'
-import LatestPurchase from '../util/latest_purchase.vue'
+import VisitingPanel from '../util/activity_panel.vue'
 import HistoryVisiting from '../util/carousel.vue'
-import Interview from '../util/interview.vue'
 
 
 export default {
   data: function() {
     return {
       viewName: "visiting",
-      topProduct: "eventEnroll",
-      topTitle: "活动预告及报名",
-      topComponent: "event-enroll-panel",
-      historyCarouselId: 'history_visiting',
+	  activityEnrollUrl: '/src/util/activity_enroll.html?activityId=',
+	  latestVisiting: {img: '/img/1.jpg', id: 1},
+	  newVisitings: [
+	    {id: 2,
+		 name: 'aaaa',
+		 location: 'bbb',
+		 img: '/img/1.jpg',
+		 time: 'ccccc'
+		},
+	    {id: 3,
+		 name: 'aaaa',
+		 location: 'bbb',
+		 img: '/img/1.jpg',
+		 time: 'ccccc'
+		},
+	    {id: 4,
+		 name: 'aaaa',
+		 location: 'bbb',
+		 img: '/img/1.jpg',
+		 time: 'ccccc'
+		}
+	  ],
       historyImgPaths: ['/img/1.jpg', '/img/2.jpg', '/img/3.jpg']
     }
   },
@@ -47,8 +66,8 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
-			   HistoryVisiting, RightPanel, Interview, LastFooter}
+  components: {MainHeader, TopBar, MainNav, VisitingPanel, HistoryVisiting,
+			   RightPanel, Interview, LastFooter}
 }
 </script>
 
@@ -86,6 +105,11 @@ export default {
 	padding: 0px 12px 10px 10px;
 }
 
+.enroll{
+	width: 500px;
+	height: 50px;
+}
+
 h3{
 	height: 14px;
 	line-height: 14px;
@@ -93,5 +117,9 @@ h3{
 	color: #333333;
   margin: 0;
   font-weight: bold;
+}
+.new_visitings {
+	padding-top: 20px;
+	float: left;
 }
 </style>
