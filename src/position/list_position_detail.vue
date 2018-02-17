@@ -15,17 +15,18 @@
          
          <li v-for="position in positions">
              <h4 class="position_title"><a href="../supplierEC/show_index.aspx?op=2382">{{ position.name }}</a></h4>
-             <div class="position_list_left">
+             <em>{{ position.company }}</em>
+             <!--div class="position_list_left">
                  <p>
-                     <!--a href="pro_com_detail.aspx?op=32846"><img width="110px" src='../admin/file/img/20180129095347897.jpg' /></a-->
+                     <a href="pro_com_detail.aspx?op=32846"><img width="110px" src='../admin/file/img/20180129095347897.jpg' /></a>
                      <em>Window Switch For Chevrolet/GMC 15151356 IWSGM021</em>
                  </p>
                  
-             </div>
+             </div-->
              <div class="position_list_right">
                  <dl>
-                     <dt>主要产品</dt>
-                     <dd>{{ position.products }}</dd>
+                     <dt>职位要求</dt>
+                     <dd>{{ position.brief }}</dd>
                  </dl>
                  <!--dl>
                      <dt>Total Revenue:</dt>
@@ -37,6 +38,7 @@
                  </dl-->
                  
              </div>
+            <a :href="enrollUrl + position.id" class="contact_btn">我要报名</a>
          </li>
      </ul>
      <page :curPage="curPage" :totalPage="totalPage" @pageChanged="changePage"></page>
@@ -209,9 +211,7 @@
 	overflow: hidden;
 }
 .position_list_right{
-	float: left;
-	width: 390px;
-	height: 165px;
+	margin-top: 10px;
 }
 .position_list_right dl{
 	overflow: hidden;
@@ -231,4 +231,18 @@
 	color: #333;
 }
 
+.contact_btn{
+	float: right;
+	margin-right: 30px;
+	width: 64px;
+	display: inline-block;
+	background: #e2f5ff; /*url('../styImg/xunpan/message_icon.png') 15px center no-repeat;*/
+	font-size: 13px;
+	line-height: 26px;
+	margin-top: 30px;
+	border-radius: 3px;
+  border:1px solid #c8eafa;
+  text-align:center;
+  color:#3d9ccc;
+}
 </style>

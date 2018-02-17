@@ -17,6 +17,7 @@ module.exports = {
 	  new_product: './src/company/new_product.js',
 	  new_equipment: './src/company/new_equipment.js',
 	  position: './src/position/position.js',
+	  apply: './src/position/apply.js',
 	  meeting: './src/meeting/meeting.js',
 	  visiting: './src/visiting/visiting.js',
 	  activity_enroll: './src/util/activity_enroll.js',

@@ -4,11 +4,14 @@ export default {
   data() {
     var positions = [];
     var position = {
+	  id: 3,
       name: 'Guangzhou Shiyizhong Information Technology Co., Ltd.',
-      products: 'window switch,parking sensor,clock spring,ABS sensor,blower motor resistor',
+      company: 'window switch,parking sensor,clock spring,ABS sensor,blower motor resistor',
+	  brief: 'aaaa,a,,a,,aaaaa,b,,b,s,s,,,cddsdfkdd'
     };
     positions.push(position);
     return {
+	  enrollUrl: '/src/position/apply.html?positionId=',
       positions: positions,
       curPage: 8,
       totalPage: 11
