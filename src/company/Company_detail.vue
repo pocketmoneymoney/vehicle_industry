@@ -14,10 +14,10 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
-
-import Detail from './detail.vue'
-
 import LastFooter from '../util/footer.vue'
+
+import Detail from './detail/Detail.vue'
+
 
 export default {
   data: function() {

@@ -17,6 +17,10 @@ function dbHandler() {
 		'brief':		String,
 		'market':		String,
 		'location':		String,
+		'createTime':   String,
+		'operator':		String,
+		'assets':		String,
+
 		'owner':		String,
 		'avatar':		String,
 		'certification':	Array
@@ -57,19 +61,26 @@ dbHandler.prototype.addSupplier = function (name, id, brief, location, customer,
 
 
 dbHandler.prototype.modifySupplier = function (id, person, company, phone, email,
-	product, customer, brief, location, market, owner, callback) {
-	this.update({'id':id}, {$set: {
-		'person': person,
-		'company': company,
-		'phone': phone,
-		'email': email,
-		'product': product,
-		'customer': customer,
-		'brief': brief,
-		'location': location,
-		'market': market,
-        'owner': owner
-		}}, {upsert:true}, callback);
+	product, customer, brief, location, market, createTime, operator, assets, owner, 
+	callback) {
+	var fields = {};
+
+    if (person) { fields['person'] = person; }	
+    if (company) { fields['company'] = company; }	
+    if (phone) { fields['phone'] = phone; }	
+    if (email) { fields['email'] = email; }	
+    if (product) { fields['product'] = product; }	
+    if (customer) { fields['customer'] = customer; }	
+    if (brief) { fields['brief'] = brief; }	
+    if (location) { fields['location'] = location; }	
+    if (market) { fields['market'] = market; }	
+    if (owner) { fields['owner'] = owner; }	
+
+	if (createTime) { fields['createTime'] = createTime; }
+	if (operator) { fields['operator'] = operator; }
+    if (assets) { fields['assets'] = assets; }
+
+	this.update({'id':id}, {$set: fields}, {upsert:true}, callback);
 };
 
 dbHandler.prototype.deleteSupplier = function (id, callback) {

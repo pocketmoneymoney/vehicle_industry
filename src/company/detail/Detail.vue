@@ -1,21 +1,43 @@
 <template>
   <div class="clearfix">
   <div class="company_brief clearfix">
-    <h1>AAAA{{ company.name }}</h1>
-    <div><a v-if="isOwner" href="/src/company/edit_brief.html">修改</a></div>
+	<div>
+      <h1>{{ company.name }}</h1>
+	</div>
     <img :src="imgUrl + company.avatar" />
-    <span>BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB{{ company.brief }}</span>
+	<div style="clear:both;"> </div>
+	<div style="float:left; padding:10px;">
+      <h2>公司简介</h2>
+      <span style="padding:10px;">{{ company.brief }}</span>
+	</div>
+	<div style="clear:both;"> </div>
+	<div style="float:left;padding: 10px;">
+      <h2>配套客户</h2>
+      <span style="padding:10px">{{ company.customer }}</span>
+	</div>
+	<div style="clear:both;"> </div>
+	<div style="float:left;padding:10px;">
+      <h2>主营产品</h2>
+      <span style="padding:10px">{{ company.product }}</span>
+	</div>
+    <div><a v-if="isOwner" :href="editBriefURL" style="float:right;">修改</a></div>
   </div>
   <div class="company_basic clearfix">
-    <div><a v-if="isOwner" href="/src/company/edit_info.html">修改</a></div>
     <ul>
       <li>
-        <span>公司地区</span>{{company.location}}
+        <h5>公司地区</h5> <span>{{company.location}} </span>
       </li>
       <li>
-        <span>总资产</span>100
+        <h5>成立时间</h5> <span>{{company.createTime}} </span>
+      </li>
+      <li>
+        <h5>法人代表</h5> <span>{{company.operator}} </span>
+      </li>
+      <li>
+        <h5>总资产</h5> <span>{{company.assets}} </span>
       </li>
     </ul>
+    <div><a v-if="isOwner" :href="editInfoURL">修改</a></div>
   </div>
   <list-ele type="product" :listEle="company.products" :isOwner="isOwner"></list-ele>
   <list-ele type="equipment" :listEle="company.equipments" :isOwner="isOwner"></list-ele>
@@ -74,7 +96,7 @@
 	background: #fff;
 	float: left;
 	padding: 19px 20px;
-	margin-bottom: 8px;
+	margin-bottom: 15px;
 }
 
 .company_brief img{
@@ -96,14 +118,20 @@
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: right;
-	padding: 19px 20px;
-	margin-bottom: 8px;
+	padding: 10px 20px;
+	margin-bottom: 4px;
 }
 
 .company_basic ul {
-  padding: 20px;
+  padding: 5px;
   list-style: none;
 }
+
+.company_basic h5 {
+  padding: 5px;
+  list-style: none;
+}
+
 .company_basic ul li {
   font-size: 12px;
   color: #444444;
@@ -123,7 +151,6 @@
 .company_basic ul li span {
   font-size: 12px;
   color: #999999;
-  margin-right: 10px;
   text-align: right;
   display: block;
   float: left;

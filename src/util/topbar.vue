@@ -9,7 +9,7 @@
         <div v-if="isLogin && isSupplier" class="supplier_self_sub">
           <ul>
             <li><a href="/src/supplier/index.html">个人信息</a></li>
-            <li><a href="/src/company/detail.html">我的公司</a></li>
+            <li><a :href="companyURL">我的公司</a></li>
           </ul>
         </div>
   			<a v-if="isLogin" @click="logout" href="/src/index.html" class="account_icon">退出登录</a>
@@ -40,7 +40,7 @@ export default {
     var isBuyer = false;
     var isSupplier = false;
     var logo = "";
-	var id = "";
+	var baseCompanyURL = "/src/company/detail/detail.html";
 
     return {
       isLogin: isLogin,
@@ -50,7 +50,8 @@ export default {
       username: "",
       password: "",
       logo: "",
-	  id: ""
+	  baseCompanyURL: baseCompanyURL,
+	  companyURL: baseCompanyURL
     }
   },
   methods: {
@@ -71,9 +72,10 @@ export default {
           setCookie('id', data.id, 3000);
 
           self.isLogin = true;
-      	  this.isAdmin = false;
-      	  this.isBuyer = false;
-      	  this.isSupplier = false;
+      	  self.isAdmin = false;
+      	  self.isBuyer = false;
+      	  self.isSupplier = false;
+		  self.companyURL = self.baseCompanyURL + "?id=" + data.id;
 
           if (data.role === 'admin') {
             self.isAdmin = true;
@@ -131,7 +133,7 @@ export default {
             console.error("Miss matched roles", data.role, role);
             self.isLogin = false;
           } else {
-            self.id = data.id;
+		    self.companyURL = self.baseCompanyURL + "?id=" + data.id;
 		  }
         } else {
           self.isLogin = false;

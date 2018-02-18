@@ -39,7 +39,11 @@ module.exports = function(express) {
 
     router.get('/:id', function (req, res) {
          dao.getSupplierDetail(req.params.id, function (err, result) {
-            res.send(JSON.stringify(result));
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json(result);
+			}
          });
     });
 
@@ -93,11 +97,15 @@ module.exports = function(express) {
 		var location 	= req.body.location;
 		var market 		= req.body.market;
 
+		var createTime  = req.body.createTime;
+		var operator    = req.body.operator;
+		var assets      = req.body.assets;
+
 		var owner 		= req.user;
 		var id			= req.params.id;
 	
 		dao.modifySupplier(id, person, company, phone, email, product, customer,
-			brief, location, market, owner, function (err) {
+			brief, location, market, createTime, operator, assets, owner, function (err) {
 				if (err) {
 					res.json({success: false, msg:"Failed to add supplier to database"});
 				} else {
