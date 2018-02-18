@@ -80,7 +80,7 @@ module.exports = function () {
 						};
                        var token = jwt.sign(plainUser, config.secret);
                        res.json({success: true, token: 'JWT ' + token, 
-								 role: user.role});
+								 role: user.role, id: user.id});
                    } else {
                        res.json({success: false,
 								 msg: '认证失败，请输入正确密码.'});

@@ -17,7 +17,6 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
-import NoAuthorized from './no_authorized.vue'
 
 import Purchase from './purchase.vue'
 import SupplierInfo from './supplier-info.vue'
@@ -35,7 +34,7 @@ export default {
           window.location.href = '/src/redirect/expired.html';
       }
   },
-  components: {SupplierInfo, TopBar, MainHeader, MainNav, LastFooter, NoAuthorized, Purchase} 
+  components: {SupplierInfo, TopBar, MainHeader, MainNav, LastFooter, Purchase} 
 }
 </script>
 

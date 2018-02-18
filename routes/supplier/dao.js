@@ -6,12 +6,16 @@ var db = require('../common/db');
 
 function dbHandler() {
      db.handler.call(this, {
-		'name':			{type:String, unique:true},
+		'person':		{type:String, required:true},
 		'id':			{type:String, unique:true, required:true},
-		'brief':		String,
+		'company':		String,
+		'email':		String,
+		'phone':		String,
 		'customer':		String,
-		'market':		String,
 		'product':		String,
+
+		'brief':		String,
+		'market':		String,
 		'location':		String,
 		'owner':		String,
 		'avatar':		String,
@@ -52,17 +56,19 @@ dbHandler.prototype.addSupplier = function (name, id, brief, location, customer,
 };
 
 
-dbHandler.prototype.modifySupplier = function (id, name, brief, location, customer,
-	market, product, owner, callback) {
-	
+dbHandler.prototype.modifySupplier = function (id, person, company, phone, email,
+	product, customer, brief, location, market, owner, callback) {
 	this.update({'id':id}, {$set: {
-		'name': name,
+		'person': person,
+		'company': company,
+		'phone': phone,
+		'email': email,
+		'product': product,
+		'customer': customer,
 		'brief': brief,
 		'location': location,
-		'customer': customer,
 		'market': market,
-		'product': product,
-		'owner': owner,
+        'owner': owner
 		}}, {upsert:true}, callback);
 };
 

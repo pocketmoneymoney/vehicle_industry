@@ -43,7 +43,6 @@ module.exports = function(express) {
          });
     });
 
-
 	////////////////////////////////////////////////////////////////////////////
 	// Do not use POST, always use PUT.
 	// The assumption is that a default blank supplier doc has been created when 
@@ -83,22 +82,27 @@ module.exports = function(express) {
 	});
 
 	router.post('/:id', function (req, res, next) {
-		var name 		= req.body.name;
+		var person 		= req.body.person;
+		var company     = req.body.company;
+		var phone		= req.body.phone;
+		var email		= req.body.email;
+		var product		= req.body.product;
+		var customer	= req.body.customer;
+
 		var brief 		= req.body.brief;
 		var location 	= req.body.location;
-		var customer 	= req.body.customer;
 		var market 		= req.body.market;
-		var product 	= req.body.product;
-		var id			= req.params.id;
+
 		var owner 		= req.user;
+		var id			= req.params.id;
 	
-		dao.modifySupplier(id, name, brief, location, customer, market, product, owner,
-		  function (err) {
-			if (err) {
-				res.json({success: false, msg:"Failed to add supplier to database"});
-			} else {
-				res.json({success: true});
-			}
+		dao.modifySupplier(id, person, company, phone, email, product, customer,
+			brief, location, market, owner, function (err) {
+				if (err) {
+					res.json({success: false, msg:"Failed to add supplier to database"});
+				} else {
+					res.json({success: true});
+				}
 		});
 	});
 

@@ -16,7 +16,7 @@
                       type="text" />
               </dd>
 			  <dd>
-			    <span style="width:350px;">用于账户登录</span>
+			    <span style="width:350px;">用于账户登录,无法修改</span>
 			  </dd>
           </dl>
           <dl>
@@ -30,7 +30,7 @@
           <dl>
               <dt><b>*</b><span>密码：</span></dt>
               <dd><input class="text"
-                  value="" style="z-index: 10000" v-model="password1" type="password" />
+                  value="" style="z-index: 10000" v-model="password1" maxlength="30" type="password" />
               </dd>
 			  <dd>
 			    <span style="width:350px;">密码不得少于6位，请使用包含数字和字母的组合</span>
@@ -46,7 +46,7 @@
           <dl>
               <dt><b>*</b><span>联系电话：</span></dt>
               <dd>
-                  <input v-model="phone" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="phone" class="text" style="z-index: 10000" maxlength="24"
                       type="text" />
               </dd>
 			  <dd></dd>
@@ -54,7 +54,7 @@
           <dl>
               <dt><b>*</b><span>邮箱：</span></dt>
               <dd>
-                  <input v-model="email" class="text" style="z-index: 10000" name="email" type="text" />
+                  <input v-model="email" class="text" style="z-index: 10000" maxlength="50" name="email" type="text" />
               </dd>
 			  <dd></dd>
           </dl>
@@ -76,19 +76,19 @@
               <dl>
                   <dt><b>*</b><span>公司名称：</span></dt>
                   <dd>
-                      <input v-model="companyName" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="companyName" class="text" style="z-index: 10000" name="email" type="text" maxlength="60"/>
                   </dd>
               </dl>
               <dl>
                   <dt><b>*</b><span>主营产品：</span></dt>
                   <dd>
-                      <input v-model="product" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="product" class="text" style="z-index: 10000" name="email" type="text" maxlength="100"/>
                   </dd>
               </dl>
               <dl>
                   <dt><b>*</b><span>配套客户：</span></dt>
                   <dd>
-                      <input v-model="customer" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="customer" class="text" style="z-index: 10000" name="email" type="text" maxlength="100"/>
                   </dd>
               </dl>
            </div>
@@ -116,13 +116,13 @@ export default {
   data: function() {
     return {
       username: '',
-      email: '',
       password1: '',
       password2: '',
       role: '',
       personName: '',
-      phone: '',
       companyName: '',
+      email: '',
+      phone: '',
       product: '',
       customer: '',
       id: ''
@@ -172,7 +172,7 @@ export default {
 
           if (self.role == 'supplier') {
             post('/api/supplier/' + data.id, {
-			  name: self.personName,
+			  person: self.personName,
 			  phone: self.phone,
               email: self.email,
 			  company: self.companyName,
