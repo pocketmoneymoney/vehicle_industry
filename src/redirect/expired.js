@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './Main.vue'
+import App from './Expired.vue'
 
 global.bus = new Vue();
 

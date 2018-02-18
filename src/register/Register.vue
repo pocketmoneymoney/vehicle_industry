@@ -94,7 +94,10 @@
            </div>
           </div>
         </div>
+        <div>
+        <span class="span01"><a href="/src/redirect/login.html"><<< 我有帐户，直接登录</a></span>
         <span class="span01"><a @click="register">注册</a></span>
+        </div>
       </div>
 	  </div>
       <last-footer></last-footer>
@@ -165,6 +168,8 @@ export default {
         if (data.success) {
           setCookie('token', data.token, 3000);
           setCookie('role', self.role, 3000);
+          setCookie('id', data.id, 3000);
+
           if (self.role == 'supplier') {
             post('/api/supplier/' + data.id, {
 			  name: self.personName,
@@ -214,17 +219,15 @@ export default {
 .formbox dd .textc {width:452px;height:22px;line-height:22px;border:1px #9D9D9D solid;padding:0  0 0 5px;position:relative;z-index:99;}
 .formbox b {color:#f00;padding:5px;}
 .span01{ 
-	display:block; 
-	width: 100px; 
-	margin: auto; 
-	background:#e2f5ff; 
-	border:1px solid #c8eafa; 
+	background: #fff;
 	border-radius:0.2em; 
-	font-size:13px; 
+	font-size:18px; 
 	line-height:26px; 
 	text-align:center; 
 	color:#3d9ccc; 
-	padding-left:0px; 
+	padding-left:20px; 
+	padding-right:20px; 
+	margin-left: 150px; 
 	cursor: pointer;
 }
 

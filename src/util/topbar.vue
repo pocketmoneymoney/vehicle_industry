@@ -68,6 +68,7 @@ export default {
         if (data.token) {
           setCookie('token', data.token, 3000);
           setCookie('role', data.role, 3000);
+          setCookie('id', data.id, 3000);
 
           self.isLogin = true;
       	  this.isAdmin = false;
@@ -92,6 +93,7 @@ export default {
     logout: function() {
       delCookie('token');
       delCookie('role');
+      delCookie('id');
 
       this.isLogin = false;
       this.isAdmin = false;

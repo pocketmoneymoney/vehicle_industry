@@ -63,7 +63,7 @@ export default {
           this.currentView = 'purchase';
         } else if (tab.id === 6) {
           this.currentView = 'qrcode';
-		    }
+		}
       }
     },
     newActivity: function() {

@@ -3,8 +3,7 @@
       <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
-        <main-nav :currentView="viewName"></main-nav>
-        <left-nav @viewChanged="chooseView"></left-nav>
+        <main-nav></main-nav>
 		<div class="main_right">
 		  <supplier-info></supplier-info>
 		</div>
@@ -17,57 +16,26 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
-import LeftNav from './left_nav.vue'
 import LastFooter from '../util/footer.vue'
 import NoAuthorized from './no_authorized.vue'
 
 import Purchase from './purchase.vue'
 import SupplierInfo from './supplier-info.vue'
 
-
 export default {
-  data: function() {
-    var users = [
-      [
-        "Tiger Nixon",
-        "System Architect",
-        "Edinburgh",
-        "5421",
-        "2011/04/25",
-        "$3,120"
-      ],
-      [
-        "Garrett Winters",
-        "Director",
-        "Edinburgh",
-        "8422",
-        "2011/07/25",
-        "$5,300"
-      ]
-    ];
-    return {
-      users: users,
-      currentView: "no-authorized",
-    }
-  },
-  methods: {
-    chooseView: function(tab) {
-      if (this.currentView != "no-authorized") {
-        // this.currentView = tab;
+   mounted: function() {
+      var self = this;
+      if (getCookie('token') != "") {
+        post('/user/book', {}, function(data) {
+          if (!data.username) {
+            window.location.href = '/src/redirect/expired.html';
+          }
+        }, true);
+      } else {
+          window.location.href = '/src/redirect/expired.html';
       }
-    }
   },
-  mounted: function() {
-    var self = this;
-    if (getCookie('token') != "") {
-      post('/user/book', {}, function(data) {
-        if (data.username) {
-          self.currentView = "user";
-        }
-      }, true);
-    }
-  },
-  components: {LeftNav, SupplierInfo, TopBar, MainHeader, MainNav, LastFooter, NoAuthorized, Purchase} 
+  components: {SupplierInfo, TopBar, MainHeader, MainNav, LastFooter, NoAuthorized, Purchase} 
 }
 </script>
 
@@ -99,7 +67,7 @@ export default {
 }
 
 .main_right{
-	float: right;
+	float: left;
 	width: 970px;
 	margin-bottom: 20px;
 }

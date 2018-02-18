@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './Main.vue'
+import App from './Login.vue'
 
 global.bus = new Vue();
 

@@ -1,15 +1,19 @@
 <template>
   <div>
-	<h2>我的个人资料</h2>
+	<h2>我的个人信息</h2>
     <div class="list_panel">
-	  <h3>基本资料</h3>
+	  <h3>基本信息</h3>
 	  <table>
-	    <tr><td>姓    名</td><td>xxx</td></tr>
-	    <tr><td>公    司</td><td>xxx</td></tr>
-	    <tr><td>电    话</td><td>xxx</td></tr>
-	    <tr><td>联系方式</td><td>xxx</td></tr>
-	    <tr><td>邮箱地址</td><td>xxx</td></tr>
+	    <tr><td>注册用户名:  </td><td>xxx</td></tr>
+	    <tr><td>真实姓名:    </td><td>xxx</td></tr>
+	    <tr><td>公司名称:    </td><td>xxx</td></tr>
+	    <tr><td>联系电话:    </td><td>xxx</td></tr>
+	    <tr><td>邮    箱:    </td><td>xxx</td></tr>
 	  </table>
+      <div style="float:right;">
+        <span class="span01"><a href="/">修改基本信息   </a></span>
+        <span class="span01"><a href="/">重置密码    </a></span>
+      </div>
     </div>
     <div class="list_panel">
 	  <h3>采购记录</h3>
@@ -23,11 +27,22 @@
 <script>
 
 export default {
-  data() {
+  data: function() {
     return {
-      product: "purchase",
-      title: "最新采购",
-      component: "list-purchase"
+      username: '',
+	  psersonName: '',
+	  company: '',
+      phone: '',
+      email: ''
+    }
+  },
+  methods: {
+    mounted: function () {
+      var self = this;
+      
+      
+
+      get
     }
   },
   components: {}
@@ -36,7 +51,7 @@ export default {
 
 <style scoped>
 .list_panel{
-	width: 698px;
+	width: 970px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;
