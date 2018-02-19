@@ -90,6 +90,33 @@ module.exports = function () {
        });
     });
 
+   	router.post('/password', passport.authenticate('jwt', { session: false}), function(req, res) {
+    	User.findOne({username: req.body.username}, function(err, user) {
+           	if ((err) || (!user)) {
+             	return res.json({success: false, msg: err});
+           	}
+
+			user.comparePassword(req.body.password, function (err, isMatch) {
+            	if (err || !isMatch) {
+                	return res.json({success: false, msg: '认证失败，请输入正确密码.'});
+				}
+
+				user.password = req.body.password2;
+				user.save(function (err) {
+                	var plainUser = {
+						username: user.username, 
+						password: req.body.password2, 
+						role: user.role,
+                        id: user.id};
+                 	var token = jwt.sign(plainUser, config.secret);
+                    return res.json({success: true, token: 'JWT ' + token, 
+				       		  		 role: user.role, id: user.id});
+				});
+			});
+		});
+	});
+
+
     router.post('/book', passport.authenticate('jwt', { session: false}), function(req, res) {
       var token = getToken(req.headers);
       if (token) {

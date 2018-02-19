@@ -23,3 +23,20 @@ function getCookie(c_name){
 function delCookie(c_name){
       setCookie(c_name, "", -1)
 }
+
+
+function verifyToken(callback) {
+  	if (getCookie('token') != "") {
+    	post('/user/book', {}, function (data) {
+			if (!data.username) {
+    			window.location.href = '/src/redirect/expired.html';
+			} else {
+				if (callback) {
+					callback(data);
+				}
+			}	
+    	}, true);
+  	} else {
+    	window.location.href = '/src/redirect/expired.html';
+  	}
+}

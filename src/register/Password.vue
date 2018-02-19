@@ -5,33 +5,39 @@
       <div class="main clearfix">
       <main-nav></main-nav>
       <div class="main clearfix">
-        <h3>登 录</h3>
+        <h3>修改密码</h3>
         <div class="main_reg_right formbox">
 		  <div>
           <dl>
-              <dt><b>*</b><span>用户名：</span></dt>
+              <dt><b>*</b><span>请输入旧密码</span></dt>
               <dd>
-                  <input v-model="username" class="text" style="z-index: 10000" maxlength="20"
-                      type="text" />
+                  <input v-model="password1" class="text" style="z-index: 10000" maxlength="30"
+                      type="password" />
+              </dd>
+			  <dd> </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>请输入新密码</span></dt>
+              <dd><input class="text" style="z-index: 10000" v-model="password2" maxlength="30"
+					  type="password" />
               </dd>
 			  <dd>
-			    <span style="width:350px;">请输入登录用户名</span>
+			    <span style="width:350px;">密码不得少于6位，请使用包含数字和字母的组合</span>
 			  </dd>
           </dl>
           <dl>
-              <dt><b>*</b><span>密码：</span></dt>
-              <dd><input class="text"
-                  value="" style="z-index: 10000" v-model="password" type="password" />
+              <dt><b>*</b><span>请再次输入新密码</span></dt>
+              <dd><input class="text" style="z-index: 10000" v-model="password3" maxlength="30"
+					  type="password" />
               </dd>
 			  <dd>
-			    <span style="width:350px;">请输入登录密码</span>
 			  </dd>
           </dl>
 		  </div>
         </div>
         <div>
-        <span class="span01"><a @click="login">登录</a></span>
-        <span class="span01"><a href="/src/register/register.html">前往注册页面>>></a></span>
+        <span class="span01"><a :href="nextURL">取消并返回</a></span>
+        <span class="span01"><a @click="modify">确认修改</a></span>
         </div>
       </div>
 	  </div>
@@ -44,53 +50,70 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import RightPanel from '../util/right_panel.vue'
-
 import LastFooter from '../util/footer.vue'
 
 export default {
   data: function() {
     return {
-      username: '',
-      password: ''
+	  username: '',
+      password1: '',
+      password2: '',
+      password3: '',
+	  nextURL:''
     }
   },
+  mounted: function() {
+	var self = this;
+	verifyToken(function (data) {
+  	  self.username = data.username;
+     
+	  if (data.role === 'admin') {
+	    self.nextURL = '/src/management/index.html';
+      } else if (data.role == 'buyer') {
+		self.nextURL = '/src/buyer/index.html';
+      } else if (data.role == 'supplier') {
+	    self.nextURL = '/src/supplier/index.html';
+      }
+	});
+  },
   methods: {
-    login: function() {
-      if (this.username === '') {
-        alert('请输入正确的用户名');
+    modify: function() {
+	  var regNumber = /\d+/; //验证0-9的任意数字最少出现1次。
+ 	  var regString = /[a-zA-Z]+/; //验证大小写26个字母任意字母最少出现1次。
+
+      if (this.password1 === '') {
+        alert('请输入旧用户密码');
         return;
       }
 
-      if (this.password === '') {
-        alert('请输入用户密码');
+      if (this.password2.length < 6) {
+        alert('您输入的密码长度不满足要求, 请重新填写');
         return;
-      }
- 
-      if (getCookie('token')) {
-        alert('您已登录，请先退出登录');
-        return;
-      }
+	  }
 
-      post('/user/login', {
+      if (!regNumber.test(this.password2) || !regString.test(this.password2)) {
+        alert('您输入的密码格式不满足要求, 请重新填写');
+        return;
+	  }
+
+      if (this.password2 !== this.password3) {
+        alert('两次密码不一致');
+        return;
+      }
+	
+	  var self = this;
+      post('/user/password', {
 		username: this.username, 
-		password: this.password}, function(data) {
+		password: this.password1,
+		password2: this.password2}, function(data) {
 
         if (data.token) {
           setCookie('token', data.token, 3000);
-          setCookie('role', data.role, 3000);
-          setCookie('id', data.id, 3000);
-
-          if (data.role === 'admin') {
-            window.location.href = '/src/management/index.html';
-          } else if (data.role == 'buyer') {
-            window.location.href = '/src/buyer/index.html';
-		  } else if (data.role == 'supplier') {
-            window.location.href = '/src/supplier/index.html';
-		  }
+          window.location.href = self.nextURL;
         } else {
           alert(data.msg);
         }
-      }, false);
+      }, true);
     }
   },
   components: {MainHeader, MainNav, TopBar, LastFooter, RightPanel} 
@@ -147,21 +170,6 @@ export default {
 	padding-top: 15px;
 	margin-bottom: 10px;
 	margin-left: 150px;
-}
-
-.span02{ 
-    float:left;
-	display:block; 
-	width: 120px; 
-	margin-left: 20px; 
-	color:#fff; 
-	solid: #c8eafa; 
-	border-radius:0.2em; 
-	font-size:18px; 
-	line-height:26px; 
-	text-align:center; 
-	background:#3d9ccc; 
-	padding-left:0px; 
 }
 
 </style>

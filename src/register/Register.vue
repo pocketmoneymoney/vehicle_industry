@@ -95,7 +95,7 @@
           </div>
         </div>
         <div>
-        <span class="span01"><a href="/src/redirect/login.html"><<< 我有帐户，直接登录</a></span>
+        <span class="span01"><a href="/src/register/login.html"><<< 我有帐户，直接登录</a></span>
         <span class="span01"><a @click="register">注册</a></span>
         </div>
       </div>
@@ -109,7 +109,6 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import RightPanel from '../util/right_panel.vue'
-
 import LastFooter from '../util/footer.vue'
 
 export default {

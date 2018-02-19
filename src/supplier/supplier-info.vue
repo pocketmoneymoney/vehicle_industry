@@ -12,7 +12,7 @@
 	  </table>
       <div style="float:right;">
         <span class="span01"><a href="/">修改基本信息   </a></span>
-        <span class="span01"><a href="/">重置密码    </a></span>
+        <span class="span01"><a href="/src/register/password.html">重置密码    </a></span>
       </div>
     </div>
     <div class="list_panel">

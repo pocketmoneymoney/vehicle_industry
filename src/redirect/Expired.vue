@@ -8,7 +8,7 @@
           <h1 class="redirect">您的用户登陆已过期，请重新登陆 </h1>
 		  <div>
             <span class="span01"><a href="/src/index.html"><<< 返回首页      </a></span>
-            <span class="span01"><a href="/src/redirect/login.html">前往登陆页面 >>></a></span>
+            <span class="span01"><a href="/src/register/login.html">前往登陆页面 >>></a></span>
 		  </div>
 	    </div>
       </div>
