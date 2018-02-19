@@ -65,11 +65,6 @@ export default {
         alert('请输入用户密码');
         return;
       }
- 
-      if (getCookie('token')) {
-        alert('您已登录，请先退出登录');
-        return;
-      }
 
       post('/user/login', {
 		username: this.username, 
@@ -77,8 +72,6 @@ export default {
 
         if (data.token) {
           setCookie('token', data.token, 3000);
-          setCookie('role', data.role, 3000);
-          setCookie('id', data.id, 3000);
 
           if (data.role === 'admin') {
             window.location.href = '/src/management/index.html';

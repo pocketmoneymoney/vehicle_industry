@@ -63,7 +63,7 @@
                   <label class="dda">
                       <input type="radio" value="supplier" v-model="role" /><span class="rad">我是供应商&nbsp;</span></label>
                   <label class="ddb" style="margin-left: 25px;">
-                      <input type="radio" value="buyer" v-model="role" /><span class="rad">我是采购商 </span>
+                      <input type="radio" value="admin" v-model="role" /><span class="rad">我是采购商 </span>
                   </label>
               </dd>
 			  <dd></dd>
@@ -155,33 +155,30 @@ export default {
         }
       }
 
-      var self = this;
-      post('/user/register', {
-				username: this.username, 
-				password: this.password1, 
-				role: this.role}, function(data) {
+	  var params = {
+		username: this.username,
+		password: this.password1,
+		role: this.role,
+		person: this.personName,
+		phone: this.phone,
+		email: this.email,
+		company: this.companyName,
+		product: this.product,
+		customer: this.customer};
+      post('/user/register', params, function(data) {
         if (data.success) {
           setCookie('token', data.token, 3000);
-          setCookie('role', self.role, 3000);
-          setCookie('id', data.id, 3000);
-
-          if (self.role == 'supplier') {
-            post('/api/supplier/' + data.id, {
-			  person: self.personName,
-			  phone: self.phone,
-              email: self.email,
-			  company: self.companyName,
-			  product: self.product,
-			  customer: self.customer}, function (data) {
-                window.location.href = '/src/supplier/index.html';
-		    }, false);
-          } else if (self.role == 'buyer') {
+		  if (data.role == 'supplier') {
+            window.location.href = '/src/supplier/index.html';
+	      } else if (data.role == 'admin') {	
+            window.location.href = '/src/management/index.html';
+		  } else if (data.role == 'buyer') {
             window.location.href = '/src/buyer/index.html';
-		  }
-        } else {
+          }
+		} else {
           alert(data.msg);
-        }
-      }, false);
+		}
+	  }, false);
     }
   },
   components: {MainHeader, MainNav, TopBar, LastFooter, RightPanel} 

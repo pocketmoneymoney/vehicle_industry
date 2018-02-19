@@ -5,6 +5,7 @@ export default {
   props: ['companyId', 'isOwner'],
   data() {
     return {
+	  id: '',
       imgUrl: '/',
       company: {},
       currentItem: {},
@@ -22,17 +23,8 @@ export default {
     },
     searchCompany: function(companyID) {
       var self = this;
-      get('/api/supplier/' + companyID, {}, function(data) {
-        self.company = {
-			'name': data.company,
-			'brief': data.brief, 
-			'product': data.product,
-			'customer': data.customer,
-			'avatar': data.avatar,
-			'location': data.location,
-			'assets': data.assets,
-			'createTime': data.createTime,
-			'operator': data.operator};
+      get('/api/supplier/company/' + companyID, {}, function(data) {
+        self.company = data;
       }, false);
     }
   },
@@ -40,21 +32,20 @@ export default {
     var self = this;
 	var pageHostID = getUrlKey('id');
 
+    self.searchCompany(pageHostID);
+
     if (getCookie('token')) {
       post('/user/book', {}, function(data) {
 		if (((data.id == pageHostID) && (data.role == 'supplier')) ||
 			(data.role == 'admin')) {
 		  self.isOwner = true;
+          self.id = data.id;
           self.editInfoURL = '/src/company/detail/edit_info.html?id='+data.id;
           self.editBriefURL = '/src/company/detail/edit_brief.html?id='+data.id;
           self.editCerfURL = '/src/company/detail/edit_cerf.html?id='+data.id;
 		} else {
 		  self.isOwner = false;
 		}	
-
-        if ((data.id) && (data.role == 'supplier')) {
-          self.searchCompany(pageHostID);
-		}
 	  }, true);
 	}
   },

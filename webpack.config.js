@@ -27,6 +27,7 @@ module.exports = {
 	  activity_enroll: './src/util/activity_enroll.js',
 	  buyer: './src/buyer/index.js',
 	  supplier: './src/supplier/index.js',
+	  supplier_edit: './src/supplier/edit.js',
 	  management: './src/management/index.js',
   },
   output: {

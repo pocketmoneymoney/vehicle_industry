@@ -4,6 +4,7 @@
 var User = require("./model");
 var config = require('../../config');
 var helper = require('../common/helper');
+var supplier = require('../supplier');
 
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
@@ -46,17 +47,49 @@ module.exports = function () {
                 if (err) {
                     return res.json({success: false, msg: '用户名已存在.'});
                 }
+				
+				if (req.body.role == 'supplier') {
+					var person = {
+						'name': req.body.person,
+						'phone': req.body.phone,
+						'email': req.body.email
+					};
+					var company = {
+						'name': req.body.company,
+						'product': req.body.product,
+						'customer': req.body.customer
+					}
 
-                var plainUser = {
-					username: req.body.username, 
-					password: req.body.password, 
-					role: req.body.role,
-                    id: newID
-				};
-                var token = jwt.sign(plainUser, config.secret);
-                res.json({success: true, token: 'JWT ' + token, 
-						  role: req.body.role, id: newID,
-						  msg: 'Successful created new user.'});
+					supplier.create(req.body.username, newID, 
+									person, company, function (err) {
+						if (err) {
+							newUser.remove({'username':req.body.username});
+							res.json({success:false, msg:'创建用户失败'});
+						} else {
+                			var plainUser = {
+								username: req.body.username, 
+								password: req.body.password, 
+								role: req.body.role,
+                    			id: newID
+							};
+                			var token = jwt.sign(plainUser, config.secret);
+                			res.json({success: true, token: 'JWT ' + token, 
+						  			  role: req.body.role, id: newID,
+						  			  msg: 'Successful created new user.'});
+						}
+					});
+				} else {
+               		var plainUser = {
+						username: req.body.username, 
+						password: req.body.password, 
+						role: req.body.role,
+                    	id: newID
+					};
+                	var token = jwt.sign(plainUser, config.secret);
+                	res.json({success: true, token: 'JWT ' + token, 
+							  role: req.body.role, id: newID,
+							  msg: 'Successful created new user.'});
+				}
             });
         }
     });

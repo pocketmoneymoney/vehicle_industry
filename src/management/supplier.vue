@@ -17,19 +17,19 @@
           </thead>
           <tbody>
             <tr v-for="user in users">
-              <th>{{user.name}}</th>
-              <th>{{user.username}}</th>
-              <th v-if="user.authenticated">已认证</th>
-              <th v-else></th>
-              <th v-if="user.authenticated" @click="deAuthenticate(user)" class="delete_button">取消认证</th>
+              <th>{{user.company}}</th>
+              <th>{{user.owner}}</th>
+              <th v-if="user.verified">已认证</th>
+              <th v-else>未认证</th>
+              <th v-if="user.verified" @click="deAuthenticate(user)" class="delete_button">取消认证</th>
               <th v-else @click="authenticate(user)" class="delete_button">认证</th>
-              <th v-if="user.ad">已占广告位</th>
+              <th v-if="user.advertise">已占广告位</th>
               <th v-else></th>
-              <th v-if="user.ad" @click="deAd(user)" class="delete_button">取消广告位</th>
+              <th v-if="user.advertise" @click="deAd(user)" class="delete_button">取消广告位</th>
               <th v-else @click="ad(user)" class="delete_button">添加至广告位</th>
-              <th v-if="user.selected">是</th>
-              <th v-else></th>
-              <th v-if="user.selected" @click="deSelect(user)" class="delete_button">取消优质供应商</th>
+              <th v-if="user.superior">是</th>
+              <th v-else>否</th>
+              <th v-if="user.superior" @click="deSelect(user)" class="delete_button">取消优质供应商</th>
               <th v-else @click="select(user)" class="delete_button">添加至优质供应商</th>
               <th @click="deleteUser(user)" class="delete_button">删除</th>
             </tr>
@@ -57,28 +57,57 @@ export default {
       }
     ];
     return {
-      users: users
+      users: []
     }
   },
   methods: {
     authenticate: function(user) {
+      user.verified = true;
+	  this.updatePrivilege(user);
     },
     deAuthenticate: function(user) {
+      user.verified = false;
+	  this.updatePrivilege(user);
     },
     ad: function(user) {
+      user.advertise = true;
+	  this.updatePrivilege(user);
     },
     deAd: function(user) {
+      user.advertise = false;
+	  this.updatePrivilege(user);
     },
     select: function(user) {
+      user.superior = true;
+	  this.updatePrivilege(user);
     },
     deSelect: function(user) {
+      user.superior = false;
+	  this.updatePrivilege(user);
     },
     deleteUser: function(user) {
-    }
+    },
+    updatePrivilege: function (user) {
+      var params = {
+		'verified': user.verified,
+		'advertise': user.advertise,
+		'superior': user.superior};
+
+      post('/api/supplier/privilege/' + user.id, params,
+		function (data) {
+          console.log(data);
+	  }, true);
+	}
   },
   mounted: function() {
+    var self = this;
     $('#userlist').DataTable({
     });
+    get('/api/supplier/privilege?page=0&num=5', {}, function (data) {
+	  if (data.success) {
+        self.users = data.msg;
+      }
+	}, false);
   },
 }
 </script>

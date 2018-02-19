@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './New_product.vue'
+import App from './Edit.vue'
 
 var app = new Vue({
   el: '#main',

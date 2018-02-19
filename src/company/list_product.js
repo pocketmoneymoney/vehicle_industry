@@ -1,7 +1,7 @@
 import Product from './product.vue'
 
 export default {
-  props: ['type', 'listEle', 'isOwner'],
+  props: ['type', 'listEle', 'isOwner', 'ownerID'],
   data() {
     return {
       imgUrl: '/',

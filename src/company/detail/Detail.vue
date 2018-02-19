@@ -1,28 +1,28 @@
 <template>
   <div class="clearfix">
-  <div class="company_brief clearfix">
+  <div class="company_panel clearfix">
 	<div>
       <h1>{{ company.name }}</h1>
 	</div>
     <img :src="imgUrl + company.avatar" />
 	<div style="clear:both;"> </div>
-	<div style="float:left; padding:10px;">
+	<div>
       <h2>公司简介</h2>
-      <span style="padding:10px;">{{ company.brief }}</span>
+      <span>{{ company.brief }}</span>
 	</div>
 	<div style="clear:both;"> </div>
-	<div style="float:left;padding: 10px;">
+	<div>
       <h2>配套客户</h2>
-      <span style="padding:10px">{{ company.customer }}</span>
+      <span>{{ company.customer }}</span>
 	</div>
 	<div style="clear:both;"> </div>
-	<div style="float:left;padding:10px;">
+	<div>
       <h2>主营产品</h2>
-      <span style="padding:10px">{{ company.product }}</span>
+      <span>{{ company.product }}</span>
 	</div>
     <div><a v-if="isOwner" :href="editBriefURL" style="float:right;">修改</a></div>
   </div>
-  <div class="company_basic clearfix">
+  <div class="company_right_panel clearfix">
     <ul>
       <li>
         <h5>公司地区</h5> <span>{{company.location}} </span>
@@ -39,7 +39,7 @@
     </ul>
     <div><a v-if="isOwner" :href="editInfoURL">修改</a></div>
   </div>
-  <list-ele type="product" :listEle="company.products" :isOwner="isOwner"></list-ele>
+  <list-ele type="product" :listEle="company.products" :isOwner="isOwner" :ownerID="id"></list-ele>
   <list-ele type="equipment" :listEle="company.equipments" :isOwner="isOwner"></list-ele>
   </div>
 </template>
@@ -90,30 +90,8 @@
 .middle_list_title ul li.cur a{
 	color: #333;
 }*/
-.company_brief{
-	width: 898px;
-	border: 1px solid #e5e5e5;
-	background: #fff;
-	float: left;
-	padding: 19px 20px;
-	margin-bottom: 15px;
-}
 
-.company_brief img{
-  float: right;
-	margin:0 auto 5px auto;
-	border:1px solid #e5e5e5;
-	width: 112px;
-	height: 112px;
-}
-.company_brief h1 {
-  float: left;
-  margin-right: 20px;
-}
-.company_brief span {
-  width: 856px;
-}
-.company_basic{
+.company_right_panel{
 	width: 278px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
@@ -122,17 +100,17 @@
 	margin-bottom: 4px;
 }
 
-.company_basic ul {
+.company_right_panel ul {
   padding: 5px;
   list-style: none;
 }
 
-.company_basic h5 {
+.company_right_panel h5 {
   padding: 5px;
   list-style: none;
 }
 
-.company_basic ul li {
+.company_right_panel ul li {
   font-size: 12px;
   color: #444444;
   line-height: 22px;
@@ -141,14 +119,14 @@
   word-wrap: break-word;
   word-break: break-all;
 }
-.company_basic ul li:after {
+.company_right_panel ul li:after {
   content: "";
   display: block;
   clear: both;
   height: 0;
   visibility: hidden;
 }
-.company_basic ul li span {
+.company_right_panel ul li span {
   font-size: 12px;
   color: #999999;
   text-align: right;
@@ -156,19 +134,7 @@
   float: left;
 }
 
-.company_brief div a{
-	float: left;
-	width: 64px;
-	background: #e2f5ff; /*url('../styImg/xunpan/message_icon.png') 15px center no-repeat;*/
-	font-size: 13px;
-	line-height: 26px;
-	margin-top: 30px;
-	border-radius: 3px;
-  border:1px solid #c8eafa;
-  text-align:center;
-  color:#3d9ccc;
-}
-.company_basic div a{
+.company_right_panel div a{
 	float: right;
 	width: 64px;
 	display: inline-block;

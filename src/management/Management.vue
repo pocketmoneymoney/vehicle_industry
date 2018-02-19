@@ -6,7 +6,15 @@
         <main-nav></main-nav>
         <left-nav @viewChanged="chooseView"></left-nav>
 		<div class="main_right">
-          <component :is=currentView @newActivity="newActivity" @newPosition="newPosition" @positionApplication="positionApplication" @activityApplication="activityApplication" @purchaseApplication="purchaseApplication" :activity="activity" :position="position" :purchase="purchase"></component>
+          <component :is=currentView 
+			@newActivity="newActivity" 
+			@newPosition="newPosition" 
+			@positionApplication="positionApplication" 
+			@activityApplication="activityApplication" 
+			@purchaseApplication="purchaseApplication" 
+			:activity="activity" 
+			:position="position" 
+			:purchase="purchase"></component>
 		</div>
       </div>
       <last-footer></last-footer>

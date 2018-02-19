@@ -8,6 +8,9 @@ module.exports = function(express) {
 	var multer = require('multer');
 	var path = require('path');
 
+	var jwt = require('jsonwebtoken');
+	var passport = require('passport');
+
     var dao = require('./dao.js');
 
 	var storage = multer.diskStorage({
@@ -37,6 +40,48 @@ module.exports = function(express) {
 		});
     });
 
+    router.get('/person/:id', function (req, res) {
+       	dao.getPersonInfo(req.params.id, function (err, result) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json(result['person']);
+			}
+		});
+	});
+
+    router.get('/company/:id', function (req, res) {
+       	dao.getCompanyInfo(req.params.id, function (err, result) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json(result['company']);
+			}
+		});
+	});
+
+    router.get('/privilege', function (req, res) {
+        var page = req.query.page? parseInt(req.query.page) : 0;
+        var num = req.query.num? parseInt(req.query.num) : 1;
+        var start = page * num;
+       	dao.getPrevilegeInfo(start, num, function (err, result) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				var ret = _.map(result, function(supplier) {
+					return {'id': supplier['id'],
+							'owner': supplier['owner'],
+							'company': supplier['company']['name'],
+							'verified': supplier['privilege']['verified'],
+							'advertise': supplier['privilege']['advertise'],
+							'superior': supplier['privilege']['superior']};
+				});
+				res.json({success:true, msg:ret});
+			}
+		});
+	});
+
+
     router.get('/:id', function (req, res) {
          dao.getSupplierDetail(req.params.id, function (err, result) {
 			if (err) {
@@ -47,49 +92,43 @@ module.exports = function(express) {
          });
     });
 
-	////////////////////////////////////////////////////////////////////////////
-	// Do not use POST, always use PUT.
-	// The assumption is that a default blank supplier doc has been created when 
-	// user register.
-	////////////////////////////////////////////////////////////////////////////
-	router.post('/ss/:id', function (req, res, next) {
-		var id 			= req.params.id;
-		var name 		= req.body.name;
-		var brief 		= req.body.brief;
-		var location 	= req.body.location;
-		var customer 	= req.body.customer;
-		var market 		= req.body.market;
-		var product 	= req.body.product;
 
-		var owner 		= req.user;
-		var avatarPath = null;
-		if (req.files['avatar'] && req.files['avatar'][0]) {
-			avatarPath = path.join(req.files['avatar'][0].destination, 
-								   req.files['avatar'][0].filename);
-		}
-		
-		var certificationPath = null;
-		if (req.files['certification']) {
-			certificationPath = _.map(req.files['certification'], function(ca) {
-				return path.join(ca.destination, ca.filename);
-			});
-		}
+    router.post('/privilege/:id', passport.authenticate('jwt', { session: false}),
+	  function (req, res) {
+		var verified 	= req.body.verified;
+		var advertise	= req.body.advertise;
+		var superior	= req.body.superior;
+		var id			= req.params.id;
 
-		dao.addSupplier(name, id, brief, location, customer, market, product, owner,
-			avatarPath, certificationPath, function (err) {
+		dao.modifyPrivilegeInfo(id, verified, advertise, superior, function (err) {
 			if (err) {
-				res.status(401).send("Failed to add supplier to database");
+				res.json({success: false, msg:err});
 			} else {
-				res.status(201).send();
+				res.json({success: true});
 			}
 		});
 	});
 
-	router.post('/:id', function (req, res, next) {
+
+	router.post('/person/:id', passport.authenticate('jwt', { session: false}),
+	  function (req, res, next) {
 		var person 		= req.body.person;
-		var company     = req.body.company;
-		var phone		= req.body.phone;
 		var email		= req.body.email;
+		var phone		= req.body.phone;
+		var id			= req.params.id;
+		
+		dao.modifyPersonInfo(id, person, email, phone, function (err) {
+			if (err) {
+				res.json({success: false, msg:err});
+			} else {
+				res.json({success: true});
+			}
+		});
+	});
+
+	router.post('/company/:id', passport.authenticate('jwt', { session: false}),
+	  function (req, res, next) {
+		var name    	= req.body.name;
 		var product		= req.body.product;
 		var customer	= req.body.customer;
 
@@ -101,16 +140,16 @@ module.exports = function(express) {
 		var operator    = req.body.operator;
 		var assets      = req.body.assets;
 
-		var owner 		= req.user;
+		var avatar 		= req.body.avatar;
 		var id			= req.params.id;
 	
-		dao.modifySupplier(id, person, company, phone, email, product, customer,
-			brief, location, market, createTime, operator, assets, owner, function (err) {
-				if (err) {
-					res.json({success: false, msg:"Failed to add supplier to database"});
-				} else {
-					res.json({success: true});
-				}
+		dao.modifyCompanyInfo(id, name, product, customer, brief, location, market, 
+			createTime, operator, assets, function (err) {
+			if (err) {
+				res.json({success: false, msg:err});
+			} else {
+				res.json({success: true});
+			}
 		});
 	});
 

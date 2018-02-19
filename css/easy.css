@@ -175,3 +175,56 @@
 	padding-right:15px; 
 	cursor: pointer;
 }
+
+/************************************************
+ ***
+ ***  Company Panel
+ ***
+ ************************************************/
+.company_panel{
+	width: 900px;
+	border: 1px solid #e5e5e5;
+	background: #fff;
+	float: left;
+	padding: 19px 20px;
+	margin-bottom: 15px;
+}
+
+.company_panel img{
+  float: right;
+	margin:0 auto 5px auto;
+	border:1px solid #e5e5e5;
+	width: 112px;
+	height: 112px;
+}
+
+.company_panel h1 {
+  float: left;
+  margin-right: 20px;
+}
+
+.company_panel h2 {
+  margin-right: 20px;
+  padding-left: 15px;
+  border-left: 6px solid #3d9ccc;
+  margin-top: 30px;
+}
+
+.company_panel span {
+  width: 856px;
+  float: left;
+  padding-top:10px;
+  padding-left:15px;
+}
+.company_panel div a{
+  float: left;
+  width: 64px;
+  background: #e2f5ff; /*url('../styImg/xunpan/message_icon.png') 15px center no-repeat;*/
+  font-size: 13px;
+  line-height: 26px;
+  margin-top: 30px;
+  border-radius: 3px;
+  border:1px solid #c8eafa;
+  text-align:center;
+  color:#3d9ccc;
+}

@@ -19,7 +19,7 @@ import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
 
 import Purchase from './purchase.vue'
-import SupplierInfo from './supplier-info.vue'
+import SupplierInfo from './Supplier-info.vue'
 
 export default {
   components: {SupplierInfo, TopBar, MainHeader, MainNav, LastFooter, Purchase} 

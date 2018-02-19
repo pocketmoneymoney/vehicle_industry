@@ -4,9 +4,10 @@
       <main-header></main-header>
       <div class="main clearfix">
       <main-nav></main-nav>
-      <div v-if="isSupplier" class="main clearfix">
-        <h3>添加产品</h3>
+      <div class="main clearfix">
         <div class="formbox clearfix">
+          <h3>添加产品</h3>
+	      <div style="clear:both;"> </div>
               <dl>
                   <dt><b>*</b><span>产品名称：</span></dt>
                   <dd>
@@ -16,19 +17,19 @@
               <dl>
                   <dt><b>*</b><span>产品用途：</span></dt>
                   <dd>
-                      <input v-model="usage" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="productUsage" class="text" style="z-index: 10000" name="email" type="text" />
                   </dd>
               </dl>
               <dl>
                   <dt><b>*</b><span>设计产能：</span></dt>
                   <dd>
-                      <input v-model="channeng" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="productCapacity" class="text" style="z-index: 10000" name="email" type="text" />
                   </dd>
               </dl>
               <dl>
                   <dt><b>*</b><span>典型配套客户：</span></dt>
                   <dd>
-                      <input v-model="customer" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="productCustomer" class="text" style="z-index: 10000" name="email" type="text" />
                   </dd>
               </dl>
               <dl class="clearfix">
@@ -37,10 +38,13 @@
                       <input ref="productfile" type="file" name="file" style="z-index:10000" />
                   </dd>
               </dl>
+	      <div style="clear:both;"> </div>
+          <div>
+            <span><a href="/src/supplier/index.html">取消</a></span>
+            <span><a @click="updateInfo">更新</a></span>
+          </div>
         </div>
-        <span class="span01"><a @click="updateCompany">更新</a></span>
       </div>
-      <no-authorized v-else></no-authorized>
 	  </div>
       <last-footer></last-footer>
     </div>
@@ -50,23 +54,22 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
-
-import NoAuthorized from './no_authorized.vue'
-
 import LastFooter from '../util/footer.vue'
 
 export default {
   data: function() {
     return {
-      isSupplier: false,
-      usage: 'aa',
-      productName: 'bb',
-      channeng: '',
-      customer: ''
+      productName: '',
+      productID: '',
+      productUsage: '',
+      productCustomer: '',
+      productCapacity: '',
+      productLink: '',
+      id: ''
     }
   },
   methods: {
-    updateCompany: function() {
+    updateInfo: function() {
       var param = {};
       var oMyForm = new FormData();
       oMyForm.append("avatar", this.$refs.productfile.files[0]);
@@ -77,42 +80,32 @@ export default {
   },
   mounted: function() {
     var self = this;
-    if (getCookie('token') != "") {
-      post('/user/book', {}, function(data) {
-        if (data.role === 'supplier') {
-          self.isSupplier = true;
+	var pageHostID = getUrlKey('id');
+	var productID = getUrlKey('pd');
+
+    verifyToken(function(data) {
+      if (((data.id == pageHostID) && (data.role == 'supplier')) ||
+	      (data.role == 'admin')) {
+		self.id = data.id;
+        if (productID) {
+          get('/api/product/' + productID, {}, function(data) {
+            self.productName = data.name;
+			self.productID = data.id;
+			self.productUsage = data.usage;
+			self.productCustomer = data.customer;
+			self.productLink = data.link;
+			self.productCapacity = data.capacity;
+		  }, false);
         }
-      }, true);
-    }
+	  } else {
+        window.location.href = '/src/redirect/not_authorized.html';
+	  }
+    });
   },
-  components: {MainHeader, MainNav, TopBar, NoAuthorized, LastFooter} 
+  components: {MainHeader, MainNav, TopBar, LastFooter} 
 }
 </script>
 
 <style lang="scss">
 @import '../../css/rem.scss';
-
-.back_wrapper{
-  width: t(1200);
-  background-color:#f9f9f8;
-}
-.main{
-	width: 1200px;
-	margin: 0 auto;
-}
-
-.formbox dl {width:435px;height:32px;line-height:26px;margin-top:10px;}
-.formbox dt,.formbox dd {float:left;}
-.formbox dt {width:190px;text-align:right;font:bolder 14px/26px arial;color:#222;}
-.formbox dd {width:229px;color:#000;}
-.formbox dd .text {width:222px;height:22px;line-height:22px;border:1px #9D9D9D solid;padding:0  0 0 5px;position:relative;z-index:99;}
-.formbox dd .texta {width:99px;}
-.formbox dd .textb {width:39px;}
-.formbox dd .dda,.formbox dd .ddb,.formbox dd .ddc {float:left;}
-.formbox dd .ddb,.formbox dd .ddc {display:inline;}
-.formbox dd .cc{float:right;margin-left:0px;}
-.formbox dd .rad {font:bold 14px arial;color:#039;line-height:25px;margin-left:5px;margin-left:2px\9;}
-.formbox dd .textc {width:452px;height:22px;line-height:22px;border:1px #9D9D9D solid;padding:0  0 0 5px;position:relative;z-index:99;}
-.formbox b {color:#f00;padding:5px;}
-.span01{ display:block; width: 54px; margin-left: 154px; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px; cursor: pointer;}
 </style>

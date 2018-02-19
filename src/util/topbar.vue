@@ -113,28 +113,22 @@ export default {
     if (getCookie('token') != "") {
       self.isLogin = true;
 
-	  var role = getCookie('role');
-      if (role == 'admin') {
-        self.isAdmin = true;
-        self.isBuyer = false;
-	  } else if (role == 'buyer') {
-        self.isAdmin = false;
-		self.isBuyer = true;
-		self.isSupplier = true;
-	  } else if (role == 'supplier') {
-        self.isAdmin = false;
-        self.isBuyer = false;
-        self.isSupplier = true;
-      }
-
       post('/user/book', {}, function(data) {
         if (data.username) {
-          if (data.role != role) {
-            console.error("Miss matched roles", data.role, role);
-            self.isLogin = false;
-          } else {
-		    self.companyURL = self.baseCompanyURL + "?id=" + data.id;
-		  }
+      	  if (data.role == 'admin') {
+        	self.isAdmin = true;
+        	self.isBuyer = false;
+			self.isSupplier = false;
+	  	  } else if (data.role == 'buyer') {
+        	self.isAdmin = false;
+			self.isBuyer = true;
+			self.isSupplier = false;
+	  	  } else if (data.role == 'supplier') {
+        	self.isAdmin = false;
+        	self.isBuyer = false;
+        	self.isSupplier = true;
+      	  }
+		  self.companyURL = self.baseCompanyURL + "?id=" + data.id;
         } else {
           self.isLogin = false;
 		}
