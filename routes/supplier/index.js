@@ -14,3 +14,7 @@ supplier.mount = function (express, router) {
 supplier.create = function (owner, id, person, company, callback) {
 	dao.addSupplier(owner, id, person, company, callback);			
 };
+
+supplier.addProduct = function(id, productID, callback) {
+	dao.addProduct(id, productID, callback);
+};

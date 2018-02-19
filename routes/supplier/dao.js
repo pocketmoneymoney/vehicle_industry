@@ -33,6 +33,8 @@ function dbHandler() {
 			'createTime':	String,
 			'avatar':		String,
 		},
+		'product': 			Array,
+		'equipment': 		Array,
 		'certification':	Array
 	}, 'supplier', 'supplier');
 }
@@ -58,7 +60,9 @@ dbHandler.prototype.addSupplier = function (owner, id, person, company, callback
 			'name':			company['name'],
 			'product':		company['product'],
 			'customer':		company['customer'],
-		}}, callback);
+		},
+		'product': [],
+		'equipment': []}, callback);
 };
 
 dbHandler.prototype.getSupplierList = function(page, num, callback) {
@@ -125,6 +129,21 @@ dbHandler.prototype.modifyCompanyInfo = function (id, name, product, customer,
 
 dbHandler.prototype.deleteSupplier = function (id, callback) {
     this.remove({'id':id}, callback);
-}
+};
+
+dbHandler.prototype.addProduct = function (id, productID, callback) {
+	var self = this;
+	this.findOne({'id':id}, function (err, data) {
+		if (err || !data) {
+			callback(err);
+		} else {
+			if (!data['product']) {
+				data['product'] = [];
+			}
+			data['product'].push(productID);
+			self.update({'id':id}, {$set:{'product':data['product']}}, {}, callback);
+		}
+	});
+};
 
 module.exports = new dbHandler();

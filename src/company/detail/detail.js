@@ -11,6 +11,7 @@ export default {
       items: [],
       catalogName: '',
       subcatalogName: '',
+      ownerID: '',
 	  editInfoURL: '/src/redirect/not_authorized.html',
 	  editBriefURL: '/src/redirect/not_authorized.html',
 	  editCerfURL: '/src/redirect/not_authorized.html'
@@ -23,24 +24,27 @@ export default {
     searchCompany: function(companyID) {
       var self = this;
       get('/api/supplier/company/' + companyID, {}, function(data) {
-        self.company = data;
+        if (data.success) {
+          self.company = data['msg'];
+        } else {
+          console.log(data.msg);
+        }
       }, false);
     }
   },
   mounted: function() {
     var self = this;
-	var pageHostID = getUrlKey('id');
-
-    self.searchCompany(pageHostID);
+	self.ownerID = getUrlKey('id');
+    self.searchCompany(self.ownerID);
 
     if (getCookie('token')) {
       post('/user/book', {}, function(data) {
-		if (((data.id == pageHostID) && (data.role == 'supplier')) ||
+		if (((data.id == self.ownerID) && (data.role == 'supplier')) ||
 			(data.role == 'admin')) {
 		  self.isOwner = true;
-          self.editInfoURL = '/src/company/detail/edit_info.html?id='+pageHostID;
-          self.editBriefURL = '/src/company/detail/edit_brief.html?id='+pageHostID;
-          self.editCerfURL = '/src/company/detail/edit_cerf.html?id='+pageHostID;
+          self.editInfoURL = '/src/company/detail/edit_info.html?id='+self.ownerID;
+          self.editBriefURL = '/src/company/detail/edit_brief.html?id='+self.ownerID;
+          self.editCerfURL = '/src/company/detail/edit_cerf.html?id='+self.ownerID;
 		} else {
 		  self.isOwner = false;
 		}	

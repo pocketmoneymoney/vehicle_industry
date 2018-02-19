@@ -4,7 +4,7 @@
 	<div>
       <h1>{{ company.name }}</h1>
 	</div>
-    <img :src="imgUrl + company.avatar" />
+    <img :src="imgUrl + company.avatar"/>
 	<div style="clear:both;"> </div>
 	<div>
       <h2>公司简介</h2>
@@ -39,7 +39,7 @@
     </ul>
     <div><a v-if="isOwner" :href="editInfoURL">修改</a></div>
   </div>
-  <list-ele type="product" :listEle="company.products" :isOwner="isOwner" :ownerID="id"></list-ele>
+  <list-ele type="product" :listEle="company.products" :isOwner="isOwner"></list-ele>
   <list-ele type="equipment" :listEle="company.equipments" :isOwner="isOwner"></list-ele>
   </div>
 </template>
@@ -53,43 +53,6 @@
 	margin-top: 60px;
 	background: #fff;
 }
-/*
-.middle_list_title{
-	height: 37px;
-	float: left;
-	margin-top: -37px;
-}
-.middle_list_title ul{
-	height: 37px;
-	border-left: 1px solid #e5e5e5;
-	margin-left: -1px;
-}
-.middle_list_title ul li{
-	float: left;
-	height: 35px;
-	border:1px solid #e5e5e5;
-	border-left: 1px solid #f5f5f5;
-	background: #f5f5f5;
-	padding: 0 15px;
-	font-size: 14px;
-	color: #999999;
-	line-height: 35px;
-}
-.middle_list_title ul li a{
-	color:#999;
-}
-.middle_list_title ul li.cur{
-	background: #fff;
-	border-top: 2px solid #449cd7;
-	border-bottom: 1px solid #fff;
-	height: 36px;
-	line-height: 36px;
-	color: #333;
-	border-left: 1px solid #fff;
-}
-.middle_list_title ul li.cur a{
-	color: #333;
-}*/
 
 .company_right_panel{
 	width: 278px;

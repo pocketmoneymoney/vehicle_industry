@@ -1,10 +1,11 @@
 import Product from './product.vue'
 
 export default {
-  props: ['type', 'listEle', 'isOwner', 'ownerID'],
+  props: ['type', 'listEle', 'isOwner'],
   data() {
     return {
       imgUrl: '/',
+      ownerID: '',
       company: {},
       currentItem: {},
       items: [],
@@ -18,13 +19,12 @@ export default {
     },
   },
   mounted: function() {
-  },
-  watch: {
+	this.ownerID = getUrlKey('id');
   },
   computed: {
     newUrl: function() {
       if (this.type === 'product') {
-        return '/src/company/new_product.html';
+        return '/src/company/new_product.html?oid='+this.ownerID;
       }
       else if (this.type === 'equipment') {
         return '/src/company/new_equipment.html';

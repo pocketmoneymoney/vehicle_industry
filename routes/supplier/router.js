@@ -46,9 +46,9 @@ module.exports = function(express) {
 				res.json({success:false, msg:err});
 			} else {
  				if (result) {
-					res.json(result['person']);
+					res.json({success:true, msg:result['person']});
 				} else {
-					res.json({});
+					res.json({success:false, msg:"No data found"});
 				}
 			}
 		});
@@ -60,9 +60,9 @@ module.exports = function(express) {
 				res.json({success:false, msg:err});
 			} else {
  				if (result) {
-					res.json(result['company']);
+					res.json({success:true, msg:result['company']});
 				} else {
-					res.json({});
+					res.json({success:false, msg:"No data found"});
 				}
 			}
 		});
@@ -73,7 +73,7 @@ module.exports = function(express) {
         var num = req.query.num? parseInt(req.query.num) : 1;
         var start = page * num;
        	dao.getPrevilegeInfo(start, num, function (err, result) {
-			if (err) {
+			if (err || !result) {
 				res.json({success:false, msg:err});
 			} else {
 				var ret = _.map(result, function(supplier) {
