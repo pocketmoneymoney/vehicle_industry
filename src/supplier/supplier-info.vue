@@ -1,8 +1,8 @@
 <template>
   <div>
-	<h2>我的个人信息</h2>
-    <div class="list_panel">
+    <div class="info_panel">
 	  <h3>基本信息</h3>
+	  <div style="clear:both;"> </div>
 	  <table>
 	    <tr><td>用户名:      </td><td>  {{ username }}</td></tr>
 	    <tr><td>真实姓名:    </td><td>  {{ person }}</td></tr>
@@ -11,17 +11,26 @@
 	    <tr><td>邮    箱:    </td><td>  {{ email }}</td></tr>
 	  </table>
       <div style="float:right;">
-        <span class="span01"><a href="/">修改基本信息   </a></span>
-        <span class="span01"><a href="/src/register/password.html">重置密码    </a></span>
+        <span><a href="/">修改基本信息   </a></span>
+        <span><a href="/src/register/password.html">重置密码    </a></span>
       </div>
     </div>
-    <div class="list_panel">
+
+    <div class="info_panel">
 	  <h3>公司信息</h3>
+	  <div style="clear:both;"> </div>
+	  <table>
+	    <tr><td>公司法人:    </td><td>  {{ operator }}</td></tr>
+	    <tr><td>公司所在地:  </td><td>  {{ location }}</td></tr>
+	  </table>
+      <div style="float:right;">
+        <span><a :href="companyURL"> 更多信息 </a></span>
+      </div>
     </div>
-    <div class="list_panel">
+    <div class="info_panel">
 	  <h3>采购记录</h3>
     </div>
-    <div class="list_panel">
+    <div class="info_panel">
 	  <h3>活动记录</h3>
     </div>
   </div>
@@ -35,69 +44,36 @@ export default {
       username: '',
 	  person: '',
 	  company: '',
+	  location: '',
       phone: '',
-      email: ''
+      email: '',
+      operator: '',
+	  companyURL: ''
     }
   },
   mounted: function () {
     var self = this;
-    if (getCookie('token')) { 
-      post('/user/book', {}, function(data) {
-        if (data.username) {
-          self.username = data.username;
-		  if (data.role == 'supplier') {
-      	    var supplierID = data.id;
-      	    get('/api/supplier/' + supplierID, {}, function(data) {
-        	  self.person = data.person;
-        	  self.company = data.company; 
-        	  self.phone = data.phone; 
-        	  self.email = data.email; 
-      	    }, true);
-          } else {
-		    delCookie('token');
-		    delCookie('id');
-		    delCookie('role');
-            window.location.href = '/src/redirect/expired.html';
-		  }
-        } else {
-		  delCookie('token');
-		  delCookie('id');
-		  delCookie('role');
-          window.location.href = '/src/redirect/expired.html';
-	    }
-	  }, true);
-    } else {
-      delCookie('token');
-	  delCookie('id');
-	  delCookie('role');
-      window.location.href = '/src/redirect/expired.html';
-    }	
+    verifyToken(function(data) {
+	  if (data.role == 'supplier') {
+        var supplierID = data.id;
+      	get('/api/supplier/' + supplierID, {}, function(data) {
+          self.person = data.person;
+          self.company = data.company; 
+          self.operator = data.operator; 
+          self.location = data.location; 
+          self.phone = data.phone; 
+          self.email = data.email; 
+		  self.companyURL = '/src/company/detail/detail.html?id='+data.id;
+      	}, true);
+      } else {
+        window.location.href = '/src/redirect/expired.html';
+      } 
+    });
   },
   components: {}
 }
 </script>
 
 <style scoped>
-.list_panel{
-	width: 970px;
-	border: 1px solid #e5e5e5;
-	background: #fff;
-	float: left;
-	padding: 15px 15px 30px;
-	margin-bottom: 8px;
-}
-.list_panel h3 span{
-	float: left;
-}
-.list_panel h3 a{
-	color: #999999;
-	font-size: 12px;
-	float: right;
-	font-weight: normal;
-}
-.list_panel tr{
-    padding:15px;
-	font-size: 18px;
-}
 
 </style>
