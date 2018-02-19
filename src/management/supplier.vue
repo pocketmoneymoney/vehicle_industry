@@ -17,7 +17,7 @@
           </thead>
           <tbody>
             <tr v-for="user in users">
-              <th>{{user.company}}</th>
+              <th @click="redirectToCompany(user)" class="delete_button">{{user.company}}</th>
               <th>{{user.owner}}</th>
               <th v-if="user.verified">已认证</th>
               <th v-else>未认证</th>
@@ -61,6 +61,10 @@ export default {
     }
   },
   methods: {
+    redirectToCompany: function(user) {
+	  var companyURL = '/src/company/detail/detail.html?id=' + user.id;
+      window.location.href = companyURL;
+	},
     authenticate: function(user) {
       user.verified = true;
 	  this.updatePrivilege(user);

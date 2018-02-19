@@ -5,7 +5,6 @@ export default {
   props: ['companyId', 'isOwner'],
   data() {
     return {
-	  id: '',
       imgUrl: '/',
       company: {},
       currentItem: {},
@@ -39,10 +38,9 @@ export default {
 		if (((data.id == pageHostID) && (data.role == 'supplier')) ||
 			(data.role == 'admin')) {
 		  self.isOwner = true;
-          self.id = data.id;
-          self.editInfoURL = '/src/company/detail/edit_info.html?id='+data.id;
-          self.editBriefURL = '/src/company/detail/edit_brief.html?id='+data.id;
-          self.editCerfURL = '/src/company/detail/edit_cerf.html?id='+data.id;
+          self.editInfoURL = '/src/company/detail/edit_info.html?id='+pageHostID;
+          self.editBriefURL = '/src/company/detail/edit_brief.html?id='+pageHostID;
+          self.editCerfURL = '/src/company/detail/edit_cerf.html?id='+pageHostID;
 		} else {
 		  self.isOwner = false;
 		}	

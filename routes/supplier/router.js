@@ -45,7 +45,11 @@ module.exports = function(express) {
 			if (err) {
 				res.json({success:false, msg:err});
 			} else {
-				res.json(result['person']);
+ 				if (result) {
+					res.json(result['person']);
+				} else {
+					res.json({});
+				}
 			}
 		});
 	});
@@ -55,7 +59,11 @@ module.exports = function(express) {
 			if (err) {
 				res.json({success:false, msg:err});
 			} else {
-				res.json(result['company']);
+ 				if (result) {
+					res.json(result['company']);
+				} else {
+					res.json({});
+				}
 			}
 		});
 	});
@@ -69,12 +77,23 @@ module.exports = function(express) {
 				res.json({success:false, msg:err});
 			} else {
 				var ret = _.map(result, function(supplier) {
-					return {'id': supplier['id'],
-							'owner': supplier['owner'],
-							'company': supplier['company']['name'],
-							'verified': supplier['privilege']['verified'],
-							'advertise': supplier['privilege']['advertise'],
-							'superior': supplier['privilege']['superior']};
+					var id = supplier? supplier['id']: 0;
+					var owner = supplier? supplier['owner']: 'Unknown';
+					var company = supplier && supplier['company']? 
+						supplier['company']['name']: '';
+					var verified = supplier && supplier['privilege']? 
+						supplier['privilege']['verified']: false;
+					var advertise = supplier && supplier['privilege']? 
+						supplier['privilege']['advertise']: false;
+					var superior = supplier && supplier['privilege']? 
+						supplier['privilege']['superior']: false;
+
+					return {'id': id,
+							'owner': owner,
+							'company': company,
+							'verified': verified,
+							'advertise': advertise,
+							'superior': superior};
 				});
 				res.json({success:true, msg:ret});
 			}
