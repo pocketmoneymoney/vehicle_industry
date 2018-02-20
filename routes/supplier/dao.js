@@ -137,13 +137,45 @@ dbHandler.prototype.addProduct = function (id, productID, callback) {
 		if (err || !data) {
 			callback(err);
 		} else {
-			if (!data['product']) {
-				data['product'] = [];
+			if (!data['product']) { data['product'] = []; }
+			var duplicated = false;
+            for (var i = 0; i < data['product'].length; i++) {
+				if (data['product'][i] == productID) {
+					duplicated = true;
+					break;
+				}
 			}
-			data['product'].push(productID);
-			self.update({'id':id}, {$set:{'product':data['product']}}, {}, callback);
+			if (!duplicated) {
+				data['product'].push(productID);
+				self.update({'id':id}, {$set:{'product':data['product']}}, {}, callback);
+			} else {
+				callback(null);
+			}
 		}
 	});
 };
+
+dbHandler.prototype.deleteProduct = function (id, productID, callback) {
+	var self = this;
+	this.findOne({'id':id}, function (err, data) {
+		if (err || !data) {
+			callback(err);
+		} else {
+			var index = -1;
+            for (var i = 0; i < data['product'].length; i++) {
+				if (data['product'][i] == productID) {
+					index = i;
+					break;
+				}
+			}
+			if (index >= 0) {
+				data['product'].splice(index, 1);
+				self.update({'id':id}, {$set:{'product':data['product']}}, {}, callback);
+			} else {
+				callback(null);
+			}
+		}
+	});
+}
 
 module.exports = new dbHandler();

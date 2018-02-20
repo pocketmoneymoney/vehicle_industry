@@ -39,8 +39,8 @@
     </ul>
     <div><a v-if="isOwner" :href="editInfoURL">修改</a></div>
   </div>
-  <list-ele type="product" :listEle="products" :isOwner="isOwner"></list-ele>
-  <list-ele type="equipment" :listEle="company.equipments" :isOwner="isOwner"></list-ele>
+  <list-element type="product" :listElement="products" :isOwner="isOwner"></list-element>
+  <list-element type="equipment" :listEle="company.equipments" :isOwner="isOwner"></list-element>
   </div>
 </template>
 
@@ -69,7 +69,7 @@
 }
 
 .company_right_panel h5 {
-  padding: 5px;
+  padding-left: 0px;
   list-style: none;
 }
 
@@ -101,7 +101,7 @@
 	float: right;
 	width: 64px;
 	display: inline-block;
-	background: #e2f5ff; /*url('../styImg/xunpan/message_icon.png') 15px center no-repeat;*/
+	background: #e2f5ff; 
 	font-size: 13px;
 	line-height: 26px;
 	margin-top: 30px;

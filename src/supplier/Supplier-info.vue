@@ -58,15 +58,20 @@ export default {
 	  if (data.role == 'supplier') {
         var supplierID = data.id;
 		self.username = data.username;
+
       	get('/api/supplier/' + supplierID, {}, function(data) {
-          self.person = data.person.name;
-          self.company = data.company.name; 
-          self.operator = data.company.operator; 
-          self.location = data.company.location; 
-          self.phone = data.person.phone; 
-          self.email = data.person.email; 
-		  self.companyURL = '/src/company/detail/detail.html?id='+data.id;
-          self.editURL = '/src/supplier/edit.html?id='+data.id;
+          if (data.success) { 
+            self.person = data.msg.person.name;
+            self.company = data.msg.company.name; 
+            self.operator = data.msg.company.operator; 
+            self.location = data.msg.company.location; 
+            self.phone = data.msg.person.phone; 
+            self.email = data.msg.person.email; 
+		    self.companyURL = '/src/company/detail/detail.html?id=' + data.msg.id;
+            self.editURL = '/src/supplier/edit.html?id=' + data.msg.id;
+          } else {
+            console.log(data.msg);
+          }
       	}, true);
       } else {
         window.location.href = '/src/redirect/expired.html';

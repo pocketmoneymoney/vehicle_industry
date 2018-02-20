@@ -18,7 +18,7 @@ module.exports = {
 	  company_detail: './src/company/company_detail.js',
 	  edit_brief: './src/company/detail/edit_brief.js',
 	  edit_info: './src/company/detail/edit_info.js',
-	  new_product: './src/company/new_product.js',
+	  edit_product: './src/company/detail/edit_product.js',
 	  new_equipment: './src/company/new_equipment.js',
 	  position: './src/position/position.js',
 	  apply: './src/position/apply.js',

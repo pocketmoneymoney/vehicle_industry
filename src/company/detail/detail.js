@@ -1,18 +1,15 @@
 
-import ListEle from './../list_product.vue'
+import ListElement from './Element.vue'
 
 export default {
-  props: ['companyId', 'isOwner'],
   data() {
     return {
       imgUrl: '/',
       company: {},
 	  products: [],
       currentItem: {},
-      items: [],
-      catalogName: '',
-      subcatalogName: '',
       ownerID: '',
+	  isOwner: false,
 	  editInfoURL: '/src/redirect/not_authorized.html',
 	  editBriefURL: '/src/redirect/not_authorized.html',
 	  editCerfURL: '/src/redirect/not_authorized.html'
@@ -40,7 +37,17 @@ export default {
     get('/api/supplier/' + self.ownerID, {}, function(data) {
         if (data.success && data.msg) {
           self.company = data.msg.company;
-		  self.products = data.msg.product;
+		  if (data.msg.product instanceof Array) {
+			data.msg.product.forEach(function(productID) {
+              get('/api/product/' + productID, {}, function(data) {
+                if (data.success) {
+                  self.products.push(data.msg);
+			    } 
+		      }, false);
+			});
+		  } else {
+			console.log("Failed to get array product", data.msg.product);
+		  }
         } else {
           console.log(data.msg);
         }
@@ -51,9 +58,9 @@ export default {
 		if (((data.id == self.ownerID) && (data.role == 'supplier')) ||
 			(data.role == 'admin')) {
 		  self.isOwner = true;
-          self.editInfoURL = '/src/company/detail/edit_info.html?id='+self.ownerID;
-          self.editBriefURL = '/src/company/detail/edit_brief.html?id='+self.ownerID;
-          self.editCerfURL = '/src/company/detail/edit_cerf.html?id='+self.ownerID;
+          self.editInfoURL = '/src/company/detail/edit_info.html?id=' + self.ownerID;
+          self.editBriefURL = '/src/company/detail/edit_brief.html?id=' + self.ownerID;
+          self.editCerfURL = '/src/company/detail/edit_cerf.html?id=' + self.ownerID;
 		} else {
 		  self.isOwner = false;
 		}	
@@ -65,5 +72,5 @@ export default {
        this.searchCompany();
     },
   },
-  components: {ListEle}
+  components: {ListElement}
 }

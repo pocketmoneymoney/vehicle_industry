@@ -18,3 +18,7 @@ supplier.create = function (owner, id, person, company, callback) {
 supplier.addProduct = function(id, productID, callback) {
 	dao.addProduct(id, productID, callback);
 };
+
+supplier.deleteProduct = function(id, productID, callback) {
+	dao.deleteProduct(id, productID, callback);
+};

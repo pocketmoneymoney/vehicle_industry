@@ -62,3 +62,21 @@ function get(url, param, success) {
     success: success
   });
 }
+
+function del(url, param, success, needAuth) {
+  var beforeSend = function(xhr) {};
+  if (needAuth) {
+    beforeSend = function(xhr) {
+      var token = getCookie('token');
+      xhr.setRequestHeader("Authorization", token);
+    };
+  }
+  $.ajax({
+    type: 'DELETE',
+    url: 'http://localhost:8088' + url,
+    data: param,
+    dataType: 'json',
+    beforeSend: beforeSend,
+    success: success
+  });
+}

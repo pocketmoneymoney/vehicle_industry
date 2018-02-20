@@ -52,5 +52,17 @@ module.exports = function(express) {
 		});
 	});
 
+	router.use('/:id', function (req, res) {
+		if (req.headers['access-control-request-method'] == 'DELETE') {
+			dao.deleteProduct(req.params.id, function (err) {
+          		if (err) {
+					res.json({success:false, msg:err});
+				} else {
+					res.json({success:true});
+				}
+			});
+		}
+	}); 
+
     return router;
 };

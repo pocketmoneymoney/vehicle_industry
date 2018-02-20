@@ -14,3 +14,18 @@ helper.uniqueID = function (name) {
     }
 };
 
+helper.uniqueList = function (array) {
+    if (array instanceof Array) {
+		var n = {}, r = [], len = array.length, val; 
+		for (var i = 0; i < array.length; i++) { 
+			val = array[i]; 
+			if (!n[val]) { 
+				n[val] = true; 
+				r.push(val); 
+			}
+		}
+		return r;
+	} else {
+		return array;
+	}
+};

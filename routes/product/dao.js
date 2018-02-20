@@ -41,6 +41,20 @@ dbHandler.prototype.updateProduct = function (id, ownerID, name, usage,
 			supplier.addProduct(ownerID, id, callback);
 		}
 	});
+};
+
+dbHandler.prototype.deleteProduct = function(id, callback) {
+	var self = this;
+	this.findOne({'id':id}, function (err, data) {
+		if (err || !data) {
+			callback(null);
+		} else {
+			var ownerID = data['ownerID'];
+			self.remove({'id':id}, function (err) {
+				supplier.deleteProduct(ownerID, id, callback);
+			});
+		}
+	});
 }
 
 module.exports = new dbHandler();

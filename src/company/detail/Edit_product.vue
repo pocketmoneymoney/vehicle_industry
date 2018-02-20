@@ -51,10 +51,10 @@
 </template>
 
 <script>
-import TopBar from '../util/topbar.vue'
-import MainHeader from '../util/header.vue'
-import MainNav from '../util/main_nav.vue'
-import LastFooter from '../util/footer.vue'
+import TopBar from '../../util/topbar.vue'
+import MainHeader from '../../util/header.vue'
+import MainNav from '../../util/main_nav.vue'
+import LastFooter from '../../util/footer.vue'
 
 export default {
   data: function() {
@@ -125,5 +125,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../css/rem.scss';
+@import '../../../css/rem.scss';
 </style>
