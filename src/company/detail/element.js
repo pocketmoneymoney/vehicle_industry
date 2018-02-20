@@ -1,4 +1,5 @@
 import Product from './Product.vue'
+import Equipment from './Equipment.vue'
 
 export default {
   props: ['type', 'listElement', 'isOwner'],
@@ -17,7 +18,7 @@ export default {
         return '/src/company/detail/edit_product.html?oid=' + this.ownerID;
       }
       else if (this.type === 'equipment') {
-        return '/src/company/new_equipment.html';
+        return '/src/company/detail/edit_equipment.html?oid=' + this.ownerID;
       }
     }
   },
@@ -26,5 +27,5 @@ export default {
 console.log("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
     }
   },
-  components: {Product}
+  components: {Product, Equipment}
 }

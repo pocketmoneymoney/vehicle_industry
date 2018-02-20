@@ -7,6 +7,7 @@ export default {
       imgUrl: '/',
       company: {},
 	  products: [],
+	  equipments: [],
       currentItem: {},
       ownerID: '',
 	  isOwner: false,
@@ -37,6 +38,8 @@ export default {
     get('/api/supplier/' + self.ownerID, {}, function(data) {
         if (data.success && data.msg) {
           self.company = data.msg.company;
+
+		  /* Load product list */
 		  if (data.msg.product instanceof Array) {
 			data.msg.product.forEach(function(productID) {
               get('/api/product/' + productID, {}, function(data) {
@@ -48,6 +51,19 @@ export default {
 		  } else {
 			console.log("Failed to get array product", data.msg.product);
 		  }
+		  /* Load equipment list */
+		  if (data.msg.equipment instanceof Array) {
+			data.msg.equipment.forEach(function(equipmentID) {
+              get('/api/equipment/' + equipmentID, {}, function(data) {
+                if (data.success) {
+                  self.equipments.push(data.msg);
+			    } 
+		      }, false);
+			});
+		  } else {
+			console.log("Failed to get array equipment", data.msg.equipment);
+		  }
+
         } else {
           console.log(data.msg);
         }

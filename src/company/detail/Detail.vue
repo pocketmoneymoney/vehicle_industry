@@ -40,7 +40,7 @@
     <div><a v-if="isOwner" :href="editInfoURL">修改</a></div>
   </div>
   <list-element type="product" :listElement="products" :isOwner="isOwner"></list-element>
-  <list-element type="equipment" :listEle="company.equipments" :isOwner="isOwner"></list-element>
+  <list-element type="equipment" :listElement="equipments" :isOwner="isOwner"></list-element>
   </div>
 </template>
 

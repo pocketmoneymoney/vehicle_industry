@@ -8,10 +8,10 @@
     <div class="clearfix">
       <ul v-for="element in listElement">
         <li v-if="type === 'product'">
-		  <product :type="type" :updated="updated" :product="element" :isOwner="isOwner"></product>
+		  <product :type="type" :product="element" :isOwner="isOwner"></product>
 		</li>
         <li v-if="type === 'equipment'">
-		  <equipment :equipment="element" :isOwner="isOwner"></equipment>
+		  <equipment :type="type" :equipment="element" :isOwner="isOwner"></equipment>
 		</li>
       </ul>
     </div>

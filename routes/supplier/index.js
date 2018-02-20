@@ -22,3 +22,11 @@ supplier.addProduct = function(id, productID, callback) {
 supplier.deleteProduct = function(id, productID, callback) {
 	dao.deleteProduct(id, productID, callback);
 };
+
+supplier.addEquipment = function(id, equipmentID, callback) {
+	dao.addEquipment(id, equipmentID, callback);
+};
+
+supplier.deleteEquipment = function(id, equipmentID, callback) {
+	dao.deleteEquipment(id, equipmentID, callback);
+};

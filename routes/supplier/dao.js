@@ -178,4 +178,51 @@ dbHandler.prototype.deleteProduct = function (id, productID, callback) {
 	});
 }
 
+dbHandler.prototype.addEquipment = function (id, equipmentID, callback) {
+	var self = this;
+	this.findOne({'id':id}, function (err, data) {
+		if (err || !data) {
+			callback(err);
+		} else {
+			if (!data['equipment']) { data['equipment'] = []; }
+			var duplicated = false;
+            for (var i = 0; i < data['equipment'].length; i++) {
+				if (data['equipment'][i] == equipmentID) {
+					duplicated = true;
+					break;
+				}
+			}
+			if (!duplicated) {
+				data['equipment'].push(equipmentID);
+				self.update({'id':id}, {$set:{'equipment':data['equipment']}}, {}, callback);
+			} else {
+				callback(null);
+			}
+		}
+	});
+};
+
+dbHandler.prototype.deleteEquipment = function (id, equipmentID, callback) {
+	var self = this;
+	this.findOne({'id':id}, function (err, data) {
+		if (err || !data) {
+			callback(err);
+		} else {
+			var index = -1;
+            for (var i = 0; i < data['equipment'].length; i++) {
+				if (data['equipment'][i] == equipmentID) {
+					index = i;
+					break;
+				}
+			}
+			if (index >= 0) {
+				data['equipment'].splice(index, 1);
+				self.update({'id':id}, {$set:{'equipment':data['equipment']}}, {}, callback);
+			} else {
+				callback(null);
+			}
+		}
+	});
+}
+
 module.exports = new dbHandler();
