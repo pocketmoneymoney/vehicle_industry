@@ -39,7 +39,7 @@
     </ul>
     <div><a v-if="isOwner" :href="editInfoURL">修改</a></div>
   </div>
-  <list-ele type="product" :listEle="company.products" :isOwner="isOwner"></list-ele>
+  <list-ele type="product" :listEle="products" :isOwner="isOwner"></list-ele>
   <list-ele type="equipment" :listEle="company.equipments" :isOwner="isOwner"></list-ele>
   </div>
 </template>

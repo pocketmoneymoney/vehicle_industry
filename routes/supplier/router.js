@@ -103,10 +103,10 @@ module.exports = function(express) {
 
     router.get('/:id', function (req, res) {
          dao.getSupplierDetail(req.params.id, function (err, result) {
-			if (err) {
+			if (err || !result) {
 				res.json({success:false, msg:err});
 			} else {
-				res.json(result);
+				res.json({success:true, msg:result});
 			}
          });
     });

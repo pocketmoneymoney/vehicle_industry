@@ -7,6 +7,7 @@ export default {
     return {
       imgUrl: '/',
       company: {},
+	  products: [],
       currentItem: {},
       items: [],
       catalogName: '',
@@ -35,7 +36,15 @@ export default {
   mounted: function() {
     var self = this;
 	self.ownerID = getUrlKey('id');
-    self.searchCompany(self.ownerID);
+
+    get('/api/supplier/' + self.ownerID, {}, function(data) {
+        if (data.success && data.msg) {
+          self.company = data.msg.company;
+		  self.products = data.msg.product;
+        } else {
+          console.log(data.msg);
+        }
+	}, false);
 
     if (getCookie('token')) {
       post('/user/book', {}, function(data) {
