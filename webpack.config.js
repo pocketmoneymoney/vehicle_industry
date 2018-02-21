@@ -20,6 +20,7 @@ module.exports = {
 	  edit_info: './src/company/detail/edit_info.js',
 	  edit_product: './src/company/detail/edit_product.js',
 	  edit_equipment: './src/company/detail/edit_equipment.js',
+	  edit_certification: './src/company/detail/edit_certification.js',
 	  position: './src/position/position.js',
 	  apply: './src/position/apply.js',
 	  meeting: './src/meeting/meeting.js',

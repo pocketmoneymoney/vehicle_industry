@@ -3,6 +3,7 @@
     <div class="product_list_title clearfix">
     <h3 v-if="type === 'product'">产品列表</h3>
     <h3 v-if="type === 'equipment'">设备列表</h3>
+    <h3 v-if="type === 'certification'">认证列表</h3>
     <a v-if="isOwner" :href="newUrl">添加</a>
     </div>
     <div class="clearfix">
@@ -12,6 +13,9 @@
 		</li>
         <li v-if="type === 'equipment'">
 		  <equipment :type="type" :equipment="element" :isOwner="isOwner"></equipment>
+		</li>
+        <li v-if="type === 'certification'">
+		  <certification :type="type" :certification="element" :isOwner="isOwner"></certification>
 		</li>
       </ul>
     </div>

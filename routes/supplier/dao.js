@@ -32,10 +32,10 @@ function dbHandler() {
 			'market':		String,
 			'createTime':	String
 		},
-		'product': 			Array,
-		'equipment': 		Array,
-		'avatar':			String,
-		'certification':	Array
+		'product': 			{ type:Array, default:[] },
+		'equipment': 		{ type:Array, default:[] },
+		'certification':	{ type:Array, default:{} },
+		'avatar':			String
 	}, 'supplier', 'supplier');
 }
 
@@ -62,7 +62,8 @@ dbHandler.prototype.addSupplier = function (owner, id, person, company, callback
 			'customer':		company['customer'],
 		},
 		'product': [],
-		'equipment': []}, callback);
+		'equipment': [],
+		'certification': []}, callback);
 };
 
 dbHandler.prototype.getSupplierList = function(page, num, callback) {
@@ -222,6 +223,53 @@ dbHandler.prototype.deleteEquipment = function (id, equipmentID, callback) {
 			if (index >= 0) {
 				data['equipment'].splice(index, 1);
 				self.update({'id':id}, {$set:{'equipment':data['equipment']}}, {}, callback);
+			} else {
+				callback(null);
+			}
+		}
+	});
+}
+
+dbHandler.prototype.addCertification = function (id, certificationID, callback) {
+	var self = this;
+	this.findOne({'id':id}, function (err, data) {
+		if (err || !data) {
+			callback(err);
+		} else {
+			if (!data['certification']) { data['certification'] = []; }
+			var duplicated = false;
+            for (var i = 0; i < data['certification'].length; i++) {
+				if (data['certification'][i] == certificationID) {
+					duplicated = true;
+					break;
+				}
+			}
+			if (!duplicated) {
+				data['certification'].push(certificationID);
+				self.update({'id':id}, {$set:{'certification':data['certification']}}, {}, callback);
+			} else {
+				callback(null);
+			}
+		}
+	});
+};
+
+dbHandler.prototype.deleteCertification = function (id, certificationID, callback) {
+	var self = this;
+	this.findOne({'id':id}, function (err, data) {
+		if (err || !data) {
+			callback(err);
+		} else {
+			var index = -1;
+            for (var i = 0; i < data['certification'].length; i++) {
+				if (data['certification'][i] == certificationID) {
+					index = i;
+					break;
+				}
+			}
+			if (index >= 0) {
+				data['certification'].splice(index, 1);
+				self.update({'id':id}, {$set:{'certification':data['certification']}}, {}, callback);
 			} else {
 				callback(null);
 			}

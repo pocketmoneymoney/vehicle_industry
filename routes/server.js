@@ -62,6 +62,7 @@ module.exports = function(app, express, config) {
     	var purchase = require('./purchase');
     	var product = require('./product');
     	var equipment = require('./equipment');
+    	var certification = require('./certification');
     	var supplier = require('./supplier');
 		var interview = require('./interview');
 		var upload = require('./upload');
@@ -75,6 +76,7 @@ module.exports = function(app, express, config) {
         supplier.mount(express, router);
         product.mount(express, router);
         equipment.mount(express, router);
+        certification.mount(express, router);
         admin.mount(express, router);
     }
 };

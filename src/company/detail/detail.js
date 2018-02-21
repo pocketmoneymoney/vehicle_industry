@@ -8,6 +8,7 @@ export default {
       company: {},
 	  products: [],
 	  equipments: [],
+	  certifications: [],
 	  avatar: '',
       currentItem: {},
       ownerID: '',
@@ -55,7 +56,6 @@ export default {
               get('/api/product/' + productID, {}, function(data) {
                 if (data.success) {
                   self.products.push(data.msg);
-console.log("D",self.products[0]);
 			    } 
 		      }, false);
 			});
@@ -74,6 +74,19 @@ console.log("D",self.products[0]);
 			});
 		  } else {
 			console.log("Failed to get array equipment", data.msg.equipment);
+		  }
+
+		  /* Load certification list */
+		  if (data.msg.certification instanceof Array) {
+			data.msg.certification.forEach(function(certificationID) {
+              get('/api/certification/' + certificationID, {}, function(data) {
+                if (data.success) {
+                  self.certifications.push(data.msg);
+			    } 
+		      }, false);
+			});
+		  } else {
+			console.log("Failed to get array certification", data.msg.certification);
 		  }
 
         } else {

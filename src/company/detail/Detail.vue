@@ -47,6 +47,7 @@
   </div>
   <list-element type="product" :listElement="products" :isOwner="isOwner"></list-element>
   <list-element type="equipment" :listElement="equipments" :isOwner="isOwner"></list-element>
+  <list-element type="certification" :listElement="certifications" :isOwner="isOwner"></list-element>
   </div>
 </template>
 

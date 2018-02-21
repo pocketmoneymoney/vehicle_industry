@@ -1,5 +1,6 @@
 import Product from './Product.vue'
 import Equipment from './Equipment.vue'
+import Certification from './Certification.vue'
 
 export default {
   props: ['type', 'listElement', 'isOwner'],
@@ -20,6 +21,9 @@ export default {
       else if (this.type === 'equipment') {
         return '/src/company/detail/edit_equipment.html?oid=' + this.ownerID;
       }
+      else if (this.type === 'certification') {
+        return '/src/company/detail/edit_certification.html?oid=' + this.ownerID;
+      }
     }
   },
   watch: {
@@ -27,5 +31,5 @@ export default {
 console.log("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
     }
   },
-  components: {Product, Equipment}
+  components: {Product, Equipment, Certification}
 }

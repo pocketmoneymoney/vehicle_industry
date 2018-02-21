@@ -30,3 +30,11 @@ supplier.addEquipment = function(id, equipmentID, callback) {
 supplier.deleteEquipment = function(id, equipmentID, callback) {
 	dao.deleteEquipment(id, equipmentID, callback);
 };
+
+supplier.addCertification = function(id, certificationID, callback) {
+	dao.addCertification(id, certificationID, callback);
+};
+
+supplier.deleteCertification = function(id, certificationID, callback) {
+	dao.deleteCertification(id, certificationID, callback);
+};

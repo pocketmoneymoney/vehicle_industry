@@ -79,6 +79,11 @@ export default {
       oMyForm.append("product", this.company.product);
       oMyForm.append("brief", this.company.brief);
       oMyForm.append("customer", this.company.customer);
+      oMyForm.append("location", this.company.location);
+      oMyForm.append("market", this.company.market);
+      oMyForm.append("createTime", this.company.createTime);
+      oMyForm.append("operator", this.company.operator);
+      oMyForm.append("assets", this.company.assets);
       oMyForm.append("avatar", this.$refs.logofile.files[0]);
 
       var self = this;

@@ -6,28 +6,16 @@
       <main-nav></main-nav>
       <div class="main clearfix">
         <div class="formbox clearfix">
-          <h3>添加设备</h3>
+          <h3>添加认证</h3>
 	      <div style="clear:both;"> </div>
               <dl>
-                  <dt><b>*</b><span>设备名称：</span></dt>
+                  <dt><b>*</b><span>认证名称：</span></dt>
                   <dd>
-                      <input v-model="equipment.name" class="text" style="z-index: 10000" name="email" maxlength="30" type="text" />
-                  </dd>
-              </dl>
-              <dl>
-                  <dt><b></b><span>设备类型：</span></dt>
-                  <dd>
-                      <input v-model="equipment.type" class="text" style="z-index: 10000" name="email" type="text" maxlength="30" />
-                  </dd>
-              </dl>
-              <dl>
-                  <dt><b></b><span>设备提供商：</span></dt>
-                  <dd>
-                      <input v-model="equipment.provider" class="text" style="z-index: 10000" name="email" type="text" maxlength="50"/>
+                      <input v-model="certification.name" class="text" style="z-index: 10000" name="email" maxlength="30" type="text" />
                   </dd>
               </dl>
               <dl class="clearfix">
-                  <dt><b></b><span>产品图示：</span></dt>
+                  <dt><b></b><span>认证图片：</span></dt>
                   <dd>
                       <input ref="logofile" type="file" name="file" style="z-index:10000" />
                   </dd>
@@ -53,13 +41,11 @@ import LastFooter from '../../util/footer.vue'
 export default {
   data: function() {
     return {
-	  equipmentID: '',
+	  certificationID: '',
 	  ownerID: '',
-      equipment: {
+      certification: {
 		'id': '',
 		'name': '',
-		'type': '',
-		'provider': '',
 		'avatar': ''
 	  },
       link: ''
@@ -71,22 +57,20 @@ export default {
 	},
     updateInfo: function() {
 	  var self = this;
-      if (self.equipment.name == "") {
-        alert("请输入设备名称");
+      if (self.certification.name == "") {
+        alert("请输入认证图片名称");
         return;
 	  }
 
       var oMyForm = new FormData();
-	  if (self.equipmentID) {
-      	oMyForm.append('id', self.equipmentID);
+	  if (self.certificationID) {
+      	oMyForm.append('id', self.certificationID);
       }
       oMyForm.append('ownerID', self.ownerID);
-      oMyForm.append('name', self.equipment.name);
-      oMyForm.append('type', self.equipment.type);
-      oMyForm.append('provider', self.equipment.provider);
+      oMyForm.append('name', self.certification.name);
       oMyForm.append('avatar', this.$refs.logofile.files[0]);
 
-      postWithFile('/api/equipment', oMyForm, function(data) {
+      postWithFile('/api/certification', oMyForm, function(data) {
         if (!data.success) {
           console.log(data);
         }
@@ -96,18 +80,18 @@ export default {
   },
   mounted: function() {
     var self = this;
-	self.equipmentID = getUrlKey('pid');
+	self.certificationID = getUrlKey('pid');
 	self.ownerID = getUrlKey('oid');
 
     verifyToken(function(data) {
       if (((self.ownerID == data.id) && (data.role == 'supplier')) ||
 	      (data.role == 'admin')) {
-        if (self.equipmentID) {
-          get('/api/equipment/' + self.equipmentID, {}, function(equipmentData) {
-            if (equipmentData.success) {
-              self.equipment = equipmentData.msg;
+        if (self.certificationID) {
+          get('/api/certification/' + self.certificationID, {}, function(certData) {
+            if (certData.success) {
+              self.certification = certData.msg;
 			} else {
-			  alert(equipmentData.msg);
+			  alert(certData.msg);
 			}
           }, false);
 		}

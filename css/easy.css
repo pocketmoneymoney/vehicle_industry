@@ -252,6 +252,12 @@
 	border:1px solid #e5e5e5;
 	width: 194px;
     height: 112px;
+	cursor: pointer;
+	transition: all 0.6s;
+}
+
+.product img.hovor{
+	transform: scale(1.4);
 }
 
 .product ul {
