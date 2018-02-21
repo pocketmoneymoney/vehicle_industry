@@ -89,8 +89,12 @@ export default {
       if (((data.id == pageHostID) && (data.role == 'supplier')) ||
 		  (data.role == 'admin')) {
         get('/api/supplier/company/' + pageHostID, {}, function(data) {
-		  self.company = data;
-		  self.id = pageHostID;
+          if (data.success) {
+		    self.company = data.msg;
+		    self.id = pageHostID;
+		  } else {
+			console.log(data.msg);
+		  }
 		}, false);
       } else {
         window.location.href = '/src/redirect/not_authorized.html';

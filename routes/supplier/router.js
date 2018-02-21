@@ -145,7 +145,7 @@ module.exports = function(express) {
 		});
 	});
 
-	router.post('/company/:id', passport.authenticate('jwt', { session: false}),
+	router.post('/company/:id', upload.single('avatar'), 
 	  function (req, res, next) {
 		var name    	= req.body.name;
 		var product		= req.body.product;
@@ -158,18 +158,33 @@ module.exports = function(express) {
 		var createTime  = req.body.createTime;
 		var operator    = req.body.operator;
 		var assets      = req.body.assets;
-
-		var avatar 		= req.body.avatar;
+		var avatar		= undefined;
 		var id			= req.params.id;
-	
+
+		if (req.file) {
+			avatar = '/' + path.join(req.file.destination, req.file.filename);
+		}
+
 		dao.modifyCompanyInfo(id, name, product, customer, brief, location, market, 
-			createTime, operator, assets, function (err) {
+			createTime, operator, assets, avatar, function (err) {
 			if (err) {
 				res.json({success: false, msg:err});
 			} else {
 				res.json({success: true});
 			}
 		});
+	});
+
+	router.use('/avatar/:id', function (req, res) {
+		if (req.headers['access-control-request-method'] == 'DELETE') {
+			dao.deleteAvatar(req.params.id, function (err) {
+          		if (err) {
+					res.json({success:false, msg:err});
+				} else {
+					res.json({success:true});
+				}
+			});	
+		}
 	});
 
 	router.delete('/:id', function (req, res) {

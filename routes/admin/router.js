@@ -25,14 +25,14 @@ module.exports = function(express) {
 
 	router.post('/qrcode', upload.single('avatar'), function (req, res) {
 		if (!req.file) {
-			res.status(422).send("No avatar file attached");
+            res.json({success:false, msg:"未指定上传文件"});
 		} else {
 			var qrPath = '/' + path.join(req.file.destination, req.file.filename);
 			dao.updateQRCode(qrPath, function (err) {
 				if (err) {
-					res.status(422).send(err);
+					res.json({success:false, msg:err});
 				} else {
-					res.status(200).send("OK");
+					res.json({success:true});
 				}
 			});
 		}	

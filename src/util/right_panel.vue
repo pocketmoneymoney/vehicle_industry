@@ -4,12 +4,12 @@
     <h3>
         <span>供应商推荐</span>
     </h3>
-	<supplier-recom width="190px" :imgPaths="imgPaths" carouselId="supplier_recom"></supplier-recom>
+	<supplier-recom style="max-width:100px;max-height:100px;" :imgPaths="imgPaths" carouselId="supplier_recom"></supplier-recom>
   </div>
   <div class="right_panel">
     <h3>
         <span>关注OE汽车微信公众号</span>
-		<img :src="qrcode"/>
+		<img style="width:100px;height:100px;" :src="qrcode"/>
     </h3>
   </div>
   </div>

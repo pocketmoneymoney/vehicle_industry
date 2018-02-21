@@ -34,7 +34,7 @@
               </dl>
 	          <div style="clear:both;"> </div>
               <dl class="clearfix">
-                  <dt><b>*</b><span>公司logo：</span></dt>
+                  <dt><b></b><span>公司logo：</span></dt>
                   <dd>
                       <input ref="logofile" type="file" name="file" style="z-index:10000" />
                   </dd>
@@ -75,17 +75,20 @@ export default {
       }
 
       var oMyForm = new FormData();
-      oMyForm.append("name", this.companyName);
-      oMyForm.append("product", this.product);
-      oMyForm.append("brief", this.brief);
-      oMyForm.append("customer", this.customer);
+      oMyForm.append("name", this.company.name);
+      oMyForm.append("product", this.company.product);
+      oMyForm.append("brief", this.company.brief);
+      oMyForm.append("customer", this.company.customer);
       oMyForm.append("avatar", this.$refs.logofile.files[0]);
-
+console.log("Try 1");
       var self = this;
-      /*postWithFile('/api/supplier/'+self.id, oMyForm, function(data) {
-        console.log(data);
-      }, false);*/
-
+      postWithFile('/api/supplier/company/'+self.id, oMyForm, function(data) {
+		if (!data.success) {
+		  console.log(data);
+		}
+        window.location.href = '/src/company/detail/detail.html?id=' + self.id;
+      }, false);
+/*
 	  post('/api/supplier/company/'+self.id, {
 		'name': this.company.name,
 		'product': this.company.product,
@@ -102,7 +105,7 @@ export default {
 		  console.log(data);
 		}
         window.location.href = '/src/company/detail/detail.html?id='+self.id;
-	  }, true);
+	  }, true); */
     }
   },
   mounted: function() {
@@ -112,8 +115,12 @@ export default {
       if (((data.id == pageHostID) && (data.role == 'supplier')) ||
 	      (data.role == 'admin')) {
         get('/api/supplier/company/' + pageHostID, {}, function(data) {
-		  self.company = data;
-		  self.id = pageHostID;
+          if (data.success) {
+		    self.company = data.msg;
+		    self.id = pageHostID;
+		  } else {
+			console.log(data.msg);
+		  }
 		}, false);
 	  } else {
         window.location.href = '/src/redirect/not_authorized.html';

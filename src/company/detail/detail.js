@@ -8,6 +8,7 @@ export default {
       company: {},
 	  products: [],
 	  equipments: [],
+	  avatar: '',
       currentItem: {},
       ownerID: '',
 	  isOwner: false,
@@ -29,6 +30,14 @@ export default {
           console.log(data.msg);
         }
       }, false);
+    },
+	deleteLogo: function() {
+      if(confirm("确定删除么?")) {
+         del('/api/supplier/avatar/' + this.ownerID, {}, function(data) {
+          console.log("DDDD", data);
+		}, false);
+		this.avatar='';
+	  }
     }
   },
   mounted: function() {
@@ -38,7 +47,7 @@ export default {
     get('/api/supplier/' + self.ownerID, {}, function(data) {
         if (data.success && data.msg) {
           self.company = data.msg.company;
-
+          self.avatar = data.msg.avatar;
 		  /* Load product list */
 		  if (data.msg.product instanceof Array) {
 			data.msg.product.forEach(function(productID) {

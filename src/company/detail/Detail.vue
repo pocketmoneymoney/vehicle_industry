@@ -4,7 +4,13 @@
 	<div>
       <h1>{{ company.name }}</h1>
 	</div>
-    <img :src="imgUrl + company.avatar"/>
+    <div style="float:right;">
+      <img stype="max-width:100px; max-height:100px;" :src="avatar"/>
+	  <div style="clear:both;"> </div>
+      <div v-if="isOwner" style="float:right">
+		<a @click="deleteLogo" style="margin-left:10px;cursor:pointer;">删除</a>
+	  </div>
+	</div>
 	<div style="clear:both;"> </div>
 	<div>
       <h2>公司简介</h2>

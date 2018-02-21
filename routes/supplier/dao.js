@@ -30,11 +30,11 @@ function dbHandler() {
 			'operator':		String,
 			'assets':		String,
 			'market':		String,
-			'createTime':	String,
-			'avatar':		String,
+			'createTime':	String
 		},
 		'product': 			Array,
 		'equipment': 		Array,
+		'avatar':			String,
 		'certification':	Array
 	}, 'supplier', 'supplier');
 }
@@ -82,7 +82,7 @@ dbHandler.prototype.getPersonInfo = function (id, callback) {
 }
 
 dbHandler.prototype.getCompanyInfo = function (id, callback) {
-    this.findOne({'id':id}, 'company', callback);
+    this.findOne({'id':id}, 'company avatar', callback);
 };
 
 dbHandler.prototype.getPrevilegeInfo = function (page, num, callback) {
@@ -112,7 +112,7 @@ dbHandler.prototype.modifyPrivilegeInfo = function (id, verified, advertise,
 
 
 dbHandler.prototype.modifyCompanyInfo = function (id, name, product, customer, 
-	brief, location, market, createTime, operator, assets, callback) {
+	brief, location, market, createTime, operator, assets, avatar, callback) {
 	var fields = {'company':
 		{'name': name,
 		 'product': product,
@@ -123,6 +123,10 @@ dbHandler.prototype.modifyCompanyInfo = function (id, name, product, customer,
          'createTime': createTime,
          'operator': operator,
          'assets': assets,}};
+
+	if (avatar) {
+		fields['avatar'] = avatar;
+	}
 
 	this.update({'id':id}, {$set: fields}, {upsert:true}, callback);
 };
@@ -224,5 +228,9 @@ dbHandler.prototype.deleteEquipment = function (id, equipmentID, callback) {
 		}
 	});
 }
+
+dbHandler.prototype.deleteAvatar = function (id, callback) {
+	this.update({'id':id}, {$set:{'avatar':''}}, {}, callback);
+};
 
 module.exports = new dbHandler();

@@ -62,9 +62,17 @@
 }
 
 .info_panel span a{
-	font-size: 14px;
 	font-weight: normal;
-	padding-left:20px; 
+	padding-left:15px; 
+	padding-right:15px; 
+    margin: 4px 0 0 15px;
+	background:#e2f5ff; 
+	border:1px solid #c8eafa;
+	border-radius:0.2em; 
+	font-size:16px; 
+	line-height:50px; 
+	text-align:center; 
+	color:#3d9ccc; 
 	cursor: pointer;
 }
 
