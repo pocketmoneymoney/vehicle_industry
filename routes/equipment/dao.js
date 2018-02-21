@@ -13,6 +13,7 @@ function dbHandler() {
 		'name':			String,
 		'type':			String,
 		'provider':		String,
+		'avatar':		{ String, default: ''}
 	}, 'equipment', 'equipment');
 }
 
@@ -24,14 +25,20 @@ dbHandler.prototype.getEquipment = function (id, callback) {
 }
 
 dbHandler.prototype.updateEquipment = function (id, ownerID, name, type,
-											  provider, callback) {
+											  provider, avatar, callback) {
 	var self = this;
-	this.update({'id':id}, {$set: {
+    var fields = {
 		'id':id,
 		'ownerID': ownerID,
 		'name':	name,
 		'type': type,
-		'provider': provider}}, {upsert:true}, function (err) {
+		'provider': provider}
+
+	if (avatar) {
+		fields['avatar'] = avatar;
+	}
+
+	this.update({'id':id}, {$set: fields}, {upsert:true}, function (err) {
 		if (err) {
 			self.remove({'id':id});
 			callback(err);

@@ -13,7 +13,8 @@ function dbHandler() {
 		'name':			String,
 		'usage':		String,
 		'capacity':		String,
-		'customer':		String
+		'customer':		String,
+		'avatar':		{ String, default: ''}
 	}, 'product', 'product');
 }
 
@@ -25,15 +26,22 @@ dbHandler.prototype.getProduct = function (id, callback) {
 }
 
 dbHandler.prototype.updateProduct = function (id, ownerID, name, usage, 
-											  capacity, customer, callback) {
+											  capacity, customer, avatar, callback) {
 	var self = this;
-	this.update({'id':id}, {$set: {
+
+	var fields = {
 		'id':id,
 		'ownerID': ownerID,
 		'name':	name,
 		'usage': usage,
 		'capacity': capacity,
-		'customer': customer}}, {upsert:true}, function (err) {
+		'customer': customer};
+
+	if (avatar) {
+		fields['avatar'] = avatar;
+	}
+
+	this.update({'id':id}, {$set: fields}, {upsert:true}, function (err) {
 		if (err) {
 			self.remove({'id':id});
 			callback(err);

@@ -1,6 +1,6 @@
 <template>
   <div class="product clearfix">
-    <img :src="imgUrl + equipment.avatar" />
+    <img style="max-width:200px; max-height:150px;" :src="equipment.avatar" />
     <ul>
       <li><p>设备名称  {{equipment.name}}</p></li>
       <li><p>设备用途  {{equipment.usage}}</p></li>

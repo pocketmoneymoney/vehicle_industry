@@ -80,7 +80,7 @@ export default {
       oMyForm.append("brief", this.company.brief);
       oMyForm.append("customer", this.company.customer);
       oMyForm.append("avatar", this.$refs.logofile.files[0]);
-console.log("Try 1");
+
       var self = this;
       postWithFile('/api/supplier/company/'+self.id, oMyForm, function(data) {
 		if (!data.success) {
@@ -88,24 +88,6 @@ console.log("Try 1");
 		}
         window.location.href = '/src/company/detail/detail.html?id=' + self.id;
       }, false);
-/*
-	  post('/api/supplier/company/'+self.id, {
-		'name': this.company.name,
-		'product': this.company.product,
-		'brief': this.company.brief,
-		'customer': this.company.customer,
-        'location': this.company.location,
-        'market': this.company.market,
-        'createTime': this.company.createTime,
-        'operator': this.company.operator,
-        'assets': this.company.assets,
-        'avatar': this.company.avatar,
-	  }, function(data) {
-		if (!data.success) {
-		  console.log(data);
-		}
-        window.location.href = '/src/company/detail/detail.html?id='+self.id;
-	  }, true); */
     }
   },
   mounted: function() {

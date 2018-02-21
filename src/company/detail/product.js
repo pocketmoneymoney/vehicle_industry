@@ -3,7 +3,6 @@ export default {
   props: ['type', 'product', 'isOwner', 'updated'],
   data() {
     return {
-      imgUrl: '/',
 	  ownerID: ''
     }
   }, 

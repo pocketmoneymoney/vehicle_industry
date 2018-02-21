@@ -35,14 +35,20 @@ module.exports = function(express) {
 		});
 	});
 
-	router.post('/', function (req, res) {
+	router.post('/', upload.single('avatar'), function (req, res) {
 		var id = req.body.id ? req.body.id : helper.uniqueID(req.body.name);
 		var ownerID = req.body.ownerID;
 		var name = req.body.name;
 		var type = req.body.type;
 		var provider = req.body.provider;
+
+		var avatar		= undefined;
+
+		if (req.file) {
+			avatar = '/' + path.join(req.file.destination, req.file.filename);
+		}
 		
-		dao.updateEquipment(id, ownerID, name, type, provider, function (err) {
+		dao.updateEquipment(id, ownerID, name, type, provider, avatar, function (err) {
           	if (err) {
 				res.json({success:false, msg:err});
 			} else {

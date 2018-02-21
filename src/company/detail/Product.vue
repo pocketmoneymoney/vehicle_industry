@@ -1,6 +1,6 @@
 <template>
   <div class="product clearfix">
-    <img :src="imgUrl + product.avatar" />
+    <img style="max-width:200px; max-height:150px;" :src="product.avatar" />
     <ul>
       <li><p>产品名称  {{product.name}}</p></li>
       <li><p>产品用途  {{product.usage}}</p></li>

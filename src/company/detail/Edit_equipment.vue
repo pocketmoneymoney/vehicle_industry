@@ -29,7 +29,7 @@
               <dl class="clearfix">
                   <dt><b></b><span>产品图示：</span></dt>
                   <dd>
-                      <input ref="equipmentfile" type="file" name="file" style="z-index:10000" />
+                      <input ref="logofile" type="file" name="file" style="z-index:10000" />
                   </dd>
               </dl>
 	      <div style="clear:both;"> </div>
@@ -75,6 +75,16 @@ export default {
         return;
 	  }
 
+      var oMyForm = new FormData();
+	  if (self.equipmentID) {
+      	oMyForm.append('id', self.equipmentID);
+      }
+      oMyForm.append('ownerID', self.ownerID);
+      oMyForm.append('name', self.equipment.name);
+      oMyForm.append('type', self.equipment.type);
+      oMyForm.append('provider', self.equipment.provider);
+      oMyForm.append('avatar', this.$refs.logofile.files[0]);
+
       var params = {
 		'id': self.equipmentID,
 		'ownerID': self.ownerID,
@@ -82,7 +92,8 @@ export default {
 		'type': self.equipment.type,
 		'provider': self.equipment.provider
 	  };
-	  post('/api/equipment/', params, function(data) {
+
+      postWithFile('/api/equipment', oMyForm, function(data) {
         if (!data.success) {
           console.log(data);
         }

@@ -35,7 +35,7 @@
               <dl class="clearfix">
                   <dt><b></b><span>产品图示：</span></dt>
                   <dd>
-                      <input ref="productfile" type="file" name="file" style="z-index:10000" />
+                      <input ref="logofile" type="file" name="file" style="z-index:10000" />
                   </dd>
               </dl>
 	      <div style="clear:both;"> </div>
@@ -66,7 +66,8 @@ export default {
 		'name': '',
 		'usage': '',
 		'capacity': '',
-		'customer': ''
+		'customer': '',
+		'avatar': ''
 	  },
       productLink: ''
     }
@@ -82,15 +83,18 @@ export default {
         return;
 	  }
 
-      var params = {
-		'id': self.productID,
-		'ownerID': self.ownerID,
-		'name': self.product.name,
-		'usage': self.product.usage,
-		'capacity': self.product.capacity,
-		'customer': self.product.customer
-	  };
-	  post('/api/product', params, function(data) {
+      var oMyForm = new FormData();
+	  if (self.productID) {
+      	oMyForm.append('id', self.productID);
+      }
+      oMyForm.append('ownerID', self.ownerID);
+      oMyForm.append('name', self.product.name);
+      oMyForm.append('usage', self.product.usage);
+      oMyForm.append('capacity', self.product.capacity);
+      oMyForm.append('customer', self.product.customer);
+      oMyForm.append('avatar', this.$refs.logofile.files[0]);
+
+      postWithFile('/api/product', oMyForm, function(data) {
         if (!data.success) {
           console.log(data);
         }

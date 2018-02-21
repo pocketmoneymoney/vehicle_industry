@@ -48,18 +48,21 @@ export default {
         if (data.success && data.msg) {
           self.company = data.msg.company;
           self.avatar = data.msg.avatar;
+
 		  /* Load product list */
 		  if (data.msg.product instanceof Array) {
 			data.msg.product.forEach(function(productID) {
               get('/api/product/' + productID, {}, function(data) {
                 if (data.success) {
                   self.products.push(data.msg);
+console.log("D",self.products[0]);
 			    } 
 		      }, false);
 			});
 		  } else {
 			console.log("Failed to get array product", data.msg.product);
 		  }
+
 		  /* Load equipment list */
 		  if (data.msg.equipment instanceof Array) {
 			data.msg.equipment.forEach(function(equipmentID) {
