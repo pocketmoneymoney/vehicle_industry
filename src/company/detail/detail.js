@@ -35,9 +35,8 @@ export default {
 	deleteLogo: function() {
       if(confirm("确定删除么?")) {
          del('/api/supplier/avatar/' + this.ownerID, {}, function(data) {
-          console.log("DDDD", data);
+		   window.location.reload();
 		}, false);
-		this.avatar='';
 	  }
     }
   },

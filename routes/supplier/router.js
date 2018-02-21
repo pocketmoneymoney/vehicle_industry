@@ -176,7 +176,8 @@ module.exports = function(express) {
 	});
 
 	router.use('/avatar/:id', function (req, res) {
-		if (req.headers['access-control-request-method'] == 'DELETE') {
+		if (req.method == 'DELETE' ||
+		    req.headers['access-control-request-method'] == 'DELETE') {
 			dao.deleteAvatar(req.params.id, function (err) {
           		if (err) {
 					res.json({success:false, msg:err});

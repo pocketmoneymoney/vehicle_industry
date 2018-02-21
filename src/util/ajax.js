@@ -63,7 +63,7 @@ function get(url, param, success) {
   });
 }
 
-function del(url, param, success, needAuth) {
+function del(url, param, callback, needAuth) {
   var beforeSend = function(xhr) {};
   if (needAuth) {
     beforeSend = function(xhr) {
@@ -77,6 +77,6 @@ function del(url, param, success, needAuth) {
     data: param,
     dataType: 'json',
     beforeSend: beforeSend,
-    success: success
+    complete: callback
   });
 }

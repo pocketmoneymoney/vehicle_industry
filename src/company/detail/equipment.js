@@ -11,8 +11,7 @@ export default {
     deleteItem: function() {
       if(confirm("确定删除么?")){
         del('/api/equipment/'+this.equipment.id, {}, function(data) {
-          console.log(data);
-		  self.updated += 1;
+		  window.location.reload();
 	    });
 	  }
     }

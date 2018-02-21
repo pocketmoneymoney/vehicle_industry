@@ -26,10 +26,5 @@ export default {
       }
     }
   },
-  watch: {
-    updated(val) {
-console.log("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-    }
-  },
   components: {Product, Equipment, Certification}
 }
