@@ -28,7 +28,7 @@
               </dl>
 	      <div style="clear:both;"> </div>
           <div>
-            <span><a href="/src/supplier/index.html">取消</a></span>
+            <span><a href="/src/buyer/index.html">取消</a></span>
             <span><a @click="updateInfo">更新</a></span>
           </div>
         </div>
@@ -56,12 +56,12 @@ export default {
   methods: {
     updateInfo: function() {
 	  if (this.name == "" || this.phone == "" || this.email == "") {
-		alert("请输入完整信息");
-		return;
+		alert('请输入完整信息');
+		return
 	  }
 
       var self = this;
-      post('/api/supplier/person/' + self.id, {
+      post('/api/buyer/' + self.id, {
 		'person': this.name,
 		'phone': this.phone,
 		'email': this.email
@@ -69,7 +69,7 @@ export default {
 		if (!data.success) {
 		  console.log(data);
 		}
-        window.location.href = '/src/supplier/index.html';
+        window.location.href = '/src/buyer/index.html';
       }, true);
     }
   },
@@ -77,9 +77,9 @@ export default {
     var self = this;
 	var pageHostID = getUrlKey('id');
     verifyToken(function (data) {
-      if (((data.id == pageHostID) && (data.role == 'supplier')) ||
+      if (((data.id == pageHostID) && (data.role == 'buyer')) ||
 		  (data.role == 'admin')) {
-        get('/api/supplier/person/' + pageHostID, {}, function(data) {
+        get('/api/buyer/' + pageHostID, {}, function(data) {
           if (data.success) {
             self.name = data.msg.name;
 		    self.phone = data.msg.phone;

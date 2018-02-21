@@ -5,7 +5,7 @@
       <div class="main clearfix">
         <main-nav></main-nav>
 		<div class="main_right">
-		  <supplier-info></supplier-info>
+		  <buyer-info></buyer-info>
 		</div>
       </div>
       <last-footer></last-footer>
@@ -17,13 +17,14 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
-import SupplierInfo from './Supplier-info.vue'
+import BuyerInfo from './Buyer-info.vue'
 
 export default {
-  components: {SupplierInfo, TopBar, MainHeader, MainNav, LastFooter} 
+  components: {BuyerInfo, TopBar, MainHeader, MainNav, LastFooter}
 }
 </script>
 
 <style lang="scss">
 @import '../../css/rem.scss';
+
 </style>

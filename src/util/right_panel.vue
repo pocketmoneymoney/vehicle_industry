@@ -9,8 +9,8 @@
   <div class="right_panel">
     <h3>
         <span>关注OE汽车微信公众号</span>
-		<img style="width:100px;height:100px;" :src="qrcode"/>
     </h3>
+	<img style="margin-top: 10px; margin-left:15px; width:100px;height:100px;" :src="qrcode"/>
   </div>
   </div>
 </template>

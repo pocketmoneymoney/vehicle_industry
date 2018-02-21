@@ -29,7 +29,7 @@
               <dl>
                   <dt><b></b><span>典型配套客户：</span></dt>
                   <dd>
-                      <input v-model="product.customer" class="text" style="z-index: 10000" name="email" maxlength="40" type="text" />
+                      <input v-model="product.customer" class="text" style="z-index: 10000" name="email" maxlength="50" type="text" />
                   </dd>
               </dl>
               <dl class="clearfix">

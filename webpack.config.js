@@ -27,6 +27,7 @@ module.exports = {
 	  visiting: './src/visiting/visiting.js',
 	  activity_enroll: './src/util/activity_enroll.js',
 	  buyer: './src/buyer/index.js',
+	  buyer_edit: './src/buyer/edit.js',
 	  supplier: './src/supplier/index.js',
 	  supplier_edit: './src/supplier/edit.js',
 	  management: './src/management/index.js',

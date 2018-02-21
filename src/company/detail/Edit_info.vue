@@ -11,25 +11,25 @@
               <dl>
                   <dt><b> </b><span>公司地区</span></dt>
                   <dd>
-                      <input v-model="company.location" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="company.location" class="text" style="z-index: 10000" name="email" type="text" maxlength="30"/>
                   </dd>
               </dl>
               <dl>
                   <dt><b> </b><span>成立时间</span></dt>
                   <dd>
-                      <input v-model="company.createTime" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="company.createTime" class="text" style="z-index: 10000" name="email" type="text" maxlength="30"/>
                   </dd>
               </dl>
               <dl>
                   <dt><b> </b><span>法人代表</span></dt>
                   <dd>
-                      <input v-model="company.operator" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="company.operator" class="text" style="z-index: 10000" name="email" type="text" maxlength="30"/>
                   </dd>
               </dl>
               <dl>
                   <dt><b> </b><span>总资产</span></dt>
                   <dd>
-                      <input v-model="company.assets" class="text" style="z-index: 10000" name="email" type="text" />
+                      <input v-model="company.assets" class="text" style="z-index: 10000" name="email" type="text" maxlength="30"/>
                   </dd>
               </dl>
 	      <div style="clear:both;"> </div>

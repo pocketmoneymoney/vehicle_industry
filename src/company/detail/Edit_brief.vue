@@ -11,25 +11,25 @@
               <dl>
                   <dt><b>*</b><span>公司名称</span></dt>
                   <dd>
-                      <input v-model="company.name" class="text" style="z-index: 10000;" name="email" type="text"/>
+                      <input v-model="company.name" class="text" style="z-index: 10000;" name="email" maxlength="60" type="text"/>
                   </dd>
               </dl>
               <dl>
                   <dt><b>*</b><span>主营产品</span></dt>
                   <dd>
-                      <input v-model="company.product" class="text" style="z-index: 10000;" name="email" type="text" />
+                      <input v-model="company.product" class="text" style="z-index: 10000;" name="email" maxlength="100" type="text" />
                   </dd>
               </dl>
               <dl>
                   <dt><b>*</b><span>配套客户</span></dt>
                   <dd>
-                      <input v-model="company.customer" class="text" style="z-index: 10000;" name="email" type="text" />
+                      <input v-model="company.customer" class="text" style="z-index: 10000;" name="email" maxlength="100" type="text" />
                   </dd>
               </dl>
               <dl>
                   <dt><b></b><span>公司简介：</span></dt>
                   <dd>
-                      <textarea v-model="company.brief" class="text" style="height: 150px;; z-index: 10000" />
+                      <textarea v-model="company.brief" class="text" style="height: 150px; z-index: 10000" maxlength="400"/>
                   </dd>
               </dl>
 	          <div style="clear:both;"> </div>

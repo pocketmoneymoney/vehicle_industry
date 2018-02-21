@@ -21,7 +21,7 @@
           <dl>
               <dt><b>*</b><span>联系人真实姓名：</span></dt>
               <dd>
-                  <input v-model="personName" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="personName" class="text" style="z-index: 10000" maxlength="30"
                       type="text" />
               </dd>
 			  <dd></dd>
@@ -45,7 +45,7 @@
           <dl>
               <dt><b>*</b><span>联系电话：</span></dt>
               <dd>
-                  <input v-model="phone" class="text" style="z-index: 10000" maxlength="24"
+                  <input v-model="phone" class="text" style="z-index: 10000" maxlength="30"
                       type="text" />
               </dd>
 			  <dd></dd>
@@ -53,7 +53,7 @@
           <dl>
               <dt><b>*</b><span>邮箱：</span></dt>
               <dd>
-                  <input v-model="email" class="text" style="z-index: 10000" maxlength="50" name="email" type="text" />
+                  <input v-model="email" class="text" style="z-index: 10000" maxlength="30" name="email" type="text" />
               </dd>
 			  <dd></dd>
           </dl>
@@ -63,7 +63,7 @@
                   <label class="dda">
                       <input type="radio" value="supplier" v-model="role" /><span class="rad">我是供应商&nbsp;</span></label>
                   <label class="ddb" style="margin-left: 25px;">
-                      <input type="radio" value="admin" v-model="role" /><span class="rad">我是采购商 </span>
+                      <input type="radio" value="buyer" v-model="role" /><span class="rad">我是采购商 </span>
                   </label>
               </dd>
 			  <dd></dd>
@@ -165,6 +165,7 @@ export default {
 		company: this.companyName,
 		product: this.product,
 		customer: this.customer};
+
       post('/user/register', params, function(data) {
         if (data.success) {
           setCookie('token', data.token, 3000);

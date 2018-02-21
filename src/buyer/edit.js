@@ -1,7 +1,5 @@
 import Vue from 'vue'
-import App from './Main.vue'
-
-global.bus = new Vue();
+import App from './Edit.vue'
 
 var app = new Vue({
   el: '#main',
