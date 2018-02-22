@@ -70,5 +70,16 @@ module.exports = function(express) {
 		});
 	});
 
+	router.post('/delete/:id', passport.authenticate('jwt', { session: false}),
+	  function (req, res) {
+		dao.deleteBuyer(req.params.id, function (err) {
+            if (err) {
+				res.json({success: false, msg:"Failed to remove buyer"});
+            } else {
+				res.json({success: true});
+	    	}
+		});	
+	});
+
     return router;
 };

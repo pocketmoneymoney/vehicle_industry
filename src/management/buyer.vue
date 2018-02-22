@@ -32,7 +32,21 @@ export default {
     }
   },
   methods: {
-    deleteUser: function() {
+    deleteUser: function(user) {
+      if(confirm("确定删除么?")) {
+		var self = this;
+        post('/api/buyer/delete/' + user.id, {}, function(data) {
+		  if (data.success) {
+    		get('/api/buyer/list?page=0&num=10', {}, function(data) {
+	  		  if (data.success) {
+  				self.users = data.msg;
+			  }
+			});
+		  } else {
+			console.log(data.msg);
+      	  }
+		}, true);
+	  }
     }
   },
   mounted: function() {

@@ -90,6 +90,20 @@ export default {
 	  this.updatePrivilege(user);
     },
     deleteUser: function(user) {
+      if(confirm("确定删除么?")) {
+		var self = this;
+        post('/api/supplier/delete/' + user.id, {}, function(data) {
+		  if (data.success) {
+    		get('/api/supplier/privilege?page=0&num=10', {}, function(data) {
+	  		  if (data.success) {
+  				self.users = data.msg;
+			  }
+			});
+		  } else {
+			console.log(data.msg);
+      	  }
+		}, true);
+	  }
     },
     updatePrivilege: function (user) {
       var params = {

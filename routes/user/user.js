@@ -51,7 +51,7 @@ module.exports = function () {
 				
 				if (req.body.role == 'supplier') {
 					var person = {
-						'name': req.body.person,
+						'myname': req.body.person,
 						'phone': req.body.phone,
 						'email': req.body.email
 					};

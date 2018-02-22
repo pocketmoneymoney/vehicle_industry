@@ -61,7 +61,8 @@ export default {
 
       	get('/api/supplier/' + supplierID, {}, function(data) {
           if (data.success) { 
-            self.person = data.msg.person.name;
+console.log("SSS", data.msg.person);
+            self.person = data.msg.person.myname;
             self.company = data.msg.company.name; 
             self.operator = data.msg.company.operator; 
             self.location = data.msg.company.location; 

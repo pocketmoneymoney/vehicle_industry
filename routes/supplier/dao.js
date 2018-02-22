@@ -10,7 +10,7 @@ function dbHandler() {
 		'owner':		{ type:String, unique:true, required:true },
 
 		'person':		{
-			'name':			String,
+			'myname':		String,
 			'phone':		String,
 			'email':		String,
 		},
@@ -47,7 +47,7 @@ dbHandler.prototype.addSupplier = function (owner, id, person, company, callback
 		'id': id,
 		'owner': owner,
 		'person': {
-			'name': 		person['name'],
+			'myname': 		person['myname'],
 			'phone': 		person['phone'],
 			'email': 		person['email'],
 		},
@@ -92,7 +92,7 @@ dbHandler.prototype.getPrevilegeInfo = function (page, num, callback) {
 
 dbHandler.prototype.modifyPersonInfo = function (id, person, email, phone, callback) {
 	var fields = {'person': {
-		'name': person,
+		'myname': person,
 		'email': email,
 		'phone': phone}
 	};

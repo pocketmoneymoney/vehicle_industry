@@ -131,12 +131,12 @@ module.exports = function(express) {
 
 	router.post('/person/:id', passport.authenticate('jwt', { session: false}),
 	  function (req, res, next) {
-		var person 		= req.body.person;
+		var myname 		= req.body.person;
 		var email		= req.body.email;
 		var phone		= req.body.phone;
 		var id			= req.params.id;
 		
-		dao.modifyPersonInfo(id, person, email, phone, function (err) {
+		dao.modifyPersonInfo(id, myname, email, phone, function (err) {
 			if (err) {
 				res.json({success: false, msg:err});
 			} else {
@@ -188,7 +188,8 @@ module.exports = function(express) {
 		}
 	});
 
-	router.delete('/:id', function (req, res) {
+	router.post('/delete/:id', passport.authenticate('jwt', { session: false}),
+	  function (req, res) {
 		dao.deleteSupplier(req.params.id, function (err) {
             if (err) {
 				res.json({success: false, msg:"Failed to remove supplier"});

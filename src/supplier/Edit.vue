@@ -81,7 +81,7 @@ export default {
 		  (data.role == 'admin')) {
         get('/api/supplier/person/' + pageHostID, {}, function(data) {
           if (data.success) {
-            self.name = data.msg.name;
+            self.name = data.msg.myname;
 		    self.phone = data.msg.phone;
 		    self.email = data.msg.email;
 		    self.id = pageHostID;
