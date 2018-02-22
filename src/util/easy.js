@@ -15,7 +15,11 @@ function trimStr(strVal) {
 			return strVal.trim();
 		}
 	} else {
-		return strVal;
+		if (strVal == undefined) {
+			return '';
+		} else {
+			return strVal;
+		}
 	}
 }
 

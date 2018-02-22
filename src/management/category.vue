@@ -54,13 +54,11 @@ export default {
 		var self = this;
         post('/api/admin/category/delete', params, function(data) {
 		  if (data.success) {
-		    var newCategories = 
-			  self.categories.filter(function(cate) {
-			    return (!((cate.categoryName == category.categoryName) &&
-					    (cate.subtypeName == category.subtypeName) &&
-					    (cate.itemName == category.itemName)))
-			  });	
-			self.categories = newCategories; 
+    		get('/api/admin/categoryList', {}, function(data) {
+	  		  if (data.success) {
+  				self.categories = data.msg;
+			  }
+			});
 		  } else {
 			console.log(data.msg);
 		  }
@@ -71,6 +69,7 @@ export default {
   mounted: function() {
     $('#datalist').DataTable({
     });
+
 	var self = this;
     get('/api/admin/categoryList', {}, function(data) {
 	  if (data.success) {

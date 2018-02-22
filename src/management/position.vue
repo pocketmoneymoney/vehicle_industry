@@ -1,7 +1,8 @@
 <template>
     <div>
+        <span><a class="admin_add" @click="editPosition({})">发布职位</a></span>
+	    <div style="clear:both;"> </div>
         <h3>职位列表</h3>
-        <span><a class="new_company" @click="newPosition">发布职位</a></span>
         <table id="positionlist">
           <thead>
              <tr>
@@ -13,10 +14,13 @@
           </thead>
           <tbody>
             <tr v-for="position in positions">
-              <th @click="positionApplication(position)" class="delete_button">{{position.name}}</th>
-              <th>{{position.companyName}}</th>
+              <th>{{position.name}}</th>
+              <th>{{position.company}}</th>
               <th>{{position.time}}</th>
-              <th @click="deletePosition(position)" class="delete_button">删除</th>
+			  <th>
+				<a @click="editPosition(position)" class="admin_op_button">编辑 </a>
+                <a @click="deleteAction(position)" class="admin_op_button">删除</a>
+			  </th>
             </tr>
           </tbody>
         </table>
@@ -26,36 +30,44 @@
 <script>
 export default {
   data: function() {
-    var positions = [
-    {
-        name: "Tiger Nixon",
-        companyName: "主机",
-        time: "2011/04/25"
-    },
-    {
-        name: "Garrett Winters",
-        time: "2011/07/25",
-        companyName: "采购"
-    }
-    ];
     return {
-      positions: positions
+      positions: []
     }
   },
   methods: {
-    newPosition: function() {
-      this.$emit("newPosition");
+    editPosition: function(position) {
+      this.$emit("editPosition", position);
     },
-    deletePosition: function(position) {
-    },
-    positionApplication: function(position) {
-      this.$emit("positionApplication", position);
-    }
+    deleteAction: function(position) {
+      if(confirm("确定删除么?")) {
+		var self = this;
+        post('/api/position/delete/' + position.id, {}, function(data) {
+		  if (data.success) {
+    		get('/api/position/list?page=0&num=10', {}, function(data) {
+	  		  if (data.success) {
+  				self.positions = data.msg;
+			  }
+			});
+		  } else {
+			console.log(data.msg);
+      	  }
+        }, true);
+	  }
+	}
   },
   mounted: function() {
     $('#positionlist').DataTable({
     });
-  },
+
+	var self = this;
+    get('/api/position/list?page=0&num=10', {}, function(data) {
+	  if (data.success) {
+  		self.positions = data.msg;
+	  } else {
+		console.log(data.msg);
+	  }
+	}, false);
+  }
 }
 </script>
 
@@ -63,8 +75,4 @@ export default {
 #positionlist tbody th {
   font-weight: 400;
 }
-.delete_button {
-  cursor: pointer;
-}
-.new_company { background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding:0 10px;}
 </style>

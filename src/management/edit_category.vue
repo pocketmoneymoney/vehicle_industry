@@ -121,8 +121,8 @@ export default {
 	  this.isNew = false;
 	  this.oldCategory = this.category;
 	} else {
-	  this.category = this.defaultCategory;
 	  this.isNew = true;
+	  this.category = this.defaultCategory;
 	}
   }
 }
