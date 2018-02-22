@@ -4,15 +4,41 @@
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var helper = require('../common/helper');
+var config = require('../../config');
+var User = require("../user/model");
 
 module.exports = function(express) {
 
     var _ = require('underscore');
     var logger = require('log4js').getLogger('server');
 
+	  var multer = require('multer');
     var dao = require('./dao.js');
 
     var router = express.Router({mergeParams: true});
+
+    var getToken = function (headers) {
+        if (headers && headers.authorization) {
+        var parted = headers.authorization.split(' ');
+            if (parted.length === 2) {
+                return parted[1];
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    };
+
+	  var storage = multer.diskStorage({
+    		destination: function (req, file, cb) {
+      		cb(null, './public/supplier')
+    		},
+    		filename: function (req, file, cb) {
+      		cb(null, file.fieldname + '-' + Date.now())
+    		}
+	  });
+	  var upload = multer({ storage: storage })
 
     router.get('/overview', function (req, res) {
          var page = req.query.page? parseInt(req.query.page) : 1;
@@ -36,17 +62,21 @@ module.exports = function(express) {
          });
     });
 
-	router.put('/new', passport.authenticate('jwt', {session: false}), function(req, res) {
-      var token = getToken(req.headers);
-      if (token) {
+	router.post('/new', upload.single('avatar'), passport.authenticate('jwt', {session: false}), function(req, res) {
+    console.log(req.user.role);
+    console.log(req.body.name);
+    var token = getToken(req.headers);
+    if (token) {
         jwt.verify(token, config.secret, function(err, decoded) {
-			if (decoded.role !== 'admin') {
-				res.json({success: false, msg: "用户认证失败"});
-				return;
-			}
-		});
+          User.findOne({username: decoded.username}, function(err, user) {
+            if (user.role !== 'admin') {
+				      res.json({success: false, msg: "用户认证失败"});
+            }
+          });
+		    });
 	  }
 	  var newID = helper.uniqueID(req.body.name);
+    console.log(req.body.name);
       dao.addActivity(req.body['name'], newID, req.body['location'], req.body['time'], function (err, result) {
 		  if (err) {
 			res.json({success: false, msg: "添加活动失败"});
