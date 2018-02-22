@@ -41,9 +41,9 @@ module.exports = function(express) {
 	router.get('/qrcode', function (req, res) {
 		dao.getQRCode(function (err, data) {
 			if (err) {
-				res.status(422).send(err);
+				res.json({success:false, msg:err});
 			} else {
-				res.status(200).send(JSON.stringify(data));
+				res.json({success:true, msg:data});
 			}
 		});
 	});
@@ -72,6 +72,94 @@ module.exports = function(express) {
 			}
 		});
 	});
+
+	router.get('/categoryname', function (req, res) {
+		var categoryID = req.query.categoryID;
+		var subtypeID = req.query.subtypeID;
+		var itemID = req.query.itemID;
+
+		dao.getCategoryName(categoryID, subtypeID, itemID, function (err, data) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:data});
+			}
+		});
+	});
+
+	router.get('/category/:id', function (req, res) {
+		dao.getCategory(req.params.id, function (err, data) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:data});
+			}
+		});
+	});
+
+	router.get('/category', function (req, res) {
+		dao.getCategories(function (err, data) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:data});
+			}
+		});
+	});
+
+	router.get('/categorylist', function (req, res) {
+		dao.getCategoryList(function (err, data) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:data});
+			}
+		});
+	});
+
+	router.post('/category/delete', function (req, res) {
+		var categoryName = req.body.categoryName;
+		var subtypeName = req.body.subtypeName;
+		var itemName = req.body.itemName;
+		dao.deleteCategory(categoryName, subtypeName, itemName, function (err) {
+        	if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true});
+			}
+		});
+	});
+
+	router.post('/category', function (req, res) {
+		var categoryName = req.body.categoryName;
+		var categoryID = req.body.categoryID;
+		var subtypeName = req.body.subtypeName;
+		var subtypeID = req.body.subtypeID;
+		var itemName = req.body.itemName;
+		var itemID = req.body.itemID;
+		var isNew = req.body.isNew;
+
+		if (isNew) {
+			dao.addCategory(categoryID, categoryName, subtypeID, subtypeName,
+				itemID, itemName, function (err, data) {
+				if (err) {
+					res.json({success:false, msg:err});
+				} else {
+					res.json({success:true, msg:data});
+				}
+			});
+		} else {
+			dao.modifyCategory(categoryID, categoryName, subtypeID, subtypeName,
+				itemID, itemName, function (err, data) {
+				if (err) {
+					res.json({success:false, msg:err});
+				} else {
+					res.json({success:true, msg:data});
+				}
+			});
+		}
+	});
+
 
 	router.get('/advertise', function (req, res) {
 		dao.getAdvertise(function (err, data) {

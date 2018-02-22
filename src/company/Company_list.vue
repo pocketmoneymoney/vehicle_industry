@@ -8,8 +8,7 @@
           <event-enroll-panel></event-enroll-panel>
           <div class="main_right">
             <latest-purchase></latest-purchase>
-            <ListCompany :catalogId=catalogId :subcatalogId=subcatalogId></ListCompany>
-            <interview></interview>
+            <ListCompany :catalogId=catalogId :subtypeId=subtypeId></ListCompany>
           </div>
 	      <right-panel></right-panel>
         </div>
@@ -39,27 +38,14 @@ export default {
       topTitle: "活动预告及报名",
       topComponent: "event-enroll-panel",
       catalogId: '',
-      subcatalogId: ''
-    }
-  },
-  methods: {
-    getUrlParam: function() {
-      var params = window.location.search;
-      params = params.replace('?', '');
-      var allParams = params.split('&');
-      for (let index in allParams) {
-        var paramObj = allParams[index].split('=');
-        if (paramObj[0] === 'catalogId') {
-          this.catalogId = paramObj[1]
-        }
-        else if (paramObj[0] === 'subcatalogId') {
-          this.subcatalogId = paramObj[1]
-        }
-      }
+      subtypeId: ''
     }
   },
   mounted: function() {
-    this.getUrlParam();
+	this.catalogId = getUrlKey('catalogId');
+    this.subtypeId = getUrlKey('subtypeId');
+console.log("CCCCCCCCCCCCCCCCC", this.catalogId);
+console.log("CCCCCCCCCCCCCCCCC", this.subtypeId);
   },
   components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
 			   ListCompany, RightPanel, Interview, LastFooter}

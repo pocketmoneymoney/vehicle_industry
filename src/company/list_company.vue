@@ -13,7 +13,7 @@
             </ul>
         </div-->
 				<div class="crumb">
-					<a href="/src/company/index.html">公司</a> > <a>{{ catalogName }}</a> > <a>{{ subcatalogName }}</a>
+					<a href="/src/company/index.html">公司</a> > <a>{{ catalogName }}</a> > <a>{{ subcatalogName }}</a> > <a> {{ itemName }} </a>
 				</div>
         <div class="screening_box">
             <dl>

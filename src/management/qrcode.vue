@@ -43,7 +43,11 @@ export default {
   mounted: function() {
     var self = this;
 	get('/api/admin/qrcode', {}, function(data) {
-		self.qrcode = data;
+   		if (data.success) {
+		  self.qrcode = data.msg;
+		} else {
+		  console.log(data.msg);
+		}
     }, false);
   }
 }

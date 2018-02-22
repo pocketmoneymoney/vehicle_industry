@@ -38,7 +38,11 @@ export default {
     var self = this;
     $('.right_panel').height(this.height);
 	get('/api/admin/qrcode', {}, function(data) {
-		self.qrcode = data;
+		if (data.success) {
+		  self.qrcode = data.msg;
+		} else {
+		  console.log(data.msg);
+		}
     }, false);
   },
   components: {SupplierRecom}

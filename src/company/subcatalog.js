@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       url: "/src/company/list.html?catalogId=",
-      param: '&subcatalogId=',
+      param: '&subtypeId=',
       subcatalog: []
     }
   },

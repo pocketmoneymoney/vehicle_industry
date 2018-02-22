@@ -2,32 +2,33 @@ export default {
   data: function() {
     return {
       url: '/src/company/list.html?catalogId=',
-      param: '&subcatalogId=',
+      param: '&subtypeId=',
       tabs: [],
-      subtabsClone: {},
       subtabs: {}
     }
   },
   mounted: function() {
     var self = this;
-    get('/api/menu/category', {}, function(data) {
-      self.tabs = data;
-      for (let index in self.tabs) {
-        let tab = self.tabs[index];
-        self.subtabsClone[tab.id] = [];
-        get('/api/menu/category/' + tab.id, {}, function(data) {
-          for (let id in data.subtype) {
-            var subtab = data.subtype[id];
-            self.subtabsClone[tab.id].push({name: subtab.name, id: subtab.id});
-          }
-
-          //only change of whole data can make vue detect change
-          self.subtabs = [];
-          self.subtabs = self.subtabsClone;
-          console.log(self.subtabs);
-        }, false);
-      }
-    }, false);
+    get('/api/admin/category', {}, function(data) {
+	  if (data.success) {
+		for (var categoryName in data.msg) {
+		  var category = data.msg[categoryName];
+		  self.tabs.push({'name':categoryName, 'id':category.id});
+		  var subtab = [];
+		  for (var subtypeName in category) {
+			if (subtypeName == 'id') {
+			  continue;
+			} else {
+			  var subtype = category[subtypeName];
+			  subtab.push({'name':subtypeName, 'id':subtype.id});
+			}
+		  }
+		  self.subtabs[category.id] = subtab;
+		}
+	  } else {
+		console.log(data.msg);
+	 }
+	}, false);
   },
   methods: {
     choose: function (index) {

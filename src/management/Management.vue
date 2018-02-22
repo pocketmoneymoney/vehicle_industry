@@ -9,11 +9,15 @@
           <component :is=currentView 
 			@newActivity="newActivity" 
 			@newPosition="newPosition" 
+			@editCategory="editCategory" 
+			@freshCategory="freshCategory" 
+			@editCategoryDone="editCategoryDone" 
 			@positionApplication="positionApplication" 
 			@activityApplication="activityApplication" 
 			@purchaseApplication="purchaseApplication" 
 			:activity="activity" 
 			:position="position" 
+			:category="currentCategory" 
 			:purchase="purchase"></component>
 		</div>
       </div>
@@ -40,13 +44,15 @@ import NewPosition from './new_position.vue'
 import PositionApplication from './position_application.vue'
 import Purchase from './purchase.vue'
 import PurchaseApplication from './purchase_application.vue'
-
+import Category from './category.vue'
+import EditCategory from './edit_category.vue'
 import Qrcode from './qrcode.vue'
 
 export default {
   data: function() {
     return {
       currentView: "no-authorized",
+	  currentCategory: "",
       position: {},
 	  activity: {},
 	  purchase: {}
@@ -57,17 +63,13 @@ export default {
       if (this.currentView != "no-authorized") {
         if (tab.id === 1) {
           this.currentView = 'supplier';
-        }
-        else if (tab.id === 2) {
+        } else if (tab.id === 2) {
           this.currentView = 'buyer';
-        }
-        else if (tab.id === 3) {
+        } else if (tab.id === 3) {
           this.currentView = 'activity';
-        }
-        else if (tab.id === 4) {
+        } else if (tab.id === 4) {
           this.currentView = 'position';
-        }
-        else if (tab.id === 5) {
+        } else if (tab.id === 5) {
           this.currentView = 'purchase';
         } else if (tab.id === 6) {
           this.currentView = 'qrcode';
@@ -84,6 +86,23 @@ export default {
     newPosition: function() {
       if (this.currentView != "no-authorized") {
         this.currentView = "new-position";
+      }
+    },
+    editCategory: function(category) {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "edit-category";
+		this.currentCategory = category;
+      }
+    },
+    freshCategory: function() {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "edit-category";
+		window.location.reload();
+      }
+    },
+    editCategoryDone: function() {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "category";
       }
     },
     positionApplication: function(position) {
@@ -118,7 +137,8 @@ export default {
   components: {LeftNav, TopBar, MainHeader, MainNav, LastFooter, 
 			   NoAuthorized, Supplier, Buyer, Activity, NewActivity, 
 			   ActivityApplication, Purchase, PurchaseApplication,
-         Position, NewPosition, PositionApplication, Purchase, Qrcode} 
+         	   Position, NewPosition, PositionApplication, Purchase, 
+			   Category, EditCategory, Qrcode} 
 }
 </script>
 

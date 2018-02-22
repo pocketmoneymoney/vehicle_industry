@@ -298,3 +298,28 @@
     color:#3d9ccc;
     cursor: pointer;
 }
+
+
+/************************************************
+ ***
+ ***  Admin Panel
+ ***
+ ************************************************/
+.admin_add { 
+	float: right;
+    margin: 5px 5px 0 15px;
+	background:#e2f5ff; 
+	border:1px solid #c8eafa; 
+	border-radius:0.2em; 
+	font-size:13px; 
+	line-height:26px; 
+	text-align:center; 
+	color:#3d9ccc; 
+	padding:0 10px;
+    cursor: pointer;
+}
+
+.admin_op_button {
+  cursor: pointer;
+}
+

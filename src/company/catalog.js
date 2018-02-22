@@ -1,34 +1,36 @@
-import SubCatalog from './subcatalog.vue'
 import Search from '../util/search.vue'
 
 export default {
   data() {
-    /*
-    var catalog = [];
-    var subcatalog = {
-      main: '发动机',
-      sub: ['冷却系统', '润滑系统', '点火系统']
-    };
-    catalog.push(subcatalog);
-    var subcatalog = {
-      main: '电子电器',
-      sub: ['蓄电池', '仪表', '暖风空调系统']
-    };
-    catalog.push(subcatalog);
-    */
     return {
+      url: "/src/company/list.html?catalogId=",
+      param: '&subtypeId=',
       tabs: [],
-      subtabs: [],
-      subtabsClone: []
+      subtabs: []
     }
   },
   mounted: function() {
     var self = this;
-    get('/api/menu/category', {}, function(data) {
-      self.tabs = data;
-      for (let index in self.tabs) {
-      }
-    }, false);
+    get('/api/admin/category', {}, function(data) {
+	  if (data.success) {
+		for (var categoryName in data.msg) {
+		  var category = data.msg[categoryName];
+		  self.tabs.push({'name':categoryName, 'id':category.id});
+		  var subtab = [];
+		  for (var subtypeName in category) {
+			if (subtypeName == 'id') {
+			  continue;
+			} else {
+			  var subtype = category[subtypeName];
+			  subtab.push({'name':subtypeName, 'id':subtype.id});
+			}
+		  }
+		  self.subtabs[category.id] = subtab;
+		}
+	  } else {
+		console.log(data.msg);
+	 }
+	}, false);
   },
-  components: {SubCatalog, Search}
+  components: {Search}
 }
