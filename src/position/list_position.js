@@ -2,17 +2,9 @@ import Page from '../util/page.vue'
 
 export default {
   data() {
-    var positions = [];
-    var position = {
-	  id: 3,
-      name: 'Guangzhou Shiyizhong Information Technology Co., Ltd.',
-      company: 'window switch,parking sensor,clock spring,ABS sensor,blower motor resistor',
-	  brief: 'aaaa,a,,a,,aaaaa,b,,b,s,s,,,cddsdfkdd'
-    };
-    positions.push(position);
     return {
 	  enrollUrl: '/src/position/apply.html?positionId=',
-      positions: positions,
+      positions: [],
       curPage: 8,
       totalPage: 11
     }
@@ -23,6 +15,12 @@ export default {
     }
   },
   mounted: function() {
+    var self = this;
+    get('/api/position/list?page=0&num=4', {}, function(data) {
+       if (data.success) {
+		self.positions = data.msg;
+		}
+    }, false);
   },
   components: {Page}
 }

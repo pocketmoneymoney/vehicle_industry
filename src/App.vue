@@ -9,7 +9,6 @@
           <latest-purchase></latest-purchase>
           <latest-event></latest-event>
           <latest-position></latest-position>
-          <interview></interview>
         </div>
 		<right-panel></right-panel>
       </div>
@@ -25,11 +24,9 @@ import MainNav from './util/main_nav.vue'
 import RightPanel from './util/right_panel.vue'
 import LastFooter from './util/footer.vue'
 
-import LatestPurchase from './util/latest_purchase.vue'
+import LatestPurchase from './index/latest_purchase.vue'
 import LatestEvent from './index/latest_event.vue'
 import LatestPosition from './index/latest_position.vue'
-
-import Interview from './util/interview.vue'
 
 export default {
   data: function() {
@@ -43,7 +40,7 @@ export default {
 	}
   },
   components: {LeftNav, MainHeader, TopBar, MainNav, LatestPurchase, LatestEvent, 
-			   LatestPosition, RightPanel, Interview, LastFooter}
+			   LatestPosition, RightPanel, LastFooter}
 }
 </script>
 

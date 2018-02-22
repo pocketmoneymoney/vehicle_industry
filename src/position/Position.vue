@@ -7,9 +7,7 @@
         <div>
          <event-enroll-panel></event-enroll-panel>
           <div class="main_right">
-          <latest-purchase></latest-purchase>
           <list-position-detail></list-position-detail>
-          <interview></interview>
           </div>
 	      <right-panel></right-panel>
         </div>
@@ -23,7 +21,6 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
-import Interview from '../util/interview.vue'
 import RightPanel from '../util/right_panel.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
@@ -49,31 +46,6 @@ export default {
 
 <style lang="scss">
 @import '../../css/rem.scss';
-
-.back_wrapper{
-  width: t(1200);
-  background-color:#f9f9f8;
-}
-.main{
-	width: 1200px;
-	margin: 0 auto;
-}
-
-/* clearfix elimate float:left has no height */
-.clearfix:before,
-.clearfix:after {
-  content: '\0020';
-  display: block;
-  overflow: hidden;
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}
-
-.clearfix:after {
-  clear: both;
-}
-
 .main_right{
 	float: left;
 	width: 740px;

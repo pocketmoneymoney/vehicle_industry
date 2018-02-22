@@ -4,39 +4,15 @@
         <span>最新职位</span>
     </h3>
     <!--中间列表 切换-->
-    <!--div class="middle_list tabArea">
-        <div class="tabhd middle_list_title">
-            <ul>
-                <li><a href="product_list.aspx">Product List</a></li>
-                <li class="cur"><a href="position_list.aspx">Company List</a></li>
-            </ul>
-        </div-->
      <ul class="product_list">
-         
          <li v-for="position in positions">
              <h4 class="position_title"><a href="../supplierEC/show_index.aspx?op=2382">{{ position.name }}</a></h4>
              <em>{{ position.company }}</em>
-             <!--div class="position_list_left">
-                 <p>
-                     <a href="pro_com_detail.aspx?op=32846"><img width="110px" src='../admin/file/img/20180129095347897.jpg' /></a>
-                     <em>Window Switch For Chevrolet/GMC 15151356 IWSGM021</em>
-                 </p>
-                 
-             </div-->
              <div class="position_list_right">
                  <dl>
                      <dt>职位要求</dt>
                      <dd>{{ position.brief }}</dd>
                  </dl>
-                 <!--dl>
-                     <dt>Total Revenue:</dt>
-                     <dd>USD 1000,000 - 2500,000</dd>
-                 </dl>
-                 <dl>
-                     <dt>Bussiness Type:</dt>
-                     <dd>Manfacturer,Trading Company</dd>
-                 </dl-->
-                 
              </div>
             <a :href="enrollUrl + position.id" class="contact_btn">我要报名</a>
          </li>
