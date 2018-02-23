@@ -31,5 +31,8 @@ module.exports = function(express) {
          });
     });
 
+    router.post('/new', function(req, res) {
+    });
+
     return router;
 };
