@@ -16,19 +16,18 @@ import EventEnroll from './event_enroll.vue'
 export default {
   data() {
 	  return {
-		  latestMeeting: {
-			  id: 1,
-			  name: 'aa',
-			  location: 'bb',
-			  time: 'cc'
-		  },
-		  latestVisiting: {
-			  id: 1,
-			  name: 'aa',
-			  location: 'bb',
-			  time: 'cc'
-		  }
+		  latestMeeting: {},
+		  latestVisiting: {}
 	  }
+  },
+  mounted: function() {
+    var self = this;
+    get('/api/activity/latest', {type: 'meeting'}, function(data) {
+        self.latestMeeting = data;
+    }, false);
+    get('/api/activity/latest', {type: 'visiting'}, function(data) {
+        self.latestVisiting= data;
+    }, false);
   },
   components: {EventEnroll}
 }

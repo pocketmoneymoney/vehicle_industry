@@ -12,7 +12,7 @@
 			<p>{{activity.location}} </p>
         </dd>
         <dt>
-            <span class="event_enroll_button"><a :href="enrollUrl + activity.id">报名</a></span>
+            <span class="event_enroll_button"><a :href="enrollUrl + activity._id">报名</a></span>
         </dt>
     </dl>
   </div>
@@ -25,7 +25,12 @@ export default {
 		return {
 			enrollUrl: '/src/util/activity_enroll.html?activityId='
 		}
-	}
+	},
+  watch: {
+    activity: function() {
+      console.log(this.activity);
+    }
+  }
 }
 </script>
 
@@ -33,7 +38,7 @@ export default {
 .project_enroll{ margin-top:10px; width:200px; margin-bottom:10px; float:left; background:#fff; padding:9px 2px 2px 2px;overflow:hidden; position:relative;}
 /*.project_enroll:hover{ background-color:#fbfbfb; border-bottom:#dbdbdb 3px solid;}*/
 .project_enroll a{ width:100%; display:block;}
-.project_enroll h4{ font-size:16px; color:#000; padding-bottom:0.25em; margin:0;}
+.project_enroll h4{ font-size:16px; color:#000; padding-bottom:0.25em; margin:0 0 10px 0;}
 .project_enroll p{ font-size:11px; color:#888888; line-height:20px;}
 .project_enroll dd{ padding-top:4px;}
 .project_enroll dd.dd{  font-family:Arial;}

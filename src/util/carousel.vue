@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  props: ['carouselId', 'imgPaths', 'width'],
+  props: ['carouselId', 'imgPaths', 'width', 'height'],
   data() {
     return {
     }
@@ -29,6 +29,9 @@ export default {
       });
 	  if (this.width) {
 		  $('.container-lg').width(this.width);
+	  }
+	  if (this.height) {
+		  $('#' + this.carouselId + ' img').height(this.height);
 	  }
     }
   },

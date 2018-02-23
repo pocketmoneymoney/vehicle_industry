@@ -5,7 +5,7 @@
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
         <div>
-		  <a :href="activityEnrollUrl + latestMeeting.id"><img style="width:990px;float:left;" :src="latestMeeting.img" /></a>
+		  <a :href="activityEnrollUrl + latestMeeting._id"><img style="width:990px;float:left;" :src="imgUrl + latestMeeting.bigPoster" /></a>
 	      <right-panel></right-panel>
 		  <div class="new_meetings">
 		    <meeting-panel v-for="meeting in newMeetings" :activity="meeting"></meeting-panel>
@@ -35,29 +35,11 @@ import HistoryMeeting from '../util/carousel.vue'
 export default {
   data: function() {
     return {
+      imgUrl: 'http://localhost:8099/',
       viewName: "meeting",
 	  activityEnrollUrl: '/src/util/activity_enroll.html?activityId=',
-	  latestMeeting: {img: '/img/1.jpg', id: 1},
-	  newMeetings: [
-	    {id: 2,
-		 name: 'aaaa',
-		 location: 'bbb',
-		 img: '/img/1.jpg',
-		 time: 'ccccc'
-		},
-	    {id: 3,
-		 name: 'aaaa',
-		 location: 'bbb',
-		 img: '/img/1.jpg',
-		 time: 'ccccc'
-		},
-	    {id: 4,
-		 name: 'aaaa',
-		 location: 'bbb',
-		 img: '/img/1.jpg',
-		 time: 'ccccc'
-		}
-	  ],
+	  latestMeeting: {},
+	  newMeetings: [],
       historyImgPaths: ['/img/1.jpg', '/img/2.jpg', '/img/3.jpg']
     }
   },
@@ -65,6 +47,15 @@ export default {
 	viewChange: function(index) {
 	  this.itemSeries = this.items[index];
 	}
+  },
+  mounted: function() {
+    var self = this;
+    get('/api/activity/latest', {type: 'meeting'}, function(data) {
+        self.latestMeeting = data;
+    }, false);
+    get('/api/activity/list', {type: 'meeting', num: 3}, function(data) {
+        self.newMeetings = data;
+    }, false);
   },
   components: {MainHeader, TopBar, MainNav, MeetingPanel, HistoryMeeting,
 			   RightPanel, Interview, LastFooter}

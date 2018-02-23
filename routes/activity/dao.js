@@ -6,6 +6,7 @@ var db = require('../common/db');
 
 function dbHandler() {
      db.handler.call(this, {
+         'id':      String,
 		     'name':		String,
 		     'location': 	String,
 		     'time':		Date,
@@ -31,6 +32,10 @@ dbHandler.prototype.getActivityAmount = function(callback) {
 
 dbHandler.prototype.getActivityDetail = function (id, callback) {
     this.findOne({'_id':id}, callback);
+};
+
+dbHandler.prototype.getLatestActivityDetail = function (type, callback) {
+    this.findOne({'type': type}, null, {sort: {'_id': -1}}, callback);
 };
 
 dbHandler.prototype.addActivity = function (name, id, alocation, time, type, bigPoster, smallPoster, tinyPoster, callback) {
