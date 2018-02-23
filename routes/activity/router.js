@@ -13,6 +13,7 @@ module.exports = function(express) {
     var logger = require('log4js').getLogger('server');
 
 	  var multer = require('multer');
+	  var path = require('path');
     var dao = require('./dao.js');
 
     var router = express.Router({mergeParams: true});
@@ -32,7 +33,7 @@ module.exports = function(express) {
 
 	  var storage = multer.diskStorage({
     		destination: function (req, file, cb) {
-      		cb(null, './public/supplier')
+      		cb(null, './public/activity')
     		},
     		filename: function (req, file, cb) {
       		cb(null, file.fieldname + '-' + Date.now())
@@ -62,9 +63,12 @@ module.exports = function(express) {
          });
     });
 
-	router.post('/new', upload.single('avatar'), passport.authenticate('jwt', {session: false}), function(req, res) {
-    console.log(req.user.role);
-    console.log(req.body.name);
+	router.post('/new', upload.fields([{name: 'smallPoster', maxCount: 1},{name: 'bigPoster', maxCount: 1}, {name: 'tinyPoster', maxCount: 1}]), passport.authenticate('jwt', {session: false}), function(req, res) {
+    if (req.user.role !== 'admin') {
+				res.json({success: false, msg: "用户认证失败"});
+        return;
+    }
+    /*
     var token = getToken(req.headers);
     if (token) {
         jwt.verify(token, config.secret, function(err, decoded) {
@@ -75,9 +79,27 @@ module.exports = function(express) {
           });
 		    });
 	  }
+    */
 	  var newID = helper.uniqueID(req.body.name);
-    console.log(req.body.name);
-      dao.addActivity(req.body['name'], newID, req.body['location'], req.body['time'], function (err, result) {
+
+    var bigPoster = null;
+    var smallPoster = null;
+    var tinyPoster = null;
+    var bigPosterFile = req.files.bigPoster[0];
+		if (bigPosterFile) {
+			bigPoster = '/' + path.join(bigPosterFile.destination, bigPosterFile.filename);
+		}
+    var smallPosterFile = req.files.smallPoster[0];
+		if (smallPosterFile) {
+			smallPoster = '/' + path.join(smallPosterFile.destination, smallPosterFile.filename);
+		}
+    var tinyPosterFile = req.files.tinyPoster[0];
+		if (tinyPosterFile) {
+			tinyPoster = '/' + path.join(tinyPosterFile.destination, tinyPosterFile.filename);
+		}
+
+    var time = new Date(Number(req.body.time));
+    dao.addActivity(req.body.name, newID, req.body.location, time, req.body.type, bigPoster, smallPoster, tinyPoster, function (err, result) {
 		  if (err) {
 			res.json({success: false, msg: "添加活动失败"});
 		  }

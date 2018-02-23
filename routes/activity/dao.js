@@ -33,13 +33,17 @@ dbHandler.prototype.getActivityDetail = function (id, callback) {
     this.findOne({'_id':id}, callback);
 };
 
-dbHandler.prototype.addActivity = function (name, id, alocation, time, callback) {
+dbHandler.prototype.addActivity = function (name, id, alocation, time, type, bigPoster, smallPoster, tinyPoster, callback) {
 	this.create({
 		name: name,
 		id: id,
 		location: alocation,
 		time: time,
-        publishedTime: new Date()
+    type: type,
+    bigPoster: bigPoster,
+    smallPoster: smallPoster,
+    tinyPoster: tinyPoster,
+    publishedTime: new Date()
 	}, callback);
 };
 

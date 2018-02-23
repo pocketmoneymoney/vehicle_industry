@@ -5,20 +5,20 @@
           <dl class="clearfix">
               <dt><b>*</b><span>活动名称：</span></dt>
               <dd>
-                  <input v-model="name" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="name" class="text" style="z-index: 9" maxlength="20"
                       type="text" />
               </dd>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>活动时间：</span></dt>
               <dd>
-                  <input v-model="time" class="text" style="z-index: 10000" name="email" type="text" />
+                  <input class="text" ref="activityDatepicker" style="z-index: 10000" name="email" />
               </dd>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>活动地点：</span></dt>
               <dd><input class="text"
-                  value="" style="z-index: 10000" v-model="location" type="text" />
+                  value="" style="z-index: 9" v-model="location" type="text" />
               </dd>
           </dl>
           <dl>
@@ -34,19 +34,19 @@
           <dl class="clearfix">
               <dt><b>*</b><span>活动大海报：</span></dt>
               <dd>
-                  <input ref="bigActivityPoster" type="file" name="file" style="z-index:10000" />
+                  <input ref="bigActivityPoster" type="file" name="file" style="z-index: 9" />
               </dd>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>活动小海报：</span></dt>
               <dd>
-                  <input ref="smallActivityPoster" type="file" name="file" style="z-index:10000" />
+                  <input ref="smallActivityPoster" type="file" name="file" style="z-index: 9" />
               </dd>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>活动预告图：</span></dt>
               <dd>
-                  <input ref="tinyActivityPoster" type="file" name="file" style="z-index:10000" />
+                  <input ref="tinyActivityPoster" type="file" name="file" style="z-index: 9" />
               </dd>
           </dl>
         </div>
@@ -66,8 +66,11 @@ export default {
   },
   methods: {
     newActivity: function() {
-      console.log(this.chosenProducts);
-      if (this.name === '' || this.time === '' || this.location === '' || this.type === '') {
+      this.time = $(this.$refs.activityDatepicker).datepicker('getUTCDate').getTime();
+      var bigPoster = this.$refs.bigActivityPoster.files[0];
+      var smallPoster = this.$refs.smallActivityPoster.files[0];
+      var tinyPoster = this.$refs.tinyActivityPoster.files[0];
+      if (this.name === '' || this.time === '' || this.location === '' || this.type === '' || bigPoster === undefined || smallPoster === undefined || tinyPoster === undefined) {
         alert('请填写完整资料');
         return;
       }
@@ -75,14 +78,21 @@ export default {
       oMyForm.append("name", this.name);
       oMyForm.append("location", this.location);
       oMyForm.append("time", this.time);
-      oMyForm.append("avatar", this.$refs.bigActivityPoster.files[0]);
+      oMyForm.append("type", this.type);
+      oMyForm.append("bigPoster", bigPoster);
+      oMyForm.append("smallPoster", smallPoster);
+      oMyForm.append("tinyPoster", tinyPoster);
       var self = this;
-      postWithFile('/api/supplier', oMyForm, function(data) {
+      postWithFile('/api/activity/new', oMyForm, function(data) {
         console.log(data);
       }, true);
     }
   },
   mounted: function() {
+    $(this.$refs.activityDatepicker).datepicker({
+      format: 'mm/dd/yyyy',
+      startDate: '-3d'
+    });
   }
 }
 </script>
