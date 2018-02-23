@@ -104,10 +104,11 @@ module.exports = function(express) {
 		var name 		= req.body.name;
 		var company		= req.body.company;
 		var brief		= req.body.brief;
+		var location	= req.body.location;
 		var id			= req.body.id;
 
 		if (id) {	
-			dao.modifyPosition(id, name, company, brief, function (err) {
+			dao.modifyPosition(id, name, company, brief, location, function (err) {
 				if (err) {
 					res.json({success: false, msg:err});
 				} else {
@@ -115,7 +116,7 @@ module.exports = function(express) {
 				}
 			});
 		} else {
-			dao.addPosition(name, company, brief, function (err) {
+			dao.addPosition(name, company, brief, location, function (err) {
 				if (err) {
 					res.json({success: false, msg:err});
 				} else {

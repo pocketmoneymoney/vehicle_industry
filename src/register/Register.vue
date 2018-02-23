@@ -125,10 +125,12 @@ export default {
   },
   methods: {
     register: function() {
-	  var regNumber = /\d+/; //验证0-9的任意数字最少出现1次。
- 	  var regString = /[a-zA-Z]+/; //验证大小写26个字母任意字母最少出现1次。
+	  var username = trimStr(this.username);
+	  var email = trimStr(this.email);
+	  var phone = trimStr(this.phone);
+	  var personName = trimStr(this.personName);
 
-      if (this.username === '' || this.email === '' || this.phone === '' ||
+      if (username === '' || email === '' || phone === '' || personName === '' ||
 		  this.password1 === '' || this.password2 === '' || this.role === '') {
         alert('请填写完整资料');
         return;
@@ -138,37 +140,51 @@ export default {
         alert('您输入的密码长度不满足要求, 请重新填写');
         return;
 	  }
-      if (!regNumber.test(this.password1) || !regString.test(this.password1)) {
+		
+	  if (!CombineStrCheck(this.password1)) {
         alert('您输入的密码格式不满足要求, 请重新填写');
         return;
 	  }
+
       if (this.password1 !== this.password2) {
         alert('两次密码不一致');
         return;
       }
 
+	  if (specialStrCheck(username) || specialStrCheck(this.password1)) {
+        alert('请只输入数字，字母或下划线组成的用户名和密码');
+        return;
+	  }
+
+	  var companyName = undefined;
+	  var product = undefined;
+	  var customer = undefined;
+
       if (this.role === "supplier") {
-        if (this.companyName === '' || this.product === '' || 
-			this.customer === '') {
+		companyName = trimStr(this.companyName);
+		product = trimStr(this.product);
+		customer = trimStr(this.customer);
+        if (companyName === '' || product === '' || customer === '') {
           alert('请填写完整资料');
           return;
         }
       }
 
 	  var params = {
-		username: this.username,
+		username: username,
 		password: this.password1,
 		role: this.role,
-		person: this.personName,
-		phone: this.phone,
-		email: this.email,
-		company: this.companyName,
-		product: this.product,
-		customer: this.customer};
+		person: personName,
+		phone: phone,
+		email: email,
+		company: companyName,
+		product: product,
+		customer: customer};
 
       post('/user/register', params, function(data) {
         if (data.success) {
           setCookie('token', data.token, 3000);
+
 		  if (data.role == 'supplier') {
             window.location.href = '/src/supplier/index.html';
 	      } else if (data.role == 'admin') {	

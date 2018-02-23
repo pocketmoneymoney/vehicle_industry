@@ -129,6 +129,7 @@ dbHandler.prototype.getCategoryName = function (categoryID, subtypeID,
 					break;
 				}
 			}
+			callback(null, result);
 		}
 	});
 };

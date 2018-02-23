@@ -7,8 +7,8 @@
         <div>
           <event-enroll-panel></event-enroll-panel>
           <div class="main_right">
-            <latest-purchase></latest-purchase>
-            <ListCompany :catalogId=catalogId :subtypeId=subtypeId></ListCompany>
+            <ListCompany :categoryId="categoryId" :subtypeId="subtypeId"
+				:itemId="subtypeId"></ListCompany>
           </div>
 	      <right-panel></right-panel>
         </div>
@@ -21,7 +21,6 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
-import Interview from '../util/interview.vue'
 import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
 
@@ -34,21 +33,16 @@ export default {
   data: function() {
     return {
       viewName: "company",
-      topProduct: "eventEnroll",
-      topTitle: "活动预告及报名",
-      topComponent: "event-enroll-panel",
-      catalogId: '',
+      categoryId: '',
       subtypeId: ''
     }
   },
   mounted: function() {
-	this.catalogId = getUrlKey('catalogId');
+	this.categoryId = getUrlKey('categoryId');
     this.subtypeId = getUrlKey('subtypeId');
-console.log("CCCCCCCCCCCCCCCCC", this.catalogId);
-console.log("CCCCCCCCCCCCCCCCC", this.subtypeId);
   },
   components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
-			   ListCompany, RightPanel, Interview, LastFooter}
+			   ListCompany, RightPanel, LastFooter}
 }
 </script>
 

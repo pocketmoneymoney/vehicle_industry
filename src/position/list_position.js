@@ -22,7 +22,17 @@ export default {
     var self = this;
     get('/api/position/list?page=0&num=4', {}, function(data) {
        if (data.success) {
-		self.positions = data.msg;
+		  for (var index = 0; index < data.msg.length; index++) {
+			var position = data.msg[index];
+			var newPosition = {
+				'name': position.name,
+				'company': position.company,
+				'location': position.location,
+				'id': position.id,
+				'brief': position.brief.substr(0, 150) + "... ... "
+			};
+			self.positions.push(newPosition);
+		  }	
 		}
     }, false);
   },

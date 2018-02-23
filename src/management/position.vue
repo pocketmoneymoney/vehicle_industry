@@ -14,7 +14,7 @@
           </thead>
           <tbody>
             <tr v-for="position in positions">
-              <th>{{position.name}}</th>
+              <th @click=redirectApplication(position) clas="admin_op_button">{{position.name}}</th>
               <th>{{position.company}}</th>
               <th>{{position.time}}</th>
 			  <th>
@@ -36,6 +36,10 @@ export default {
     }
   },
   methods: {
+    redirectApplication: function(position) {
+	  var positionURL = '/src/position/apply.html?id=' + position.id;
+      window.location.href = positionURL;
+    },
     positionApplication: function(position) {
       this.$emit("positionApplication", position);
     },

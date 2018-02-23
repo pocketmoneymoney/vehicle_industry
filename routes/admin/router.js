@@ -73,11 +73,10 @@ module.exports = function(express) {
 		});
 	});
 
-	router.get('/categoryname', function (req, res) {
-		var categoryID = req.query.categoryID;
-		var subtypeID = req.query.subtypeID;
-		var itemID = req.query.itemID;
-
+	router.post('/categoryName', function (req, res) {
+		var categoryID = req.body.categoryID;
+		var subtypeID = req.body.subtypeID;
+		var itemID = req.body.itemID;
 		dao.getCategoryName(categoryID, subtypeID, itemID, function (err, data) {
 			if (err) {
 				res.json({success:false, msg:err});

@@ -1,6 +1,5 @@
 import Vue from 'vue'
-//import store from '../store/index'
-import App from './New_equipment.vue'
+import App from './Search.vue'
 
 var app = new Vue({
   el: '#main',

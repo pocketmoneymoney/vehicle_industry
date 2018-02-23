@@ -11,6 +11,7 @@ function dbHandler() {
 		'name':			{ type:String, required:true },
 		'company':		String,
 		'brief':		String,
+		'location':		String,
 		'time':			Date,
 		'apply':		Array
 	}, 'position', 'position');
@@ -27,7 +28,7 @@ dbHandler.prototype.getPositionAmount = function(callback) {
     this.count(callback);
 };
 
-dbHandler.prototype.addPosition = function(name, company, brief, callback) {
+dbHandler.prototype.addPosition = function(name, company, brief, location, callback) {
 	var id = helper.uniqueID(name);
 	var myDate = new Date();
 	this.create({
@@ -35,6 +36,7 @@ dbHandler.prototype.addPosition = function(name, company, brief, callback) {
 		'name': name,
 		'company': company,
 		'brief': brief,
+		'location': location,
 		'time': myDate,
 		'apply': []}, callback);
 };
@@ -76,11 +78,12 @@ dbHandler.prototype.getPositionAppliers = function(id, callback) {
 	});
 };
 
-dbHandler.prototype.modifyPosition = function(id, name, company, brief, callback) {
+dbHandler.prototype.modifyPosition = function(id, name, company, brief, location, callback) {
 	this.update({'id':id}, {$set:{
 		'name': name,
 		'company': company,
-		'brief': brief}}, {}, callback);
+		'brief': brief,
+		'location': location}}, {}, callback);
 };
 
 dbHandler.prototype.deletePosition = function(id, callback) {

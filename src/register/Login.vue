@@ -56,20 +56,26 @@ export default {
   },
   methods: {
     login: function() {
-      if (this.username === '') {
+	  var username = trimStr(this.username);
+	  var password = trimStr(this.password);
+
+      if (username === '') {
         alert('请输入正确的用户名');
         return;
       }
 
-      if (this.password === '') {
+      if (password === '') {
         alert('请输入用户密码');
         return;
       }
 
-      post('/user/login', {
-		username: this.username, 
-		password: this.password}, function(data) {
+	  if (specialStrCheck(username) || specialStrCheck(password)) {
+        alert('请只输入数字，字母或下划线组成的用户名和密码');
+        return;
+	  }
 
+      post('/user/login', {username: username, password: password}, 
+	   function(data) {
         if (data.token) {
           setCookie('token', data.token, 3000);
 

@@ -17,6 +17,13 @@
               </dd>
           </dl>
           <dl>
+              <dt><b>*</b><span>工作地址：</span></dt>
+              <dd>
+                  <input v-model="position.location" class="text" style="z-index: 10000" 
+					maxlength="50" type="text" />
+              </dd>
+          </dl>
+          <dl>
               <dt><b>*</b><span>职位要求：</span></dt>
               <dd>
                   <textarea style="z-index: 10000; width:450px;height:300px;" v-model="position.brief" 
@@ -43,6 +50,7 @@ export default {
       	name: '',
       	company: '',
       	brief: '',
+      	location: '',
 		id: '',
 		time: '',
 		apply: []}
@@ -56,8 +64,9 @@ export default {
 	  var name = trimStr(this.position.name);
 	  var company = trimStr(this.position.company);
 	  var brief = this.position.brief;
+	  var location = this.position.location;
 
-      if (name === '' || company === '' || brief === '') {
+      if (name === '' || company === '' || brief === '' || location === '') {
         alert('请填写完整资料');
         return;
       }
@@ -66,6 +75,7 @@ export default {
 	  params['name'] = name;
 	  params['company'] = company;
 	  params['brief'] = brief;
+	  params['location'] = location;
 	
       if (this.position.id) {
 		params['id'] = this.position.id;

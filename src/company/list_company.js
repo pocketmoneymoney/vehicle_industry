@@ -2,7 +2,6 @@ import Search from '../util/search.vue'
 import Page from '../util/page.vue'
 
 export default {
-  props: ['catalogId', 'subtypeId', 'itemId'],
   data() {
     var companys = [];
     var company = {
@@ -18,8 +17,8 @@ export default {
       totalPage: 11,
       currentItem: {},
       items: [],
-      catalogName: '',
-      subcatalogName: '',
+      categoryName: '',
+      subtypeName: '',
       itemName: ''
     }
   },
@@ -40,36 +39,38 @@ export default {
     }
   },
   mounted: function() {
+	this.categoryId = getUrlKey('categoryId');
+    this.subtypeId = getUrlKey('subtypeId');
+
+    var params = {};
+    if (this.categoryId) {
+      params['categoryID'] = this.categoryId;
+	}
+    if (this.subtypeId) {
+    	params['subtypeID'] = this.subtypeId;
+	}
+	if (this.itemId) {
+		params['itemID'] = this.itemId;
+	}
+
+	var self = this;
+	post('/api/admin/categoryName', params, function (data) {
+		if (data.success) {
+	      if (self.categoryId) {
+			self.categoryName = data.msg['categoryName'];
+		  }
+		  if (self.subtypeId) {
+		    self.subtypeName = data.msg['subtypeName'];
+		  }
+          if (self.itemId) {
+		    self.itemName = data.msg['itemName'];
+		  }
+        }
+	}, false);
     this.searchCompany();
   },
   watch: {
     catalogId:  function() {
-	  var self = this;
-      var params = {};
-      if (self.catalogId) {
-		params['categoryID'] = self.catalogId;
-	  }
-	  if (self.subtypeId) {
-		params['subtypeID'] = self.subtypeId;
-	  }
-	  if (self.itemId) {
-		params['itemID'] = self.itemId;
-	  }
-
-	  get('/api/admin/categoryname', params, function (data) {
-	console.log(data);  
-		if (data.success) {
-	      if (self.catelogId) {
-			self.catelogName = data.msg['categoryName'];
-		  }
-		  if (self.subtypeId) {
-		    self.subcatalogId = data.msg['subtypeName'];
-		  }
-          if (self.itemId) {
-		    self.itemId = data.msg['itemName'];
-		  }
-        }
-	  }, false);
     }
   },
   components: {Search, Page}

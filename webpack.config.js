@@ -14,7 +14,7 @@ module.exports = {
 	  purchase: './src/purchase/purchase.js',
 	  enroll: './src/purchase/enroll.js',
 	  company: './src/company/company.js',
-	  company_list: './src/company/company_list.js',
+	  company_search: './src/company/search.js',
 	  company_detail: './src/company/company_detail.js',
 	  edit_brief: './src/company/detail/edit_brief.js',
 	  edit_info: './src/company/detail/edit_info.js',

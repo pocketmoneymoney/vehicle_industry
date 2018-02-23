@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ListPanel from '../index/list_panel.vue'
+import ListPanel from './list_panel.vue'
 
 export default {
   data() {

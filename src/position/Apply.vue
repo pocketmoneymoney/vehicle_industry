@@ -6,7 +6,7 @@
       <main-nav></main-nav>
       <div class="main clearfix">
         <div class="formbox clearfix">
-          <h3>投递职位</h3>
+          <h3 class="h3_cls">职位详情</h3>
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><span>应聘岗位：</span></dt>
@@ -18,6 +18,20 @@
               <dd> <span>{{position.company}} </span>
               </dd>
           </dl>
+          <dl>
+              <dt><span>工作地址：</span></dt>
+              <dd> <span>{{position.location}} </span>
+              </dd>
+          </dl>
+          <dl>
+              <dt><span>职位要求：</span></dt>
+              <dd> <span>{{position.brief}} </span>
+              </dd>
+          </dl>
+	      <div style="clear:both;"> </div>
+		  <div v-if="isNotAdmin">
+          <h3 class="h3_cls">我要投递</h3>
+	      <div style="clear:both;"> </div>
           <dl>
               <dt><b>*</b><span>姓名：</span></dt>
               <dd>
@@ -49,6 +63,7 @@
             <span><a @click="cancelActivity">取消并返回</a></span>
             <span><a @click="enrollActivity">提交</a></span>
 		  </div>
+		  </div>
         </div>
       </div>
 	  </div>
@@ -67,6 +82,7 @@ export default {
   data: function() {
     return {
  	  position: {},
+	  isNotAdmin: true,
 	  person: {
 		'name': '',
 		'phone': '',
@@ -141,7 +157,9 @@ export default {
 			  }
 			}, false);
 		  }
-		}
+		} else if (data.role == 'admin') {
+          self.isNotAdmin = false;
+        }
 	  }, true);
 	}
   },
@@ -151,4 +169,13 @@ export default {
 
 <style lang="scss">
 @import '../../css/rem.scss';
+.h3_cls {
+	padding-left: 15px;
+	border-left: 6px solid #3d9ccc;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: 15px;
+	font-size: 32px;
+	font-weight: normal;
+}   
 </style>

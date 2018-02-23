@@ -1,10 +1,12 @@
+import Search from '../util/search.vue'
+
 export default {
-  data: function() {
+  data() {
     return {
-      url: '/src/company/search.html?categoryId=',
+      url: "/src/company/search.html?categoryId=",
       param: '&subtypeId=',
       tabs: [],
-      subtabs: {}
+      subtabs: []
     }
   },
   mounted: function() {
@@ -40,9 +42,5 @@ export default {
 	 }
 	}, false);
   },
-  methods: {
-    choose: function (index) {
-      this.$emit('statuschange', this.tabs[index].index);
-    }
-  }
+  components: {Search}
 }

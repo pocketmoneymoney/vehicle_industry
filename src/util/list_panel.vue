@@ -5,11 +5,11 @@
         <a :href="mainUrl">更多</a>
     </h3>
 	<div style="margin-top:10px; margin-left:30px">
-	<li
+	<a
 		v-for="component in components">
-		<p>{{component.title}} </p>
-		<p>{{component.content}} </p>
-	</li>
+		<li style="cursor:pointer; margin-bottom:10px;" 
+			@click="redirectTo(component)">{{component.title}} [[{{component.content}}]] </li>
+	</a>
 	</div>
   </div>
 </template>

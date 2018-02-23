@@ -24,9 +24,9 @@ import MainNav from './util/main_nav.vue'
 import RightPanel from './util/right_panel.vue'
 import LastFooter from './util/footer.vue'
 
-import LatestPurchase from './index/latest_purchase.vue'
-import LatestEvent from './index/latest_event.vue'
-import LatestPosition from './index/latest_position.vue'
+import LatestPurchase from './util/latest_purchase.vue'
+import LatestEvent from './util/latest_event.vue'
+import LatestPosition from './util/latest_position.vue'
 
 export default {
   data: function() {

@@ -1,7 +1,6 @@
 <template>
   <div class="list_company clearfix">
     <h3>
-        <span>公司列表</span>
         <search></search>
     </h3>
     <!--中间列表 切换-->
@@ -13,7 +12,7 @@
             </ul>
         </div-->
 				<div class="crumb">
-					<a href="/src/company/index.html">公司</a> > <a>{{ catalogName }}</a> > <a>{{ subcatalogName }}</a> > <a> {{ itemName }} </a>
+					<a href="/src/company/index.html">公司</a> > <a>{{ categoryName }}</a> > <a>{{ subtypeName }}</a> > <a> {{ itemName }} </a>
 				</div>
         <div class="screening_box">
             <dl>
@@ -109,7 +108,7 @@
 }
 
 .list_company{
-	width: 898px;
+	width: 740px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;

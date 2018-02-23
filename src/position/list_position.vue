@@ -25,7 +25,7 @@
                  <dl>
                      <dt>工作地址</dt>
                      <dd>
-             		   <em>上海</em>
+             		   <em>{{ position.location }}</em>
 					 </dd>
                  </dl>
 			 </div>
@@ -35,7 +35,7 @@
                      <dd>{{ position.brief }}</dd>
                  </dl>
              </div>
-            <a @click="applyPosition(position)" class="contact_btn">我要报名</a>
+            <a @click="applyPosition(position)" class="contact_btn">更多详情</a>
          </li>
      </ul>
      <page :curPage="curPage" :totalPage="totalPage" @pageChanged="changePage"></page>

@@ -1,8 +1,5 @@
 <template>
     <div class="main_nav">
-        <div class="main_nav_title">
-            所有分类
-        </div>
         <ul class="left_main_nav">
           <li
             v-for="tab in tabs"

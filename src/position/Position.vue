@@ -3,7 +3,7 @@
       <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
-        <main-nav></main-nav>
+        <main-nav :currentView="viewName"></main-nav>
         <div>
          <event-enroll-panel></event-enroll-panel>
           <div class="main_right">
@@ -53,12 +53,4 @@ export default {
 	padding: 0px 12px 10px 10px;
 }
 
-h3{
-	height: 14px;
-	line-height: 14px;
-	font-size: 14px;
-	color: #333333;
-  margin: 0;
-  font-weight: bold;
-}
 </style>
