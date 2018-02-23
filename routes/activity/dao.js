@@ -15,7 +15,7 @@ function dbHandler() {
 		     'bigPoster':   String,
 		     'smallPoster': String,
 		     'tinyPoster':  String,
-		     'application': Object,
+		     'applications': Object,
 		}, 'activity', 'activity');
 }
 
@@ -31,18 +31,18 @@ dbHandler.prototype.getActivityAmount = function(callback) {
 };
 
 dbHandler.prototype.getActivityDetail = function (id, callback) {
-    this.findOne({'_id':id}, callback);
+    this.findOne({'id':id}, callback);
 };
 
 dbHandler.prototype.getLatestActivityDetail = function (type, callback) {
     this.findOne({'type': type}, null, {sort: {'_id': -1}}, callback);
 };
 
-dbHandler.prototype.addActivity = function (name, id, alocation, time, type, bigPoster, smallPoster, tinyPoster, callback) {
+dbHandler.prototype.addActivity = function (name, id, location, time, type, bigPoster, smallPoster, tinyPoster, callback) {
 	this.create({
 		name: name,
 		id: id,
-		location: alocation,
+		location: location,
 		time: time,
     type: type,
     bigPoster: bigPoster,
@@ -50,6 +50,12 @@ dbHandler.prototype.addActivity = function (name, id, alocation, time, type, big
     tinyPoster: tinyPoster,
     publishedTime: new Date()
 	}, callback);
+};
+
+dbHandler.prototype.addApplication = function (activityId, userId, name, company, phone, email, comment, callback) {
+  var application = {userId: userId, name: name, company: company, phone: phone, email: email, comment: comment};
+  console.log(activityId);
+  this.update({'id': activityId}, {$push: {'applications': application}}, null, callback);
 };
 
 module.exports = new dbHandler();

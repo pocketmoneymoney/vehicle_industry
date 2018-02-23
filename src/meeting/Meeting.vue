@@ -5,7 +5,7 @@
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
         <div>
-		  <a :href="activityEnrollUrl + latestMeeting._id"><img style="width:990px;float:left;" :src="imgUrl + latestMeeting.bigPoster" /></a>
+		  <a :href="activityEnrollUrl + latestMeeting.id"><img style="width:990px;float:left;" :src="imgUrl + latestMeeting.bigPoster" /></a>
 	      <right-panel></right-panel>
 		  <div class="new_meetings">
 		    <meeting-panel v-for="meeting in newMeetings" :activity="meeting"></meeting-panel>

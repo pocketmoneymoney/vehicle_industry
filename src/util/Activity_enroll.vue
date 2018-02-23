@@ -82,19 +82,9 @@ export default {
         return;
       }
       var self = this;
-      post('/user/enrollActivity', {username: this.newUsername, password: this.newPassword1, email: this.newEmail, role: this.role}, function(data) {
-        if (data.success) {
-          setCookie('token', data.token, 3000);
-          self.isLogin = true;
-          if (data.role === 'admin') {
-            self.isAdmin = true;
-          }
-          window.location.href = '/src/index.html';
-        }
-        else {
-          alert(data.msg);
-        }
-      }, false);
+      post('/api/activity/enroll', {id: this.activityId, name: this.name, company: this.company, position: this.position, phone: this.phone, email: this.email, comment: this.comment}, function(data) {
+          console.log(data);
+      }, true);
     }
   },
   mounted: function() {

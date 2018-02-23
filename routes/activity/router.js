@@ -116,5 +116,25 @@ module.exports = function(express) {
       });
     });
 
+    router.post('/enroll', function(req, res) {
+      var token = getToken(req.headers);
+      if (token) {
+          jwt.verify(token, config.secret, function(err, decoded) {
+            User.findOne({username: decoded.username}, function(err, user) {
+              var userId = user.id;
+              dao.addApplication(req.body.id, userId, req.body.name, req.body.company, req.body.phone, req.body.email, req.body.comment, function(err, result) {
+                console.log(result);
+                res.send(JSON.stringify(result));
+              });
+            });
+	  	    });
+	    }
+      else {
+         dao.addApplication(req.body.id, null, req.body.name, req.body.company, req.body.phone, req.body.email, req.body.comment, function(err, result) {
+           console.log(result);
+           res.send(JSON.stringify(result));
+         });
+      }
+    });
     return router;
 };

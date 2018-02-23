@@ -12,7 +12,7 @@
 			<p>{{activity.location}} </p>
         </dd>
         <dt>
-            <span class="event_enroll_button"><a :href="enrollUrl + activity._id">报名</a></span>
+            <span class="event_enroll_button"><a :href="enrollUrl + activity.id">报名</a></span>
         </dt>
     </dl>
   </div>

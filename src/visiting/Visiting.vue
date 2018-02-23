@@ -5,7 +5,7 @@
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
         <div>
-		  <a :href="activityEnrollUrl + latestVisiting._id"><img style="width:990px;float:left;" :src="imgUrl + latestVisiting.bigPoster" /></a>
+		  <a :href="activityEnrollUrl + latestVisiting.id"><img style="width:990px;float:left;" :src="imgUrl + latestVisiting.bigPoster" /></a>
 	      <right-panel></right-panel>
 		  <div class="new_visitings">
 		    <visiting-panel v-for="visiting in newVisitings" :activity="visiting"></visiting-panel>

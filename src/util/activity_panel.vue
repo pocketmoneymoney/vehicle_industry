@@ -1,9 +1,9 @@
 <template>
   <div class="activity_panel">
     <div>
-         <a target="_blank" :href="activityEnrollUrl + activity._id"><img :src="imgUrl + activity.smallPoster"  /></a>
+         <a target="_blank" :href="activityEnrollUrl + activity.id"><img :src="imgUrl + activity.smallPoster"  /></a>
     </div>
-    <p class="title"><span class="spantitl"><a target="_blank" :href="activityEnrollUrl + activity._id">{{activity.name}}</a></span></p>
+    <p class="title"><span class="spantitl"><a target="_blank" :href="activityEnrollUrl + activity.id">{{activity.name}}</a></span></p>
     
     <!--p class="cont">42人已报名  </p-->
     
