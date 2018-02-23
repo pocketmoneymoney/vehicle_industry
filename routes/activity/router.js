@@ -52,7 +52,7 @@ module.exports = function(express) {
     });
 
     router.get('/all', function (req, res) {
-        dao.getAllActivity(function(err, result) {
+        dao.getAllActivity(req.query.userId, function(err, result) {
             res.send(JSON.stringify(result));
         });
     });

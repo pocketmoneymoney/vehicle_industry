@@ -26,8 +26,12 @@ dbHandler.prototype.getActivityList = function(type, page, num, callback) {
     db.daoTemplate.getPageItems.call(this, page, num, callback, {type: type});
 };
 
-dbHandler.prototype.getAllActivity = function(callback) {
-    this.find({}, null, null, callback);
+dbHandler.prototype.getAllActivity = function(userId, callback) {
+    var conditions = {};
+    if (userId) {
+      conditions = {applications: {$elemMatch: {userId: userId}}};
+    }
+    this.find(conditions, null, null, callback);
 };
 
 dbHandler.prototype.getActivityAmount = function(callback) {

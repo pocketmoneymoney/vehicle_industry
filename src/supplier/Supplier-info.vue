@@ -32,6 +32,12 @@
     </div>
     <div class="info_panel">
 	  <h3>活动记录</h3>
+	  <div style="clear:both;"> </div>
+    <table>
+      <tr v-for="activity in activities">
+        <td>{{ activity.name }}</td>
+      </tr>
+    </table>
     </div>
   </div>
 </template>
@@ -49,7 +55,8 @@ export default {
       email: '',
       operator: '',
 	  companyURL: '',
-	  editURL: ''
+	  editURL: '',
+    activities: []
     }
   },
   mounted: function () {
@@ -74,6 +81,9 @@ console.log("SSS", data.msg.person);
             console.log(data.msg);
           }
       	}, true);
+        get('/api/activity/all', {userId: supplierID}, function(data) {
+          self.activities = data;
+        });
       } else {
         window.location.href = '/src/redirect/expired.html';
       } 
