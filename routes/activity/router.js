@@ -63,6 +63,13 @@ module.exports = function(express) {
 	    });
     });
 
+    router.get('/latest', function (req, res) {
+      dao.getLatestActivityDetail(req.query.type, function(err, result) {
+        console.log(result);
+        res.send(JSON.stringify(result));
+      });
+    });
+
     router.get('/:id', function (req, res) {
          dao.getActivityDetail(req.params.id, function (err, result) {
             res.send(JSON.stringify(result));
@@ -125,13 +132,6 @@ module.exports = function(express) {
 	    });
 	  });
 
-    router.get('/latest', function(req, res) {
-      dao.getLatestActivityDetail(req.query.type, function(err, result) {
-        console.log(result);
-        res.send(JSON.stringify(result));
-      });
-    });
-
     router.post('/enroll', function(req, res) {
       var token = getToken(req.headers);
       if (token) {
@@ -152,5 +152,6 @@ module.exports = function(express) {
          });
       }
     });
+
     return router;
 };
