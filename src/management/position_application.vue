@@ -7,6 +7,8 @@
                 <th>申请人</th>
                 <th>申请人邮箱</th>
                 <th>申请人电话</th>
+                <th>申请时间</th>
+                <th>身份</th>
                 <th>简历</th>
              </tr>
           </thead>
@@ -15,7 +17,11 @@
               <th>{{application.name}}</th>
               <th>{{application.email}}</th>
               <th>{{application.phone}}</th>
-              <th class="delete_button"><a>简历</a></th>
+              <th>{{application.time}}</th>
+              <th>{{application.role}}</th>
+              <th class="admin_op_button">
+				<a @click="downloadResume(application.resume)">简历下载</a>
+			  </th>
             </tr>
           </tbody>
         </table>
@@ -26,28 +32,42 @@
 export default {
   props: ['position'],
   data: function() {
-    var applications = [
-    {
-        name: "Tiger Nixon",
-        email: "主机",
-        phone: "2011/04/25"
-    },
-    {
-        name: "Garrett Winters",
-        email: "2011/07/25",
-        phone: "采购"
-    }
-    ];
     return {
-      applications: applications 
+      applications: []
     }
   },
   methods: {
+    downloadResume: function (url) {
+      window.open(url);
+	}
   },
   mounted: function() {
     $('#position_applicationlist').DataTable({
     });
-  },
+    var self = this;
+    get('/api/position/appliers/'+this.position.id, {}, function (data) {
+	  if (data.success) {
+	    for (var index = 0; index < data.msg.length; index++) {
+		  var applier = data.msg[index];
+          var newApplier = {
+     	    'name': applier.applierName,
+		    'phone': applier.phone,
+		    'email': applier.email,
+		    'time': applier.applyTime,
+		    'resume': applier.resume 
+		  };
+		  if (applier.role == 'supplier') {
+ 		    newApplier['role'] = "供应商";
+ 	      } else if (applier.role == 'buyer') {
+ 		    newApplier['role'] = "采购商";
+		  } else {
+ 		    newApplier['role'] = "游客";
+		  }
+		  self.applications.push(newApplier);
+	    }
+	  }
+    }, false);
+  }
 }
 </script>
 
@@ -55,8 +75,4 @@ export default {
 #position_applicationlist tbody th {
   font-weight: 400;
 }
-.delete_button {
-  cursor: pointer;
-}
-.new_company { background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding:0 10px;}
 </style>

@@ -9,6 +9,22 @@
 	margin: 0 auto;
 }
 
+.contact_btn{
+	float: right;
+	margin-right: 30px;
+	width: 64px;
+	display: inline-block;
+	background: #e2f5ff; 
+	font-size: 13px;
+	line-height: 26px;
+	margin-top: 30px;
+	border-radius: 3px;
+ 	border:1px solid #c8eafa;
+  	text-align:center;
+  	color:#3d9ccc;
+    cursor:pointer;
+}
+
 /* clearfix elimate float:left has no height */
 .clearfix:before,
 .clearfix:after {

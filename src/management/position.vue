@@ -18,6 +18,7 @@
               <th>{{position.company}}</th>
               <th>{{position.time}}</th>
 			  <th>
+				<a @click="positionApplication(position)" class="admin_op_button">应聘情况 </a>
 				<a @click="editPosition(position)" class="admin_op_button">编辑 </a>
                 <a @click="deleteAction(position)" class="admin_op_button">删除</a>
 			  </th>
@@ -35,6 +36,9 @@ export default {
     }
   },
   methods: {
+    positionApplication: function(position) {
+      this.$emit("positionApplication", position);
+    },
     editPosition: function(position) {
       this.$emit("editPosition", position);
     },

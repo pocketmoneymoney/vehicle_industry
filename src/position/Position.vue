@@ -3,11 +3,11 @@
       <top-bar></top-bar>
       <main-header></main-header>
       <div class="main clearfix">
-        <main-nav :currentView="viewName"></main-nav>
+        <main-nav></main-nav>
         <div>
          <event-enroll-panel></event-enroll-panel>
           <div class="main_right">
-          <list-position-detail></list-position-detail>
+          <list-position></list-position>
           </div>
 	      <right-panel></right-panel>
         </div>
@@ -25,7 +25,7 @@ import RightPanel from '../util/right_panel.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LatestPurchase from '../util/latest_purchase.vue'
-import ListPositionDetail from './list_position_detail.vue'
+import ListPosition from './list_position.vue'
 
 
 export default {
@@ -40,7 +40,7 @@ export default {
 	}
   },
   components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
-			   ListPositionDetail, RightPanel, LastFooter}
+			   ListPosition, RightPanel, LastFooter}
 }
 </script>
 

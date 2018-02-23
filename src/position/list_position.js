@@ -3,7 +3,7 @@ import Page from '../util/page.vue'
 export default {
   data() {
     return {
-	  enrollUrl: '/src/position/apply.html?positionId=',
+	  applyURL: '/src/position/apply.html?id=',
       positions: [],
       curPage: 8,
       totalPage: 11
@@ -12,7 +12,11 @@ export default {
   methods: {
     changePage: function(page) {
       this.curPage = page;
-    }
+    },
+    applyPosition: function(position) {
+      var newURL = this.applyURL + position.id;
+	  window.location.href = newURL;
+	}
   },
   mounted: function() {
     var self = this;

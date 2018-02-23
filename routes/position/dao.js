@@ -43,7 +43,8 @@ dbHandler.prototype.getPositionDetail = function(id, callback) {
     this.findOne({'id':id}, callback);
 };
 
-dbHandler.prototype.addPositionApply = function(id, applier, applierID, resume, callback) {
+dbHandler.prototype.addPositionApply = function(id, name, phone, email, personID, role,
+											    resume, callback) {
 	var self = this;
 	var myDate = new Date();
 	this.findOne({'id':id}, function(err, data) {
@@ -51,13 +52,26 @@ dbHandler.prototype.addPositionApply = function(id, applier, applierID, resume, 
 			callback(err);
 		} else {
 			var newApply = {
-				'applier': applier,
-				'id': applierID,
+				'applierName': name,
+				'personID': personID,
+				'role': role,
+			    'phone': phone,
+			    'email': email,
 				'resume': resume,
-				'time': myDate};
+				'applyTime': myDate};
 			var currentApply = data.apply;
-			currentApply.append(newApply);
+			currentApply.push(newApply);
 			self.update({'id':id}, {$set:{'apply':currentApply}}, {}, callback);
+		}
+	});
+};
+
+dbHandler.prototype.getPositionAppliers = function(id, callback) {
+	this.findOne({'id':id}, function(err, data) {
+		if (err || !data) {
+			callback(err);
+		} else {
+			callback(null, data['apply']);
 		}
 	});
 };

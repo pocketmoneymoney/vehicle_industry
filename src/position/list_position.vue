@@ -1,0 +1,112 @@
+<template>
+  <div class="list_position clearfix">
+    <h3>
+        <span>最新职位</span>
+    </h3>
+    <!--中间列表 切换-->
+     <ul class="product_list">
+         <li v-for="position in positions">
+             <div class="position_list_right">
+                 <dl>
+                     <dt>职位名称</dt>
+                     <dd><h4 class="position_title"> <a>{{ position.name }}</a></h4>
+					 </dd>
+                 </dl>
+			 </div>
+             <div class="position_list_right">
+                 <dl>
+                     <dt>公司名称</dt>
+                     <dd>
+             		   <em>{{ position.company }}</em>
+					 </dd>
+                 </dl>
+			 </div>
+             <div class="position_list_right">
+                 <dl>
+                     <dt>工作地址</dt>
+                     <dd>
+             		   <em>上海</em>
+					 </dd>
+                 </dl>
+			 </div>
+             <div class="position_list_right">
+                 <dl>
+                     <dt>职位要求</dt>
+                     <dd>{{ position.brief }}</dd>
+                 </dl>
+             </div>
+            <a @click="applyPosition(position)" class="contact_btn">我要报名</a>
+         </li>
+     </ul>
+     <page :curPage="curPage" :totalPage="totalPage" @pageChanged="changePage"></page>
+  </div>
+</template>
+
+<script src="./list_position.js"></script>
+
+<style>
+.list_position{
+	width: 740px;
+	border: 1px solid #e5e5e5;
+	background: #fff;
+	float: left;
+	padding: 19px 20px;
+	margin-bottom: 8px;
+}
+.list_position h3 {
+  height: 42px;
+}
+.list_position h3 span{
+	float: left;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+.list_position h3 a{
+	color: #999999;
+	font-size: 12px;
+	float: right;
+	font-weight: normal;
+}
+
+.product_list li{
+	border-bottom: 1px dashed #e5e5e5;
+	padding: 20px 0;
+	overflow: hidden;
+}
+
+.position_title{
+	color: #449cd7;
+	font-size: 14px;
+	line-height: 22px;	
+	height: 22px;
+	margin-bottom: 15px;
+}
+.position_title a{
+	color: #449cd7;
+}
+.position_title a:hover{
+	color: #73c5ec;
+}
+
+.position_list_right{
+	margin-top: 10px;
+}
+.position_list_right dl{
+	overflow: hidden;
+	font-size: 12px;
+}
+.position_list_right dl dt{
+	float: left;
+	width: 100px;
+	padding-right: 20px;
+	line-height: 22px;
+	color: #999;
+}
+.position_list_right dl dd{
+	float: left;
+	width: 500px;
+	line-height: 22px;
+	color: #333;
+}
+
+</style>

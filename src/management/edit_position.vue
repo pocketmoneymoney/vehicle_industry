@@ -55,7 +55,7 @@ export default {
     newAction: function() {
 	  var name = trimStr(this.position.name);
 	  var company = trimStr(this.position.company);
-	  var brief = trimStr(this.position.brief);
+	  var brief = this.position.brief;
 
       if (name === '' || company === '' || brief === '') {
         alert('请填写完整资料');

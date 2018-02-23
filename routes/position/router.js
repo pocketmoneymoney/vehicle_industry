@@ -55,14 +55,31 @@ module.exports = function(express) {
          });
     });
 
-	router.post('/apply/:id', passport.authenticate('jwt', { session: false}),
-	  function (req, res, next) {
-		var applier 	= req.body.applier;
-		var applierID	= req.body.applierID;
-		var resume		= "";
-		var id			= req.params.id;
+	router.get('/appliers/:id', function (req, res) {
+         dao.getPositionAppliers(req.params.id, function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:result});
+			}
+         });
+	});
 
-		dao.addPositionApply(id, applier, applierID, resume, function (err) {
+	router.post('/apply', upload.single('resume'),
+	  function (req, res, next) {
+		var name 		= req.body.name;
+		var phone 		= req.body.phone;
+		var email 		= req.body.email;
+		var positionID	= req.body.positionID;
+		var id			= req.body.personID;
+		var role		= req.body.role;
+		var resume		= undefined;
+		
+		if (req.file) {
+			resume = '/' + path.join(req.file.destination, req.file.filename);
+		}
+
+		dao.addPositionApply(positionID, name, phone, email, id, role, resume, function (err) {
 			if (err) {
 				res.json({success: false, msg:err});
 			} else {

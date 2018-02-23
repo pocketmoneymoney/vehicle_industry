@@ -81,7 +81,7 @@ module.exports = function () {
 					});
 				} else if (req.body.role == 'buyer') {
 					buyer.create(req.body.username, newID, req.body.person, 
-						req.body.company, req.body.email, function (err) {
+						req.body.phone, req.body.email, function (err) {
 						if (err) {
 							newUser.remove({'username':req.body.username});
 							res.json({success:false, msg:'创建用户失败'});
