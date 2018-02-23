@@ -26,20 +26,9 @@
 <script>
 export default {
   data: function() {
-    var activities = [
-    {
-        name: "Tiger Nixon",
-        type: "走进主机厂",
-        time: "2011/04/25"
-    },
-    {
-        name: "Garrett Winters",
-        time: "2011/07/25",
-        type: "采购见面会"
-    }
-    ];
     return {
-      activities: activities
+      table: null,
+      activities: []
     }
   },
   methods: {
@@ -47,14 +36,43 @@ export default {
       this.$emit("newActivity");
     },
     deleteActivity: function(activity) {
+      var self = this;
+      post('/api/activity/' + activity.id + '/del', {}, function(data) {
+        console.log(data);
+        get('/api/activity/all', {}, function(data) {
+          self.activities = data;
+          for (let index in self.activities) {
+            var activity = self.activities[index];
+            if (activity.type === 'meeting') {
+              activity.type = '采购见面会';
+            }
+            else if (activity.type === 'visiting') {
+              activity.type = '走进主机厂';
+            }
+          }
+        });
+      }, true);
     },
     activityApplication: function(activity) {
       this.$emit("activityApplication", activity);
-    }
+    },
   },
   mounted: function() {
-    $('#activitylist').DataTable({
-    });
+      var self = this;
+      get('/api/activity/all', {}, function(data) {
+          self.activities = data;
+          for (let index in self.activities) {
+            var activity = self.activities[index];
+            if (activity.type === 'meeting') {
+              activity.type = '采购见面会';
+            }
+            else if (activity.type === 'visiting') {
+              activity.type = '走进主机厂';
+            }
+          }
+          $('#activitylist').DataTable({
+          });
+      }, false);
   },
 }
 </script>

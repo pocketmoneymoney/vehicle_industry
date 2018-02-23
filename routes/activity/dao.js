@@ -26,6 +26,10 @@ dbHandler.prototype.getActivityList = function(type, page, num, callback) {
     db.daoTemplate.getPageItems.call(this, page, num, callback, {type: type});
 };
 
+dbHandler.prototype.getAllActivity = function(callback) {
+    this.find({}, null, null, callback);
+};
+
 dbHandler.prototype.getActivityAmount = function(callback) {
     this.count(callback);
 };
@@ -36,6 +40,10 @@ dbHandler.prototype.getActivityDetail = function (id, callback) {
 
 dbHandler.prototype.getLatestActivityDetail = function (type, callback) {
     this.findOne({'type': type}, null, {sort: {'_id': -1}}, callback);
+};
+
+dbHandler.prototype.deleteActivity = function(id, callback) {
+  this.remove({'id': id}, callback);
 };
 
 dbHandler.prototype.addActivity = function (name, id, location, time, type, bigPoster, smallPoster, tinyPoster, callback) {

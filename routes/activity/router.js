@@ -44,11 +44,17 @@ module.exports = function(express) {
     router.get('/list', function (req, res) {
          var page = req.query.page? parseInt(req.query.page) : 1;
          var num = req.query.num? parseInt(req.query.num) : 1;
-		 var type = req.query.type;
+		     var type = req.query.type;
          var start = (page - 1) * num;
          dao.getActivityList(type, start, num, function (err, result) {
              res.send(JSON.stringify(result));
          });
+    });
+
+    router.get('/all', function (req, res) {
+        dao.getAllActivity(function(err, result) {
+            res.send(JSON.stringify(result));
+        });
     });
 
     router.get('/amount', function (req, res) {
@@ -57,9 +63,19 @@ module.exports = function(express) {
 	    });
     });
 
-    router.get('/detail/:id', function (req, res) {
+    router.get('/:id', function (req, res) {
          dao.getActivityDetail(req.params.id, function (err, result) {
-            res.send("Detail View:" + JSON.stringify(result));
+            res.send(JSON.stringify(result));
+         });
+    });
+
+    router.post('/:id/del', passport.authenticate('jwt', {session: false}), function (req, res) {
+         if (req.user.role !== 'admin') {
+	  	   		res.json({success: false, msg: "用户认证失败"});
+             return;
+         }
+         dao.deleteActivity(req.params.id, function (err, result) {
+            res.send(JSON.stringify(result));
          });
     });
 

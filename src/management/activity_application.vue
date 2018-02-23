@@ -10,6 +10,7 @@
                 <th>报名人邮箱</th>
                 <th>报名人电话</th>
                 <th>报名人留言</th>
+                <th>是否为注册用户</th>
              </tr>
           </thead>
           <tbody>
@@ -20,6 +21,7 @@
               <th>{{application.email}}</th>
               <th>{{application.phone}}</th>
               <th>{{application.comment}}</th>
+              <th>{{application.isUser}}</th>
             </tr>
           </tbody>
         </table>
@@ -30,33 +32,28 @@
 export default {
   props: ['activity'],
   data: function() {
-    var applications = [
-    {
-        name: "Tiger Nixon",
-		company: "bb",
-		position: "cc",
-        email: "主机",
-        phone: "2011/04/25",
-		comment: "dd"
-    },
-    {
-        name: "Garrett Winters",
-		company: "BB",
-		position: "CC",
-        email: "2011/07/25",
-        phone: "采购",
-		comment: "dd"
-    }
-    ];
     return {
-      applications: applications 
+      applications: []
     }
   },
   methods: {
   },
   mounted: function() {
-    $('#activity_applicationlist').DataTable({
-    });
+    var self = this;
+    get('/api/activity/' + this.activity.id, {}, function(data) {
+        self.applications = data.applications;
+        for (let index in self.applications) {
+          var application = self.applications[index];
+          if (application.userId === null) {
+            application.isUser = '否';
+          }
+          else {
+            application.isUser = '是';
+          }
+        }
+        $('#activity_applicationlist').DataTable({
+        });
+    }, false);
   },
 }
 </script>
