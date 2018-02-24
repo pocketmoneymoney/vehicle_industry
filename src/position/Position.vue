@@ -6,7 +6,7 @@
         <main-nav :currentView="viewName"></main-nav>
         <div>
          <event-enroll-panel></event-enroll-panel>
-          <div class="main_right">
+          <div class="main_middle">
           <list-position></list-position>
           </div>
 	      <right-panel></right-panel>
@@ -46,11 +46,5 @@ export default {
 
 <style lang="scss">
 @import '../../css/rem.scss';
-.main_right{
-	float: left;
-	width: 740px;
-	margin-bottom: 20px;
-	padding: 0px 12px 10px 10px;
-}
 
 </style>

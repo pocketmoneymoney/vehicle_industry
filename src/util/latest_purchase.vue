@@ -1,6 +1,7 @@
 <template>
   <div>
-    <list-panel :product="product" :title="title" :mainUrl="mainUrl" :component="component" :height=140></list-panel>
+    <list-panel :product="product" :title="title" :mainUrl="mainUrl" 
+	   :components="components" :height=200></list-panel>
   </div>
 </template>
 
@@ -12,9 +13,26 @@ export default {
     return {
       product: "purchase",
       title: "最新采购",
-      component: "list-purchase",
-	  mainUrl: "/src/purchase/index.html"
+      components: [],
+	  mainUrl: "/src/purchase/index.html",
+	  detailUrl: "/src/purchase/apply.html?id=",
     }
+  },
+  mounted: function () {
+    var self = this;
+    get('/api/purchase/list?page=0&num=4', {}, function(data) {
+       if (data.success) {
+		for (var index = 0; index < data.msg.length; index++) {
+		  var purchase = data.msg[index];
+
+		  self.components.push({
+			'url': self.detailUrl + purchase.id,
+			'title': purchase.productName,
+			'content': purchase.name
+		  });
+		}
+	   } 
+    }, false);
   },
   components: {ListPanel}
 }

@@ -11,10 +11,10 @@
               <a href="/src/purchase/index.html" :class="{current: currentView === purchase}">采购项目专区</a>
           </li>
           <li>
-              <a href="/src/meeting/index.html" :class="{current: currentView === meeting}">采购配对会</a>
+              <a href="/src/activity/meeting.html" :class="{current: currentView === meeting}">采购配对会</a>
           </li>
           <li>
-              <a href="/src/visiting/index.html" :class="{current: currentView === visiting}">走进主机厂</a>
+              <a href="/src/activity/visiting.html" :class="{current: currentView === visiting}">走进主机厂</a>
           </li>
           <li>
               <a href="/src/position/index.html" :class="{current: currentView === position}">人才猎头</a>

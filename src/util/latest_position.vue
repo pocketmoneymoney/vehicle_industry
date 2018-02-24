@@ -25,7 +25,7 @@ export default {
 		for (var index = 0; index < data.msg.length; index++) {
 		  var position = data.msg[index];
 		  self.components.push({
-			'url': self.detailUrl+position.id,
+			'url': self.detailUrl + position.id,
 			'title': position.name,
 			'content': position.company
 		  });

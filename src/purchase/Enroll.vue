@@ -4,55 +4,136 @@
       <main-header></main-header>
       <div class="main clearfix">
       <main-nav></main-nav>
-      <div class="main clearfix">
-        <event-enroll-panel></event-enroll-panel>
-		<div>
-          <h3>采购信息详情</h3>
-          <div class="purchase_detail clearfix">
-            <h3>{{purchase.company}}</h3>
-            <h3>{{purchase.product}}</h3>
-            <ul>
-              <li>
-                <span>{{purchase.type}}</span>{{purchase.expire}}
-              </li>
-              <li>
-                <span>材质：</span>{{purchase.material}}
-              </li>
-              <li>
-                <span>尺寸／重量：</span>{{purchase.size}}
-              </li>
-              <li>
-                <span>制造工艺：</span>{{purchase.tech}}
-              </li>
-              <li>
-                <span>车型：</span>{{purchase.tech}}
-              </li>
-              <li>
-                <span>年采购量：</span>{{purchase.tech}}
-              </li>
-              <li>
-                <span>采购金额：</span>{{purchase.tech}}
-              </li>
-              <li>
-                <span>产品其他描述：</span>{{purchase.tech}}
-              </li>
-              <li>
-                <span>供应商认证：</span>{{purchase.tech}}
-              </li>
-              <li>
-                <span>供应商位置：</span>{{purchase.tech}}
-              </li>
-              <li>
-                <span>供应商其他要求：</span>{{purchase.tech}}
-              </li>
-              <li>
-                <span>发布时间：</span>{{purchase.tech}}
-              </li>
-            </ul>
-            <span class="enroll_button"><a @click="enrollPurchase">我要报名</a></span>
-          </div>
-		  <right-panel></right-panel>
-		</div>
+      <div>
+         <event-enroll-panel></event-enroll-panel>
+		 <div class="main_middle clearfix">
+        <div class="formbox">
+		  <div class="info_panel2">
+          <h2>采购详情</h2>
+	      <div style="clear:both;"> </div>
+          <dl>
+              <dt><span>发布人姓名/公司名称：</span></dt>
+              <dd> <span>{{purchase.name}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>发布人联系电话：</span></dt>
+              <dd> <span>{{purchase.phone}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>采购产品名称：</span></dt>
+              <dd> <span>{{purchase.productName}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>有效期：</span></dt>
+              <dd> <span>{{purchase.expire}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>采购类型：</span></dt>
+              <dd> <span>{{purchase.type}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>车型：</span></dt>
+              <dd> <span>{{purchase.detailType}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>尺寸／重量：</span></dt>
+              <dd> <span>{{purchase.size}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>材质：</span></dt>
+              <dd> <span>{{purchase.material}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>制造工艺：</span></dt>
+              <dd> <span>{{purchase.method}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>年采购量：</span></dt>
+              <dd> <span>{{purchase.totalAmount}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>采购金额(RMB)：</span></dt>
+              <dd> <span>{{purchase.money}}  {{purchase.moneyUnit}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>产品其他描述：</span></dt>
+              <dd> <span>{{purchase.description}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>供应商认证：</span></dt>
+              <dd> <span>{{purchase.supplierCertification}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>供应商地理位置：</span></dt>
+              <dd> <span>{{purchase.supplierLocation}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>供应商年销售额：</span></dt>
+              <dd> <span>{{purchase.supplierSales}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>供应商其他要求:</span></dt>
+              <dd> <span>{{purchase.supplierRequirement}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>产品相关图片:</span></dt>
+              <dd> <img :src="purchase.picture" style="width:150px; height:150px;"> </dd>
+			  </dd>
+          </dl>
+		  </div>
+		  <div v-if="isNotAdmin" class="info_panel2">
+          <h2>我要报名</h2>
+	      <div style="clear:both;"> </div>
+          <dl>
+              <dt><b>*</b><span>姓名：</span></dt>
+              <dd>
+                  <input v-model="person.name" class="text" style="z-index: 10000" maxlength="20"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>公司：</span></dt>
+              <dd>
+                  <input v-model="company" class="text" style="z-index: 10000" maxlength="40"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
+              <dt><b></b><span>职位：</span></dt>
+              <dd>
+                  <input v-model="position" class="text" style="z-index: 10000" maxlength="30"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>联系电话：</span></dt>
+              <dd>
+                  <input v-model="person.phone" class="text" style="z-index: 10000" maxlength="20"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>邮箱：</span></dt>
+              <dd>
+                  <input v-model="person.email" class="text" style="z-index: 10000" name="email" type="text" maxlength="30"/>
+              </dd>
+          </dl>
+          <dl>
+              <dt><b></b><span>留言：</span></dt>
+              <dd>
+                  <textarea v-model="comment" class="text" style="z-index: 10000; height:99px" maxlength="400"
+                      type="text" />
+              </dd>
+          </dl>
+	      <div style="clear:both;"> </div>
+		  <div>
+            <span><a @click="cancelPurchase">取消并返回</a></span>
+            <span><a @click="enrollPurchase">提交</a></span>
+		  </div>
+		  </div>
+        </div>
+        </div>
+	      <right-panel></right-panel>
       </div>
 	  </div>
       <last-footer></last-footer>
@@ -63,131 +144,94 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
-
+import LastFooter from '../util/footer.vue'
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import RightPanel from '../util/right_panel.vue'
-
-import LastFooter from '../util/footer.vue'
 
 export default {
   data: function() {
     return {
-		purchaseId: '',
-		purchase: {
-			id: 1,
-			company: 'CCC',
-			product: 'aaaa',
-			size: 'bb',
-			material: 'cc'
-		}
+	  activity: {},
+	  isNotAdmin: true,
+	  person: {},
+	  purchase: {},
+      company: '',
+      position: '',
+      comment: '',
+	  id: '',
+	  type: ''
     }
   },
   methods: {
-    enrollPurchase: function() {
-      var self = this;
-      if (getCookie('token') === "") {
-		alert("请先登录");
-		return;
+  	previewPicture: function (url) {
+      if (url) {
+	    window.open(url);
 	  }
-	  else {
-        post('/user/book', {}, function(data) {
-		  if (data.username === '') {
-		    alert("请先登录");
-		    return;
-		  }
-          if (data.role !== "supplier") {
-		    alert("只有供应商可以报名采购项目");
-		    return;
-          }
-        }, true);
+	},
+    cancelPurchase: function() {
+	  window.location.href='/src/purchase/index.html';
+	},
+    enrollPurchase: function() {
+	  var name = trimStr(this.person.name);
+	  var email = trimStr(this.person.email);
+	  var phone = trimStr(this.person.phone);
+
+	  var company = trimStr(this.company);
+	  var position = trimStr(this.position);
+	  var comment = trimStr(this.comment);
+
+      if (name === '' || email === '' || company === '' || 
+		  phone === '') {
+        alert('请填写完整资料');
+        return;
       }
-      post('/user/enrollActivity', {username: this.newUsername, password: this.newPassword1, email: this.newEmail, role: this.role}, function(data) {
-        if (data.success) {
-          setCookie('token', data.token, 3000);
-          self.isLogin = true;
-          if (data.role === 'admin') {
-            self.isAdmin = true;
-          }
-          window.location.href = '/src/index.html';
-        }
-        else {
-          alert(data.msg);
-        }
-      }, false);
+
+	  var params = {};
+	  params['name'] = name;
+	  params['email'] = email;
+	  params['phone'] = phone;
+	  params['company'] = company;
+	  params['position'] = position;
+	  params['comment'] = comment;
+	  params['id'] = this.purchase.id;
+	  params['personID'] = this.person.id;
+	  params['personRole'] = this.person.role;
+
+	  var self = this;
+      post('/api/purchase/apply', params, function (data) {
+	    window.location.href='/src/purchase/index.html';
+      }, true);
     }
   },
   mounted: function() {
-      var params = window.location.search;
-      params = params.replace('?', '');
-      var allParams = params.split('&');
-      for (let index in allParams) {
-        var paramObj = allParams[index].split('=');
-        if (paramObj[0] === 'purchaseId') {
-          this.purchaseId = paramObj[1];
-        }
-      }
+	var self = this;
+	var id = getUrlKey('id');
+	if (!id) {
+	  window.location.href="/src/purchase/index.html";	
+	}
+
+    get('/api/purchase/' + id, {}, function(data) {
+	  if (data.success) {
+	    self.purchase = data.msg;
+	  }
+	}, false);
+	
+	getLoginInfo(function (person) {
+	  if (person.name) {
+		self.person = person;
+		if (self.person.role == "admin") {
+	  	  self.isNotAdmin = false;
+  		} else if (self.person.id == self.purchase.personID) {
+	  	  self.isNotAdmin = false;
+		}
+	  }
+	});
   },
-  components: {MainHeader, MainNav, TopBar, EventEnrollPanel, RightPanel, LastFooter} 
+  components: {MainHeader, MainNav, TopBar, LastFooter, EventEnrollPanel,
+			   RightPanel}
 }
 </script>
 
 <style lang="scss">
 @import '../../css/rem.scss';
-
-.back_wrapper{
-  width: t(1200);
-  background-color:#f9f9f8;
-}
-.main{
-	width: 1200px;
-	margin: 0 auto;
-}
-
-h3{
-	height: 14px;
-	line-height: 14px;
-	font-size: 14px;
-	color: #333333;
-  margin: 0;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.purchase_detail{
-	width: 740px;
-	border: 1px solid #e5e5e5;
-	background: #fff;
-	float: left;
-	padding: 19px 20px;
-	margin-bottom: 8px;
-}
-
-.purchase_detail ul {
-  padding-left: 20px;
-  list-style: none;
-}
-.purchase_detail ul li {
-  font-size: 12px;
-  color: #444444;
-  line-height: 22px;
-  margin: 5px 0px;
-  zoom: 1;
-  word-wrap: break-word;
-  word-break: break-all;
-}
-.purchase_detail ul li:after {
-  content: "";
-  display: block;
-  clear: both;
-  height: 0;
-  visibility: hidden;
-}
-.purchase_detail ul li span {
-  font-size: 12px;
-  color: #999999;
-  margin-right: 10px;
-  text-align: right;
-  display: block;
-  float: left;
-}
-.enroll_button{ display:block; width: 54px; margin-left: 154px; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px; cursor: pointer;}
 </style>

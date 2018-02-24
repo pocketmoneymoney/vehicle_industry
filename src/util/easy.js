@@ -44,3 +44,84 @@ function combineStrCheck(strVal) {
 		return true;
 	}
 }
+
+function getLoginInfo(callback) {
+    var person = {
+		'id': '',	 
+		'name': '',	 
+		'phone': '',	 
+		'email': '',	 
+		'role': ''
+    };
+
+    if (getCookie('token') != "") {
+	  post('/user/book', {}, function(data) {
+	    if (data.username) {
+	      person.id = data.id;
+		  if (data.role == 'supplier') {
+            get('/api/supplier/person/' + data.id, {}, function(data) {
+		      if (data.success) {
+			    person.name = data.msg.myname;
+				person.phone = data.msg.phone;
+				person.email = data.msg.email;
+				person.role = 'supplier';
+			  }	
+			  callback(person);
+			}, false);
+		  } else if (data.role == 'buyer') {
+            get('/api/buyer/' + data.id, {}, function(data) {
+			  if (data.success) {
+			   person.name = data.msg.name;
+			   person.phone = data.msg.phone;
+			   person.email = data.msg.email;
+			   person.role = 'buyer';
+			 }
+			 callback(person);
+			}, false);
+		  } else if (data.role == 'admin') {
+ 		    person.role = 'admin';
+			person.name = 'admin';
+			callback(person);
+          } else {
+			callback(person);
+		  }
+	    } else {
+		  callback(person);
+	    }
+	  }, true);
+	} else {
+		callback(person);
+	}
+}
+
+function retriveData(data) {
+	var retList = [];
+	if (data.success) {
+		for (var index = 0; index < data.msg.length; index++) {
+		  	var item = data.msg[index];
+		  	var newItem = item;
+		  	if (item.publisherRole == 'supplier') {
+				newItem['publisherRole'] = "供应商";
+ 	      	} else if (item.role == 'buyer') {
+				newItem['publisherRole'] = "采购商";
+ 	      	} else if (item.publisherRole == 'admin') {
+				newItem['publisherRole'] = "管理员";
+		  	} else {
+ 		    	newItem['publisherRole'] = "游客";
+	     	}
+
+		  	if (item.personRole == 'supplier') {
+				newItem['personRole'] = "供应商";
+ 	      	} else if (item.role == 'buyer') {
+				newItem['personRole'] = "采购商";
+ 	      	} else if (item.personRole == 'admin') {
+				newItem['personRole'] = "管理员";
+		  	} else {
+ 		    	newItem['personRole'] = "游客";
+	     	}
+
+			retList.push(newItem);
+		}
+	}
+	return retList;
+}

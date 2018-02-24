@@ -43,6 +43,8 @@ export default {
   },
   mounted: function() {
     $('#position_applicationlist').DataTable({
+      searching: false,
+      ordering:  false
     });
     var self = this;
     get('/api/position/appliers/'+this.position.id, {}, function (data) {

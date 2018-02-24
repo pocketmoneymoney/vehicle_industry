@@ -1,16 +1,6 @@
 <template>
   <div id='rpSearchResultList' class='paging'>
     <a v-for="page in pageRange" :class="{current: page === curPage}" @click="changePage(page)">{{ page }}</a>&nbsp;
-    <!--span class='current'>1</span>&nbsp;
-    <a href='http://i.gasgoo.com/supplier/c-298/index-2.html'>2</a>&nbsp;
-    <a href='http://i.gasgoo.com/supplier/c-298/index-3.html'>3</a>&nbsp;
-    <a href='http://i.gasgoo.com/supplier/c-298/index-4.html'>4</a>&nbsp;
-    <a href='http://i.gasgoo.com/supplier/c-298/index-5.html'>5</a>&nbsp;
-    <a href='http://i.gasgoo.com/supplier/c-298/index-6.html'>6</a>&nbsp;
-    <a href='http://i.gasgoo.com/supplier/c-298/index-7.html'>7</a>&nbsp;
-    <a href='http://i.gasgoo.com/supplier/c-298/index-8.html'>8</a>&nbsp;
-    <a href='http://i.gasgoo.com/supplier/c-298/index-9.html'>9</a>&nbsp;...
-    <a href='http://i.gasgoo.com/supplier/c-298/index-2.html' class='next'>>></a-->
   </div>
 </template>
 

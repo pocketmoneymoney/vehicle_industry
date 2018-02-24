@@ -2,6 +2,7 @@
 'use strict';
 
 var myRouter = require('./router.js');
+var dao = require('./dao.js');
 
 var purchase = module.exports = {};
 

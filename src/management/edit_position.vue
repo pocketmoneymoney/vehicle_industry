@@ -90,7 +90,7 @@ export default {
 	}
   },
   mounted: function() {
-	if (this.position != {}) {
+	if (this.position.id) {
 	  this.isNew = false;
 	  this.oldPosition = this.position;
 	} else {

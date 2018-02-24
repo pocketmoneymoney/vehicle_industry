@@ -1,0 +1,202 @@
+<template>
+    <div class="back_wrapper">
+      <top-bar></top-bar>
+      <main-header></main-header>
+      <div class="main clearfix">
+      <main-nav></main-nav>
+      <div class="main clearfix">
+        <div class="formbox clearfix">
+          <h3 class="h3_cls">活动详情</h3>
+	      <div style="clear:both;"> </div>
+          <dl>
+              <dt><b></b><span>活动名称：</span></dt>
+              <dd> <span>{{activity.name}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><b></b><span>活动时间：</span></dt>
+              <dd> <span>{{activity.startTime}} - {{activity.endTime}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><b></b><span>活动地点：</span></dt>
+              <dd> <span>{{activity.location}} </span> </dd>
+          </dl>
+		
+		  <div v-if="isNotAdmin">
+          <h3 class="h3_cls">我要报名</h3>
+	      <div style="clear:both;"> </div>
+          <dl>
+              <dt><b>*</b><span>姓名：</span></dt>
+              <dd>
+                  <input v-model="person.name" class="text" style="z-index: 10000" maxlength="20"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>公司：</span></dt>
+              <dd>
+                  <input v-model="company" class="text" style="z-index: 10000" maxlength="40"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>职位：</span></dt>
+              <dd>
+                  <input v-model="position" class="text" style="z-index: 10000" maxlength="30"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>联系电话：</span></dt>
+              <dd>
+                  <input v-model="person.phone" class="text" style="z-index: 10000" maxlength="20"
+                      type="text" />
+              </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>邮箱：</span></dt>
+              <dd>
+                  <input v-model="person.email" class="text" style="z-index: 10000" name="email" type="text" maxlength="30"/>
+              </dd>
+          </dl>
+          <dl>
+              <dt><b>*</b><span>留言：</span></dt>
+              <dd>
+                  <textarea v-model="comment" class="text" style="z-index: 10000; height:99px" maxlength="400"
+                      type="text" />
+              </dd>
+          </dl>
+	      <div style="clear:both;"> </div>
+		  <div>
+            <span><a @click="cancelActivity">取消并返回</a></span>
+            <span><a @click="enrollActivity">提交</a></span>
+		  </div>
+		  </div>
+        </div>
+      </div>
+	  </div>
+      <last-footer></last-footer>
+    </div>
+</template>
+
+<script>
+import TopBar from '../util/topbar.vue'
+import MainHeader from '../util/header.vue'
+import MainNav from '../util/main_nav.vue'
+import LastFooter from '../util/footer.vue'
+
+export default {
+  data: function() {
+    return {
+	  activity: {},
+	  isNotAdmin: true,
+	  person: {
+		'name': '',
+		'phone': '',
+		'email': '',
+		'role': '',
+		'id': '' },
+      company: '',
+      position: '',
+      comment: '',
+	  id: '',
+	  type: ''
+    }
+  },
+  methods: {
+    cancelActivity: function() {
+	  window.location.href='/src/activity/' + this.type + '.html';
+	},
+    enrollActivity: function() {
+	  var name = trimStr(this.person.name);
+	  var email = trimStr(this.person.email);
+	  var phone = trimStr(this.person.phone);
+
+	  var company = trimStr(this.company);
+	  var position = trimStr(this.position);
+	  var comment = trimStr(this.comment);
+
+      if (name === '' || email === '' || company === '' || 
+		  phone === '' || position === '' || comment === '') {
+        alert('请填写完整资料');
+        return;
+      }
+
+	  var params = {};
+	  params['name'] = name;
+	  params['email'] = email;
+	  params['phone'] = phone;
+	  params['company'] = company;
+	  params['position'] = position;
+	  params['comment'] = comment;
+	  params['id'] = this.activity.id;
+	  params['userID'] = this.person.id;
+	  params['role'] = this.person.rold;
+
+	  var self = this;
+      post('/api/activity/enroll', params, function (data) {
+		if (data.success) {
+	  	  window.location.href='/src/activity/' + self.type + '.html';
+		}
+      }, true);
+    }
+  },
+  mounted: function() {
+	var self = this;
+	var id = getUrlKey('id');
+	if (!id) {
+	  window.location.href="/src/index.html";	
+	}
+	this.type = getUrlKey('tp');
+
+    get('/api/activity/'+id, {}, function(data) {
+	  if (data.success) {
+	    self.activity = data.msg;
+	  }
+	}, false);
+
+    if (getCookie('token') != "") {
+      post('/user/book', {}, function(data) {
+		if ((data.username) && (data.role != 'admin')) {
+		  self.person.id = data.id;
+		  if (data.role == 'supplier') {
+        	get('/api/supplier/person/' + data.id, {}, function(data) {
+			  if (data.success) {
+				self.person.name = data.msg.myname;
+				self.person.phone = data.msg.phone;
+				self.person.email = data.msg.email;
+				self.person.role = 'supplier';
+			  }	
+			}, false);
+		  } else if (data.role == 'buyer') {
+        	get('/api/buyer/' + data.id, {}, function(data) {
+			  if (data.success) {
+				self.person.name = data.msg.name;
+				self.person.phone = data.msg.phone;
+				self.person.email = data.msg.email;
+				self.person.role = 'buyer';
+			  }
+			}, false);
+		  }
+		} else if (data.role == 'admin') {
+          self.isNotAdmin = false;
+        }
+	  }, true);
+	}
+  },
+  components: {MainHeader, MainNav, TopBar, LastFooter} 
+}
+</script>
+
+<style lang="scss">
+@import '../../css/rem.scss';
+
+.h3_cls {
+	padding-left: 15px;
+	border-left: 6px solid #3d9ccc;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: 15px;
+	font-size: 32px;
+	font-weight: normal;
+}   
+</style>

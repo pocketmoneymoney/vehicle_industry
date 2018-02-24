@@ -2,22 +2,9 @@ import Page from '../util/page.vue'
 
 export default {
   data() {
-    var purchaseProducts = [];
-    var product = {
-	  id: 1,
-      product: 'For Audi a6 ABS Sensor 4B0927803 IABSAD003',
-      company: 'Guangzhou Shiyizhong Information Technology Co., Ltd.'
-    };
-    purchaseProducts.push(product);
-    var product = {
-      id: 2,
-      product: 'For Audi a6 ABS Sensor ALS424 IABSAD003i',
-      company: 'Guangzhou Shiyizhong Information Technology Co., Ltd.'
-    };
-    purchaseProducts.push(product);
     return {
-	  enrollUrl: 'enroll.html?purchaseId=',
-      purchaseProducts: purchaseProducts,
+	  purchases: [],
+	  enrollUrl: '/src/purchase/enroll.html?id=',
       curPage: 8,
       totalPage: 11
     }
@@ -28,6 +15,10 @@ export default {
     }
   },
   mounted: function() {
+	var self = this;
+    get('/api/purchase/list?page=0&num=100', {}, function(data) {
+  	  self.purchases = retriveData(data);
+	}, false);
   },
   components: {Page}
 }

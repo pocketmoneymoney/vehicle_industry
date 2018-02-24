@@ -5,7 +5,7 @@
     </h3>
     <div class="formbox clearfix">
           <dl class="clearfix">
-              <dt><b>*</b><span>发布人姓名：</span></dt>
+              <dt><b>*</b><span>发布人姓名/公司名称：</span></dt>
               <dd>
                   <input v-model="name" class="text" style="z-index: 10000" maxlength="20"
                       type="text" />
@@ -14,14 +14,14 @@
           <dl class="clearfix">
               <dt><b>*</b><span>发布人联系电话：</span></dt>
               <dd>
-                  <input v-model="phone" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="phone" class="text" style="z-index: 10000" maxlength="30"
                       type="text" />
               </dd>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>采购产品名称：</span></dt>
               <dd>
-                  <input v-model="product" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="product" class="text" style="z-index: 10000" maxlength="40"
                       type="text" />
               </dd>
           </dl>
@@ -29,10 +29,10 @@
               <dt><b>*</b><span>有效期：</span></dt>
               <dd>
 			     <select class="text" v-model="expire">
-				     <option value='3600'>长期</option>
-				     <option value='30'>1个月</option>
-				     <option value='90'>3个月</option>
-				     <option value='180'>6个月</option>
+				     <option value='长期'>长期</option>
+				     <option value='1个月'>1个月</option>
+				     <option value='3个月'>3个月</option>
+				     <option value='6个月'>6个月</option>
 				 </select>
               </dd>
           </dl>
@@ -40,9 +40,9 @@
               <dt><b>*</b><span>采购类型：</span></dt>
               <dd>
                   <label class="dda">
-                      <input type="radio" value="short" v-model="type" /><span class="rad">近期采购&nbsp;</span></label>
+                      <input type="radio" value="近期采购" v-model="type" /><span class="rad">近期采购&nbsp;</span></label>
                   <label class="ddb" style="margin-left: 25px;">
-                      <input type="radio" value="long" v-model="type" /><span class="rad">储备项目 </span>
+                      <input type="radio" value="储备项目" v-model="type" /><span class="rad">储备项目 </span>
                   </label>
               </dd>
           </dl>
@@ -50,7 +50,7 @@
               <dt><b>*</b><span>车型(可多选)：</span></dt>
               <dd>
                   <label v-for="vehicleType in vehicleTypes" class="dda">
-                      <input type="checkbox" :value="vehicleType" v-model="chosenVehicleTypes" /><span class="rad">{{ vehicleType }}&nbsp;</span></label>
+                      <input type="checkbox" :value="vehicleType" v-model="detailType" /><span class="rad">{{ vehicleType }}&nbsp;</span></label>
               </dd>
           </dl>
      </div>
@@ -60,27 +60,45 @@
 
 <script>
 export default {
-	data() {
-		return {
-			name: '',
-			phone: '',
-			product: '',
-			type: '',
-			expire: '',
-			chosenVehicleTypes: [],
-			vehicleTypes: ['乘用车', '微型车', '卡车', '客车', '工程机械', '其他'],
-		}
-	},
-    methods: {
-      newPurchase: function() {
-        if (this.name === '' || this.phone === '' || this.product === '' || this.type === '' || this.expire === '' || this.chosenVehicleTypes === []) {
-          alert('请填写完整资料');
-          return;
-        }
-		var param = {name: this.name, phone: this.phone, product: this.product, type: this.type, expire: this.expire, vehicleTypes: this.chosenVehicleTypes};
-		this.$emit('newPurchaseNext', param);
-	  }
+  props: ['person'],
+  data() {
+    return {
+	  name: '',
+	  phone: '',
+	  product: '',
+	  type: '',
+	  expire: '',
+      detailType: [],
+	  vehicleTypes: ['乘用车', '微型车', '卡车', '客车', '工程机械', '其他'],
+    }
+  },
+  methods: {
+    newPurchase: function() {
+	  var name = trimStr(this.name);
+	  var phone = trimStr(this.phone);
+	  var product = trimStr(this.product);
+
+      if (name === '' || phone === '' || product === '' || 
+	    this.type === '' || this.expire === '' || this.detailType === []) {
+        alert('请填写完整资料');
+        return;
+      }
+		
+      var basic = {
+		name: name, 
+		phone: phone, 
+		productName: product, 
+		type: this.type, 
+		expire: this.expire, 
+		detailType: this.detailType
+	  };
+	  this.$emit('newPurchaseNext', basic);
 	}
+  },
+  mounted: function () {
+    this.name = this.person.name;
+    this.phone = this.person.phone;
+  }
 }
 </script>
 

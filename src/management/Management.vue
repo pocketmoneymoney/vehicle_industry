@@ -7,15 +7,16 @@
         <left-nav @viewChanged="chooseView"></left-nav>
 		<div class="main_right">
           <component :is=currentView 
-			@newActivity="newActivity" 
 			@editPosition="editPosition" 
 			@editPositionDone="editPositionDone" 
+			@positionApplication="positionApplication" 
+			@editActivity="editActivity" 
+			@editActivityDone="editActivityDone" 
+			@activityApplication="activityApplication" 
 			@editCategory="editCategory" 
 			@editCategoryDone="editCategoryDone" 
-			@positionApplication="positionApplication" 
-			@activityApplication="activityApplication" 
 			@purchaseApplication="purchaseApplication" 
-			:activity="activity" 
+			:activity="currentActivity" 
 			:category="currentCategory" 
 			:position="currentPosition" 
 			:purchase="purchase"></component>
@@ -30,28 +31,33 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import LeftNav from './left_nav.vue'
-
+import NoAuthorized from './no_authorized.vue'
 import LastFooter from '../util/footer.vue'
 
-import NoAuthorized from './no_authorized.vue'
 import Supplier from './supplier.vue'
 import Buyer from './buyer.vue'
+import Qrcode from './qrcode.vue'
+
 import Activity from './activity.vue'
-import NewActivity from './new_activity.vue'
+import EditActivity from './edit_activity.vue'
 import ActivityApplication from './activity_application.vue'
+
 import Position from './position.vue'
 import EditPosition from './edit_position.vue'
 import PositionApplication from './position_application.vue'
+
 import Purchase from './purchase.vue'
 import PurchaseApplication from './purchase_application.vue'
+
 import Category from './category.vue'
 import EditCategory from './edit_category.vue'
-import Qrcode from './qrcode.vue'
+
 
 export default {
   data: function() {
     return {
       currentView: "no-authorized",
+	  currentActivity: "",
 	  currentCategory: "",
 	  currentPosition: "",
 	  activity: {},
@@ -78,9 +84,9 @@ export default {
 		}
       }
     },
-    newActivity: function() {
+    editActivity: function(activity) {
       if (this.currentView != "no-authorized") {
-        this.currentView = "new-activity";
+        this.currentView = "edit-activity";
       }
     },
     editPosition: function(position) {
@@ -92,6 +98,17 @@ export default {
     editPositionDone: function() {
       if (this.currentView != "no-authorized") {
         this.currentView = "position";
+      }
+    },
+    editActivity: function(activity) {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "edit-activity";
+		this.currentActivity = activity;
+      }
+    },
+    editActivityDone: function() {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "activity";
       }
     },
     editCategory: function(category) {
@@ -113,8 +130,8 @@ export default {
     },
     activityApplication: function(activity) {
       if (this.currentView != "no-authorized") {
-        this.activity = activity;
         this.currentView = "activity-application";
+        this.currentActivity = activity;
       }
     },
     purchaseApplication: function(purchase) {
@@ -135,10 +152,13 @@ export default {
     }
   },
   components: {LeftNav, TopBar, MainHeader, MainNav, LastFooter, 
-			   NoAuthorized, Supplier, Buyer, Activity, NewActivity, 
-			   ActivityApplication, Purchase, PurchaseApplication,
-         	   Position, EditPosition, PositionApplication, Purchase, 
-			   Category, EditCategory, Qrcode} 
+			   NoAuthorized, 
+			   Supplier, Buyer, 
+			   Activity, EditActivity, ActivityApplication, 
+			   Purchase, PurchaseApplication,
+         	   Position, EditPosition, PositionApplication, 
+			   Category, EditCategory, 
+			   Qrcode} 
 }
 </script>
 

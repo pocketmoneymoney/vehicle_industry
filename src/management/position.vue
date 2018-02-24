@@ -14,7 +14,7 @@
           </thead>
           <tbody>
             <tr v-for="position in positions">
-              <th @click=redirectApplication(position) clas="admin_op_button">{{position.name}}</th>
+              <th @click=redirectApplication(position) class="admin_op_button">{{position.name}}</th>
               <th>{{position.company}}</th>
               <th>{{position.time}}</th>
 			  <th>
@@ -51,7 +51,7 @@ export default {
 		var self = this;
         post('/api/position/delete/' + position.id, {}, function(data) {
 		  if (data.success) {
-    		get('/api/position/list?page=0&num=10', {}, function(data) {
+    		get('/api/position/list?page=0&num=100', {}, function(data) {
 	  		  if (data.success) {
   				self.positions = data.msg;
 			  }
@@ -65,10 +65,12 @@ export default {
   },
   mounted: function() {
     $('#positionlist').DataTable({
+      searching: false,
+      ordering:  false
     });
 
 	var self = this;
-    get('/api/position/list?page=0&num=10', {}, function(data) {
+    get('/api/position/list?page=0&num=100', {}, function(data) {
 	  if (data.success) {
   		self.positions = data.msg;
 	  } else {

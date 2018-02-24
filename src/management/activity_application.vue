@@ -10,7 +10,7 @@
                 <th>报名人邮箱</th>
                 <th>报名人电话</th>
                 <th>报名人留言</th>
-                <th>是否为注册用户</th>
+                <th>身份</th>
              </tr>
           </thead>
           <tbody>
@@ -21,7 +21,7 @@
               <th>{{application.email}}</th>
               <th>{{application.phone}}</th>
               <th>{{application.comment}}</th>
-              <th>{{application.isUser}}</th>
+              <th>{{application.role}}</th>
             </tr>
           </tbody>
         </table>
@@ -39,20 +39,35 @@ export default {
   methods: {
   },
   mounted: function() {
+    $('#activity_applicationlist').DataTable({
+     searching: false,
+     ordering:  false
+    });
+
     var self = this;
     get('/api/activity/' + this.activity.id, {}, function(data) {
-        self.applications = data.applications;
-        for (let index in self.applications) {
-          var application = self.applications[index];
-          if (application.userId === null) {
-            application.isUser = '否';
-          }
-          else {
-            application.isUser = '是';
-          }
+	  if (data.success) {
+		var applies = data.msg.apply;
+	    for (var index = 0; index < applies.length; index++) {
+		  var applier = applies[index];
+		  var newApplier = {
+			'name': applier.applierName,			
+			'company': applier.company,
+			'position': applier.position,
+			'email': applier.email,
+			'phone': applier.phone,
+			'comment': applier.comment 
+		  };
+		  if (applier.role == 'supplier') {
+ 		    newApplier['role'] = "供应商";
+ 	      } else if (applier.role == 'buyer') {
+ 		    newApplier['role'] = "采购商";
+		  } else {
+ 		    newApplier['role'] = "游客";
+		  }
+		  self.applications.push(newApplier);
         }
-        $('#activity_applicationlist').DataTable({
-        });
+      }
     }, false);
   },
 }

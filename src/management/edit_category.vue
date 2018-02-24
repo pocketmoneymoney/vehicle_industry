@@ -117,7 +117,7 @@ export default {
     }
   },
   mounted: function() {
-	if (this.category != {}) {
+	if (this.category.categoryID) {
 	  this.isNew = false;
 	  this.oldCategory = this.category;
 	} else {

@@ -1,21 +1,25 @@
 <template>
     <div>
-        <h3>{{purchase.name}}</h3>
+        <h3 class = "h3_datatable_list">【报名情况】 {{purchase.name}}</h3>
         <table id="purchase_applicationlist">
           <thead>
              <tr>
                 <th>报名人</th>
-                <th>报名人公司</th>
-                <th>报名人邮箱</th>
-                <th>报名人电话</th>
+                <th>公司</th>
+                <th>邮箱</th>
+                <th>电话</th>
+                <th>留言</th>
+                <th>身份</th>
              </tr>
           </thead>
           <tbody>
             <tr v-for="application in applications">
-              <th>{{application.name}}</th>
+              <th>{{application.applierName}}</th>
               <th>{{application.company}}</th>
               <th>{{application.email}}</th>
               <th>{{application.phone}}</th>
+              <th>{{application.comment}}</th>
+              <th>{{application.personRole}}</th>
             </tr>
           </tbody>
         </table>
@@ -26,33 +30,22 @@
 export default {
   props: ['purchase'],
   data: function() {
-    var applications = [
-    {
-        name: "Tiger Nixon",
-		company: "bb",
-		position: "cc",
-        email: "主机",
-        phone: "2011/04/25",
-		comment: "dd"
-    },
-    {
-        name: "Garrett Winters",
-		company: "BB",
-		position: "CC",
-        email: "2011/07/25",
-        phone: "采购",
-		comment: "dd"
-    }
-    ];
     return {
-      applications: applications 
+      applications: []
     }
   },
   methods: {
   },
   mounted: function() {
     $('#purchase_applicationlist').DataTable({
+      searching: false,
+      ordering:  false
     });
+
+	var self = this;
+	get('/api/purchase/appliers/' + this.purchase.id, {}, function(data) {
+	  self.applications = retriveData(data);
+	}, false);
   },
 }
 </script>
@@ -61,8 +54,4 @@ export default {
 #purchase_applicationlist tbody th {
   font-weight: 400;
 }
-.delete_button {
-  cursor: pointer;
-}
-.new_company { background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding:0 10px;}
 </style>

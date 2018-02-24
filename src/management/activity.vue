@@ -1,7 +1,8 @@
 <template>
     <div>
+        <span><a class="admin_add" @click="editActivity({})">发布活动</a></span>
+	    <div style="clear:both;"> </div>
         <h3>活动列表</h3>
-        <span><a class="new_company" @click="newActivity">发布活动</a></span>
         <table id="activitylist">
           <thead>
              <tr>
@@ -13,10 +14,14 @@
           </thead>
           <tbody>
             <tr v-for="activity in activities">
-              <th @click="activityApplication(activity)" class="delete_button">{{activity.name}}</th>
-              <th>{{activity.time}}</th>
+              <th @click="activityApplication(activity)" class="admin_op_button">{{activity.name}}</th>
+              <th>{{activity.startTime}} -- {{activity.endTime}}</th>
               <th>{{activity.type}}</th>
-              <th @click="deleteActivity(activity)" class="delete_button">删除</th>
+              <th>
+				<a @click="activityApplication(activity)" class="admin_op_button">活动报名情况 </a>
+			    <a @click="editActivity(activity)" class="admin_op_button">编辑 </a>
+			    <a @click="deleteAction(activity)" class="admin_op_button">删除 </a>
+			  </th>
             </tr>
           </tbody>
         </table>
@@ -32,26 +37,29 @@ export default {
     }
   },
   methods: {
-    newActivity: function() {
-      this.$emit("newActivity");
+    editActivity: function(activity) {
+      this.$emit("editActivity", activity);
     },
-    deleteActivity: function(activity) {
+    deleteAction: function(activity) {
+      if(confirm("确定删除么?")) {
       var self = this;
       post('/api/activity/' + activity.id + '/del', {}, function(data) {
-        console.log(data);
-        get('/api/activity/all', {}, function(data) {
-          self.activities = data;
-          for (let index in self.activities) {
-            var activity = self.activities[index];
-            if (activity.type === 'meeting') {
-              activity.type = '采购见面会';
+		if (data.success) {
+          get('/api/activity/all', {}, function(data) {
+            self.activities = data.msg;
+            for (let index in self.activities) {
+              var activity = self.activities[index];
+              if (activity.type === 'meeting') {
+                activity.type = '采购见面会';
+              }
+              else if (activity.type === 'visiting') {
+                activity.type = '走进主机厂';
+              }
             }
-            else if (activity.type === 'visiting') {
-              activity.type = '走进主机厂';
-            }
-          }
-        });
+          });
+		}
       }, true);
+	 }
     },
     activityApplication: function(activity) {
       this.$emit("activityApplication", activity);
@@ -59,19 +67,23 @@ export default {
   },
   mounted: function() {
       var self = this;
+      $('#activitylist').DataTable({
+      	searching: false,
+      	ordering:  false
+      });
       get('/api/activity/all', {}, function(data) {
-          self.activities = data;
+		if (data.success) {
+          self.activities = data.msg;
           for (let index in self.activities) {
             var activity = self.activities[index];
             if (activity.type === 'meeting') {
-              activity.type = '采购见面会';
+              activity.type = '采购配对会';
             }
             else if (activity.type === 'visiting') {
               activity.type = '走进主机厂';
             }
           }
-          $('#activitylist').DataTable({
-          });
+		}
       }, false);
   },
 }

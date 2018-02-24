@@ -21,7 +21,7 @@
           <dl class="clearfix">
               <dt><span>制造工艺：</span></dt>
               <dd>
-                  <input v-model="tech" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="method" class="text" style="z-index: 10000" maxlength="20"
                       type="text" />
               </dd>
           </dl>
@@ -38,15 +38,15 @@
                   <input v-model="money" class="text" style="float:left;z-index: 10000" maxlength="20"
                       type="text" />
 			      <select class="text" v-model="moneyUnit" style="margin-left:10px;width:78px;float:left;">
-				      <option value="yearUnit">年</option>
-				      <option value="perUnit">单次</option>
+				      <option value="年">年</option>
+				      <option value="单次">单次</option>
 				  </select>
               </dd>
           </dl>
           <dl class="clearfix">
               <dt><span>产品其他描述：</span></dt>
               <dd>
-                  <textarea v-model="productComment" class="text" style="z-index: 10000;height:99px;" maxlength="20"
+                  <textarea v-model="description" class="text" style="z-index: 10000;height:99px;" maxlength="200"
                       type="text" />
               </dd>
           </dl>
@@ -58,14 +58,14 @@
           <dl class="clearfix">
               <dt><span>供应商认证：</span></dt>
               <dd>
-                  <input v-model="auth" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="certification" class="text" style="z-index: 10000" maxlength="40"
                       type="text" />
               </dd>
           </dl>
           <dl class="clearfix">
               <dt><span>供应商地理位置：</span></dt>
               <dd>
-                  <input v-model="location" class="text" style="z-index: 10000" maxlength="20"
+                  <input v-model="location" class="text" style="z-index: 10000" maxlength="40"
                       type="text" />
               </dd>
           </dl>
@@ -79,7 +79,7 @@
           <dl class="clearfix">
               <dt><span>供应商其他要求：</span></dt>
               <dd>
-                  <textarea v-model="supplierComment" class="text" style="z-index: 10000;height:99px;" maxlength="20"
+                  <textarea v-model="requirement" class="text" style="z-index: 10000;height:99px;" maxlength="300"
                       type="text" />
               </dd>
           </dl>
@@ -92,40 +92,67 @@
               </dd>
           </dl>
     </div>
-    <span class="span01"><a @click="newPurchase">发布</a></span>
+    <div>
+      <span class="span01"><a @click="cancelPurchase">取消</a></span>
+      <span class="span01"><a @click="newPurchase">发布</a></span>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-	props: ['newPurchaseBasicInfo'],
+	props: ['person', 'newPurchaseBasicInfo'],
 	data() {
 		return {
 			size: '',
 			material: '',
-			tech: '',
+			method: '',
 			amount: '',
 			money: '',
 			moneyUnit: '',
-			productComment: '',
-			auth: '',
+			description: '',
+			certification: '',
 			location: '',
 			sales: '',
-			supplierComment: ''
+			requirement: ''
 		}
 	},
     methods: {
+      cancelPurchase: function() {
+	    this.$emit('cancelPurchase');
+	  },
       newPurchase: function() {
         var oMyForm = new FormData();
         oMyForm.append("name", this.newPurchaseBasicInfo.name);
-        oMyForm.append("location", this.location);
-        oMyForm.append("avatar", this.$refs.productImg.files[0]);
-        var self = this;
 
-        var auth = false
-        if (getCookie('token') !== "") {
-			auth = true;
+        oMyForm.append("phone", this.newPurchaseBasicInfo.phone);
+        oMyForm.append("productName", this.newPurchaseBasicInfo.productName);
+        oMyForm.append("expire", this.newPurchaseBasicInfo.expire);
+        oMyForm.append("type", this.newPurchaseBasicInfo.type);
+        oMyForm.append("detailType", this.newPurchaseBasicInfo.detailType);
+
+        oMyForm.append("size", this.size);
+        oMyForm.append("material", this.material);
+        oMyForm.append("method", this.method);
+        oMyForm.append("totalAmount", this.amount);
+        oMyForm.append("money", this.money);
+        oMyForm.append("moneyUnit", this.moneyUnit);
+        oMyForm.append("description", this.description);
+        oMyForm.append("supplierCertification", this.certification);
+        oMyForm.append("supplierLocation", this.location);
+        oMyForm.append("supplierSales", this.sales);
+        oMyForm.append("supplierRequirement", this.requirement);
+
+        oMyForm.append("personID", this.person.id);
+        oMyForm.append("personRole", this.person.role);
+
+		if (this.$refs.productImg.files[0]) {
+          oMyForm.append("picture", this.$refs.productImg.files[0]);
 		}
+
+		postWithFile('/api/purchase', oMyForm, function(data) {
+		  window.location.href = "/src/purchase/index.html";
+		}, false);
 	  }
 	}
 }
@@ -150,7 +177,6 @@ export default {
 	font-weight: normal;
 }
 
-
 .formbox dl {width:435px;line-height:26px;margin-top:10px;}
 .formbox dt,.formbox dd {float:left;}
 .formbox dt {width:190px;text-align:right;font:bolder 14px/26px arial;color:#222;}
@@ -164,5 +190,19 @@ export default {
 .formbox dd .rad {font:bold 14px arial;color:#039;line-height:25px;margin-left:5px;margin-left:2px\9;}
 .formbox dd .textc {width:452px;height:22px;line-height:22px;border:1px #9D9D9D solid;padding:0  0 0 5px;position:relative;z-index:99;}
 .formbox b {color:#f00;padding:5px;}
-.span01{ display:block; width: 54px; margin-left: 154px; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px; cursor: pointer;}
+
+.span01{ 
+  	float:left; 
+	display:block; 
+	width: 54px; 
+	margin-left: 150px; 
+	background:#e2f5ff; 
+	border:1px solid #c8eafa; 
+	border-radius:0.2em; 
+	font-size:13px; 
+	line-height:26px; 
+	text-align:center; 
+	color:#3d9ccc; 
+	cursor: pointer;
+}
 </style>

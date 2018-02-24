@@ -2,36 +2,26 @@
   <div class="list_purchase_product clearfix">
     <h3>
         <span>采购项目</span>
-        <a href="../inquiry/product_list.aspx">More &gt;</a>
     </h3>
     <div class="tabbd middle_list_content tabbd">
         <div class="item">
-            <!--div class="product_content_title">
-                <div class="view">
-                    <p>View as</p>
-                    <a href="" class="list_icon"></a>
-                    <a href="" class="label_icon"></a>
-                </div>
-                <div class="simple_page">
-                    
-                </div>
-            </div-->
             <ul class="product_list">
-                
-                <li v-for="purchaseProduct in purchaseProducts">
+                <li v-for="purchase in purchases">
                    <div class="product_list_left">
-                       <!--a href="pro_com_detail.aspx?op=32863"><img src='../admin/file/img/20180129103901822.jpg' /></a-->
-                       <h4><a href="pro_com_detail.aspx?op=32863">{{ purchaseProduct.product }}</a></h4>
-                       <em><span>OEM No/Model:</span></em>
-                       <em><span>Application:</span></em>
+                       <h4><a href="pro_com_detail.aspx?op=32863">{{ purchase.name }}</a></h4>
+					   <h5>[ {{purchase.type}}] {{purchase.productName}}</h5>
+                       <em><span>尺寸／重量: {{purchase.size}} </span> </em>
+                       <em><span>材质: {{purchase.material}} </span> </em>
+                       <em><span>制造工艺: {{purchase.method}} </span> </em>
+                       <em><span>年采购量: {{purchase.totalAmount}} </span> </em>
+                       <em><span>车型: {{purchase.detailType}} </span> </em>
                    </div>
                    <div class="product_company">
-                       <a href="../supplierEC/show_index.aspx?op=2382"><p>{{ purchaseProduct.company }}</p></a>
-                       <!--em>
-                           <img src='../admin/file/icon/China.gif' alt="" class="flag_contury">China
-                       </em-->
-                       <a :href="enrollUrl + purchaseProduct.id" class="contact_btn">我要报名</a>
-                       
+					   <h5>对供应商要求: </h5>
+                       <p>认 证：{{ purchase.supplierCertification }}</p>
+                       <p>位 置：{{ purchase.Location }}</p>
+                       <p>销 量：{{ purchase.Sales }}</p>
+                       <a :href="enrollUrl + purchase.id" class="contact_btn">我要报名</a>
                    </div>
                </li>
             </ul>
@@ -72,66 +62,30 @@
 	background: #f5f5f5;
 	padding: 0 10px;
 }
-/*
-.view{
-	float: left;
-	height: 36px;
-	line-height: 36px;
-	font-size: 12px;
-	color: #333;
-}
-.view p{
-	float: left;
-}
-.view a{
-	width: 15px;
-	height: 15px;
-	display: inline-block;
-	margin-top: 10px;
-	margin-left: 10px;
-	float: left;
-}
-.list_icon{
-	background: url('../styImg/show/list_icon.jpg') no-repeat;	
-}
-.label_icon{
-	background: url('../styImg/show/label_icon.jpg') no-repeat;
-}
-*/
 .product_list li{
 	border-bottom: 1px dashed #e5e5e5;
 	padding: 20px 0;
 	overflow: hidden;
 }
-/*
-.product_list li:hover{
-	box-shadow: 0 0 5px #999;
-	padding: 20px 30px;
-	width: 788px;
-	margin-left: -30px;
-	position: relative;
-	background: #fff;
-}
-*/
 .product_list_left{
 	float: left;
-	width: 502px;
+	width: 400px;
 	height: 180px;
-	border-right: 1px solid #e5e5e5;
-	padding-right: 40px;
+	border-right: 2px solid #e5e5e5;
+	padding-right: 10px;
 }
 .product_list_left img{
 	display: block;
 	float: left;
-	width: 178px;
-	height: 178px;
+	width: 100px;
+	height: 100px;
 	border:1px solid #e5e5e5;
 	margin-right: 20px;
 }
 .product_list_left h4{
 	height: 44px;
 	line-height: 20px;
-	font-size: 14px;
+	font-size: 20px;
 	color: #004b91;
 	overflow: hidden;
 	margin-bottom: 10px;
@@ -164,15 +118,15 @@
 }
 
 .product_company{
-	float: right;
-	width: 245px;
-	padding-left: 40px;
+    float: right;
+	width: 200px;
+	margin-top: 10px;
+	padding-left: 20px;
 }
 .product_company a:hover p{
 	color: #449cd7
 }
 .product_company p{
-	height: 40px;
 	line-height: 20px;
 	font-size: 12px;
 	color: #333;
@@ -190,10 +144,10 @@
 	margin-right: 5px;
 }
 .contact_btn{
-	float: left;
+	float: right;
 	width: 64px;
 	display: inline-block;
-	background: #e2f5ff; /*url('../styImg/xunpan/message_icon.png') 15px center no-repeat;*/
+	background: #e2f5ff; 
 	font-size: 13px;
 	line-height: 26px;
 	margin-top: 30px;

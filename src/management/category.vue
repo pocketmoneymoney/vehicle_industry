@@ -68,6 +68,8 @@ export default {
   },
   mounted: function() {
     $('#datalist').DataTable({
+      searching: false,
+      ordering:  false
     });
 
 	var self = this;

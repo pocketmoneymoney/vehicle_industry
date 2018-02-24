@@ -120,6 +120,8 @@ export default {
   mounted: function() {
     var self = this;
     $('#userlist').DataTable({
+      searching: false,
+      ordering:  false
     });
     get('/api/supplier/privilege?page=0&num=5', {}, function (data) {
 	  if (data.success) {

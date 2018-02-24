@@ -6,13 +6,18 @@
         <main-nav :currentView="viewName"></main-nav>
         <div>
           <event-enroll-panel></event-enroll-panel>
-		  <new-purchase-next v-if="newPurchaseNext" :newPurchaseBasicInfo="newPurchaseBasicInfo"></new-purchase-next>
-		  <new-purchase v-else @newPurchaseNext="showNewPurchaseNext"></new-purchase>
+		    <div class="main_middle">
+		      <new-purchase-next v-if="newPurchaseNext" 
+			    :newPurchaseBasicInfo="newPurchaseBasicInfo"
+				:person="person"
+				@cancelPurchase="cancelPurchase"> </new-purchase-next>
+		      <new-purchase v-else 
+				:person="person" @newPurchaseNext="showNewPurchaseNext"></new-purchase>
+              <list-purchase-product></list-purchase-product>
+		  </div>
 		  <right-panel></right-panel>
-          <purchase-product></purchase-product>
         </div>
       </div>
-      <interview></interview>
       <last-footer></last-footer>
     </div>
 </template>
@@ -25,11 +30,10 @@ import RightPanel from '../util/right_panel.vue'
 import LastFooter from '../util/footer.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
+
 import NewPurchase from './new_purchase.vue'
 import NewPurchaseNext from './new_purchase_next.vue'
-import PurchaseProduct from './list_purchase_product.vue'
-
-import Interview from '../util/interview.vue'
+import ListPurchaseProduct from './list_purchase_product.vue'
 
 export default {
   data: function() {
@@ -38,63 +42,35 @@ export default {
       topProduct: "eventEnroll",
       topTitle: "活动预告及报名",
       topComponent: "event-enroll-panel",
+	  person: {},
 	  newPurchaseBasicInfo: {},
 	  newPurchaseNext: false
     }
   },
   methods: {
-	showNewPurchaseNext: function(data) {
-		this.newPurchaseBasicInfo = data;
+	showNewPurchaseNext: function(basic) {
+		this.newPurchaseBasicInfo = basic;
 		this.newPurchaseNext = true;
 	},
+    cancelPurchase: function () {
+		this.newPurchaseNext = false;
+    },
 	viewChange: function(index) {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, PurchaseProduct, 
-			   NewPurchase, NewPurchaseNext, RightPanel, Interview, LastFooter}
+  mounted: function () {
+    var self = this;
+    getLoginInfo(function(person) {
+      self.person = person; 
+    });
+  },
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, 
+			   ListPurchaseProduct, NewPurchase, NewPurchaseNext, 
+			   RightPanel, LastFooter}
 }
 </script>
 
 <style lang="scss">
 @import '../../css/rem.scss';
-
-.back_wrapper{
-  width: t(1200);
-  background-color:#f9f9f8;
-}
-.main{
-	width: 1200px;
-	margin: 0 auto;
-}
-
-/* clearfix elimate float:left has no height */
-.clearfix:before,
-.clearfix:after {
-  content: '\0020';
-  display: block;
-  overflow: hidden;
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}
-
-.clearfix:after {
-  clear: both;
-}
-
-.main_right{
-	float: right;
-	width: 970px;
-	margin-bottom: 20px;
-}
-
-h3{
-	height: 14px;
-	line-height: 14px;
-	font-size: 14px;
-	color: #333333;
-  margin: 0;
-  font-weight: bold;
-}
 </style>

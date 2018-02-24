@@ -5,15 +5,24 @@
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
         <div>
-		  <a :href="activityEnrollUrl + latestMeeting.id"><img style="width:990px;float:left;" :src="imgUrl + latestMeeting.bigPoster" /></a>
-	      <right-panel></right-panel>
+		  <div class="main_right">
+		  <a style="cursor:pointer;" @click="enroll(latestMeeting)">
+			<img style="width:900px; height:450px; margin-left:30px; float:left;" 
+				 :src="latestMeeting.bigPoster" />
+		  </a>
+	      <div style="clear:both;"> </div>
 		  <div class="new_meetings">
-		    <meeting-panel v-for="meeting in newMeetings" :activity="meeting"></meeting-panel>
+		    <meeting-panel 
+			  v-for="meeting in newMeetings" 
+				:activity="meeting">
+			</meeting-panel>
 		  </div>
-          <div class="main_right">
+		  </div>
+	      <right-panel></right-panel>
+	
+          <!---div class="main_right">
             <history-meeting :imgPaths="historyImgPaths" carouselId="history_meeting"></history-meeting>
-            <interview></interview>
-		  </div>
+		  </div--->
         </div>
       </div>
       <last-footer></last-footer>
@@ -24,20 +33,18 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
-import Interview from '../util/interview.vue'
 import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
-
-import MeetingPanel from '../util/activity_panel.vue'
+import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import HistoryMeeting from '../util/carousel.vue'
 
+import MeetingPanel from './activity_panel.vue'
 
 export default {
   data: function() {
     return {
-      imgUrl: 'http://localhost:8099/',
-      viewName: "meeting",
-	  activityEnrollUrl: '/src/util/activity_enroll.html?activityId=',
+      viewName: "visiting",
+	  enrollUrl: '/src/activity/enroll.html?id=',
 	  latestMeeting: {},
 	  newMeetings: [],
       historyImgPaths: ['/img/1.jpg', '/img/2.jpg', '/img/3.jpg']
@@ -46,59 +53,37 @@ export default {
   methods: {
 	viewChange: function(index) {
 	  this.itemSeries = this.items[index];
-	}
+	},
+	enroll: function (activity) {
+	  window.location.href = this.enrollUrl + activity.id + '&tp=' + this.viewName;
+    } 
   },
   mounted: function() {
     var self = this;
-    get('/api/activity/latest', {type: 'meeting'}, function(data) {
-        self.latestMeeting = data;
+    get('/api/activity/latest', {type: 'visiting'}, function(data) {
+	  if (data.success) {
+        self.latestMeeting = data.msg;
+      }
     }, false);
-    get('/api/activity/list', {type: 'meeting', num: 3}, function(data) {
-        self.newMeetings = data;
+    get('/api/activity/list', {type: 'visiting', num:9, page:0}, function(data) {
+	  if (data.success) {
+        self.newMeetings = data.msg;
+	  }
     }, false);
   },
   components: {MainHeader, TopBar, MainNav, MeetingPanel, HistoryMeeting,
-			   RightPanel, Interview, LastFooter}
+			   EventEnrollPanel, RightPanel, LastFooter}
 }
 </script>
 
 <style lang="scss">
 @import '../../css/rem.scss';
 
-.back_wrapper{
-  width: t(1200);
-  background-color:#f9f9f8;
-}
-.main{
-	width: 1200px;
-	margin: 0 auto;
-}
-
-/* clearfix elimate float:left has no height */
-.clearfix:before,
-.clearfix:after {
-  content: '\0020';
-  display: block;
-  overflow: hidden;
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}
-
-.clearfix:after {
-  clear: both;
-}
-
 .main_right{
 	float: left;
-	width: 740px;
+	width: 950px;
 	margin-bottom: 20px;
 	padding: 0px 12px 10px 10px;
-}
-
-.enroll{
-	width: 500px;
-	height: 50px;
 }
 
 h3{

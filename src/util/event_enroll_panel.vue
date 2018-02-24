@@ -2,7 +2,7 @@
   <div class="event_enroll_panel clearfix">
     <h3>
         <span>活动预告及报名</span>
-        <a href="../inquiry/product_list.aspx">More &gt;</a>
+        <a href="/src/activity/meeting.html">更多</a>
     </h3>
     <event-enroll :activity="latestMeeting"></event-enroll>
     <div class="seperate"></div>
@@ -23,10 +23,10 @@ export default {
   mounted: function() {
     var self = this;
     get('/api/activity/latest', {type: 'meeting'}, function(data) {
-        self.latestMeeting = data;
+        self.latestMeeting = data.msg;
     }, false);
     get('/api/activity/latest', {type: 'visiting'}, function(data) {
-        self.latestVisiting= data;
+        self.latestVisiting= data.msg;
     }, false);
   },
   components: {EventEnroll}
