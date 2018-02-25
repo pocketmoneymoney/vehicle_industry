@@ -15,7 +15,7 @@ export default {
       title: "最新采购",
       components: [],
 	  mainUrl: "/src/purchase/index.html",
-	  detailUrl: "/src/purchase/apply.html?id=",
+	  detailUrl: "/src/purchase/enroll.html?id=",
     }
   },
   mounted: function () {
