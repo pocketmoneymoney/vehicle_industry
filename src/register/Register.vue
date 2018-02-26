@@ -148,7 +148,7 @@ export default {
         return;
 	  }
 		
-	  if (!CombineStrCheck(this.password1)) {
+	  if (!combineStrCheck(this.password1)) {
         alert('您输入的密码格式不满足要求, 请重新填写');
         return;
 	  }

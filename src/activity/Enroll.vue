@@ -141,7 +141,7 @@ export default {
       params['personRole'] = this.person.role;
 
 	  var self = this;
-      post('/api/activity/enroll', params, function (data) {
+      post('/api/activity/apply', params, function (data) {
         if (!data.success) {
           console.log(data.msg);
         }

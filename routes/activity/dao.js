@@ -44,6 +44,11 @@ dbHandler.prototype.getActivityAmount = function(callback) {
     this.count(callback);
 };
 
+dbHandler.prototype.getMyActivityList = function(page, num, id, callback) {
+  	var conditions = {apply: {$elemMatch: {personID: id}}};
+    db.daoTemplate.getPageItems.call(this, page, num, callback, conditions);
+};
+
 dbHandler.prototype.getActivityDetail = function (id, callback) {
     this.findOne({'id':id}, callback);
 };
@@ -106,7 +111,6 @@ dbHandler.prototype.addActivityApply = function (id, name, email, phone, company
   comment, personID, personRole, callback) {
 	var self = this;
 	var myDate = new Date();
-
   	var newApply = {
 		'applierName': name,
 		'position': position,

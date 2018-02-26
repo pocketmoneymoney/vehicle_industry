@@ -38,6 +38,21 @@ module.exports = function(express) {
          });
     });
 
+    router.get('/list_apply', function (req, res) {
+         var page = req.query.page? parseInt(req.query.page) : 1;
+         var num = req.query.num? parseInt(req.query.num) : 1;
+         var start = page * num;
+
+         var id = req.query.id;
+         dao.getMyPositionList(start, num, id, function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+			 	res.json({success:true, msg:result});
+			}
+		});
+	});
+
     router.get('/amount', function (req, res) {
         dao.getPositionAmount(function (err, result) {
 			if (err || !result) {

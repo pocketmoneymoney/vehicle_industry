@@ -11,8 +11,8 @@ module.exports = function(express) {
     var _ = require('underscore');
     var logger = require('log4js').getLogger('server');
 
-	  var multer = require('multer');
-	  var path = require('path');
+	var multer = require('multer');
+	var path = require('path');
     var dao = require('./dao.js');
 
     var router = express.Router({mergeParams: true});
@@ -66,6 +66,21 @@ module.exports = function(express) {
 			}
         });
     });
+
+    router.get('/list_apply', function (req, res) {
+         var page = req.query.page? parseInt(req.query.page) : 1;
+         var num = req.query.num? parseInt(req.query.num) : 1;
+         var start = page * num;
+
+         var id = req.query.id;
+         dao.getMyActivityList(start, num, id, function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+			 	res.json({success:true, msg:result});
+			}
+		});
+	});
 
     router.get('/amount', function (req, res) {
         dao.getActivityAmount(function (err, result) {
@@ -175,7 +190,7 @@ module.exports = function(express) {
 	  	}
 	});
 
-    router.post('/enroll', function(req, res) {
+    router.post('/apply', function(req, res) {
 		var name = req.body.name;
 		var email = req.body.email;
 		var phone = req.body.phone;
@@ -185,7 +200,7 @@ module.exports = function(express) {
 		var id = req.body.id;
 		var personID = req.body.personID;
 		var personRole = req.body.personRole;
-		
+
 		dao.addActivityApply(id, name, email, phone, company, position, 
 		  comment, personID, personRole, function(err, result) {
 			if (err || !result) {

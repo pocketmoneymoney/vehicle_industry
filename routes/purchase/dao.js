@@ -50,7 +50,7 @@ dbHandler.prototype.getPurchaseAmount = function(callback) {
 
 dbHandler.prototype.addPurchase = function(basic, detail, publisher, supplier, 
 										   picture, callback) {
-	var id = helper.uniqueID(basic.name);
+	var id = helper.uniqueID(basic.productName);
 	var myDate = new Date();
 	this.create({
 		'id': id,
@@ -109,6 +109,11 @@ dbHandler.prototype.getPurchaseAppliers = function(id, callback) {
 	});
 };
 
+dbHandler.prototype.getMyPurchaseList = function(page, num, id, callback) {
+  	var conditions = {apply: {$elemMatch: {personID: id}}};
+    db.daoTemplate.getPageItems.call(this, page, num, callback, conditions);
+};
+
 dbHandler.prototype.modifyPurchase = function(id, basic, detail, supplier, picture, callback) {
 	var fields = {
 		'name': basic.name,
@@ -138,10 +143,6 @@ dbHandler.prototype.modifyPurchase = function(id, basic, detail, supplier, pictu
 
 dbHandler.prototype.deletePurchase = function(id, callback) {
 	this.remove({'id':id}, callback);
-};
-
-dbHandler.prototype.addPurchase = function (obj, callback) {
-	this.create(obj, callback);
 };
 
 module.exports = new dbHandler();

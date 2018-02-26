@@ -12,16 +12,16 @@
             <li><a :href="companyURL">我的公司</a></li>
             <li><a :href="purchasePublisherURL">我发布的采购</a></li>
             <li><a :href="purchaseBuyerURL">我报名的采购</a></li>
-            <li><a :href="acitivityURL">我报名的活动</a></li>
+            <li><a :href="activityURL">我报名的活动</a></li>
             <li><a :href="positionURL">我申请的职位</a></li>
           </ul>
         </div>
-        <div v-if="isLogin && isBuyder" class="supplier_self_sub">
+        <div v-if="isLogin && isBuyer" class="supplier_self_sub">
           <ul>
             <li><a href="/src/buyer/index.html">个人信息</a></li>
             <li><a :href="purchasePublisherURL">我发布的采购</a></li>
             <li><a :href="purchaseBuyerURL">我报名的采购</a></li>
-            <li><a :href="acitivityURL">我报名的活动</a></li>
+            <li><a :href="activityURL">我报名的活动</a></li>
             <li><a :href="positionURL">我申请的职位</a></li>
           </ul>
         </div>

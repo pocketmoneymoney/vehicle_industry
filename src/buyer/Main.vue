@@ -4,8 +4,12 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav></main-nav>
-		<div class="main_right">
+        <div>
+         <event-enroll-panel></event-enroll-panel>
+		<div class="main_middle">
 		  <buyer-info></buyer-info>
+		</div>
+	     <right-panel></right-panel>
 		</div>
       </div>
       <last-footer></last-footer>
@@ -18,9 +22,12 @@ import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
 import BuyerInfo from './Buyer-info.vue'
+import EventEnrollPanel from '../util/event_enroll_panel.vue'
+import RightPanel from '../util/right_panel.vue'
 
 export default {
-  components: {BuyerInfo, TopBar, MainHeader, MainNav, LastFooter}
+  components: {BuyerInfo, TopBar, MainHeader, MainNav, LastFooter, 
+			   EventEnrollPanel, RightPanel} 
 }
 </script>
 

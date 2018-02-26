@@ -37,6 +37,11 @@ DBHandler.prototype.findOne = function(conditions, projection, options, callback
         options = null;
       }
 
+	if (options) {
+		options['sort'] = {'_id': -1};
+	} else {
+		options = {sort:{'_id':-1}};
+	}	
     var query = this.model
         .find(conditions, projection, options)
         .limit(1);
@@ -63,6 +68,12 @@ DBHandler.prototype.findMultiple = function(conditions, projection, options,
         limit = options;
         options = null;
       }
+
+	if (options) {
+		options['sort'] = {'_id': -1};
+	} else {
+		options = {sort:{'_id':-1}};
+	}	
 
     var query = this.model
         .find(conditions, projection, options)

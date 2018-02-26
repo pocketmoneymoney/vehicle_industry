@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="info_panel">
-	  <h3>基本资料</h3>
+    <div class="info_panel2">
+	  <h2>基本信息</h2>
 	  <div style="clear:both;"> </div>
 	  <table>
 	    <tr><td>用户名:      </td><td>  {{ username }}</td></tr>
@@ -13,18 +13,6 @@
         <span><a :href="editURL">修改基本信息   </a></span>
         <span><a href="/src/register/password.html">重置密码    </a></span>
       </div>
-    </div>
-    <div class="info_panel">
-	  <h3>采购记录</h3>
-    </div>
-    <div class="info_panel">
-	  <h3>活动记录</h3>
-	  <div style="clear:both;"> </div>
-    <table>
-      <tr v-for="activity in activities">
-        <td>{{ activity.name }}</td>
-      </tr>
-    </table>
     </div>
   </div>
 </template>

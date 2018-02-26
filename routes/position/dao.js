@@ -28,6 +28,11 @@ dbHandler.prototype.getPositionAmount = function(callback) {
     this.count(callback);
 };
 
+dbHandler.prototype.getMyPositionList = function(page, num, id, callback) {
+  	var conditions = {apply: {$elemMatch: {personID: id}}};
+    db.daoTemplate.getPageItems.call(this, page, num, callback, conditions);
+};
+
 dbHandler.prototype.addPosition = function(name, company, brief, location, callback) {
 	var id = helper.uniqueID(name);
 	var myDate = new Date();
