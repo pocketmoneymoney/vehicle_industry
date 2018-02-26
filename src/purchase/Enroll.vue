@@ -193,12 +193,16 @@ export default {
 	  params['company'] = company;
 	  params['position'] = position;
 	  params['comment'] = comment;
+
 	  params['id'] = this.purchase.id;
 	  params['personID'] = this.person.id;
 	  params['personRole'] = this.person.role;
 
 	  var self = this;
       post('/api/purchase/apply', params, function (data) {
+        if (!data.success) {
+          console.log(data.msg);
+        }
 	    window.location.href='/src/purchase/index.html';
       }, true);
     }

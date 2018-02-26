@@ -4,9 +4,12 @@
       <main-header></main-header>
       <div class="main clearfix">
       <main-nav></main-nav>
-      <div class="main clearfix">
+      <div>
+         <event-enroll-panel></event-enroll-panel>
+      <div class="main_middle clearfix">
         <div class="formbox clearfix">
-          <h3>注册新用户</h3>
+		  <div class="info_panel2">
+          <h2>注册新用户</h2>
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><b>*</b><span>用户名：</span></dt>
@@ -68,7 +71,8 @@
               </dd>
 			  <dd></dd>
           </dl>
-          <div v-if="role === 'supplier'">
+          </div>
+          <div v-if="role === 'supplier'" class="info_panel2">
               <dl>
                   <dt><b>*</b><span>公司名称：</span></dt>
                   <dd>
@@ -95,6 +99,8 @@
           </div>
         </div>
       </div>
+	      <right-panel></right-panel>
+      </div>
 	  </div>
       <last-footer></last-footer>
     </div>
@@ -104,6 +110,7 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
+import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import RightPanel from '../util/right_panel.vue'
 import LastFooter from '../util/footer.vue'
 
@@ -198,7 +205,7 @@ export default {
 	  }, false);
     }
   },
-  components: {MainHeader, MainNav, TopBar, LastFooter, RightPanel} 
+  components: {MainHeader, MainNav, TopBar, LastFooter, EventEnrollPanel, RightPanel} 
 }
 </script>
 

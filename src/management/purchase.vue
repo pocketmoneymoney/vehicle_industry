@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>采购项目管理</h3>
+        <h3 class="h3_datatable_list">【采购项目管理列表】</h3>
         <table id="purchaselist">
           <thead>
              <tr>
@@ -34,6 +34,7 @@
 export default {
   data: function() {
     return {
+	  getUrl: '',
       purchases: []
     }
   },
@@ -48,7 +49,7 @@ export default {
 		var self = this;
         post('/api/purchase/delete/' + purchase.id, {}, function(data) {
 		  if (data.success) {
-    		get('/api/purchase/list?page=0&num=100', {}, function(data) {
+    		get(self.getUrl, {}, function(data) {
 			  self.purchases = retriveData(data);
 			});
 		  } else {
@@ -68,9 +69,21 @@ export default {
     });
 
 	var self = this;
-    get('/api/purchase/list?page=0&num=100', {}, function(data) {
-  	  self.purchases = retriveData(data);
-	}, false);
+	var publisherID = getUrlKey('id');
+
+    post('/user/book', {}, function(data) {
+      if ((data.username) && (data.role == 'admin')) {
+		self.getUrl = '/api/purchase/list?page=0&num=100';
+	  } else if ((data.username) && (data.id == publisherID)) {
+		self.getUrl = '/api/purchase/list?page=0&num=100&id=' + publisherID;
+	  } else {
+        window.location.href = '/src/redirect/expired.html';
+		return;
+      }
+	  get(self.getUrl, {}, function(data) {
+  	  	self.purchases = retriveData(data);
+	  }, false);
+	}, true);
   },
 }
 </script>

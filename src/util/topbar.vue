@@ -10,6 +10,19 @@
           <ul>
             <li><a href="/src/supplier/index.html">个人信息</a></li>
             <li><a :href="companyURL">我的公司</a></li>
+            <li><a :href="purchasePublisherURL">我发布的采购</a></li>
+            <li><a :href="purchaseBuyerURL">我报名的采购</a></li>
+            <li><a :href="acitivityURL">我报名的活动</a></li>
+            <li><a :href="positionURL">我申请的职位</a></li>
+          </ul>
+        </div>
+        <div v-if="isLogin && isBuyder" class="supplier_self_sub">
+          <ul>
+            <li><a href="/src/buyer/index.html">个人信息</a></li>
+            <li><a :href="purchasePublisherURL">我发布的采购</a></li>
+            <li><a :href="purchaseBuyerURL">我报名的采购</a></li>
+            <li><a :href="acitivityURL">我报名的活动</a></li>
+            <li><a :href="positionURL">我申请的职位</a></li>
           </ul>
         </div>
   			<a v-if="isLogin" @click="logout" href="/src/index.html" class="account_icon">退出登录</a>
@@ -51,7 +64,11 @@ export default {
       password: "",
       logo: "",
 	  baseCompanyURL: baseCompanyURL,
-	  companyURL: baseCompanyURL
+	  companyURL: baseCompanyURL,
+	  purchasePublisherURL: "",
+	  purchaseBuyerURL: "",
+	  activityURL: "",
+	  positionURL: ""
     }
   },
   methods: {
@@ -129,6 +146,17 @@ export default {
         	self.isSupplier = true;
       	  }
 		  self.companyURL = self.baseCompanyURL + "?id=" + data.id;
+		  if (data.role == 'supplier') {
+	  	    self.purchasePublisherURL = "/src/supplier/purchase_publish_record.html?id=" + data.id;
+	  	    self.purchaseBuyerURL = "/src/supplier/purchase_buy_record.html?id=" + data.id;
+	  	    self.activityURL = "/src/supplier/activity_record.html?id=" + data.id;
+	  	    self.positionURL = "/src/supplier/position_record.html?id=" + data.id;
+		  } else if (data.role == 'buyer') {
+	  	    self.purchasePublisherURL = "/src/buyer/purchase_publish_record.html?id=" + data.id;
+	  	    self.purchaseBuyerURL = "/src/buyer/purchase_buy_record.html?id=" + data.id;
+	  	    self.activityURL = "/src/buyer/activity_record.html?id=" + data.id;
+	  	    self.positionURL = "/src/buyer/position_record.html?id=" + data.id;
+		  }
         } else {
           self.isLogin = false;
 		}
@@ -248,7 +276,6 @@ export default {
 .supplier_self_sub{
 	background: #fff;
 	position: absolute;
-	height: 90px;
 	border:1px solid #fff;
 	z-index: 1000;
 	box-shadow: 0 0 3px #999;

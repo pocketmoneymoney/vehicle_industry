@@ -4,9 +4,12 @@
       <main-header></main-header>
       <div class="main clearfix">
       <main-nav></main-nav>
-      <div class="main clearfix">
-        <div class="formbox clearfix">
-          <h3 class="h3_cls">活动详情</h3>
+	  <div>
+         <event-enroll-panel></event-enroll-panel>
+      <div class="main_middle clearfix">
+        <div class="formbox">
+		  <div class="info_panel2">
+          <h2>活动详情</h2>
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><b></b><span>活动名称：</span></dt>
@@ -20,9 +23,9 @@
               <dt><b></b><span>活动地点：</span></dt>
               <dd> <span>{{activity.location}} </span> </dd>
           </dl>
-		
-		  <div v-if="isNotAdmin">
-          <h3 class="h3_cls">我要报名</h3>
+		  </div>	
+		  <div v-if="isNotAdmin" class="info_panel2">
+          <h2>我要报名</h2>
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><b>*</b><span>姓名：</span></dt>
@@ -73,6 +76,8 @@
 		  </div>
         </div>
       </div>
+	      <right-panel></right-panel>
+      </div>
 	  </div>
       <last-footer></last-footer>
     </div>
@@ -82,6 +87,8 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
+import EventEnrollPanel from '../util/event_enroll_panel.vue'
+import RightPanel from '../util/right_panel.vue'
 import LastFooter from '../util/footer.vue'
 
 export default {
@@ -128,25 +135,27 @@ export default {
 	  params['company'] = company;
 	  params['position'] = position;
 	  params['comment'] = comment;
+
 	  params['id'] = this.activity.id;
-	  params['userID'] = this.person.id;
-	  params['role'] = this.person.rold;
+      params['personID'] = this.person.id;
+      params['personRole'] = this.person.role;
 
 	  var self = this;
       post('/api/activity/enroll', params, function (data) {
-		if (data.success) {
-	  	  window.location.href='/src/activity/' + self.type + '.html';
-		}
+        if (!data.success) {
+          console.log(data.msg);
+        }
+	  	window.location.href='/src/activity/' + self.type + '.html';
       }, true);
     }
   },
   mounted: function() {
 	var self = this;
 	var id = getUrlKey('id');
-	if (!id) {
+	this.type = getUrlKey('tp');
+	if (!id || !this.type) {
 	  window.location.href="/src/index.html";	
 	}
-	this.type = getUrlKey('tp');
 
     get('/api/activity/'+id, {}, function(data) {
 	  if (data.success) {
@@ -154,36 +163,16 @@ export default {
 	  }
 	}, false);
 
-    if (getCookie('token') != "") {
-      post('/user/book', {}, function(data) {
-		if ((data.username) && (data.role != 'admin')) {
-		  self.person.id = data.id;
-		  if (data.role == 'supplier') {
-        	get('/api/supplier/person/' + data.id, {}, function(data) {
-			  if (data.success) {
-				self.person.name = data.msg.myname;
-				self.person.phone = data.msg.phone;
-				self.person.email = data.msg.email;
-				self.person.role = 'supplier';
-			  }	
-			}, false);
-		  } else if (data.role == 'buyer') {
-        	get('/api/buyer/' + data.id, {}, function(data) {
-			  if (data.success) {
-				self.person.name = data.msg.name;
-				self.person.phone = data.msg.phone;
-				self.person.email = data.msg.email;
-				self.person.role = 'buyer';
-			  }
-			}, false);
-		  }
-		} else if (data.role == 'admin') {
-          self.isNotAdmin = false;
-        }
-	  }, true);
-	}
+	getLoginInfo(function (person) {
+	  if (person.name) {
+		self.person = person;
+		if (self.person.role == "admin") {
+	  	  self.isNotAdmin = false;
+  		} 
+	  }
+	});
   },
-  components: {MainHeader, MainNav, TopBar, LastFooter} 
+  components: {MainHeader, MainNav, TopBar, LastFooter, EventEnrollPanel, RightPanel} 
 }
 </script>
 

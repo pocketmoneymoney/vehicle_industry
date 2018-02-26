@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>{{position.name}}</h3>
+        <h3 class="h3_datatable_list">【应聘情况】 {{position.name}}</h3>
         <table id="position_applicationlist">
           <thead>
              <tr>
@@ -14,11 +14,11 @@
           </thead>
           <tbody>
             <tr v-for="application in applications">
-              <th>{{application.name}}</th>
+              <th>{{application.applierName}}</th>
               <th>{{application.email}}</th>
               <th>{{application.phone}}</th>
-              <th>{{application.time}}</th>
-              <th>{{application.role}}</th>
+              <th>{{application.applyTime}}</th>
+              <th>{{application.personRole}}</th>
               <th class="admin_op_button">
 				<a @click="downloadResume(application.resume)">简历下载</a>
 			  </th>
@@ -46,28 +46,10 @@ export default {
       searching: false,
       ordering:  false
     });
+
     var self = this;
     get('/api/position/appliers/'+this.position.id, {}, function (data) {
-	  if (data.success) {
-	    for (var index = 0; index < data.msg.length; index++) {
-		  var applier = data.msg[index];
-          var newApplier = {
-     	    'name': applier.applierName,
-		    'phone': applier.phone,
-		    'email': applier.email,
-		    'time': applier.applyTime,
-		    'resume': applier.resume 
-		  };
-		  if (applier.role == 'supplier') {
- 		    newApplier['role'] = "供应商";
- 	      } else if (applier.role == 'buyer') {
- 		    newApplier['role'] = "采购商";
-		  } else {
- 		    newApplier['role'] = "游客";
-		  }
-		  self.applications.push(newApplier);
-	    }
-	  }
+	  self.applications = retriveData(data);
     }, false);
   }
 }

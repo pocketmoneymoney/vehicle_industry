@@ -3,15 +3,24 @@ import Page from '../util/page.vue'
 export default {
   data() {
     return {
-	  applyURL: '/src/position/apply.html?id=',
+	  applyURL: '/src/position/enroll.html?id=',
       positions: [],
-      curPage: 8,
-      totalPage: 11
+      curPage: 1,
+      totalPage: 9
     }
   },
   methods: {
     changePage: function(page) {
       this.curPage = page;
+	  this.getCurrentPageData();
+    },
+	getCurrentPageData: function () {
+	  var self = this;
+	  var page = self.curPage - 1;
+	  getListData('/api/position', page, function(totalPage, data) {
+		self.totalPage = totalPage; 
+		self.positions = retriveData(data);
+	  });
     },
     applyPosition: function(position) {
       var newURL = this.applyURL + position.id;
@@ -19,22 +28,7 @@ export default {
 	}
   },
   mounted: function() {
-    var self = this;
-    get('/api/position/list?page=0&num=4', {}, function(data) {
-       if (data.success) {
-		  for (var index = 0; index < data.msg.length; index++) {
-			var position = data.msg[index];
-			var newPosition = {
-				'name': position.name,
-				'company': position.company,
-				'location': position.location,
-				'id': position.id,
-				'brief': position.brief.substr(0, 150) + "... ... "
-			};
-			self.positions.push(newPosition);
-		  }	
-		}
-    }, false);
+	this.getCurrentPageData();
   },
   components: {Page}
 }

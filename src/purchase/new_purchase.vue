@@ -96,8 +96,11 @@ export default {
 	}
   },
   mounted: function () {
-    this.name = this.person.name;
-    this.phone = this.person.phone;
+    var self = this;
+    getLoginInfo(function(person) {
+      self.name = person.name;
+      self.phone = person.phone;
+    });
   }
 }
 </script>
@@ -111,8 +114,14 @@ export default {
 	padding: 19px 20px 5px 5px;
 	margin-bottom: 8px;
 }
-.new_purchaseh3 span{
+
+.new_purchase h3 {
+  height: 42px;
+}
+.new_purchase h3 span{
 	float: left;
+  	padding-top: 15px;
+  	padding-left: 15px;
 }
 .new_purchaseh3 a{
 	color: #999999;

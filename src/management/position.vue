@@ -1,8 +1,8 @@
 <template>
     <div>
+        <h3 class="h3_datatable_list">【职位列表】</h3>
         <span><a class="admin_add" @click="editPosition({})">发布职位</a></span>
 	    <div style="clear:both;"> </div>
-        <h3>职位列表</h3>
         <table id="positionlist">
           <thead>
              <tr>
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     redirectApplication: function(position) {
-	  var positionURL = '/src/position/apply.html?id=' + position.id;
+	  var positionURL = '/src/position/enroll.html?id=' + position.id;
       window.location.href = positionURL;
     },
     positionApplication: function(position) {

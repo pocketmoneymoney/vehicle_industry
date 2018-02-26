@@ -21,7 +21,7 @@ export default {
 	props: ['activity'],
 	data() {
 		return {
-			enrollUrl: '/src/activity/apply.html?id='
+			enrollUrl: '/src/activity/enroll.html?id='
 		}
 	},
   watch: {

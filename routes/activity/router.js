@@ -55,7 +55,10 @@ module.exports = function(express) {
     });
 
     router.get('/all', function (req, res) {
-        dao.getAllActivity(req.query.userId, function(err, result) {
+        var page = req.query.page? parseInt(req.query.page) : 1;
+        var num = req.query.num? parseInt(req.query.num) : 1;
+        var start = page * num;
+        dao.getAllActivity(req.query.userId, start, num, function(err, result) {
 			if (err || !result) {
 				res.json({success:false, msg:err});
 			} else {
@@ -82,6 +85,16 @@ module.exports = function(express) {
 				res.json({success:true, msg:result});
 			}
       	});
+    });
+
+    router.get('/appliers/:id', function (req, res) {
+         dao.getActivityAppliers(req.params.id, function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+			 	res.json({success:true, msg:result});
+			}
+         });
     });
 
     router.get('/:id', function (req, res) {
@@ -169,12 +182,12 @@ module.exports = function(express) {
 		var company = req.body.company;
 		var position = req.body.position;
 		var comment = req.body.comment;
-		var activityID = req.body.id;
-		var userID = req.body.userID;
-		var userRole = req.body.role;
+		var id = req.body.id;
+		var personID = req.body.personID;
+		var personRole = req.body.personRole;
 		
-		dao.addApply(activityID, name, email, phone, company, position, 
-		  comment, userID, userRole, function(err, result) {
+		dao.addActivityApply(id, name, email, phone, company, position, 
+		  comment, personID, personRole, function(err, result) {
 			if (err || !result) {
 				res.json({success:false, msg:err});
 			} else {

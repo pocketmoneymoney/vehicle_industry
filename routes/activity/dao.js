@@ -32,12 +32,12 @@ dbHandler.prototype.getActivityList = function(type, page, num, callback) {
 	}
 };
 
-dbHandler.prototype.getAllActivity = function(userId, callback) {
+dbHandler.prototype.getAllActivity = function(userId, page, num, callback) {
     var conditions = {};
     if (userId) {
       conditions = {apply: {$elemMatch: {userId: userId}}};
     }
-    this.find(conditions, null, null, callback);
+    db.daoTemplate.getPageItems.call(this, page, num, callback, conditions);
 };
 
 dbHandler.prototype.getActivityAmount = function(callback) {
@@ -102,28 +102,32 @@ dbHandler.prototype.modifyActivity = function (id, name, location, startTime, en
 	});
 };
 
-dbHandler.prototype.addApply = function (id, name, email, phone, company, position, 
-  comment, personID, role, callback) {
+dbHandler.prototype.addActivityApply = function (id, name, email, phone, company, position, 
+  comment, personID, personRole, callback) {
 	var self = this;
 	var myDate = new Date();
+
+  	var newApply = {
+		'applierName': name,
+		'position': position,
+		'personID': personID,
+		'personRole': personRole,
+		'company': company,
+		'phone': phone,
+		'email': email,
+		'comment': comment};
+	self.update({'id':id}, {$push:{'apply':newApply}}, {}, callback);
+};
+
+dbHandler.prototype.getActivityAppliers = function(id, callback) {
 	this.findOne({'id':id}, function(err, data) {
 		if (err || !data) {
 			callback(err);
 		} else {
-  			var newApply = {
-				'applierName': name,
-				'position': position,
-				'personID': personID,
-				'role': role,
-				'company': company,
-				'phone': phone,
-				'email': email,
-				'comment': comment };
-			var currentApply = data.apply;
-			data.apply.push(newApply);
-  			self.update({'id': id}, {$set: {'apply': currentApply}}, null, callback);
+			callback(null, data['apply']);
 		}
 	});
 };
+
 
 module.exports = new dbHandler();

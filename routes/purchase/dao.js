@@ -36,8 +36,12 @@ function dbHandler() {
 dbHandler.prototype = Object.create(db.handler.prototype);
 dbHandler.prototype.constructor = dbHandler;
 
-dbHandler.prototype.getPurchaseList = function(page, num, callback) {
-    db.daoTemplate.getPageItems.call(this, page, num, callback);
+dbHandler.prototype.getPurchaseList = function(page, num, id, callback) {
+	if (id) {
+      db.daoTemplate.getPageItems.call(this, page, num, callback, {'publisherID':id});
+	} else {
+      db.daoTemplate.getPageItems.call(this, page, num, callback);
+	}
 };
 
 dbHandler.prototype.getPurchaseAmount = function(callback) {

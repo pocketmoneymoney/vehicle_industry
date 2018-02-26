@@ -40,7 +40,11 @@ module.exports = function(express) {
 
     router.get('/amount', function (req, res) {
         dao.getPositionAmount(function (err, result) {
-            res.send(JSON.stringify(result));
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+			 	res.json({success:true, msg:result});
+			}
 		});
     });
 
@@ -70,16 +74,17 @@ module.exports = function(express) {
 		var name 		= req.body.name;
 		var phone 		= req.body.phone;
 		var email 		= req.body.email;
-		var positionID	= req.body.positionID;
-		var id			= req.body.personID;
-		var role		= req.body.role;
+		var id			= req.body.id;
+		var personID	= req.body.personID;
+		var personRole	= req.body.personRole;
 		var resume		= undefined;
 		
 		if (req.file) {
 			resume = '/' + path.join(req.file.destination, req.file.filename);
 		}
 
-		dao.addPositionApply(positionID, name, phone, email, id, role, resume, function (err) {
+		dao.addPositionApply(id, name, phone, email, personID, personRole, resume, 
+		  function (err) {
 			if (err) {
 				res.json({success: false, msg:err});
 			} else {

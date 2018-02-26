@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>{{activity.name}}</h3>
+        <h3 class="h3_datatable_list">【报名情况】 {{activity.name}}</h3>
         <table id="activity_applicationlist">
           <thead>
              <tr>
@@ -15,13 +15,13 @@
           </thead>
           <tbody>
             <tr v-for="application in applications">
-              <th>{{application.name}}</th>
+              <th>{{application.applierName}}</th>
               <th>{{application.company}}</th>
               <th>{{application.position}}</th>
               <th>{{application.email}}</th>
               <th>{{application.phone}}</th>
               <th>{{application.comment}}</th>
-              <th>{{application.role}}</th>
+              <th>{{application.personRole}}</th>
             </tr>
           </tbody>
         </table>
@@ -45,29 +45,8 @@ export default {
     });
 
     var self = this;
-    get('/api/activity/' + this.activity.id, {}, function(data) {
-	  if (data.success) {
-		var applies = data.msg.apply;
-	    for (var index = 0; index < applies.length; index++) {
-		  var applier = applies[index];
-		  var newApplier = {
-			'name': applier.applierName,			
-			'company': applier.company,
-			'position': applier.position,
-			'email': applier.email,
-			'phone': applier.phone,
-			'comment': applier.comment 
-		  };
-		  if (applier.role == 'supplier') {
- 		    newApplier['role'] = "供应商";
- 	      } else if (applier.role == 'buyer') {
- 		    newApplier['role'] = "采购商";
-		  } else {
- 		    newApplier['role'] = "游客";
-		  }
-		  self.applications.push(newApplier);
-        }
-      }
+    get('/api/activity/appliers/'+this.position.id, {}, function (data) {
+	  self.applications = retriveData(data);
     }, false);
   },
 }

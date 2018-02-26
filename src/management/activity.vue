@@ -1,8 +1,8 @@
 <template>
     <div>
+        <h3 class="h3_datatable_list">【活动列表】</h3>
         <span><a class="admin_add" @click="editActivity({})">发布活动</a></span>
 	    <div style="clear:both;"> </div>
-        <h3>活动列表</h3>
         <table id="activitylist">
           <thead>
              <tr>
@@ -32,7 +32,6 @@
 export default {
   data: function() {
     return {
-      table: null,
       activities: []
     }
   },
@@ -45,7 +44,7 @@ export default {
       var self = this;
       post('/api/activity/' + activity.id + '/del', {}, function(data) {
 		if (data.success) {
-          get('/api/activity/all', {}, function(data) {
+          get('/api/activity/all?page=0&num=100', {}, function(data) {
             self.activities = data.msg;
             for (let index in self.activities) {
               var activity = self.activities[index];
@@ -71,7 +70,7 @@ export default {
       	searching: false,
       	ordering:  false
       });
-      get('/api/activity/all', {}, function(data) {
+      get('/api/activity/all?page=0&num=100', {}, function(data) {
 		if (data.success) {
           self.activities = data.msg;
           for (let index in self.activities) {

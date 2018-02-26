@@ -4,9 +4,12 @@
       <main-header></main-header>
       <div class="main clearfix">
       <main-nav></main-nav>
-      <div class="main clearfix">
+      <div>
+         <event-enroll-panel></event-enroll-panel>
+      <div class="main_middle clearfix">
         <div class="formbox clearfix">
-          <h3>添加设备</h3>
+		  <div class="info_panel2">
+          <h2>添加设备</h2>
 	      <div style="clear:both;"> </div>
               <dl>
                   <dt><b>*</b><span>设备名称：</span></dt>
@@ -37,7 +40,10 @@
             <span><a @click="cancelInfo">取消</a></span>
             <span><a @click="updateInfo">更新</a></span>
           </div>
+          </div>
         </div>
+      </div>
+	      <right-panel></right-panel>
       </div>
 	  </div>
       <last-footer></last-footer>
@@ -48,6 +54,8 @@
 import TopBar from '../../util/topbar.vue'
 import MainHeader from '../../util/header.vue'
 import MainNav from '../../util/main_nav.vue'
+import EventEnrollPanel from '../../util/event_enroll_panel.vue'
+import RightPanel from '../../util/right_panel.vue'
 import LastFooter from '../../util/footer.vue'
 
 export default {
@@ -116,7 +124,7 @@ export default {
 	  }
     });
   },
-  components: {MainHeader, MainNav, TopBar, LastFooter} 
+  components: {MainHeader, MainNav, TopBar, EventEnrollPanel, RightPanel, LastFooter} 
 }
 </script>
 

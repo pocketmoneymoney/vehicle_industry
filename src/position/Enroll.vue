@@ -4,9 +4,12 @@
       <main-header></main-header>
       <div class="main clearfix">
       <main-nav></main-nav>
-      <div class="main clearfix">
-        <div class="formbox clearfix">
-          <h3 class="h3_cls">职位详情</h3>
+	  <div>
+         <event-enroll-panel></event-enroll-panel>
+      <div class="main_middle clearfix">
+        <div class="formbox">
+		  <div class="info_panel2">
+          <h2>职位详情</h2>
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><span>应聘岗位：</span></dt>
@@ -23,14 +26,15 @@
               <dd> <span>{{position.location}} </span>
               </dd>
           </dl>
-          <dl>
+          <dl style="margin-bottom:30px">
               <dt><span>职位要求：</span></dt>
               <dd> <span>{{position.brief}} </span>
               </dd>
           </dl>
+          </div>
 	      <div style="clear:both;"> </div>
-		  <div v-if="isNotAdmin">
-          <h3 class="h3_cls">我要投递</h3>
+		  <div v-if="isNotAdmin" class="info_panel2">
+          <h2>我要投递</h2>
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><b>*</b><span>姓名：</span></dt>
@@ -66,6 +70,8 @@
 		  </div>
         </div>
       </div>
+	      <right-panel></right-panel>
+      </div>
 	  </div>
       <last-footer></last-footer>
     </div>
@@ -75,7 +81,8 @@
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
-
+import EventEnrollPanel from '../util/event_enroll_panel.vue'
+import RightPanel from '../util/right_panel.vue'
 import LastFooter from '../util/footer.vue'
 
 export default {
@@ -96,31 +103,37 @@ export default {
 	  window.location.href='/src/position/index.html';
 	},
     enrollActivity: function() {
-      if (this.person.name === '' || this.person.email === '' || this.person.phone === '') {
+	  var name = trimStr(this.person.name);
+	  var email = trimStr(this.person.email);
+	  var phone = trimStr(this.person.phone);
+
+      if (name === '' ||  email === '' || phone === '') {
         alert('请填写完整资料');
         return;
       }
+
 	  if (!this.$refs.resume.files[0]) {
         alert('请上传个人简历');
         return;
 	  }
 
       var oMyForm = new FormData();
-      oMyForm.append("name", this.person.name);
-      oMyForm.append("phone", this.person.phone);
-      oMyForm.append("email", this.person.email);
+      oMyForm.append("name", name);
+      oMyForm.append("phone", phone);
+      oMyForm.append("email", email);
+
       oMyForm.append("personID", this.person.id);
-      oMyForm.append("role", this.person.role);
-      oMyForm.append("positionID", this.position.id);
+      oMyForm.append("personRole", this.person.role);
+      oMyForm.append("id", this.position.id);
+
       oMyForm.append("resume", this.$refs.resume.files[0]);
 
       var self = this;
       postWithFile('/api/position/apply', oMyForm, function(data) {
-        if (data.success) {
-          window.location.href = '/src/position/index.html';
-        } else {
+        if (!data.success) {
           console.log(data.msg);
         }
+        window.location.href = '/src/position/index.html';
       }, false);
     }
   },
@@ -128,42 +141,26 @@ export default {
 	var self = this;
 
 	var id = getUrlKey('id');
+	if (!id) {
+	  window.location.href="/src/position/index.html";	
+	}
+
     get('/api/position/'+id, {}, function(data) {
 	  if (data.success) {
 	    self.position = data.msg;
 	  }
 	}, false);
 
-    if (getCookie('token') != "") {
-      post('/user/book', {}, function(data) {
-		if ((data.username) && (data.role != 'admin')) {
-		  self.person.id = data.id;
-		  if (data.role == 'supplier') {
-        	get('/api/supplier/person/' + data.id, {}, function(data) {
-			  if (data.success) {
-				self.person.name = data.msg.myname;
-				self.person.phone = data.msg.phone;
-				self.person.email = data.msg.email;
-				self.person.role = 'supplier';
-			  }	
-			}, false);
-		  } else if (data.role == 'buyer') {
-        	get('/api/buyer/' + data.id, {}, function(data) {
-			  if (data.success) {
-				self.person.name = data.msg.name;
-				self.person.phone = data.msg.phone;
-				self.person.email = data.msg.email;
-				self.person.role = 'buyer';
-			  }
-			}, false);
-		  }
-		} else if (data.role == 'admin') {
-          self.isNotAdmin = false;
-        }
-	  }, true);
-	}
+	getLoginInfo(function (person) {
+	  if (person.name) {
+		self.person = person;
+		if (self.person.role == "admin") {
+	  	  self.isNotAdmin = false;
+  		} 
+	  }
+	});
   },
-  components: {MainHeader, MainNav, TopBar, LastFooter} 
+  components: {MainHeader, MainNav, TopBar, LastFooter, EventEnrollPanel, RightPanel} 
 }
 </script>
 

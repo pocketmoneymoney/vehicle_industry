@@ -9,6 +9,7 @@ template.getPageItems = function (page, num, callback, conditions) {
 	if (conditions === undefined) {
 		conditions = {}
 	}
+
     this.findMultiple(conditions, total, function (err, data) {
         if (err) {
            callback("Failed to get any data from database", []);

@@ -1,8 +1,8 @@
 <template>
   <div class="list_purchase_product clearfix">
-    <h3>
-        <span>采购项目</span>
-    </h3>
+    <h3> 
+	 	<span>采购项目 </span>
+	</h3>
     <div class="tabbd middle_list_content tabbd">
         <div class="item">
             <ul class="product_list">
@@ -42,8 +42,13 @@
 	padding: 19px 20px 5px 5px;
 	margin-bottom: 8px;
 }
+.list_purchase_product h3 {
+  height: 42px;
+}
 .list_purchase_product h3 span{
 	float: left;
+  	padding-top: 15px;
+  	padding-left: 15px;
 }
 .list_purchase_product h3 a{
 	color: #999999;

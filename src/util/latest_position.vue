@@ -15,7 +15,7 @@ export default {
       title: "最新职位",
       components: [],
 	  mainUrl: "/src/position/index.html",
-	  detailUrl: "/src/position/apply.html?id=",
+	  detailUrl: "/src/position/enroll.html?id=",
     }
   },
   mounted: function() {

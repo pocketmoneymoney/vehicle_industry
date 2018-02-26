@@ -507,8 +507,8 @@ h3{
 
 .info_panel2 span a{
 	font-weight: normal;
-	padding-left:15px; 
-	padding-right:15px; 
+	padding-left:6px; 
+	padding-right:6px; 
     margin: 4px 0 50px 15px;
 	background:#e2f5ff; 
 	border:1px solid #c8eafa;
@@ -522,9 +522,10 @@ h3{
 
 .info_panel2 tr td{
     padding-left:20px;
+    margin-top:1px;
+    padding-top:10px;
 	font-size: 18px;
 }
-
 
 .h3_datatable_list {
 	float: left;

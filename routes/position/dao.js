@@ -45,27 +45,20 @@ dbHandler.prototype.getPositionDetail = function(id, callback) {
     this.findOne({'id':id}, callback);
 };
 
-dbHandler.prototype.addPositionApply = function(id, name, phone, email, personID, role,
-											    resume, callback) {
+dbHandler.prototype.addPositionApply = function(id, name, phone, email, personID, 
+  personRole, resume, callback) {
 	var self = this;
 	var myDate = new Date();
-	this.findOne({'id':id}, function(err, data) {
-		if (err || !data) {
-			callback(err);
-		} else {
-			var newApply = {
-				'applierName': name,
-				'personID': personID,
-				'role': role,
-			    'phone': phone,
-			    'email': email,
-				'resume': resume,
-				'applyTime': myDate};
-			var currentApply = data.apply;
-			currentApply.push(newApply);
-			self.update({'id':id}, {$set:{'apply':currentApply}}, {}, callback);
-		}
-	});
+
+	var newApply = {
+		'applierName': name,
+		'personID': personID,
+		'personRole': personRole,
+	    'phone': phone,
+	    'email': email,
+		'resume': resume,
+		'applyTime': myDate};
+	self.update({'id':id}, {$push:{'apply':newApply}}, {}, callback);
 };
 
 dbHandler.prototype.getPositionAppliers = function(id, callback) {

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './Apply.vue'
+import App from './purchase_publish_record.vue'
 
 global.bus = new Vue();
 
