@@ -26,6 +26,7 @@ module.exports = {
 	  meeting: './src/activity/meeting.js',
 	  visiting: './src/activity/visiting.js',
 	  activity_enroll: './src/activity/enroll.js',
+	  activity_list: './src/activity/activity_list.js',
 	  buyer: './src/buyer/index.js',
 	  buyer_edit: './src/buyer/edit.js',
 	  buyer_purchase_publish_record: './src/buyer/purchase_publish_record.js',

@@ -281,4 +281,44 @@ dbHandler.prototype.deleteAvatar = function (id, callback) {
 	this.update({'id':id}, {$set:{'avatar':''}}, {}, callback);
 };
 
+dbHandler.prototype.search = function (name, callback) {
+	var self = this;
+	var result = [];
+
+	var priority1 = [];
+	var priority2 = [];
+	var priority3 = [];
+
+
+	var reg = new RegExp(name, 'i');
+	self.model
+	.find({'$or':[{'company.name': {$regex: reg}}, 
+				  {'company.brief': {$regex: reg}},
+				  {'company.product': {$regex: reg}}]},
+		   null, {sort: {_id: -1}})
+	.limit(1000)
+	.sort({'id':-1})
+	.exec(function(err, data) {
+		if (err || !data) {
+			callback(err, []);
+		} else {
+			for (var index = 0; index < data.length; index++) {
+				var supplier = data[index];
+				if (supplier.company && supplier.company.name &&
+			    	supplier.company.name.search(name) >= 0) {
+					priority1.push(supplier);
+				} else if (supplier.company.product && supplier.company.product &&
+					   	   supplier.company.product.search(name) >= 0) {
+					priority2.push(supplier);
+				} else if (supplier.company.brief && supplier.company.brief &&
+					   	   supplier.company.brief.search(name) >= 0) {
+					priority2.push(supplier);
+				} 
+			}
+			result = result.concat(priority1).concat(priority2).concat(priority3);
+			callback(null, result);
+		}
+	});
+};
+
 module.exports = new dbHandler();

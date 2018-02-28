@@ -10,8 +10,8 @@
 	    <tr><td>邮    箱:    </td><td>  {{ email }}</td></tr>
 	  </table>
       <div style="float:right;">
-        <span><a :href="editURL">修改基本信息   </a></span>
-        <span><a href="/src/register/password.html">重置密码    </a></span>
+        <span><a :href="editURL">修改基本信息</a></span>
+        <span><a href="/src/register/password.html">重置密码</a></span>
       </div>
     </div>
 

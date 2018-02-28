@@ -131,7 +131,7 @@ function getListData(url, curPage, callback, num) {
 	var totalPage = 0;
     get(url + '/amount', {}, function(data) {
 	  	if (data.success) {
-			totalPage = parseInt(data.msg) / numOfPage + 1;
+			totalPage = parseInt(parseInt(data.msg) / numOfPage) + 1;
 			get(url + '/list?page=' + curPage + '&num=' + numOfPage, {}, function(data) {
 				if (data.success) {
 					callback(totalPage, data);

@@ -40,6 +40,32 @@ module.exports = function(express) {
 	});
 	var upload = multer({ storage: storage })
 
+    router.get('/list/meeting', function (req, res) {
+         var page = req.query.page? parseInt(req.query.page) : 1;
+         var num = req.query.num? parseInt(req.query.num) : 1;
+         var start = page * num;
+         dao.getActivityList('meeting', start, num, function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+			 	res.json({success:true, msg:result});
+			}
+         });
+    });
+
+    router.get('/list/visiting', function (req, res) {
+         var page = req.query.page? parseInt(req.query.page) : 1;
+         var num = req.query.num? parseInt(req.query.num) : 1;
+         var start = page * num;
+         dao.getActivityList('visiting', start, num, function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+			 	res.json({success:true, msg:result});
+			}
+         });
+    });
+
     router.get('/list', function (req, res) {
          var page = req.query.page? parseInt(req.query.page) : 1;
          var num = req.query.num? parseInt(req.query.num) : 1;
@@ -81,6 +107,28 @@ module.exports = function(express) {
 			}
 		});
 	});
+
+    router.get('/meeting/amount', function (req, res) {
+        dao.getOneActivityAmount('meeting', function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+			 	res.json({success:true, msg:result});
+			}
+	    });
+    });
+
+    router.get('/visiting/amount', function (req, res) {
+        dao.getOneActivityAmount('visiting', function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+			 	res.json({success:true, msg:result});
+			}
+	    });
+    });
+
+
 
     router.get('/amount', function (req, res) {
         dao.getActivityAmount(function (err, result) {

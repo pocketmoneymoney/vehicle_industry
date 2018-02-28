@@ -3,18 +3,12 @@ import Page from '../util/page.vue'
 
 export default {
   data() {
-    var companys = [];
-    var company = {
-      name: 'Guangzhou Shiyizhong Information Technology Co., Ltd.',
-      products: 'window switch,parking sensor,clock spring,ABS sensor,blower motor resistor',
-    };
-    companys.push(company);
     return {
       imgUrl: '/',
       detailUrl: '/src/company/detail.html?companyId=',
-      companys: [],
-      curPage: 8,
-      totalPage: 11,
+      companies: [],
+      curPage: 1,
+      totalPage: 9,
       currentItem: {},
       items: [],
       categoryName: '',
@@ -31,16 +25,39 @@ export default {
     },
     searchCompany: function() {
       var self = this;
-      //TODO: add param catalogId
-      get('/api/supplier/list', {}, function(data) {
-        self.companys = data;
-        console.log(data);
+	  var params = {};
+	  if (self.categoryName) {
+		params['categoryName'] = "胶粘剂";
+	  }; 
+/*
+	  if (self.subtypeName) {
+		params['subtypeName'] = self.subtypeName;
+	  }; 
+	  if (self.itemName) {
+		params['itemName'] = self.itemName;
+	  }; 
+*/
+      get('/api/supplier/search', params, function(data) {
+        self.companies = [];
+		if (data.success) {
+		  for (var index = 0; index < data.msg.length; index++) {
+			var company = data.msg[index];
+			var newCompany = {
+				'avatar': 	company.avatar,
+				'name': 	company.company.name,
+				'location': company.company.location,
+				'product': 	company.company.product
+			};
+		    self.companies.push(newCompany);
+		  }
+		}
       }, false);
     }
   },
   mounted: function() {
 	this.categoryId = getUrlKey('categoryId');
     this.subtypeId = getUrlKey('subtypeId');
+    this.itemId = getUrlKey('itemId');
 
     var params = {};
     if (this.categoryId) {
@@ -65,13 +82,9 @@ export default {
           if (self.itemId) {
 		    self.itemName = data.msg['itemName'];
 		  }
+    	  self.searchCompany();
         }
 	}, false);
-    this.searchCompany();
-  },
-  watch: {
-    catalogId:  function() {
-    }
   },
   components: {Search, Page}
 }

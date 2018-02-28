@@ -100,6 +100,25 @@ module.exports = function(express) {
 		});
 	});
 
+	router.get('/search', function(req, res) {
+		var name = req.query.categoryName;
+		
+		if (req.query.subtypeName) {
+			name = req.query.subtypeName;
+		}
+		if (req.query.itemName) {
+			name = req.query.itemName;
+		}
+
+		dao.search(name, function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:result});
+			}
+		});
+
+	});
 
     router.get('/:id', function (req, res) {
          dao.getSupplierDetail(req.params.id, function (err, result) {
@@ -198,6 +217,7 @@ module.exports = function(express) {
 	    	}
 		});	
 	});
+
 
     return router;
 };

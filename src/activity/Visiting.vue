@@ -17,6 +17,9 @@
 				:activity="meeting">
 			</meeting-panel>
 		  </div>
+    	  <div style="float:right;">
+        	<span><a href="/src/activity/activity_list.html?tp=visiting">更多活动列表>></a></span>
+    	  </div>
 		  </div>
 	      <right-panel></right-panel>
 	

@@ -7,8 +7,7 @@
         <div>
           <event-enroll-panel></event-enroll-panel>
           <div class="main_right">
-            <ListCompany :categoryId="categoryId" :subtypeId="subtypeId"
-				:itemId="subtypeId"></ListCompany>
+            <ListCompany></ListCompany>
           </div>
 	      <right-panel></right-panel>
         </div>
@@ -32,14 +31,8 @@ import ListCompany from './list_company.vue'
 export default {
   data: function() {
     return {
-      viewName: "company",
-      categoryId: '',
-      subtypeId: ''
+      viewName: "company"
     }
-  },
-  mounted: function() {
-	this.categoryId = getUrlKey('categoryId');
-    this.subtypeId = getUrlKey('subtypeId');
   },
   components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
 			   ListCompany, RightPanel, LastFooter}

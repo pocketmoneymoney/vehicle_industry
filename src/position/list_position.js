@@ -20,6 +20,10 @@ export default {
 	  getListData('/api/position', page, function(totalPage, data) {
 		self.totalPage = totalPage; 
 		self.positions = retriveData(data);
+          for (let index in self.positions) {
+            var position = self.positions[index];
+			position.brief = position.brief.slice(0, 100) + "... ...";
+		  }
 	  });
     },
     applyPosition: function(position) {
