@@ -1,16 +1,28 @@
 <template>
   <div class="list_company clearfix">
     <h3>
-        <search></search>
+        <search @searchBar="searchBar"></search>
     </h3>
     <!--中间列表 切换-->
 	<div class="crumb">
-		<a href="/src/company/index.html">公司</a> > <a>{{ categoryName }}</a> > <a>{{ subtypeName }}</a> > <a> {{ itemName }} </a>
+		<a href="/src/company/index.html">公司</a> > <a>{{ selectCategory }}</a> > <a>{{ selectSubtype }}</a> > <a> {{ selectItem }} </a>
 	</div>
     <div class="screening_box">
         <dl>
-           <dd>
-             <a v-for="item in items" @click="chooseItem(item)" :class="{current_item: currentItem.id === item.id}">{{ item.name }}</a>
+           <dd style="margin-top:10px; margin-bottom:10px; border-bottom: 1px dashed #FFCCFF">
+             <a>类别:</a>
+			 <a  @click="chooseCategory(null)">不限</a>
+			 <a v-for="item in categoryBar" @click="chooseCategory(item)">{{ item }}</a>
+           </dd>
+           <dd style="margin-top:10px; margin-bottom: 10px; border-bottom: 1px dashed #FFCCFF">
+             <a>子类别:</a>
+			 <a  @click="chooseSubtype(null)">不限</a>
+			 <a v-for="item in subtypeBar" @click="chooseSubtype(item)">{{ item }}</a>
+           </dd>
+           <dd style="margin-top:10px; margin-bottom:10px;">
+             <a>具体类别:</a>
+			 <a  @click="chooseItem(null)">不限</a>
+			 <a v-for="item in itemBar" @click="chooseItem(item)">{{ item }}</a>
            </dd>
         </dl>
     </div>
@@ -30,7 +42,7 @@
                 </div>
                 <div class="company_list_left">
                    	<p>
-                   	    <img width="110px" :src='imgUrl + company.avatar' />
+                   	    <img width="110px" :src='company.avatar' />
                    	</p>
 	  				<div style="clear:both;"> </div>
             		<a :href="detailUrl + company.id" class="contact_btn">更多详情</a>
@@ -165,7 +177,6 @@
 	border:1px solid #449cd7;
 	background: #eff8fc;
 	padding: 10px 20px 0 20px;
-  margin-left: 35px;
 }
 .screening_box dl{
 	overflow: hidden;

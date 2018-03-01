@@ -1,12 +1,25 @@
 <template>
   <!--搜索-->
   <div class="searchA">
-      <a href="javascript:void(0);" onclick="return searchCompany();">搜索</a>
-      <input id="txt_searchKey" type="text" placeholder="请输入您需要寻找的公司名称  /  零部件名称" maxlength="20" />
+      <a @click="searchCompany()" style="cursor:pointer">搜索</a>
+      <input v-model="searchData" id="txt_searchKey" type="text" 
+	   placeholder="请输入您需要寻找的公司名称  /  零部件名称" maxlength="20" />
   </div>
 </template>
 
 <script>
+export default {
+  data() {
+	return {
+		searchData: ''
+	}
+  },
+  methods: {
+	searchCompany: function() {
+      this.$emit("searchBar", this.searchData);
+	}
+  }
+}
 </script>
 
 <style>

@@ -40,7 +40,7 @@ module.exports = function(express) {
 	});
 	var upload = multer({ storage: storage })
 
-    router.get('/list/meeting', function (req, res) {
+    router.get('/meeting/list', function (req, res) {
          var page = req.query.page? parseInt(req.query.page) : 1;
          var num = req.query.num? parseInt(req.query.num) : 1;
          var start = page * num;
@@ -53,7 +53,7 @@ module.exports = function(express) {
          });
     });
 
-    router.get('/list/visiting', function (req, res) {
+    router.get('/visiting/list', function (req, res) {
          var page = req.query.page? parseInt(req.query.page) : 1;
          var num = req.query.num? parseInt(req.query.num) : 1;
          var start = page * num;

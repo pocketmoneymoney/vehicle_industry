@@ -1,6 +1,6 @@
 <template>
   <div class="catalog clearfix">
-    <search></search>
+    <search @searchBar="searchBar"></search>
 	
     <h3> <span>分类</span> </h3>
     <div class="catalog_main">

@@ -35,7 +35,7 @@
   		</div>
   	</div>
   	<div class="main clearfix">
-		<img :src="logo">
+		<img style="width:320px; height:95px" src="/img/Logo.png">
         <div class="top_right_two">
         <advertise></advertise>
 		</div>
@@ -122,11 +122,6 @@ export default {
   },
   mounted: function() {
     var self = this;
-
-	get('/api/admin/logo', {}, function(data) {
-		self.logo = data;
-    }, false);
-
     if (getCookie('token') != "") {
       self.isLogin = true;
 

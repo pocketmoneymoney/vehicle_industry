@@ -4,45 +4,142 @@ import Page from '../util/page.vue'
 export default {
   data() {
     return {
-      imgUrl: '/',
-      detailUrl: '/src/company/detail.html?companyId=',
+      detailUrl: '/src/company/detail/detail.html?id=',
       companies: [],
       curPage: 1,
       totalPage: 9,
-      currentItem: {},
-      items: [],
-      categoryName: '',
-      subtypeName: '',
-      itemName: ''
+	  totalCategory: [],
+	  selectCategory: '',
+	  selectSubtype: '',
+	  selectItem: '',
+	  categoryBar: [],
+	  subtypeBar: [],
+	  itemBar: []
     }
   },
   methods: {
+	searchBar: function (data) {
+		var keyword = trimStr(data);
+		if (keyword) {
+	  		this.searchCompany(keyword);
+		}
+	},
     changePage: function(page) {
       this.curPage = page;
+	  this.searchCompany();
     },
+	getSearchData: function () {
+	  if (this.selectCategory) {
+		return this.selectCategory;
+	  }; 
+	  if (this.selectSubtype) {
+		return this.selectSubtype;
+	  }; 
+	  if (this.selectItem) {
+		return this.selectItem;
+	  }; 
+	  return null;
+	},
+	chooseCategory: function(category) {
+		if (category == null) {
+			this.selectCategory = '';
+			this.selectSubtype = '';
+			this.selectItem = '';
+		} else {
+			this.selectCategory = category;
+			this.selectSubtype = '';
+			this.selectItem = '';
+		}
+		this.updateSelectBar();
+	  	this.searchCompany(this.getSearchData());
+	},
+	chooseSubtype: function(subtype) {
+		if (subtype == null) {
+			this.selectSubtype = '';
+			this.selectItem = '';
+		} else {
+			this.selectSubtype = subtype;
+			this.selectItem = '';
+		}
+		this.updateSelectBar();
+	  	this.searchCompany(this.getSearchData());
+	},
     chooseItem: function(item) {
-      this.currentItem = item;
+		if (item == null) {
+			this.selectItem = '';
+		} else {
+			this.selectItem = item;
+		}
+		this.updateSelectBar();
+	  	this.searchCompany(this.getSearchData());
     },
-    searchCompany: function() {
+		
+	updateSelectBar: function () {
+		this.categoryBar = [];
+		this.subtypeBar = [];
+		this.itemBar = [];
+
+		for (var categoryName in this.totalCategory) {
+			var category = this.totalCategory[categoryName];
+			if (this.selectCategory) {
+				if (this.selectCategory == categoryName) {
+					this.categoryBar.push(categoryName);
+					for (var subtypeName in category) {
+						var subtype = category[subtypeName];
+						if (this.selectSubtype) {
+							if (this.selectSubtype == subtypeName) {
+								this.subtypeBar.push(subtypeName);
+								for (var itemName in subtype) {
+									var item = subtype[itemName];
+									if ((this.selectItem) && (this.selectItem == itemName)) {
+										this.itemBar.push(itemName);
+										break;
+									} else if (this.selectItem) {
+										continue;
+									} else {
+										if (itemName != 'id') {
+											this.itemBar.push(itemName);
+										}
+									}
+								}
+							} else {
+								continue;
+							}
+						} else {
+							if (subtypeName != 'id') {
+								this.subtypeBar.push(subtypeName);
+							}
+						}
+					}
+				} else {
+					continue;
+				}
+			} else {
+				if (categoryName != 'id') {
+					this.categoryBar.push(categoryName);
+				}
+			}
+		}
+	},
+    searchCompany: function(keyword) {
       var self = this;
 	  var params = {};
-	  if (self.categoryName) {
-		params['categoryName'] = "胶粘剂";
-	  }; 
-/*
-	  if (self.subtypeName) {
-		params['subtypeName'] = self.subtypeName;
-	  }; 
-	  if (self.itemName) {
-		params['itemName'] = self.itemName;
-	  }; 
-*/
+	
+	  if (keyword) {
+		params['name'] = keyword;
+	  }
+
+	  params['page'] = self.curPage - 1;
+	  params['num']  = 10;
+
       get('/api/supplier/search', params, function(data) {
         self.companies = [];
 		if (data.success) {
+		  self.totalPage = data.totalPage;
 		  for (var index = 0; index < data.msg.length; index++) {
 			var company = data.msg[index];
 			var newCompany = {
+				'id': 	company.id,
 				'avatar': 	company.avatar,
 				'name': 	company.company.name,
 				'location': company.company.location,
@@ -71,19 +168,25 @@ export default {
 	}
 
 	var self = this;
-	post('/api/admin/categoryName', params, function (data) {
+	get('/api/admin/category', {}, function(data) {
 		if (data.success) {
-	      if (self.categoryId) {
-			self.categoryName = data.msg['categoryName'];
-		  }
-		  if (self.subtypeId) {
-		    self.subtypeName = data.msg['subtypeName'];
-		  }
-          if (self.itemId) {
-		    self.itemName = data.msg['itemName'];
-		  }
-    	  self.searchCompany();
-        }
+			self.totalCategory = data.msg;
+			post('/api/admin/categoryName', params, function (data) {
+				if (data.success) {
+	      			if (self.categoryId) {
+						self.selectCategory = data.msg['categoryName'];
+		  			}
+		  			if (self.subtypeId) {
+		    			self.selectSubtype = data.msg['subtypeName'];
+		  			}
+          			if (self.itemId) {
+		    			self.selectItem = data.msg['itemName'];
+		  			}
+					self.updateSelectBar();
+	  				self.searchCompany(self.getSearchData());
+        		}
+			}, false);
+		}
 	}, false);
   },
   components: {Search, Page}

@@ -71,8 +71,7 @@
               </dd>
 			  <dd></dd>
           </dl>
-          </div>
-          <div v-if="role === 'supplier'" class="info_panel2">
+          <div v-if="role === 'supplier'">
               <dl>
                   <dt><b>*</b><span>公司名称：</span></dt>
                   <dd>
@@ -91,6 +90,7 @@
                       <input v-model="customer" class="text" style="z-index: 10000" name="email" type="text" maxlength="100"/>
                   </dd>
               </dl>
+          </div>
           </div>
 	      <div style="clear:both;"> </div>
           <div>

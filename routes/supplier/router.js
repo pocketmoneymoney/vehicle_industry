@@ -101,20 +101,15 @@ module.exports = function(express) {
 	});
 
 	router.get('/search', function(req, res) {
-		var name = req.query.categoryName;
-		
-		if (req.query.subtypeName) {
-			name = req.query.subtypeName;
-		}
-		if (req.query.itemName) {
-			name = req.query.itemName;
-		}
-
-		dao.search(name, function (err, result) {
+		var name = req.query.name;
+        var page = req.query.page? parseInt(req.query.page) : 1;
+        var num = req.query.num? parseInt(req.query.num) : 1;
+        var start = page * num;
+		dao.search(name, start, num, function (err, result) {
 			if (err || !result) {
 				res.json({success:false, msg:err});
 			} else {
-				res.json({success:true, msg:result});
+				res.json({success:true, msg:result.data, totalPage:result.amount});
 			}
 		});
 

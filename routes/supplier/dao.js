@@ -281,21 +281,24 @@ dbHandler.prototype.deleteAvatar = function (id, callback) {
 	this.update({'id':id}, {$set:{'avatar':''}}, {}, callback);
 };
 
-dbHandler.prototype.search = function (name, callback) {
+dbHandler.prototype.search = function (name, page, num, callback) {
 	var self = this;
 	var result = [];
 
 	var priority1 = [];
 	var priority2 = [];
 	var priority3 = [];
+	
+	var condition = {};
+	if (name) {
+		var reg = new RegExp(name, 'i');
+		condition = {'$or':[{'company.name': {$regex: reg}}, 
+				  			{'company.brief': {$regex: reg}},
+				  			{'company.product': {$regex: reg}}]};
+	}
 
-
-	var reg = new RegExp(name, 'i');
 	self.model
-	.find({'$or':[{'company.name': {$regex: reg}}, 
-				  {'company.brief': {$regex: reg}},
-				  {'company.product': {$regex: reg}}]},
-		   null, {sort: {_id: -1}})
+	.find(condition, null, {sort: {_id: -1}})
 	.limit(1000)
 	.sort({'id':-1})
 	.exec(function(err, data) {
@@ -316,7 +319,9 @@ dbHandler.prototype.search = function (name, callback) {
 				} 
 			}
 			result = result.concat(priority1).concat(priority2).concat(priority3);
-			callback(null, result);
+			var resultAmount = result.length;
+			var currentPageResult = result.slice(page, page + num);
+			callback(null, {'data':currentPageResult, 'amount':resultAmount});
 		}
 	});
 };

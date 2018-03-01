@@ -9,6 +9,16 @@ export default {
       subtabs: []
     }
   },
+  methods: {
+	searchBar: function (data) {
+		var keyword = trimStr(data);
+		if (keyword) {
+			var kw = encodeURI(encodeURI(keyword));
+			var url = '/src/company/search.html?keyword=' + kw;
+			window.location.href = url;
+		}
+	}
+  },
   mounted: function() {
     var self = this;
     get('/api/admin/category', {}, function(data) {

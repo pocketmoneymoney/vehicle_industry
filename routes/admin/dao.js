@@ -121,8 +121,17 @@ dbHandler.prototype.getCategoryName = function (categoryID, subtypeID,
 											break;
 										}
 									}
-									break;
+								} else {
+									var itemList = [];
+									for (var itemName in subtype) {
+										var item = subtype[itemName];
+										if (itemName != 'id') {
+											itemList.push({'name': itemName, 'id': item.id});
+										}
+									}
+									result['itemList'] = itemList;	
 								}
+								break;
 							}
 						}
 					} 
@@ -243,10 +252,6 @@ dbHandler.prototype.deleteCategory = function (categoryName, subtypeName,
 			callback(err);
 		} else {
 			var categories = data.category;
-console.log("1", categoryName);
-console.log("2", subtypeName);
-console.log("3", itemName);
-console.log("Before", categories);
 			if (!categoryName) {
 				callback("Category name is NULL");
 			} else {
@@ -269,7 +274,6 @@ console.log("Before", categories);
 				} else {
 					delete categories[categoryName];
 				}
-console.log("After", categories);
 				self.update({}, {$set:{'category':categories}}, {}, callback);
 			}
 		}
