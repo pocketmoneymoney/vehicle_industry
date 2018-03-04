@@ -125,11 +125,11 @@
                       type="text" />
               </dd>
           </dl>
+		  </div>
 	      <div style="clear:both;"> </div>
 		  <div>
             <span><a @click="cancelPurchase">取消并返回</a></span>
             <span><a @click="enrollPurchase">提交</a></span>
-		  </div>
 		  </div>
         </div>
         </div>

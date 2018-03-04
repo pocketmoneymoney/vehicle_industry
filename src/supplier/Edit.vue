@@ -29,11 +29,11 @@
                       <input v-model="email" class="text" style="z-index: 10000" name="email" type="text" maxlength="30"/>
                   </dd>
               </dl>
+          </div>
 	      <div style="clear:both;"> </div>
           <div>
             <span><a href="/src/supplier/index.html">取消</a></span>
             <span><a @click="updateInfo">更新</a></span>
-          </div>
           </div>
         </div>
       </div>

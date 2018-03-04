@@ -94,7 +94,7 @@ export default {
 		var self = this;
         post('/api/supplier/delete/' + user.id, {}, function(data) {
 		  if (data.success) {
-    		get('/api/supplier/privilege?page=0&num=10', {}, function(data) {
+    		get('/api/supplier/privilege?page=0&num=100', {}, function(data) {
 	  		  if (data.success) {
   				self.users = data.msg;
 			  }
@@ -123,7 +123,7 @@ export default {
       searching: false,
       ordering:  false
     });
-    get('/api/supplier/privilege?page=0&num=5', {}, function (data) {
+    get('/api/supplier/privilege?page=0&num=100', {}, function (data) {
 	  if (data.success) {
         self.users = data.msg;
       }

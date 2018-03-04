@@ -35,7 +35,7 @@
   		</div>
   	</div>
   	<div class="main clearfix">
-		<img style="width:320px; height:95px" src="/img/Logo.png">
+		<img style="width:300px; height:92px" src="/img/Logo.png">
         <div class="top_right_two">
         <advertise></advertise>
 		</div>
@@ -82,7 +82,6 @@ export default {
       post('/user/login', {
 		username: this.username, 
 		password: this.password}, function(data) {
-
         if (data.token) {
           setCookie('token', data.token, 3000);
           setCookie('role', data.role, 3000);

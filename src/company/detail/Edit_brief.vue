@@ -42,12 +42,12 @@
                       <input ref="logofile" type="file" name="file" style="z-index:10000" />
                   </dd>
               </dl>
+          </div>
 	      <div style="clear:both;"> </div>
           <div>
             <span><a @click="cancelUpdate">取消</a></span>
             <span><a @click="updateCompany">更新</a></span>
           </div>
-        </div>
         </div>
       </div>
 	      <right-panel></right-panel>

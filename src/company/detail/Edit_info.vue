@@ -35,11 +35,11 @@
                       <input v-model="company.assets" class="text" style="z-index: 10000" name="email" type="text" maxlength="30"/>
                   </dd>
               </dl>
+          </div>
 	      <div style="clear:both;"> </div>
           <div>
             <span><a @click="cancelUpdate">取消</a></span>
             <span><a @click="updateCompany">更新</a></span>
-          </div>
           </div>
         </div>
       </div>

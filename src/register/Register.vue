@@ -5,8 +5,7 @@
       <div class="main clearfix">
       <main-nav></main-nav>
       <div>
-         <event-enroll-panel></event-enroll-panel>
-      <div class="main_middle clearfix">
+      <div class="main_middle clearfix" style="margin-left:230px;">
         <div class="formbox clearfix">
 		  <div class="info_panel2">
           <h2>注册新用户</h2>
@@ -99,7 +98,6 @@
           </div>
         </div>
       </div>
-	      <right-panel></right-panel>
       </div>
 	  </div>
       <last-footer></last-footer>

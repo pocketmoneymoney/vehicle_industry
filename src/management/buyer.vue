@@ -37,7 +37,7 @@ export default {
 		var self = this;
         post('/api/buyer/delete/' + user.id, {}, function(data) {
 		  if (data.success) {
-    		get('/api/buyer/list?page=0&num=10', {}, function(data) {
+    		get('/api/buyer/list?page=0&num=100', {}, function(data) {
 	  		  if (data.success) {
   				self.users = data.msg;
 			  }

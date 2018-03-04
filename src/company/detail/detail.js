@@ -6,6 +6,7 @@ export default {
     return {
       imgUrl: '/',
       company: {},
+	  person: {},
 	  products: [],
 	  equipments: [],
 	  certifications: [],
@@ -47,6 +48,7 @@ export default {
     get('/api/supplier/' + self.ownerID, {}, function(data) {
         if (data.success && data.msg) {
           self.company = data.msg.company;
+          self.person = data.msg.person;
           self.avatar = data.msg.avatar;
 
 		  /* Load product list */

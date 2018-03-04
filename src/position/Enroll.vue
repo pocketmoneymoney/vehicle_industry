@@ -62,11 +62,11 @@
                   <input ref="resume" type="file" name="file" style="z-index:10000" />
               </dd>
           </dl>
+		  </div>
 	      <div style="clear:both;"> </div>
 		  <div>
             <span><a @click="cancelActivity">取消并返回</a></span>
             <span><a @click="enrollActivity">提交</a></span>
-		  </div>
 		  </div>
         </div>
       </div>

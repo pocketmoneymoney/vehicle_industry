@@ -1,10 +1,12 @@
 <template>
   <div class="product_list clearfix">
     <div class="product_list_title clearfix">
-    <h3 v-if="type === 'product'">产品列表</h3>
-    <h3 v-if="type === 'equipment'">设备列表</h3>
-    <h3 v-if="type === 'certification'">认证列表</h3>
-    <a v-if="isOwner" :href="newUrl">添加</a>
+      <h3 v-if="type === 'product'">产品列表</h3>
+      <h3 v-if="type === 'equipment'">设备列表</h3>
+      <h3 v-if="type === 'certification'">认证列表</h3>
+      <a v-if="isOwner" :href="newUrl">添加</a>
+	  <div style="clear:both;"> </div>
+	  <hr style="height:5px;border:none;border-top:5px groove skyblue;" />
     </div>
     <div class="clearfix">
       <ul v-for="element in listElement">
@@ -55,14 +57,13 @@
 .product_list div a{
 	float: right;
 	width: 64px;
-	background: #e2f5ff; 
+    text-align:center;
 	font-size: 13px;
 	line-height: 26px;
-  margin-bottom: 10px;
-	border-radius: 3px;
-  border:1px solid #c8eafa;
-  text-align:center;
-  color:#3d9ccc;
+  	margin-bottom: 10px;
+  	border-radius:0.2em; 
+  	background:#3d9ccc; 
+  	color:#fff;
 }
 .product_list_title {
   border-bottom: 1px solid #f0f0f0;

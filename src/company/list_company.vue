@@ -139,6 +139,16 @@
 	height: 60px;
 	overflow: hidden;
 }
+.company_list_left a{
+	font-weight: normal;
+	border-radius:0.2em; 
+	font-size:13px; 
+	text-align:center; 
+	background:#3d9ccc; 
+	color:#fff;
+	cursor: pointer;
+}
+
 .company_list_right{
 	float: left;
 	width: 350px;

@@ -3,13 +3,12 @@
     <h3>
         <span>最新职位</span>
     </h3>
-    <!--中间列表 切换-->
-     <ul class="product_list">
+     <ul class="position_list">
          <li v-for="position in positions">
              <div class="position_list_right">
                  <dl>
                      <dt>职位名称</dt>
-                     <dd><h4 class="position_title"> <a>{{ position.name }}</a></h4>
+                     <dd><h4 class="position_title"> {{ position.name }}</h4>
 					 </dd>
                  </dl>
 			 </div>
@@ -68,7 +67,7 @@
 	font-weight: normal;
 }
 
-.product_list li{
+.position_list li{
 	border-bottom: 1px dashed #e5e5e5;
 	padding: 20px 0;
 	overflow: hidden;
@@ -109,4 +108,13 @@
 	color: #333;
 }
 
+.position_list li a{
+	font-weight: normal;
+	border-radius:0.2em; 
+	font-size:13px; 
+	text-align:center; 
+	background:#3d9ccc; 
+	color:#fff;
+	cursor: pointer;
+}
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="project_enroll">
-    <!--span class="long"></span-->
     <dl class="clearfix">
         <dd>
             <h4>
@@ -41,6 +40,18 @@ export default {
 .project_enroll dd.dd{  font-family:Arial;}
 .project_enroll dt{ width:64px; float:right; text-align:center; }
 .project_enroll dt b{ font-weight:normal; font-size:11px; line-height:23px; color:#999;}
-.project_enroll dt .event_enroll_button{ display:block; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px;}
-.project_enroll span a{ padding:0px;}
+.project_enroll dt .event_enroll_button{ 
+	display:block; 
+	border-radius:0.2em; 
+	font-size:13px; 
+	line-height:26px; 
+	text-align:center; 
+	background:#3d9ccc; 
+	color: #fff;
+	padding-left:0px;
+}
+.project_enroll span a{ 
+	padding:0px;
+	color: #fff;
+}
 </style>

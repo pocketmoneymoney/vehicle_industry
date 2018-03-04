@@ -3,7 +3,7 @@
     <h3> 
 	 	<span>采购项目 </span>
 	</h3>
-    <div class="tabbd middle_list_content tabbd">
+    <div class="middle_list_content">
         <div class="item">
             <ul class="product_list">
                 <li v-for="purchase in purchases">
@@ -143,6 +143,16 @@
 	color: #333;
 	font-style: normal;
 }
+.product_company a{
+	font-weight: normal;
+	border-radius:0.2em; 
+	font-size:13px; 
+	text-align:center; 
+	background:#3d9ccc; 
+	color:#fff;
+	cursor: pointer;
+}
+
 .flag_contury{
 	float: left;
 	margin-top: 6px;
@@ -152,14 +162,13 @@
 	float: right;
 	width: 64px;
 	display: inline-block;
-	background: #e2f5ff; 
 	font-size: 13px;
 	line-height: 26px;
 	margin-top: 30px;
-	border-radius: 3px;
-  border:1px solid #c8eafa;
-  text-align:center;
-  color:#3d9ccc;
+	border-radius:0.2em; 
+  	text-align:center;
+	background:#3d9ccc; 
+	color:#fff;
 }
 .chat_btn{
 	float: right;

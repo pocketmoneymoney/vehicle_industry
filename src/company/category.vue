@@ -1,8 +1,9 @@
 <template>
   <div class="catalog clearfix">
-    <search @searchBar="searchBar"></search>
-	
-    <h3> <span>分类</span> </h3>
+    <h3> <span>分类</span> 
+    <a href="/src/company/search.html">全部供应商列表</a>
+	</h3>
+	<hr style="height:5px;border:none;border-top:5px groove skyblue;" />
     <div class="catalog_main">
         <ul class="catalog_list">
             <li v-for="tab in tabs">
@@ -40,6 +41,12 @@
 	float: left;
   padding-top: 15px;
   padding-left: 15px;
+}
+.catalog h3 a{
+	color: #999999;
+	font-size: 14px;
+	float: right;
+	font-weight: normal;
 }
 .product_content_title{
 	height: 36px;

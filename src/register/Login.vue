@@ -5,8 +5,7 @@
       <div class="main clearfix">
       <main-nav></main-nav>
       <div>
-         <event-enroll-panel></event-enroll-panel>
-      <div class="main_middle clearfix">
+      <div class="main_middle clearfix" style="margin-left:230px">
         <div class="formbox clearfix">
 		  <div class="info_panel2">
           <h2>登录</h2>
@@ -30,15 +29,14 @@
 			    <span>请输入登录密码</span>
 			  </dd>
           </dl>
+          </div>
 	      <div style="clear:both;"> </div>
           <div>
             <span><a @click="login">登录</a></span>
             <span><a href="/src/register/register.html">前往注册页面</a></span>
           </div>
-          </div>
 		</div>
       </div>
-	      <right-panel></right-panel>
       </div>
 	  </div>
       <last-footer></last-footer>

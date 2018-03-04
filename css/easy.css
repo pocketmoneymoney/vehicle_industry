@@ -15,18 +15,15 @@
 
 .contact_btn{
 	float: right;
-	margin-right: 30px;
 	width: 64px;
 	display: inline-block;
-	background: #e2f5ff; 
 	font-size: 13px;
 	line-height: 26px;
 	margin-top: 30px;
-	border-radius: 3px;
- 	border:1px solid #c8eafa;
+	border-radius:0.2em; 
   	text-align:center;
-  	color:#3d9ccc;
-    cursor:pointer;
+	background:#3d9ccc; 
+	color:#fff;
 }
 
 /* clearfix elimate float:left has no height */
@@ -99,16 +96,14 @@ h3{
 
 .info_panel span a{
 	font-weight: normal;
-	padding-left:15px; 
-	padding-right:15px; 
-    margin: 4px 0 0 15px;
-	background:#e2f5ff; 
-	border:1px solid #c8eafa;
+    margin: 5px 5px 50px 15px;
+	padding: 5px 5px 15px 15px; 
 	border-radius:0.2em; 
-	font-size:16px; 
+	font-size:15px; 
 	line-height:50px; 
 	text-align:center; 
-	color:#3d9ccc; 
+	background:#3d9ccc; 
+	color:#fff;
 	cursor: pointer;
 }
 
@@ -208,15 +203,13 @@ h3{
 .formbox span a{ 
 	width: 100px; 
 	margin-left: 150px; 
-	background:#e2f5ff; 
-	border:1px solid #c8eafa;
+	margin-top: 20px; 
 	border-radius:0.2em; 
-	font-size:16px; 
-	line-height:50px; 
+	font-size:14px; 
 	text-align:center; 
-	color:#3d9ccc; 
-	padding-left:15px; 
-	padding-right:15px; 
+	background:#3d9ccc; 
+	color: #fff;
+	padding: 10px 10px 15px 15px; 
 	cursor: pointer;
 }
 
@@ -267,10 +260,10 @@ h3{
   font-size: 13px;
   line-height: 26px;
   margin-top: 30px;
-  border-radius: 3px;
-  border:1px solid #c8eafa;
+  border-radius:0.2em; 
   text-align:center;
-  color:#3d9ccc;
+  background:#3d9ccc; 
+  color:#fff;
 }
 
 /************************************************
@@ -322,19 +315,18 @@ h3{
 }
 
 .product ul span {
-	float: left;
+ 	float: left;
     margin: 4px 0 0 15px;
-	width: 64px;
+ 	width: 64px;
 	background: #e2f5ff; 
-	font-size: 13px;
-	line-height: 26px;
+ 	font-size: 13px;
+ 	line-height: 26px;
 	border-radius: 3px;
     border:1px solid #c8eafa;
     text-align:center;
     color:#3d9ccc;
     cursor: pointer;
 }
-
 
 /************************************************
  ***
@@ -507,24 +499,23 @@ h3{
 
 .info_panel2 span a{
 	font-weight: normal;
-	padding-left:6px; 
-	padding-right:6px; 
-    margin: 4px 0 50px 15px;
-	background:#e2f5ff; 
-	border:1px solid #c8eafa;
+    margin: 5px 5px 50px 15px;
+	padding: 5px 5px 10px 10px; 
 	border-radius:0.2em; 
-	font-size:16px; 
+	font-size:15px; 
 	line-height:50px; 
 	text-align:center; 
-	color:#3d9ccc; 
+	background:#3d9ccc; 
+	color:#fff;
 	cursor: pointer;
 }
 
 .info_panel2 tr td{
+	min-width:100px;
     padding-left:20px;
     margin-top:1px;
     padding-top:10px;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .h3_datatable_list {
