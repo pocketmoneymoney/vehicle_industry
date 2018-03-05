@@ -29,14 +29,14 @@ export default {
 	  this.searchCompany();
     },
 	getSearchData: function () {
-	  if (this.selectCategory) {
-		return this.selectCategory;
+	  if (this.selectItem) {
+		return this.selectItem;
 	  }; 
 	  if (this.selectSubtype) {
 		return this.selectSubtype;
 	  }; 
-	  if (this.selectItem) {
-		return this.selectItem;
+	  if (this.selectCategory) {
+		return this.selectCategory;
 	  }; 
 	  return null;
 	},
@@ -61,6 +61,7 @@ export default {
 			this.selectSubtype = subtype;
 			this.selectItem = '';
 		}
+console.log("SS", this.selectSubtype);
 		this.updateSelectBar();
 	  	this.searchCompany(this.getSearchData());
 	},
@@ -124,7 +125,7 @@ export default {
     searchCompany: function(keyword) {
       var self = this;
 	  var params = {};
-	
+console.log("keyword", keyword);	
 	  if (keyword) {
 		params['name'] = keyword;
 	  }
