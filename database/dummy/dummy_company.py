@@ -18,7 +18,7 @@ def main():
 	
 
 	for i in range(nrows):
-		vid = str(id) + "." + str(1)
+		vid = str(int(id)) + "00000" +  str(i)
 		print "name", table.cell(i, 0).value
 		print "product", table.cell(i, 1).value
 		print "customer", table.cell(i, 2).value
