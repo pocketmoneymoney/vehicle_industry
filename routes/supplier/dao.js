@@ -6,8 +6,8 @@ var db = require('../common/db');
 
 function dbHandler() {
      db.handler.call(this, {
-		'id':			{ type:String, unique:true, required:true },
-		'owner':		{ type:String, unique:true, required:true },
+		'id':			{ type:String, required:true },
+		'owner':		{ type:String, required:true },
 
 		'person':		{
 			'myname':		String,
@@ -30,6 +30,11 @@ function dbHandler() {
 			'operator':		String,
 			'assets':		String,
 			'market':		String,
+			'officalContact':		String,
+			'officalPhone':			String,
+			'officalEmail':			String,
+			'link':					String,
+			'address':				String,
 			'createTime':	String
 		},
 		'product': 			{ type:Array, default:[] },
@@ -112,8 +117,10 @@ dbHandler.prototype.modifyPrivilegeInfo = function (id, verified, advertise,
 };
 
 
-dbHandler.prototype.modifyCompanyInfo = function (id, name, product, customer, 
-	brief, location, market, createTime, operator, assets, avatar, callback) {
+dbHandler.prototype.modifyCompanyInfo = function (
+  id, name, product, customer, brief, location, market, 
+  officalContact, officalPhone, officalEmail, link, address,
+  createTime, operator, assets, avatar, callback) {
 	var fields = {'company':
 		{'name': name,
 		 'product': product,
@@ -121,6 +128,11 @@ dbHandler.prototype.modifyCompanyInfo = function (id, name, product, customer,
 		 'brief': brief,
 		 'location': location,
 		 'market': market,
+		 'officalContact': officalContact,
+		 'officalPhone': officalPhone,
+		 'officalEmail': officalEmail,
+		 'link': link,
+		 'address': address,
          'createTime': createTime,
          'operator': operator,
          'assets': assets,}};

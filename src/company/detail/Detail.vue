@@ -5,7 +5,7 @@
       <h1>{{ company.name }}</h1>
 	</div>
     <div style="float:right;">
-      <img stype="max-width:100px; max-height:100px;" :src="avatar"/>
+      <img stype="max-width:200px; max-height:100px;" :src="avatar"/>
 	  <div style="clear:both;"> </div>
       <div v-if="isOwner" style="float:right">
 		<a @click="deleteLogo" style="margin-left:10px;cursor:pointer;">删除</a>
@@ -52,8 +52,11 @@
 	<div>
       <h2>联系方式</h2>
 	  <hr style="height:5px;border:none;border-top:5px groove skyblue;" />
-      <span>电话：{{ person.phone }}</span>
-      <span>邮箱：{{ person.email }}</span>
+      <span>联系人：{{ company.officalContact }}</span>
+      <span>公司电话：{{ company.officalPhone }}</span>
+      <span>公司邮箱：{{ company.officalEmail }}</span>
+      <span>公司主页：{{ company.link }}</span>
+      <span>公司地址：{{ company.address }}</span>
 	</div>
   </div>
   </div>

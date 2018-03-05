@@ -169,6 +169,12 @@ module.exports = function(express) {
 		var location 	= req.body.location;
 		var market 		= req.body.market;
 
+		var officalContact  = req.body.officalContact;
+		var officalPhone 	= req.body.officalPhone;
+		var officalEmail 	= req.body.officalEmail;
+		var link		 	= req.body.link;
+		var address		 	= req.body.address;
+
 		var createTime  = req.body.createTime;
 		var operator    = req.body.operator;
 		var assets      = req.body.assets;
@@ -180,6 +186,7 @@ module.exports = function(express) {
 		}
 
 		dao.modifyCompanyInfo(id, name, product, customer, brief, location, market, 
+  		    officalContact, officalPhone, officalEmail, link, address,
 			createTime, operator, assets, avatar, function (err) {
 			if (err) {
 				res.json({success: false, msg:err});

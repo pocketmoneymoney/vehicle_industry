@@ -30,6 +30,36 @@
                   </dd>
               </dl>
               <dl>
+                  <dt><b></b><span>联系人：</span></dt>
+                  <dd>
+                      <input v-model="company.officalContact" class="text" style="z-index: 10000" maxlength="40" type="text"/>
+                  </dd>
+              </dl>
+              <dl>
+                  <dt><b></b><span>公司电话：</span></dt>
+                  <dd>
+                      <input v-model="company.officalPhone" class="text" style="z-index: 10000" maxlength="40" type="text"/>
+                  </dd>
+              </dl>
+              <dl>
+                  <dt><b></b><span>公司邮箱：</span></dt>
+                  <dd>
+                      <input v-model="company.officalEmail" class="text" style="z-index: 10000" maxlength="40" type="text"/>
+                  </dd>
+              </dl>
+              <dl>
+                  <dt><b></b><span>公司主页：</span></dt>
+                  <dd>
+                      <input v-model="company.link" class="text" style="z-index: 10000" maxlength="40" type="text"/>
+                  </dd>
+              </dl>
+              <dl>
+                  <dt><b></b><span>公司地址：</span></dt>
+                  <dd>
+                      <input v-model="company.address" class="text" style="z-index: 10000" maxlength="40" type="text"/>
+                  </dd>
+              </dl>
+              <dl>
                   <dt><b></b><span>公司简介：</span></dt>
                   <dd>
                       <textarea v-model="company.brief" class="text" style="height: 150px; z-index: 10000" maxlength="400"/>
@@ -85,13 +115,44 @@ export default {
       var oMyForm = new FormData();
       oMyForm.append("name", this.company.name);
       oMyForm.append("product", this.company.product);
-      oMyForm.append("brief", this.company.brief);
       oMyForm.append("customer", this.company.customer);
-      oMyForm.append("location", this.company.location);
-      oMyForm.append("market", this.company.market);
-      oMyForm.append("createTime", this.company.createTime);
-      oMyForm.append("operator", this.company.operator);
-      oMyForm.append("assets", this.company.assets);
+
+	  if (this.company.brief) {
+         oMyForm.append("brief", this.company.brief);
+	  }
+   	  if (this.company.location) {
+      	oMyForm.append("location", this.company.location);
+	  }
+	  if (this.company.market) {
+      	oMyForm.append("market", this.company.market);
+	  }
+
+	  if (this.company.createTime) {
+        oMyForm.append("createTime", this.company.createTime);
+	  }
+	  if (this.company.operator) {
+        oMyForm.append("operator", this.company.operator);
+	  }
+
+	  if (this.company.officalContact) {
+      	oMyForm.append("officalContact", this.company.officalContact);
+	  }
+	  if (this.company.officalPhone) {
+      	oMyForm.append("officalPhone", this.company.officalPhone);
+	  }
+	  if (this.company.officalEmail) {
+        oMyForm.append("officalEmail", this.company.officalEmail);
+	  }
+	  if (this.company.link) {
+      	oMyForm.append("link", this.company.link);
+	  }
+	  if (this.company.address) {
+      	oMyForm.append("address", this.company.address);
+	  }
+
+	  if (this.company.assets) {
+       	oMyForm.append("assets", this.company.assets);
+	  }
       oMyForm.append("avatar", this.$refs.logofile.files[0]);
 
       var self = this;

@@ -77,7 +77,9 @@ DBHandler.prototype.findMultiple = function(conditions, projection, options,
 
     var query = this.model
         .find(conditions, projection, options)
-        .limit(limit);
+        .limit(limit)
+		.sort({'_id':-1});
+
     query.exec(function(err, data) {
         callback(err, data);
     });
