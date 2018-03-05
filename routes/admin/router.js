@@ -138,6 +138,12 @@ module.exports = function(express) {
 		var itemID = req.body.itemID;
 		var isNew = req.body.isNew;
 
+		if (isNew == 'false') {
+			isNew = false;
+		} else if (isNew == 'true') {
+			isNew = true;
+		}
+
 		if (isNew) {
 			dao.addCategory(categoryID, categoryName, subtypeID, subtypeName,
 				itemID, itemName, function (err, data) {
