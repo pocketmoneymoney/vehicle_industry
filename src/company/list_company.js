@@ -14,7 +14,8 @@ export default {
 	  selectItem: '',
 	  categoryBar: [],
 	  subtypeBar: [],
-	  itemBar: []
+	  itemBar: [],
+	  lastKeyword: ''
     }
   },
   methods: {
@@ -26,14 +27,22 @@ export default {
 	},
     changePage: function(page) {
       this.curPage = page;
-	  this.searchCompany();
+	  this.searchCompany(this.lastKeyword);
     },
 	getSearchData: function () {
 	  if (this.selectItem) {
 		return this.selectItem;
 	  }; 
 	  if (this.selectSubtype) {
-		return this.selectSubtype;
+		var category = this.totalCategory[this.selectCategory];	
+		var subtype = category[this.selectSubtype];
+		var keyword = this.selectSubtype;
+		for (var itemName in subtype) {
+			if (itemName != 'id') {
+				keyword = keyword + ' ' + itemName;
+			}
+		}
+		return keyword;
 	  }; 
 	  if (this.selectCategory) {
 		return this.selectCategory;
@@ -61,7 +70,6 @@ export default {
 			this.selectSubtype = subtype;
 			this.selectItem = '';
 		}
-console.log("SS", this.selectSubtype);
 		this.updateSelectBar();
 	  	this.searchCompany(this.getSearchData());
 	},
@@ -125,10 +133,11 @@ console.log("SS", this.selectSubtype);
     searchCompany: function(keyword) {
       var self = this;
 	  var params = {};
-console.log("keyword", keyword);	
+console.log("keyword", keyword);
 	  if (keyword) {
 		params['name'] = keyword;
 	  }
+	  this.lastKeyword = keyword;
 
 	  params['page'] = self.curPage - 1;
 	  params['num']  = 10;

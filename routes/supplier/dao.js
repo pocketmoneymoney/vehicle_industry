@@ -300,42 +300,73 @@ dbHandler.prototype.search = function (name, page, num, callback) {
 	var priority1 = [];
 	var priority2 = [];
 	var priority3 = [];
-	
+	var priority4 = [];
+console.log("name", name);	
 	var condition = {};
 	if (name) {
-		var reg = new RegExp(name, 'i');
-		condition = {'$or':[{'company.name': {$regex: reg}}, 
-				  			{'company.brief': {$regex: reg}},
-				  			{'company.product': {$regex: reg}}]};
+		var nameList = name.split(' ');
+		var conditionItems = [];
+		for (var index = 0; index < nameList.length; index++) {
+			var reg = new RegExp(nameList[index], 'i');
+			conditionItems.push({'company.name': {$regex: reg}});
+			conditionItems.push({'company.product': {$regex: reg}});
+			conditionItems.push({'company.brief': {$regex: reg}});
+		}
+		condition = {'$or':conditionItems};
 	}
 
 	self.model
 	.find(condition, null, {sort: {_id: -1}})
-	.limit(1000)
+	.limit(300)
 	.sort({'id':-1})
 	.exec(function(err, data) {
 		if (err || !data) {
 			callback(err, []);
 		} else {
+			var names = [];
+			if (!name) {
+				name = '';
+			} else {
+				names = name.split(' ');
+			}
+
 			for (var index = 0; index < data.length; index++) {
 				var supplier = data[index];
 				if (supplier.company && supplier.company.name &&
-			    	supplier.company.name.search(name) >= 0) {
+					_isNameMatched(names, supplier.company.name)) {
 					priority1.push(supplier);
 				} else if (supplier.company.product && supplier.company.product &&
-					   	   supplier.company.product.search(name) >= 0) {
+							_isNameMatched(names, supplier.product.name)) {
 					priority2.push(supplier);
 				} else if (supplier.company.brief && supplier.company.brief &&
-					   	   supplier.company.brief.search(name) >= 0) {
-					priority2.push(supplier);
-				} 
+							_isNameMatched(names, supplier.company.brief.name)) {
+					priority3.push(supplier);
+				} else {
+					priority4.push(supplier);
+				}
 			}
-			result = result.concat(priority1).concat(priority2).concat(priority3);
+			result = result.concat(priority1).concat(priority2).concat(priority3).concat(priority4);
 			var resultAmount = result.length;
 			var currentPageResult = result.slice(page, page + num);
+console.log("result", resultAmount);	
 			callback(null, {'data':currentPageResult, 'amount':resultAmount});
 		}
 	});
 };
+
+function _isNameMatched(names, strval) {
+	if (!strval) {
+		return false;
+	}
+
+	for (var index = 0; index < names.length; index++) {
+		if (strval.search(names[index]) >= 0) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
 
 module.exports = new dbHandler();
