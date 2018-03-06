@@ -90,6 +90,17 @@
                   </dd>
               </dl>
           </div>
+		  <div>
+              <dl>
+                  <dt><b>*</b><span>验证码：</span></dt>
+                  <dd>
+                      <input v-model="verifyCodeInput" class="text" style="z-index: 10000;width:100px;" name="email" type="text" maxlength="10"/>
+                  </dd>
+				  <dd>
+  		   			  <div id="v_container2" style="margin-left:50px; width:160px; height:40px;"></div>
+                  </dd>
+              </dl>
+		  </div>
           </div>
 	      <div style="clear:both;"> </div>
           <div>
@@ -105,7 +116,7 @@
 </template>
 
 <script>
-import TopBar from '../util/topbar.vue'
+import TopBar from '../util/topbar2.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
@@ -125,7 +136,9 @@ export default {
       phone: '',
       product: '',
       customer: '',
-      id: ''
+      id: '',
+	  verifyCode: '',
+	  verifyCodeInput: ''
     }
   },
   methods: {
@@ -158,6 +171,12 @@ export default {
 
 	  if (specialStrCheck(username) || specialStrCheck(this.password1)) {
         alert('请只输入数字，字母或下划线组成的用户名和密码');
+        return;
+	  }
+
+	  var res = this.verifyCode.validate(this.verifyCodeInput);
+	  if (!res) {
+        alert('请输入正确的验证码，点击验证码可刷新');
         return;
 	  }
 
@@ -202,6 +221,9 @@ export default {
 		}
 	  }, false);
     }
+  },
+  mounted: function () {
+	this.verifyCode = new GVerify("v_container2");
   },
   components: {MainHeader, MainNav, TopBar, LastFooter, EventEnrollPanel, RightPanel} 
 }

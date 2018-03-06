@@ -1,3 +1,4 @@
+
 <template>
   <div class="top_bar">
   	<div class="topbar clearfix">
@@ -27,12 +28,6 @@
         </div>
   			<a v-if="isLogin" @click="logout" href="/src/index.html" class="account_icon">退出登录</a>
         <div v-else class="login">
-           <input type="text" placeholder="请输入用户名" v-model="username"/>
-           <input type="password" placeholder="请输入密码" v-model="password"/>
-  		   <a id="v_container" style="margin:3px;width:100px; height:25px;"></a>
-           <input type="text" placeholder="请输入验证码，点击刷新" v-model="verifyCodeInput">
- 		   <a @click="login">登录</a>
-  		   <a href="/src/register/register.html">注册</a>
         </div>
   		</div>
   	</div>
