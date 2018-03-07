@@ -4,26 +4,21 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
-        <div>
-           <event-enroll-panel></event-enroll-panel>
-		  <div class="main_middle">
-  			<div class="list_position clearfix">
+		  <div class="main2_left">
+  			<div class="list_position">
      		<ul class="product_list">
          		<li v-for="activity in activities">
              		<div class="position_list_right">
-
-					<div style="float:right">
-					  <img :src="getPoster(activity)" 
-					  	 style="width:200px;height:200px;">
-	  				  <div style="clear:both;"> </div>
-					</div>
+					  	<div style="float:right">
+					    	<img :src="getPoster(activity)" 
+					  	     	style="width:250px;height:180px;">
+	  				       	<div style="clear:both;"> </div>
+					    </div>
                  		<dl>
                      		<dt>活动名称</dt>
                      		<dd><h4 class="position_title"> <a>{{ activity.name }}</a></h4>
 					 		</dd>
                  		</dl>
-			 		</div>
-             		<div class="position_list_right">
                  		<dl>
                      		<dt>活动时间</dt>
                      		<dd>
@@ -37,14 +32,14 @@
 					 		</dd>
                  		</dl>
 			 		</div>
-            		  <a @click="enroll(activity)" class="contact_btn">我要报名</a>
+            	 	<a @click="enroll(activity)" class="contact_btn" 
+					   style="cursor:pointer">我要报名</a>
          		</li>
 			</ul>
 			</div>
      		<page :curPage="curPage" :totalPage="totalPage" @pageChanged="changePage"></page>
-		  </div>
-	      <right-panel></right-panel>
         </div>
+		<main-right> </main-right>
       </div>
       <last-footer></last-footer>
     </div>
@@ -57,6 +52,7 @@ import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
+import MainRight from './main_right.vue'
 
 import Page from '../util/page.vue'
 
@@ -101,7 +97,7 @@ export default {
 	this.viewName = type;
 	this.getCurrentPageData();
   },
-  components: {MainHeader, TopBar, MainNav, Page,
+  components: {MainHeader, TopBar, MainNav, Page, MainRight,
 			   EventEnrollPanel, RightPanel, LastFooter}
 }
 </script>
@@ -109,27 +105,12 @@ export default {
 <style lang="scss">
 @import '../../css/rem.scss';
 .list_position{
-	width: 740px;
-	height: 700px;
+	width: 900px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;
 	padding: 19px 20px;
 	margin-bottom: 8px;
-}
-.list_position h3 {
-  height: 42px;
-}
-.list_position h3 span{
-	float: left;
-  padding-top: 15px;
-  padding-left: 15px;
-}
-.list_position h3 a{
-	color: #999999;
-	font-size: 12px;
-	float: right;
-	font-weight: normal;
 }
 
 .product_list li{
@@ -168,9 +149,8 @@ export default {
 }
 .position_list_right dl dd{
 	float: left;
-	width: 500px;
+	width: 600px;
 	line-height: 22px;
 	color: #333;
 }
-
 </style>

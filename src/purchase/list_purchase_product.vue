@@ -1,8 +1,10 @@
 <template>
+  <div>
+	<div class="title_bar" style="width:750px"> 
+      <a class="title_bar_a"> 最新采购</a>
+      <search @searchBar="searchBar"></search>
+	</div> 
   <div class="list_purchase_product clearfix">
-    <h3> 
-	 	<span>采购项目 </span>
-	</h3>
     <div class="middle_list_content">
         <div class="item">
             <ul class="product_list">
@@ -29,17 +31,18 @@
      </div>
      <page :curPage="curPage" :totalPage="totalPage" @pageChanged="changePage"></page>
   </div>
+  </div>
 </template>
 
 <script src="./list_purchase_product.js"></script>
 
 <style>
 .list_purchase_product{
-	max-width: 740px;
+	max-width: 750px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;
-	padding: 19px 20px 5px 5px;
+	padding: 19px 20px;
 	margin-bottom: 8px;
 }
 .list_purchase_product h3 {

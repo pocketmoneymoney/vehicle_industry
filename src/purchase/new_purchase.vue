@@ -1,8 +1,10 @@
 <template>
-  <div class="new_purchase clearfix">
-    <h3>
-        <span>采购项目发布</span>
-    </h3>
+  <div>
+	<div class="title_bar" style="width:400px"> 
+      <a class="title_bar_a"> 采购项目发布</a>
+	</div> 
+	<div style="clear:both;"> </div>
+    <div class="new_purchase clearfix">
     <div class="formbox clearfix">
           <dl class="clearfix">
               <dt><b>*</b><span>发布人姓名/公司名称：</span></dt>
@@ -53,8 +55,9 @@
                       <input type="checkbox" :value="vehicleType" v-model="detailType" /><span class="rad">{{ vehicleType }}&nbsp;</span></label>
               </dd>
           </dl>
+     	</div>
+     <span class="span01"><a @click="newPurchase">发布</a></span>
      </div>
-    <span class="span01"><a @click="newPurchase">发布</a></span>
   </div>
 </template>
 

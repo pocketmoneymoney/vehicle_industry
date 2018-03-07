@@ -4,13 +4,14 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
-        <div>
-         <event-enroll-panel></event-enroll-panel>
-          <div class="main_middle">
+        <div class="main2_left">
+		  <div class="title_bar">
+			<span> <a>热门职位招聘</a> </span>
+          	<search @searchBar="searchBar"></search>
+		  </div>
           <list-position></list-position>
-          </div>
-	      <right-panel></right-panel>
         </div>
+		<main-right></main-right>
       </div>
       <last-footer></last-footer>
     </div>
@@ -21,11 +22,9 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
-import RightPanel from '../util/right_panel.vue'
-
-import EventEnrollPanel from '../util/event_enroll_panel.vue'
-import LatestPurchase from '../util/latest_purchase.vue'
+import Search from './search.vue'
 import ListPosition from './list_position.vue'
+import MainRight from './main_right.vue'
 
 
 export default {
@@ -35,12 +34,15 @@ export default {
     }
   },
   methods: {
+	searchBar: function (data) {
+		var keyword = trimStr(data);
+	},
 	viewChange: function(index) {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
-			   ListPosition, RightPanel, LastFooter}
+  components: {MainHeader, TopBar, MainNav, Search, MainRight,
+			   ListPosition, LastFooter}
 }
 </script>
 

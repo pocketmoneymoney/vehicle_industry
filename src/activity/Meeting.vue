@@ -7,7 +7,7 @@
         <div>
 		  <div class="main_right">
 		  <a style="cursor:pointer;" @click="enroll(latestMeeting)">
-			<img style="width:900px; height:450px; margin-left:30px; float:left;" 
+			<img style="width:850px; height:430px; margin-left:30px; float:left;" 
 				 :src="latestMeeting.bigPoster" />
 		  </a>
 	      <div style="clear:both;"> </div>
@@ -21,12 +21,8 @@
         	<span><a href="/src/activity/activity_list.html?tp=meeting">更多活动列表>></a></span>
     	  </div>
 		  </div>
-	      <right-panel></right-panel>
-	
-          <!---div class="main_right">
-            <history-meeting :imgPaths="historyImgPaths" carouselId="history_meeting"></history-meeting>
-		  </div--->
         </div>
+		  <main-right></main-right>
       </div>
       <last-footer></last-footer>
     </div>
@@ -40,7 +36,7 @@ import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import HistoryMeeting from '../util/carousel.vue'
-
+import MainRight from './main_right.vue'
 import MeetingPanel from './activity_panel.vue'
 
 export default {
@@ -75,7 +71,7 @@ export default {
     }, false);
   },
   components: {MainHeader, TopBar, MainNav, MeetingPanel, HistoryMeeting,
-			   EventEnrollPanel, RightPanel, LastFooter}
+			   EventEnrollPanel, RightPanel, LastFooter, MainRight}
 }
 </script>
 

@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div style="background:#00A6AA;">
     <div class="main contact clearfix">
         <dl>
-            <dt>FAQ&Contact Us</dt>
+            <dt>联系我们</dt>
             <dd>
                 <a href="">Contact Us</a>
                 <a href="">Buyer Security</a>

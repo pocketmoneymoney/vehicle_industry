@@ -1,9 +1,10 @@
 <template>
-  <div class="list_company clearfix">
-    <h3>
+  <div>
+	<div class="title_bar" style="width:950px; float:right;">
+		<span> <a>公司搜索</a> </span>
         <search @searchBar="searchBar"></search>
-    </h3>
-    <!--中间列表 切换-->
+	</div>
+  <div class="list_company clearfix">
 	<div class="crumb">
 		<a href="/src/company/index.html">公司</a> > <a>{{ selectCategory }}</a> > <a>{{ selectSubtype }}</a> > <a> {{ selectItem }} </a>
 	</div>
@@ -51,6 +52,7 @@
         </ul>
      <page :curPage="curPage" :totalPage="totalPage" @pageChanged="changePage"></page>
   </div>
+  </div>
 </template>
 
 <script src="./list_company.js"></script>
@@ -68,10 +70,10 @@
 }
 
 .list_company{
-	width: 740px;
+	float: right;
+	width: 950px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
-	float: left;
 	padding: 19px 20px;
 	margin-bottom: 8px;
 }

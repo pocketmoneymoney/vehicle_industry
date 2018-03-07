@@ -4,19 +4,17 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
-        <div>
-          <event-enroll-panel></event-enroll-panel>
-		    <div class="main_middle">
+			<div style="width:750px; float:left;">
+              <list-purchase-product></list-purchase-product>
+			</div>
+			<div style="width:400px; float:right;">
 		      <new-purchase-next v-if="newPurchaseNext" 
 			    :newPurchaseBasicInfo="newPurchaseBasicInfo"
 				:person="person"
 				@cancelPurchase="cancelPurchase"> </new-purchase-next>
 		      <new-purchase v-else 
 				:person="person" @newPurchaseNext="showNewPurchaseNext"></new-purchase>
-              <list-purchase-product></list-purchase-product>
 		  </div>
-		  <right-panel></right-panel>
-        </div>
       </div>
       <last-footer></last-footer>
     </div>

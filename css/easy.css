@@ -54,6 +54,19 @@
 	padding: 0px 12px 10px 10px;
 }
 
+.main2_left {
+	float: left;
+	width: 900px;
+	margin-bottom: 20px;
+}
+
+.main2_right {
+	float: right;
+	width: 300px;
+	margin-bottom: 20px;
+	background: #fff;
+}
+
 
 #userlist tbody th {
   font-weight: 400;
@@ -62,6 +75,7 @@
 .delete_button {
   cursor: pointer;
 }
+
 h3{
 	height: 14px;
 	line-height: 14px;
@@ -152,7 +166,7 @@ h3{
 }
 
 .formbox dl {
-	max-width:700px;
+	max-width:900px;
 	height:32px;
 	line-height:26px;
 	margin-top:10px;
@@ -256,7 +270,7 @@ h3{
 .company_panel div a{
   float: left;
   width: 64px;
-  background: #e2f5ff; /*url('../styImg/xunpan/message_icon.png') 15px center no-repeat;*/
+  background: #e2f5ff; 
   font-size: 13px;
   line-height: 26px;
   margin-top: 30px;
@@ -500,7 +514,7 @@ h3{
 .info_panel2 span a{
 	font-weight: normal;
     margin: 5px 5px 50px 15px;
-	padding: 5px 5px 10px 10px; 
+	padding: 5px 5px 20px 10px; 
 	border-radius:0.2em; 
 	font-size:15px; 
 	line-height:50px; 
@@ -523,4 +537,101 @@ h3{
 	padding: 15px 30px 15px 0px;
     margin: 10px 20px 15px 0px;
 	font-size: 24px;
+}
+
+.title_bar {
+	float: left;
+	background:#F1F1F1; 
+	width: 850px;
+	height: 60px;
+	margin-bottom:10px;
+}
+
+.title_bar span a{
+	float: left;
+	border-left: 4px solid #00A6AA;
+	color: #00A6AA;
+	font-size: 20px;	
+	margin-top:15px;
+	margin-left:10px;
+	padding-left:15px;
+}
+
+.title_bar_op {
+	float: left;
+	background:#00A6AA; 
+	width: 850px;
+	height: 60px;
+	margin-bottom:10px;
+}
+.title_bar_a{
+	float: left;
+	border-left: 4px solid #00A6AA;
+	color: #00A6AA;
+	font-size: 20px;	
+	margin-top:15px;
+	margin-left:10px;
+	padding-left:15px;
+}
+
+.title_bar_info{
+	color: #00A6AA;
+  	text-align:center;
+	margin-top:20px;
+	margin-bottom:20px;
+	padding-top:30px;
+	padding-bottom:30px;
+}
+
+
+/************************************************
+ ***
+ ***  Information Panel 3
+ ***
+ ************************************************/
+
+.info_panel3{
+	float: left;
+	width: 850px;
+	border: 1px solid #e5e5e5;
+	background: #fff;
+	margin-bottom: 20px;
+}
+
+.info_panel3 h3{
+	float: left;
+	padding-left: 15px;
+	border-left: 6px solid #3d9ccc;
+    margin-bottom: 10px;
+	font-weight: normal;
+	font-size: 24px;
+}
+
+.info_panel3 h2{
+	float: left;
+	padding-left: 15px;
+	margin-left: 15px;
+	border-left: 6px solid #3d9ccc;
+    margin-bottom: 10px;
+}
+
+.info_panel3 span a{
+	font-weight: normal;
+    margin: 5px 5px 50px 15px;
+	padding: 5px 5px 20px 10px; 
+	border-radius:0.2em; 
+	font-size:15px; 
+	line-height:50px; 
+	text-align:center; 
+	background:#3d9ccc; 
+	color:#fff;
+	cursor: pointer;
+}
+
+.info_panel3 tr td{
+	min-width:100px;
+    padding-left:20px;
+    margin-top:1px;
+    padding-top:10px;
+	font-size: 16px;
 }

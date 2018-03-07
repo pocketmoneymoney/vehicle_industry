@@ -348,7 +348,6 @@ console.log("name", name);
 			result = result.concat(priority1).concat(priority2).concat(priority3).concat(priority4);
 			var resultAmount = result.length;
 			var currentPageResult = result.slice(page, page + num);
-console.log("result", resultAmount);	
 			callback(null, {'data':currentPageResult, 'amount':resultAmount});
 		}
 	});

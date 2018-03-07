@@ -4,13 +4,10 @@
       <main-header></main-header>
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
-        <div>
-          <event-enroll-panel></event-enroll-panel>
-          <div class="main_right">
-            <ListCompany></ListCompany>
-          </div>
-	      <right-panel></right-panel>
-        </div>
+		<div>
+			<left-nav></left-nav>
+          	<ListCompany></ListCompany>
+		</div>
       </div>
       <last-footer></last-footer>
     </div>
@@ -22,6 +19,7 @@ import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
+import LeftNav from '../index/left_nav.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LatestPurchase from '../util/latest_purchase.vue'
@@ -35,7 +33,7 @@ export default {
     }
   },
   components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, 
-			   ListCompany, RightPanel, LastFooter}
+			   ListCompany, RightPanel, LastFooter, LeftNav}
 }
 </script>
 

@@ -4,12 +4,12 @@
       <main-header></main-header>
       <div class="main clearfix">
       <main-nav></main-nav>
-	  <div>
-         <event-enroll-panel></event-enroll-panel>
-      <div class="main_middle clearfix">
+      <div class="main2_left clearfix">
         <div class="formbox">
-		  <div class="info_panel2">
-          <h2>活动详情</h2>
+		  <div class="title_bar" style="width:850px"> 
+            <a class="title_bar_a">活动详情</a>
+		  </div> 
+		  <div class="info_panel3">
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><b></b><span>活动名称：</span></dt>
@@ -23,10 +23,14 @@
               <dt><b></b><span>活动地点：</span></dt>
               <dd> <span>{{activity.location}} </span> </dd>
           </dl>
-		  </div>	
-		  <div v-if="isNotAdmin" class="info_panel2">
-          <h2>我要报名</h2>
+		  </div>
+
 	      <div style="clear:both;"> </div>
+		  <div class="title_bar" style="width:850px"> 
+            <a class="title_bar_a">我要报名</a>
+		  </div> 
+
+		  <div v-if="isNotAdmin" class="info_panel3">
           <dl>
               <dt><b>*</b><span>姓名：</span></dt>
               <dd>
@@ -76,8 +80,7 @@
 		  </div>
         </div>
       </div>
-	      <right-panel></right-panel>
-      </div>
+	  <main-right></main-right>
 	  </div>
       <last-footer></last-footer>
     </div>
@@ -90,6 +93,7 @@ import MainNav from '../util/main_nav.vue'
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import RightPanel from '../util/right_panel.vue'
 import LastFooter from '../util/footer.vue'
+import MainRight from './main_right.vue'
 
 export default {
   data: function() {
@@ -172,7 +176,8 @@ export default {
 	  }
 	});
   },
-  components: {MainHeader, MainNav, TopBar, LastFooter, EventEnrollPanel, RightPanel} 
+  components: {MainHeader, MainNav, TopBar, LastFooter, EventEnrollPanel, RightPanel,
+			   MainRight}
 }
 </script>
 

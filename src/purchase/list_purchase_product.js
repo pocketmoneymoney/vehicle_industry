@@ -1,4 +1,5 @@
 import Page from '../util/page.vue'
+import Search from './search.vue'
 
 export default {
   data() {
@@ -26,5 +27,5 @@ export default {
   mounted: function() {
 	this.getCurrentPageData();
   },
-  components: {Page}
+  components: {Page, Search}
 }

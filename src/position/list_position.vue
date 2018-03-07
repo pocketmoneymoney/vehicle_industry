@@ -1,8 +1,5 @@
 <template>
-  <div class="list_position clearfix">
-    <h3>
-        <span>最新职位</span>
-    </h3>
+  <div class="list_position">
      <ul class="position_list">
          <li v-for="position in positions">
              <div class="position_list_right">
@@ -45,10 +42,10 @@
 
 <style>
 .list_position{
-	width: 740px;
+	float: left;
+	width: 850px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
-	float: left;
 	padding: 19px 20px;
 	margin-bottom: 8px;
 }
