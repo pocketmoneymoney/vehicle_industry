@@ -1,9 +1,11 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-        <main-nav :currentView="viewName"></main-nav>
+        <!--main-nav :currentView="viewName"></main-nav-->
 		<div>
 			<left-nav></left-nav>
           	<ListCompany></ListCompany>

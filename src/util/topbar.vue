@@ -37,10 +37,10 @@
   		</div>
   	</div>
   	<div class="main clearfix">
-		<img style="width:300px; height:92px" src="/img/Logo.png">
+		<!--img style="width:300px; height:92px" src="/img/Logo.png">
         <div class="top_right_two">
         <advertise></advertise>
-		</div>
+		</div-->
     </div>
   </div>
 </template>

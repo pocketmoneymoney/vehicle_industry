@@ -1,9 +1,11 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-        <main-nav :currentView="viewName"></main-nav>
+        <!--main-nav :currentView="viewName"></main-nav-->
         <div>
 		  <div class="main_right">
 		  <a style="cursor:pointer;" @click="enroll(latestMeeting)">
