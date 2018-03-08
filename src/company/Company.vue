@@ -1,7 +1,9 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
         <div>
@@ -25,7 +27,6 @@ import LastFooter from '../util/footer.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LatestPurchase from '../util/latest_purchase.vue'
-import Category from './category.vue'
 
 import RightPanel from '../util/right_panel.vue'
 
@@ -40,7 +41,7 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase, Category,
+  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase,
 			   RightPanel, LastFooter}
 }
 </script>

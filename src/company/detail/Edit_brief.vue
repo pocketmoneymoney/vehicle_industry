@@ -1,15 +1,18 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-      <main-nav></main-nav>
       <div>
          <event-enroll-panel></event-enroll-panel>
       <div class="main_middle clearfix">
         <div class="formbox clearfix">
+		  <div class="title_bar" style="width:750px"> 
+            <a class="title_bar_a">公司基本信息编辑</a>
+		  </div> 
 		  <div class="info_panel2">
-          <h2>公司基本信息编辑</h2>
 	      <div style="clear:both;"> </div>
               <dl>
                   <dt><b>*</b><span>公司名称</span></dt>
@@ -80,7 +83,6 @@
           </div>
         </div>
       </div>
-	      <right-panel></right-panel>
 	  </div>
 	  </div>
       <last-footer></last-footer>

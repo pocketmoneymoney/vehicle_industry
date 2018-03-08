@@ -1,14 +1,16 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-      <main-nav></main-nav>
-      <div>
       <div class="main_middle clearfix" style="margin-left:230px">
         <div class="formbox clearfix">
+		  <div class="title_bar" style="width:740px"> 
+            <a class="title_bar_a">登录</a>
+		  </div> 
 		  <div class="info_panel2">
-          <h2>登录</h2>
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><b>*</b><span>用户名：</span></dt>
@@ -45,7 +47,6 @@
             <span><a href="/src/register/register.html">前往注册页面</a></span>
           </div>
 		</div>
-      </div>
       </div>
 	  </div>
       <last-footer></last-footer>

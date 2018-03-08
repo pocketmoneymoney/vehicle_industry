@@ -5,7 +5,6 @@
         <main-header></main-header>
       </div>
       <div class="main clearfix">
-        <!--main-nav :currentView="viewName"></main-nav-->
 		<div>
 			<left-nav></left-nav>
           	<ListCompany></ListCompany>

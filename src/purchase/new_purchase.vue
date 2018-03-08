@@ -5,7 +5,7 @@
 	</div> 
 	<div style="clear:both;"> </div>
     <div class="new_purchase clearfix">
-    <div class="formbox clearfix">
+    <div class="formbox clearfix" style="width:400px">
           <dl class="clearfix">
               <dt><b>*</b><span>发布人姓名/公司名称：</span></dt>
               <dd>
@@ -21,21 +21,17 @@
               </dd>
           </dl>
           <dl class="clearfix">
-              <dt><b>*</b><span>采购产品名称：</span></dt>
+              <dt><b>*</b><span>发布人联系邮箱：</span></dt>
               <dd>
-                  <input v-model="product" class="text" style="z-index: 10000" maxlength="40"
+                  <input v-model="email" class="text" style="z-index: 10000" maxlength="30"
                       type="text" />
               </dd>
           </dl>
           <dl class="clearfix">
-              <dt><b>*</b><span>有效期：</span></dt>
+              <dt><b>*</b><span>采购产品名称：</span></dt>
               <dd>
-			     <select class="text" v-model="expire">
-				     <option value='长期'>长期</option>
-				     <option value='1个月'>1个月</option>
-				     <option value='3个月'>3个月</option>
-				     <option value='6个月'>6个月</option>
-				 </select>
+                  <input v-model="product" class="text" style="z-index: 10000" maxlength="40"
+                      type="text" />
               </dd>
           </dl>
           <dl class="clearfix">
@@ -56,7 +52,7 @@
               </dd>
           </dl>
      	</div>
-     <span class="span01"><a @click="newPurchase">发布</a></span>
+     	<span class="span01"><a @click="newPurchase">发布</a></span>
      </div>
   </div>
 </template>
@@ -68,9 +64,9 @@ export default {
     return {
 	  name: '',
 	  phone: '',
+	  email: '',
 	  product: '',
 	  type: '',
-	  expire: '',
       detailType: [],
 	  vehicleTypes: ['乘用车', '微型车', '卡车', '客车', '工程机械', '其他'],
     }
@@ -79,10 +75,11 @@ export default {
     newPurchase: function() {
 	  var name = trimStr(this.name);
 	  var phone = trimStr(this.phone);
+	  var email = trimStr(this.email);
 	  var product = trimStr(this.product);
 
-      if (name === '' || phone === '' || product === '' || 
-	    this.type === '' || this.expire === '' || this.detailType === []) {
+      if (name === '' || phone === '' || product === '' || email == '' ||
+	    this.type === '' || this.detailType === []) {
         alert('请填写完整资料');
         return;
       }
@@ -90,9 +87,9 @@ export default {
       var basic = {
 		name: name, 
 		phone: phone, 
+		email: email,
 		productName: product, 
 		type: this.type, 
-		expire: this.expire, 
 		detailType: this.detailType
 	  };
 	  this.$emit('newPurchaseNext', basic);
@@ -110,10 +107,10 @@ export default {
 
 <style>
 .new_purchase{
-	width: 740px;
+	float: left;
+	width: 390px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
-	float: left;
 	padding: 19px 20px 5px 5px;
 	margin-bottom: 8px;
 }
@@ -124,7 +121,6 @@ export default {
 .new_purchase h3 span{
 	float: left;
   	padding-top: 15px;
-  	padding-left: 15px;
 }
 .new_purchaseh3 a{
 	color: #999999;
@@ -133,19 +129,77 @@ export default {
 	font-weight: normal;
 }
 
+/************************************************
+ ***
+ ***  Form Box 
+ ***
+ ************************************************/
+.formbox h3 {
+	padding-left: 15px;
+	border-left: 6px solid #3d9ccc;
+    margin-bottom: 20px;
+}
 
-.formbox dl {width:435px;line-height:26px;margin-top:10px;}
+.formbox dl {
+	max-width:380px;
+	height:32px;
+	line-height:26px;
+	margin-top:10px;
+	margin-left:5px;
+}
+
 .formbox dt,.formbox dd {float:left;}
-.formbox dt {width:190px;text-align:right;font:bolder 14px/26px arial;color:#222;}
-.formbox dd {width:229px;color:#000;}
-.formbox dd .text {width:222px;height:22px;line-height:22px;border:1px #9D9D9D solid;padding:0  0 0 5px;position:relative;z-index:99;}
-.formbox dd .texta {width:99px;}
-.formbox dd .textb {width:39px;}
+.formbox dt {
+	padding-left: 20px;
+	width:100px;
+	text-align:left;
+	font:bolder 14px/26px arial;
+	color:#222;
+}
+
+.formbox dd {
+	max-width:320px;
+	color:#000;
+}
+
+.formbox dd .text {
+	width:320px;
+	height:22px;
+	line-height:22px;
+	border:1px #9D9D9D solid;
+	padding:0  0 0 5px;
+	position:relative;
+	z-index:99;
+}
+
 .formbox dd .dda,.formbox dd .ddb,.formbox dd .ddc {float:left;}
 .formbox dd .ddb,.formbox dd .ddc {display:inline;}
 .formbox dd .cc{float:right;margin-left:0px;}
 .formbox dd .rad {font:bold 14px arial;color:#039;line-height:25px;margin-left:5px;margin-left:2px\9;}
-.formbox dd .textc {width:452px;height:22px;line-height:22px;border:1px #9D9D9D solid;padding:0  0 0 5px;position:relative;z-index:99;}
+
+.formbox dd .textc {
+	width:320px;
+	height:22px;
+	line-height:22px;
+	border:1px #9D9D9D solid;
+	padding:0  0 0 5px;
+	position:relative;
+	z-index:99;
+}
+
 .formbox b {color:#f00;padding:5px;}
-.span01{ display:block; width: 54px; margin-left: 154px; background:#e2f5ff; border:1px solid #c8eafa; border-radius:0.2em; font-size:13px; line-height:26px; text-align:center; color:#3d9ccc; padding-left:0px; cursor: pointer;}
+
+.formbox span a{ 
+	width: 100px; 
+	margin-left: 150px; 
+	margin-top: 20px; 
+	border-radius:0.2em; 
+	font-size:14px; 
+	text-align:left; 
+	background:#3d9ccc; 
+	color: #fff;
+	padding: 10px 10px 15px 15px; 
+	cursor: pointer;
+}
+
 </style>

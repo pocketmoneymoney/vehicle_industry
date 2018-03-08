@@ -1,14 +1,16 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-      <main-nav></main-nav>
-      <div>
       <div class="main_middle clearfix" style="margin-left:230px;">
         <div class="formbox clearfix">
+		  <div class="title_bar" style="width:740px"> 
+            <a class="title_bar_a">修改密码</a>
+		  </div> 
 		  <div class="info_panel2">
-          <h2>修改密码</h2>
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><b>*</b><span>请输入旧密码</span></dt>
@@ -42,7 +44,6 @@
             <span><a @click="modify">确认修改</a></span>
           </div>
         </div>
-      </div>
       </div>
 	  </div>
       <last-footer></last-footer>

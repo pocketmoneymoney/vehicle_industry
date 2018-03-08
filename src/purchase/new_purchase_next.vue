@@ -1,46 +1,22 @@
 <template>
-  <div class="new_purchase clearfix">
-    <h3>
-        <span>对产品要求</span>
-    </h3>
+  <div>
+   <div class="title_bar" style="width:400px"> 
+     <a class="title_bar_a"> 采购项目发布 (具体要求)</a>
+   </div> 
+   <div class="new_purchase clearfix">
     <div class="formbox clearfix" style="border-bottom: 1px dashed #e5e5e5;">
           <dl class="clearfix">
-              <dt><span>尺寸／重量：</span></dt>
-              <dd>
-                  <input v-model="size" class="text" style="z-index: 10000" maxlength="20"
-                      type="text" />
-              </dd>
-          </dl>
-          <dl class="clearfix">
-              <dt><span>材质：</span></dt>
+              <dt><span>尺寸／重量/材质/制造工艺：</span></dt>
               <dd>
                   <input v-model="material" class="text" style="z-index: 10000" maxlength="20"
                       type="text" />
               </dd>
           </dl>
           <dl class="clearfix">
-              <dt><span>制造工艺：</span></dt>
-              <dd>
-                  <input v-model="method" class="text" style="z-index: 10000" maxlength="20"
-                      type="text" />
-              </dd>
-          </dl>
-          <dl class="clearfix">
-              <dt><span>年采购量：</span></dt>
+              <dt><span>年采购量/采购金额：</span></dt>
               <dd>
                   <input v-model="amount" class="text" style="z-index: 10000" maxlength="20"
                       type="text" />
-              </dd>
-          </dl>
-          <dl class="clearfix" style="width:700px">
-              <dt><span>采购金额(RMB)：</span></dt>
-              <dd style="width:500px;">
-                  <input v-model="money" class="text" style="float:left;z-index: 10000" maxlength="20"
-                      type="text" />
-			      <select class="text" v-model="moneyUnit" style="margin-left:10px;width:78px;float:left;">
-				      <option value="年">年</option>
-				      <option value="单次">单次</option>
-				  </select>
               </dd>
           </dl>
           <dl class="clearfix">
@@ -50,40 +26,14 @@
                       type="text" />
               </dd>
           </dl>
+          <dl class="clearfix">
+              <dt><span>供应商要求（认证/位置/销售额等）：</span></dt>
+              <dd>
+                  <textarea v-model="supplier" class="text" style="z-index: 10000;height:99px;" maxlength="300"
+                      type="text" />
+              </dd>
+          </dl>
      </div>
-    <h3 style="padding-top:19px">
-        <span>对供应商要求</span>
-    </h3>
-    <div class="formbox clearfix" style="border-bottom: 1px dashed #e5e5e5;">
-          <dl class="clearfix">
-              <dt><span>供应商认证：</span></dt>
-              <dd>
-                  <input v-model="certification" class="text" style="z-index: 10000" maxlength="40"
-                      type="text" />
-              </dd>
-          </dl>
-          <dl class="clearfix">
-              <dt><span>供应商地理位置：</span></dt>
-              <dd>
-                  <input v-model="location" class="text" style="z-index: 10000" maxlength="40"
-                      type="text" />
-              </dd>
-          </dl>
-          <dl class="clearfix">
-              <dt><span>供应商年销售额：</span></dt>
-              <dd>
-                  <input v-model="sales" class="text" style="z-index: 10000" maxlength="20"
-                      type="text" />
-              </dd>
-          </dl>
-          <dl class="clearfix">
-              <dt><span>供应商其他要求：</span></dt>
-              <dd>
-                  <textarea v-model="requirement" class="text" style="z-index: 10000;height:99px;" maxlength="300"
-                      type="text" />
-              </dd>
-          </dl>
-	</div>
     <div class="formbox clearfix">
           <dl class="clearfix">
               <dt><span>上传产品相关图片：</span></dt>
@@ -93,9 +43,12 @@
           </dl>
     </div>
     <div>
-      <span class="span01"><a @click="cancelPurchase">取消</a></span>
-      <span class="span01"><a @click="newPurchase">发布</a></span>
+      <span class="span01" style="margin-left:50px; margin-top:10px;">
+		<a @click="cancelPurchase">取消</a></span>
+      <span class="span01" style="margin-left:50px; margin-top:10px">
+		<a @click="newPurchase">发布</a></span>
     </div>
+  </div>
   </div>
 </template>
 
@@ -104,17 +57,10 @@ export default {
 	props: ['person', 'newPurchaseBasicInfo'],
 	data() {
 		return {
-			size: '',
 			material: '',
-			method: '',
 			amount: '',
-			money: '',
-			moneyUnit: '',
 			description: '',
-			certification: '',
-			location: '',
-			sales: '',
-			requirement: ''
+			supplier: ''
 		}
 	},
     methods: {
@@ -126,22 +72,15 @@ export default {
         oMyForm.append("name", this.newPurchaseBasicInfo.name);
 
         oMyForm.append("phone", this.newPurchaseBasicInfo.phone);
+        oMyForm.append("email", this.newPurchaseBasicInfo.email);
         oMyForm.append("productName", this.newPurchaseBasicInfo.productName);
-        oMyForm.append("expire", this.newPurchaseBasicInfo.expire);
         oMyForm.append("type", this.newPurchaseBasicInfo.type);
         oMyForm.append("detailType", this.newPurchaseBasicInfo.detailType);
 
-        oMyForm.append("size", this.size);
         oMyForm.append("material", this.material);
-        oMyForm.append("method", this.method);
-        oMyForm.append("totalAmount", this.amount);
-        oMyForm.append("money", this.money);
-        oMyForm.append("moneyUnit", this.moneyUnit);
+        oMyForm.append("amount", this.amount);
         oMyForm.append("description", this.description);
-        oMyForm.append("supplierCertification", this.certification);
-        oMyForm.append("supplierLocation", this.location);
-        oMyForm.append("supplierSales", this.sales);
-        oMyForm.append("supplierRequirement", this.requirement);
+        oMyForm.append("supplier", this.supplier);
 
         oMyForm.append("personID", this.person.id);
         oMyForm.append("personRole", this.person.role);
@@ -160,7 +99,7 @@ export default {
 
 <style>
 .new_purchase{
-	width: 740px;
+	width: 390px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;

@@ -1,8 +1,11 @@
 <template>
-  <div class="header clearfix">
+  	<div class="header clearfix">
 		<img style="margin-right:30px; height:78px; float:left;" src="/img/Logo.png">
-    <top-nav></top-nav>
-  </div>
+    	<top-nav></top-nav>
+		<div class="index_nav">
+			<ul> </ul>
+		</div>
+  	</div>
 </template>
 
 <script>
@@ -13,12 +16,24 @@ export default {
 </script>
 
 <style>
-/*Í·²¿*/
 .header{
 	width: 1200px;
 	margin: 0 auto;
-	height: 80px;
-	border-top:1px solid #e0e0df;
-	border-bottom:1px solid #e0e0df;
+}
+
+.index_nav{
+	width: 1200px;
+	margin: 0 auto;
+	height: 60px;
+	border-bottom: 2px solid #00A6AA;
+	padding-bottom: 1px;
+	margin-bottom: 10px;
+}
+
+.index_nav ul{
+	height: 56px;
+	background: #00A6AA;
+  	padding-left: 0;
+	list-style: none;
 }
 </style>

@@ -1,9 +1,10 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-      <main-nav></main-nav>
       <div class="main2_left clearfix">
         <div class="formbox">
 		  <div class="title_bar" style="width:850px"> 

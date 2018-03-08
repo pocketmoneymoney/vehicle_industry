@@ -10,23 +10,16 @@ function dbHandler() {
 		'id':			{ type:String, unique:true, required:true },
 		'name':			String,
 		'phone':		String,
+		'email':		String,
 		'productName':	String,
-		'expire':		String,
 		'type':			String,
 		'detailType':	String,
-		'size':			String,
 		'material':		String,
-		'method':		String,
-		'totalAmount':	String,
-		'money':		String,
-		'moneyUnit':	String,
+		'amount':		String,
 		'description':  String,
+		'supplier':  	String,
 		'publisherID':	String,
 		'publisherRole':String,
-		'supplierCertification':	String,
-		'supplierLocation':			String,
-		'supplierSales':			String,
-		'supplierRequirement':		String,
 		'picture':			String,
 		'createTime':		Date,
 		'apply':			Array
@@ -48,31 +41,23 @@ dbHandler.prototype.getPurchaseAmount = function(callback) {
     this.count(callback);
 };
 
-dbHandler.prototype.addPurchase = function(basic, detail, publisher, supplier, 
-										   picture, callback) {
+dbHandler.prototype.addPurchase = function(basic, detail, publisher, picture, callback) {
 	var id = helper.uniqueID(basic.productName);
 	var myDate = new Date();
 	this.create({
 		'id': id,
 		'name': basic.name,
 		'phone': basic.phone,
+		'email': basic.email,
 		'productName': basic.productName,
-		'expire': basic.expire,
 		'type': basic.type,
 		'detailType': basic.detailType,
-		'size': detail.size,
-		'material': detail.meterial,
-		'method': detail.method,
-		'totalAmount': detail.totalAmount,
-		'money': detail.money,
-		'moneyUnit': detail.moneyUnit,
+		'material': detail.material,
+		'amount': detail.amount,
 		'description': detail.description,
+		'supplier': detail.supplier,
 		'publisherID': publisher.publisherID,
 		'publisherRole': publisher.publisherRole,
-		'supplierCertification': supplier.supplierCertification,
-		'supplierLocation': supplier.supplierLocation,
-		'supplierSales': supplier.supplierSales,
-		'supplierRequirement': supplier.supplierRequirement,
 		'picture': picture,
 		'createTime': myDate,
 		'apply': []}, callback);
@@ -114,25 +99,18 @@ dbHandler.prototype.getMyPurchaseList = function(page, num, id, callback) {
     db.daoTemplate.getPageItems.call(this, page, num, callback, conditions);
 };
 
-dbHandler.prototype.modifyPurchase = function(id, basic, detail, supplier, picture, callback) {
+dbHandler.prototype.modifyPurchase = function(id, basic, detail, picture, callback) {
 	var fields = {
 		'name': basic.name,
 		'phone': basic.phone,
+		'email': basic.email,
 		'productName': basic.productName,
-		'expire': basic.expire,
 		'type': basic.type,
 		'detailType': basic.detailType,
-		'size': detail.size,
-		'material': detail.meterial,
-		'method': detail.method,
-		'totalAmount': detail.totalAmount,
-		'money': detail.money,
-		'moneyUnit': detail.moneyUnit,
+		'material': detail.material,
+		'amount': detail.amount,
 		'description': detail.description,
-		'supplierCertification': supplier.supplierCertification,
-		'supplierLocation': supplier.supplierLocation,
-		'supplierSales': supplier.supplierSales,
-		'supplierRequirement': supplier.supplierRequirement
+		'supplier': detail.supplier,
 	};
 
 	if (picture) {

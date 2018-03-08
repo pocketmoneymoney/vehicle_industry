@@ -1,31 +1,24 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-      <main-nav></main-nav>
-      <div>
-         <event-enroll-panel></event-enroll-panel>
-		 <div class="main_middle clearfix">
+		 <div class="main2_left clearfix">
         <div class="formbox">
-		  <div class="info_panel2">
-          <h2>采购详情</h2>
+		  <div class="title_bar" style="width:850px"> 
+            <a class="title_bar_a">采购详情</a>
+		  </div> 
+		  <div class="info_panel3">
 	      <div style="clear:both;"> </div>
           <dl>
-              <dt><span>发布人姓名/公司名称：</span></dt>
+              <dt><span>姓名/公司名称：</span></dt>
               <dd> <span>{{purchase.name}} </span> </dd>
-          </dl>
-          <dl>
-              <dt><span>发布人联系电话：</span></dt>
-              <dd> <span>{{purchase.phone}} </span> </dd>
           </dl>
           <dl>
               <dt><span>采购产品名称：</span></dt>
               <dd> <span>{{purchase.productName}} </span> </dd>
-          </dl>
-          <dl>
-              <dt><span>有效期：</span></dt>
-              <dd> <span>{{purchase.expire}} </span> </dd>
           </dl>
           <dl>
               <dt><span>采购类型：</span></dt>
@@ -36,44 +29,20 @@
               <dd> <span>{{purchase.detailType}} </span> </dd>
           </dl>
           <dl>
-              <dt><span>尺寸／重量：</span></dt>
-              <dd> <span>{{purchase.size}} </span> </dd>
-          </dl>
-          <dl>
-              <dt><span>材质：</span></dt>
+              <dt><span>尺寸/重量/材质/工艺：</span></dt>
               <dd> <span>{{purchase.material}} </span> </dd>
           </dl>
           <dl>
-              <dt><span>制造工艺：</span></dt>
-              <dd> <span>{{purchase.method}} </span> </dd>
-          </dl>
-          <dl>
-              <dt><span>年采购量：</span></dt>
-              <dd> <span>{{purchase.totalAmount}} </span> </dd>
-          </dl>
-          <dl>
-              <dt><span>采购金额(RMB)：</span></dt>
-              <dd> <span>{{purchase.money}}  {{purchase.moneyUnit}} </span> </dd>
+              <dt><span>年采购量/采购金额：</span></dt>
+              <dd> <span>{{purchase.amount}} </span> </dd>
           </dl>
           <dl>
               <dt><span>产品其他描述：</span></dt>
               <dd> <span>{{purchase.description}} </span> </dd>
           </dl>
           <dl>
-              <dt><span>供应商认证：</span></dt>
-              <dd> <span>{{purchase.supplierCertification}} </span> </dd>
-          </dl>
-          <dl>
-              <dt><span>供应商地理位置：</span></dt>
-              <dd> <span>{{purchase.supplierLocation}} </span> </dd>
-          </dl>
-          <dl>
-              <dt><span>供应商年销售额：</span></dt>
-              <dd> <span>{{purchase.supplierSales}} </span> </dd>
-          </dl>
-          <dl>
-              <dt><span>供应商其他要求:</span></dt>
-              <dd> <span>{{purchase.supplierRequirement}} </span> </dd>
+              <dt><span>供应商描述：</span></dt>
+              <dd> <span>{{purchase.supplier}} </span> </dd>
           </dl>
           <dl>
               <dt><span>产品相关图片:</span></dt>
@@ -81,8 +50,10 @@
 			  </dd>
           </dl>
 		  </div>
-		  <div v-if="isNotAdmin" class="info_panel2">
-          <h2>我要报名</h2>
+		  <div class="title_bar" style="width:850px"> 
+            <a class="title_bar_a">我要报名</a>
+		  </div> 
+		  <div v-if="isNotAdmin" class="info_panel3">
 	      <div style="clear:both;"> </div>
           <dl>
               <dt><b>*</b><span>姓名：</span></dt>
@@ -134,7 +105,6 @@
         </div>
         </div>
 	      <right-panel></right-panel>
-      </div>
 	  </div>
       <last-footer></last-footer>
     </div>

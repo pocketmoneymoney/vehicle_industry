@@ -10,21 +10,15 @@
             <ul class="product_list">
                 <li v-for="purchase in purchases">
                    <div class="product_list_left">
-                       <h4><a href="pro_com_detail.aspx?op=32863">{{ purchase.name }}</a></h4>
+                       <h4><a>{{ purchase.name }}</a></h4>
 					   <h5>[ {{purchase.type}}] {{purchase.productName}}</h5>
-                       <em><span>尺寸／重量: {{purchase.size}} </span> </em>
-                       <em><span>材质: {{purchase.material}} </span> </em>
-                       <em><span>制造工艺: {{purchase.method}} </span> </em>
-                       <em><span>年采购量: {{purchase.totalAmount}} </span> </em>
+                       <em><span>尺寸／重量/材质/制造工艺: {{purchase.material}} </span> </em>
+                       <em><span>年采购量/采购金额: {{purchase.amount}} </span> </em>
                        <em><span>车型: {{purchase.detailType}} </span> </em>
+                       <em><span>产品其它描述: {{purchase.description}} </span> </em>
+                       <em><span>对供应商要求:  {{purchase.supplier}} </span> </em>
                    </div>
-                   <div class="product_company">
-					   <h5>对供应商要求: </h5>
-                       <p>认 证：{{ purchase.supplierCertification }}</p>
-                       <p>位 置：{{ purchase.Location }}</p>
-                       <p>销 量：{{ purchase.Sales }}</p>
-                       <a :href="enrollUrl + purchase.id" class="contact_btn">我要报名</a>
-                   </div>
+                   <a :href="enrollUrl + purchase.id" class="contact_btn">我要报名</a>
                </li>
             </ul>
         </div>
@@ -45,12 +39,9 @@
 	padding: 19px 20px;
 	margin-bottom: 8px;
 }
-.list_purchase_product h3 {
-  height: 42px;
-}
 .list_purchase_product h3 span{
 	float: left;
-  	padding-top: 15px;
+  	padding-top: 5px;
   	padding-left: 15px;
 }
 .list_purchase_product h3 a{
@@ -77,21 +68,19 @@
 }
 .product_list_left{
 	float: left;
-	width: 400px;
-	height: 180px;
+	width: 730px;
 	border-right: 2px solid #e5e5e5;
 	padding-right: 10px;
 }
 .product_list_left img{
 	display: block;
-	float: left;
-	width: 100px;
-	height: 100px;
+	float: right;
+	max-width: 250px;
+	max-height: 200px;
 	border:1px solid #e5e5e5;
 	margin-right: 20px;
 }
 .product_list_left h4{
-	height: 44px;
 	line-height: 20px;
 	font-size: 20px;
 	color: #004b91;
@@ -117,7 +106,6 @@
 	color: #999;
 }
 .product_list_left p{
-	height: 60px;
 	line-height: 20px;
 	font-size: 12px;
 	color: #999;
@@ -125,42 +113,6 @@
 	margin-top: 10px;
 }
 
-.product_company{
-    float: right;
-	width: 200px;
-	margin-top: 10px;
-	padding-left: 20px;
-}
-.product_company a:hover p{
-	color: #449cd7
-}
-.product_company p{
-	line-height: 20px;
-	font-size: 12px;
-	color: #333;
-}
-.product_company em{
-	height: 24px;
-	line-height: 24px;
-	font-size: 12px;
-	color: #333;
-	font-style: normal;
-}
-.product_company a{
-	font-weight: normal;
-	border-radius:0.2em; 
-	font-size:13px; 
-	text-align:center; 
-	background:#3d9ccc; 
-	color:#fff;
-	cursor: pointer;
-}
-
-.flag_contury{
-	float: left;
-	margin-top: 6px;
-	margin-right: 5px;
-}
 .contact_btn{
 	float: right;
 	width: 64px;

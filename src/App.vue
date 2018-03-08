@@ -1,11 +1,10 @@
 <template>
     <div class="back_wrapper">
       <div class="clearfix topfixed">
-      <top-bar></top-bar>
-      <main-header></main-header>
+        <top-bar></top-bar>
+        <main-header></main-header>
       </div>
       <div class="main clearfix">
-        <!--main-nav :currentView="viewName"></main-nav-->
         <left-nav @viewchange="viewChange"></left-nav>
         <div class="main_right">
           <latest-purchase></latest-purchase>
@@ -49,43 +48,10 @@ export default {
 <style lang="scss">
 @import '../css/rem.scss';
 
-.back_wrapper{
-  width: t(1200);
-  background-color:#f9f9f8;
-}
-.main{
-	width: 1200px;
-	margin: 0 auto;
-}
-
-/* clearfix elimate float:left has no height */
-.clearfix:before,
-.clearfix:after {
-  content: '\0020';
-  display: block;
-  overflow: hidden;
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}
-
-.clearfix:after {
-  clear: both;
-}
-
 .main_right{
 	float: left;
 	width: 740px;
 	margin-bottom: 20px;
 	padding: 0px 12px 10px 10px;
-}
-
-h3{
-	height: 14px;
-	line-height: 14px;
-	font-size: 14px;
-	color: #333333;
-  margin: 0;
-  font-weight: bold;
 }
 </style>

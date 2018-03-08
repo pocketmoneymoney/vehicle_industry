@@ -1,9 +1,10 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-        <main-nav></main-nav>
         <left-nav @viewChanged="chooseView"></left-nav>
 		<div class="main_right">
           <component :is=currentView 

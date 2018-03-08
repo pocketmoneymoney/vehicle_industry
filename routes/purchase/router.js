@@ -123,25 +123,16 @@ module.exports = function(express) {
 		var basic = {
 			'name': req.body.name,
 			'phone': req.body.phone,
+			'email': req.body.email,
 			'productName': req.body.productName,
-			'expire': req.body.expire,
 			'type': req.body.type,
 			'detailType': req.body.detailType};
 
 		var detail = {
-			'size': req.body.size,
 			'material': req.body.material,
-			'method': req.body.method,
-			'totalAmount': req.body.totalAmount,
-			'money': req.body.money,
-			'moneyUnit': req.body.moneyUnit,
-			'description': req.body.description };
-
-		var supplier = {
-			'supplierCertification': req.body.supplierCertification,
-			'supplierLocation': req.body.supplierLocation,
-			'supplierSales': req.body.supplierSales,
-			'supplierRequirement': req.body.supplierRequirement};
+			'amount': req.body.amount,
+			'description': req.body.description,
+			'supplier': req.body.supplier};
 
 		var publisher = {
 			'publisherID': req.body.personID,
@@ -155,7 +146,7 @@ module.exports = function(express) {
 		}
 
 		if (id) {	
-			dao.modifyPurchase(id, basic, detail, supplier, picture, function (err) {
+			dao.modifyPurchase(id, basic, detail, picture, function (err) {
 				if (err) {
 					res.json({success: false, msg:err});
 				} else {
@@ -163,7 +154,7 @@ module.exports = function(express) {
 				}
 			});
 		} else {
-			dao.addPurchase(basic, detail, publisher, supplier, picture, function (err) { 
+			dao.addPurchase(basic, detail, publisher, picture, function (err) { 
 				if (err) {
 					res.json({success: false, msg:err});
 				} else {
