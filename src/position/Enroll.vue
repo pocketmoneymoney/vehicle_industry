@@ -10,26 +10,53 @@
 		  <div class="title_bar" style="width:850px"> 
             <a class="title_bar_a">职位详情</a> 
 		  </div> 
-		  <div class="info_panel3">
 	      <div style="clear:both;"> </div>
+		  <div class="info_panel3">
           <dl>
               <dt><span>应聘岗位：</span></dt>
               <dd> <span>{{position.name}} </span>
               </dd>
           </dl>
+	      <div style="clear:both;"> </div>
           <dl>
               <dt><span>应聘公司：</span></dt>
               <dd> <span>{{position.company}} </span>
               </dd>
           </dl>
+	      <div style="clear:both;"> </div>
+          <dl>
+              <dt><span>公司介绍：</span></dt>
+              <dd> <span>{{position.companyBrief}} </span>
+              </dd>
+          </dl>
+	      <div style="clear:both;"> </div>
           <dl>
               <dt><span>工作地址：</span></dt>
               <dd> <span>{{position.location}} </span>
               </dd>
           </dl>
-          <dl style="margin-bottom:30px">
-              <dt><span>职位要求：</span></dt>
+	      <div style="clear:both;"> </div>
+          <dl>
+              <dt><span>职位描述 ：</span></dt>
               <dd> <span>{{position.brief}} </span>
+              </dd>
+          </dl>
+	      <div style="clear:both;"> </div>
+          <dl>
+              <dt><span>职位要求：</span></dt>
+              <dd> <span>{{position.requirement}} </span>
+              </dd>
+          </dl>
+	      <div style="clear:both;"> </div>
+          <dl>
+              <dt><span>薪资待遇：</span></dt>
+              <dd> <span>{{position.salary}} </span>
+              </dd>
+          </dl>
+	      <div style="clear:both;"> </div>
+          <dl style="margin-bottom:30px">
+              <dt><span>联系信息：</span></dt>
+              <dd> <span>{{position.contact}} </span>
               </dd>
           </dl>
           </div>

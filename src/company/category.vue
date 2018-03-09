@@ -1,8 +1,9 @@
 <template>
   <div class="catalog clearfix">
-    <search></search>
-	
-    <h3> <span>分类</span> </h3>
+    <h3> <span>分类</span> 
+    <a href="/src/company/search.html">全部供应商列表</a>
+	</h3>
+	<hr style="height:5px;border:none;border-top:5px groove skyblue;" />
     <div class="catalog_main">
         <ul class="catalog_list">
             <li v-for="tab in tabs">
@@ -22,7 +23,7 @@
   </div>
 </template>
 
-<script src="./catalog.js"></script>
+<script src="./category.js"></script>
 
 <style>
 .catalog {
@@ -41,45 +42,17 @@
   padding-top: 15px;
   padding-left: 15px;
 }
-/*
 .catalog h3 a{
 	color: #999999;
-	font-size: 12px;
+	font-size: 14px;
 	float: right;
 	font-weight: normal;
 }
-*/
 .product_content_title{
 	height: 36px;
 	background: #f5f5f5;
 	padding: 0 10px;
 }
-/*
-.view{
-	float: left;
-	height: 36px;
-	line-height: 36px;
-	font-size: 12px;
-	color: #333;
-}
-.view p{
-	float: left;
-}
-.view a{
-	width: 15px;
-	height: 15px;
-	display: inline-block;
-	margin-top: 10px;
-	margin-left: 10px;
-	float: left;
-}
-.list_icon{
-	background: url('../styImg/show/list_icon.jpg') no-repeat;	
-}
-.label_icon{
-	background: url('../styImg/show/label_icon.jpg') no-repeat;
-}
-*/
 .catalog_main {
   padding-left: 20px;
 }
@@ -91,16 +64,6 @@
 	padding: 20px 0;
 	overflow: hidden;
 }
-/*
-.catalog_list li:hover{
-	box-shadow: 0 0 5px #999;
-	padding: 20px 30px;
-	width: 788px;
-	margin-left: -30px;
-	position: relative;
-	background: #fff;
-}
-*/
 .catalog_list_left{
 	float: left;
 	width: 502px;

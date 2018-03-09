@@ -27,8 +27,9 @@ import LastFooter from '../util/footer.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LatestPurchase from '../util/latest_purchase.vue'
-
 import RightPanel from '../util/right_panel.vue'
+
+import Category from './category.vue'
 
 export default {
   data: function() {
@@ -42,7 +43,7 @@ export default {
 	}
   },
   components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase,
-			   RightPanel, LastFooter}
+			   Category, RightPanel, LastFooter}
 }
 </script>
 

@@ -301,7 +301,6 @@ dbHandler.prototype.search = function (name, page, num, callback) {
 	var priority2 = [];
 	var priority3 = [];
 	var priority4 = [];
-console.log("name", name);	
 	var condition = {};
 	if (name) {
 		var nameList = name.split(' ');
@@ -345,7 +344,8 @@ console.log("name", name);
 					priority4.push(supplier);
 				}
 			}
-			result = result.concat(priority1).concat(priority2).concat(priority3).concat(priority4);
+			result = result.concat(priority1).concat(priority2).concat(priority3).
+							concat(priority4);
 			var resultAmount = result.length;
 			var currentPageResult = result.slice(page, page + num);
 			callback(null, {'data':currentPageResult, 'amount':resultAmount});

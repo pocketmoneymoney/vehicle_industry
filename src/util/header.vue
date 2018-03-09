@@ -2,7 +2,7 @@
   	<div class="header clearfix">
 		<img style="margin-right:30px; height:78px; float:left;" src="/img/Logo.png">
     	<top-nav></top-nav>
-		<div class="index_nav">
+		<div class="top_nav">
 			<ul> </ul>
 		</div>
   	</div>
@@ -21,17 +21,17 @@ export default {
 	margin: 0 auto;
 }
 
-.index_nav{
+.top_nav{
 	width: 1200px;
 	margin: 0 auto;
-	height: 60px;
+	height: 10px;
 	border-bottom: 2px solid #00A6AA;
 	padding-bottom: 1px;
 	margin-bottom: 10px;
 }
 
-.index_nav ul{
-	height: 56px;
+.top_nav ul{
+	height: 6px;
 	background: #00A6AA;
   	padding-left: 0;
 	list-style: none;

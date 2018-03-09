@@ -1,6 +1,11 @@
 <template>
-  <div class="list_position">
-     <ul class="position_list">
+  <div>
+    <div class="title_bar">
+	  <span> <a>热门职位招聘</a> </span>
+   	  <search @searchBar="searchBar"></search>
+    </div>
+    <div class="list_position">
+      <ul class="position_list">
          <li v-for="position in positions">
              <div class="position_list_right">
                  <dl>
@@ -35,6 +40,7 @@
          </li>
      </ul>
      <page :curPage="curPage" :totalPage="totalPage" @pageChanged="changePage"></page>
+    </div>
   </div>
 </template>
 

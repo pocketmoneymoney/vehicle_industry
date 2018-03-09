@@ -63,6 +63,19 @@ module.exports = function(express) {
 		});
     });
 
+	router.get('/search', function (req, res) {
+		var keyword = req.query.keyword;
+        var page = req.query.page? parseInt(req.query.page) : 1;
+        var num = req.query.num? parseInt(req.query.num) : 1;
+        var start = page * num;
+		dao.search(keyword, start, num, function (err, result) {
+			if (err || !result) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:result.data, totalPage:result.amount});
+			}
+		});
+	});
 
     router.get('/:id', function (req, res) {
          dao.getPositionDetail(req.params.id, function (err, result) {
@@ -123,12 +136,17 @@ module.exports = function(express) {
 	  function (req, res, next) {
 		var name 		= req.body.name;
 		var company		= req.body.company;
+		var companyBrief= req.body.companyBrief;
+		var contact		= req.body.contact;
+		var requirement	= req.body.requirement;
 		var brief		= req.body.brief;
 		var location	= req.body.location;
+		var salary		= req.body.salary;
 		var id			= req.body.id;
 
 		if (id) {	
-			dao.modifyPosition(id, name, company, brief, location, function (err) {
+			dao.modifyPosition(id, name, company, companyBrief, contact, brief, requirement,
+							   location, salary, function (err) {
 				if (err) {
 					res.json({success: false, msg:err});
 				} else {
@@ -136,7 +154,8 @@ module.exports = function(express) {
 				}
 			});
 		} else {
-			dao.addPosition(name, company, brief, location, function (err) {
+			dao.addPosition(name, company, companyBrief, contact, brief, requirement, 
+							location, salary, function (err) {
 				if (err) {
 					res.json({success: false, msg:err});
 				} else {

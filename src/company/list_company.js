@@ -133,9 +133,9 @@ export default {
     searchCompany: function(keyword) {
       var self = this;
 	  var params = {};
-console.log("keyword", keyword);
+
 	  if (keyword) {
-		params['name'] = keyword;
+		params['keyword'] = keyword;
 	  }
 	  this.lastKeyword = keyword;
 

@@ -3,11 +3,21 @@ import Search from '../util/search.vue'
 export default {
   data() {
     return {
-      url: "/src/company/list.html?catalogId=",
+      url: "/src/company/search.html?categoryId=",
       param: '&subtypeId=',
       tabs: [],
       subtabs: []
     }
+  },
+  methods: {
+	searchBar: function (data) {
+		var keyword = trimStr(data);
+		if (keyword) {
+			var kw = encodeURI(encodeURI(keyword));
+			var url = '/src/company/search.html?keyword=' + kw;
+			window.location.href = url;
+		}
+	}
   },
   mounted: function() {
     var self = this;
@@ -22,7 +32,17 @@ export default {
 			  continue;
 			} else {
 			  var subtype = category[subtypeName];
-			  subtab.push({'name':subtypeName, 'id':subtype.id});
+			  var oneSubtab = {'name':subtypeName, 'id':subtype.id, 'subsub': []};
+				
+			  for (var itemName in subtype) {
+				if (itemName == 'id') {
+				  continue;
+				} else {
+				  var item = subtype[itemName];
+				  oneSubtab.subsub.push({'id': item.id, 'name': itemName});
+				}
+			  }
+			  subtab.push(oneSubtab);
 			}
 		  }
 		  self.subtabs[category.id] = subtab;
