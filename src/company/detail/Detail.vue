@@ -1,34 +1,38 @@
 <template>
   <div class="clearfix">
   <div class="company_panel clearfix">
-	<div>
-      <h1>{{ company.name }}</h1>
-	</div>
-    <div style="float:right;">
-      <img stype="max-width:200px; max-height:100px;" :src="avatar"/>
-	  <div style="clear:both;"> </div>
-      <div v-if="isOwner" style="float:right">
-		<a @click="deleteLogo" style="margin-left:10px;cursor:pointer;">删除</a>
+  <h4>公司简介</h4>
+  <div class="clearfix company_panel_content">
+	  <div>
+        <h1>{{ company.name }}</h1>
 	  </div>
-	</div>
-	<div style="clear:both;"> </div>
-	<div>
-      <h2>公司简介</h2>
-      <span>{{ company.brief }}</span>
-	</div>
-	<div style="clear:both;"> </div>
-	<div>
-      <h2>配套客户</h2>
-      <span>{{ company.customer }}</span>
-	</div>
-	<div style="clear:both;"> </div>
-	<div>
-      <h2>主营产品</h2>
-      <span>{{ company.product }}</span>
-	</div>
+      <div style="float:right;">
+        <img stype="max-width:200px; max-height:100px;" :src="avatar"/>
+	    <div style="clear:both;"> </div>
+        <div v-if="isOwner" style="float:right">
+	  	<a @click="deleteLogo" style="margin-left:10px;cursor:pointer;">删除</a>
+	    </div>
+	  </div>
+	  <div style="clear:both;"> </div>
+	  <div>
+        <h2>公司介绍</h2>
+        <span>{{ company.brief }}</span>
+	  </div>
+	  <div style="clear:both;"> </div>
+	  <div>
+        <h2>配套客户</h2>
+        <span>{{ company.customer }}</span>
+	  </div>
+	  <div style="clear:both;"> </div>
+	  <div>
+        <h2>主营产品</h2>
+        <span>{{ company.product }}</span>
+	  </div>
     <div><a v-if="isOwner" :href="editBriefURL" style="float:right;">修改</a></div>
   </div>
+  </div>
   <div class="company_right_panel clearfix">
+    <h4>公司信息</h4>
     <ul>
       <li>
         <h5>公司地区</h5> <span>{{company.location}} </span>
@@ -45,20 +49,18 @@
     </ul>
     <div><a v-if="isOwner" :href="editInfoURL">修改</a></div>
   </div>
-  <list-element type="product" :listElement="products" :isOwner="isOwner"></list-element>
-  <list-element type="equipment" :listElement="equipments" :isOwner="isOwner"></list-element>
-  <list-element type="certification" :listElement="certifications" :isOwner="isOwner"></list-element>
-  <div class="company_panel clearfix">
-	<div>
-      <h2>联系方式</h2>
-	  <hr style="height:5px;border:none;border-top:5px groove skyblue;" />
+  <div class="company_contact company_right_panel clearfix">
+      <h4>联系方式</h4>
+	  <!--hr style="height:5px;border:none;border-top:5px groove skyblue;" /-->
       <span>联系人：{{ company.officalContact }}</span>
       <span>公司电话：{{ company.officalPhone }}</span>
       <span>公司邮箱：{{ company.officalEmail }}</span>
       <span>公司主页：{{ company.link }}</span>
       <span>公司地址：{{ company.address }}</span>
-	</div>
   </div>
+  <list-element type="product" :listElement="products" :isOwner="isOwner"></list-element>
+  <list-element type="equipment" :listElement="equipments" :isOwner="isOwner"></list-element>
+  <list-element type="certification" :listElement="certifications" :isOwner="isOwner"></list-element>
   </div>
 </template>
 
@@ -66,7 +68,7 @@
 
 <style>
 .middle_list{
-	border:1px solid #e5e5e5;
+	border:1px solid #00a6aa;
 	background: #fff;
 	margin-top: 60px;
 	background: #fff;
@@ -74,15 +76,14 @@
 
 .company_right_panel{
 	width: 278px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid #00a6aa;
 	background: #fff;
 	float: right;
-	padding: 10px 20px;
-	margin-bottom: 4px;
+	margin-bottom: 15px;
 }
 
 .company_right_panel ul {
-  padding: 5px;
+  padding: 0 20px;
   list-style: none;
 }
 
@@ -126,5 +127,34 @@
   	text-align:center;
   	background:#3d9ccc; 
   	color:#fff;
+}
+.company_panel h4 {
+  color: #fff;
+  margin: 0 0 10px 0;
+  height: 40px;
+  line-height: 40px;
+  background-color: #00a6aa;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 0 15px;
+}
+.company_right_panel h4 {
+  color: #fff;
+  margin: 0 0 10px 0;
+  height: 40px;
+  line-height: 40px;
+  background-color: #00a6aa;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 0 15px;
+}
+.company_panel_content {
+  padding: 0 20px 20px 20px;
+}
+.company_contact span {
+  width: 856px;
+  float: left;
+  padding-top:10px;
+  padding-left:15px;
 }
 </style>

@@ -8,7 +8,8 @@ function post(url, param, success, needAuth) {
   }
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:8088' + url,
+    url: 'http://47.104.6.11:3389' + url,
+    //url: 'http://localhost:8088' + url,
     data: param,
     dataType: 'json',
     beforeSend: beforeSend,
@@ -26,7 +27,8 @@ function put(url, param, success, needAuth) {
   }
   $.ajax({
     type: 'PUT',
-    url: 'http://localhost:8088' + url,
+    url: 'http://47.104.6.11:3389' + url,
+    //url: 'http://localhost:8088' + url,
     data: param,
     dataType: 'json',
     beforeSend: beforeSend,
@@ -44,7 +46,8 @@ function postWithFile(url, param, success, needAuth) {
   }
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:8088' + url,
+    url: 'http://47.104.6.11:3389' + url,
+    //url: 'http://localhost:8088' + url,
     data: param,
     beforeSend: beforeSend,
     success: success,
@@ -56,7 +59,8 @@ function postWithFile(url, param, success, needAuth) {
 function get(url, param, success) {
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8088' + url,
+    url: 'http://47.104.6.11:3389' + url,
+    //url: 'http://localhost:8088' + url,
     data: param,
     dataType: 'json',
     success: success
@@ -73,7 +77,8 @@ function del(url, param, callback, needAuth) {
   }
   $.ajax({
     type: 'DELETE',
-    url: 'http://localhost:8088' + url,
+    url: 'http://47.104.6.11:3389' + url,
+    //url: 'http://localhost:8088' + url,
     data: param,
     dataType: 'json',
     beforeSend: beforeSend,

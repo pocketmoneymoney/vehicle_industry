@@ -6,9 +6,9 @@
       <h3 v-if="type === 'certification'">认证列表</h3>
       <a v-if="isOwner" :href="newUrl">添加</a>
 	  <div style="clear:both;"> </div>
-	  <hr style="height:5px;border:none;border-top:5px groove skyblue;" />
+	  <!--hr style="height:5px;border:none;border-top:5px groove skyblue;" /-->
     </div>
-    <div class="clearfix">
+    <div class="product_list_main clearfix">
       <ul v-for="element in listElement">
         <li v-if="type === 'product'">
 		  <product :type="type" :product="element" :isOwner="isOwner"></product>
@@ -29,10 +29,10 @@
 <style scoped>
 .product_list{
 	width: 900px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid #00a6aa;
 	background: #fff;
 	float: left;
-	padding: 19px 0px;
+	padding: 0px 0px;
 	margin-bottom: 8px;
 }
 
@@ -44,6 +44,7 @@
 	height: 112px;
 }
 .product_list div h3 {
+  /*
   float:left;
   font-size: 32px;
   font-weight: normal;
@@ -52,6 +53,15 @@
   padding-bottom: 10px;
   padding-left: 15px;
   border-left: 6px solid #3d9ccc;
+  */
+  color: #fff;
+  margin: 0 0 10px 0;
+  height: 40px;
+  line-height: 40px;
+  background-color: #00a6aa;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 0 15px;
 }
 
 .product_list div a{
@@ -67,7 +77,7 @@
 }
 .product_list_title {
   border-bottom: 1px solid #f0f0f0;
-  padding: 0 20px;
+  padding: 0 0px;
 }
 .product_list div ul{
   list-style: none;
@@ -81,5 +91,8 @@
   border-right: 1px solid #f0f0f0;
   width: 298.5px;
   padding: 23px 25px;
+}
+.product_list_main {
+padding: 0 20px;
 }
 </style>

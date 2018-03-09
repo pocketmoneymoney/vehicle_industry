@@ -99,7 +99,7 @@ h3{
 .info_panel{
 	float: left;
 	width: 970px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid #00a6aa;
 	background: #fff;
 	padding: 15px 15px 30px;
 	margin-bottom: 10px;
@@ -238,10 +238,9 @@ h3{
  ************************************************/
 .company_panel{
 	width: 900px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid #00a6aa;
 	background: #fff;
 	float: left;
-	padding: 19px 20px;
 	margin-bottom: 15px;
 }
 
@@ -493,7 +492,7 @@ h3{
 .info_panel2{
 	float: left;
 	width: 740px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid #00a6aa;
 	background: #fff;
 	margin-bottom: 20px;
 }
@@ -597,7 +596,7 @@ h3{
 .info_panel3{
 	float: left;
 	width: 850px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid #00a6aa;
 	background: #fff;
 	margin-bottom: 20px;
 }
