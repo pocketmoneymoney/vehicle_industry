@@ -50,6 +50,7 @@
 			  </dd>
           </dl>
 		  </div>
+		  <div v-if="isUser" class="info_panel3">
 		  <div class="title_bar" style="width:850px"> 
             <a class="title_bar_a">我要报名</a>
 		  </div> 
@@ -96,11 +97,15 @@
                       type="text" />
               </dd>
           </dl>
-		  </div>
 	      <div style="clear:both;"> </div>
 		  <div>
             <span><a @click="cancelPurchase">取消并返回</a></span>
-            <span><a @click="enrollPurchase">提交</a></span>
+            <span><a @click="enrollPurchase" >提交</a></span>
+		  </div>
+		  </div>
+		  </div>
+		  <div v-else class="title_bar" style="width:850px">
+            <a class="title_bar_a">只有注册用户可以报名，请点击页面右上方报名或登录</a>
 		  </div>
         </div>
         </div>
@@ -123,6 +128,7 @@ export default {
     return {
 	  activity: {},
 	  isNotAdmin: true,
+	  isUser: false,
 	  person: {},
 	  purchase: {},
       company: '',
@@ -193,6 +199,7 @@ export default {
 	getLoginInfo(function (person) {
 	  if (person.name) {
 		self.person = person;
+		self.isUser = true;
 		if (self.person.role == "admin") {
 	  	  self.isNotAdmin = false;
   		} else if (self.person.id == self.purchase.personID) {

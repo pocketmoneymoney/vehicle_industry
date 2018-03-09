@@ -1,6 +1,10 @@
 <template>
+	<div>
+	<div class="title_bar">
+	  <span> <a>编辑分类信息</a> </span>
+	</div>
+	<div style="clear:both;"> </div>
     <div class="formbox clearfix">
-        <h3>编辑分类信息</h3>
         <div>
           <dl>
               <dt><b>*</b><span>类别名称：</span></dt>
@@ -9,6 +13,7 @@
 				   style="z-index: 10000" maxlength="20" type="text" />
               </dd>
           </dl>
+	      <div style="clear:both;"> </div>
           <dl>
               <dt><b></b><span>子类名称：</span></dt>
               <dd>
@@ -16,6 +21,7 @@
 				   style="z-index: 10000" maxlength="20" type="text" />
               </dd>
           </dl>
+	      <div style="clear:both;"> </div>
           <dl>
               <dt><b></b><span>条目名称：</span></dt>
               <dd><input class="text" maxlength="20" style="z-index: 10000" 
@@ -28,6 +34,7 @@
           <span><a @click="cancelAction">取消</a></span>
           <span><a @click="newAction">更新</a></span>
         </div>
+	</div>
     </div>
 </template>
 

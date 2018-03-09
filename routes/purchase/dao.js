@@ -123,4 +123,51 @@ dbHandler.prototype.deletePurchase = function(id, callback) {
 	this.remove({'id':id}, callback);
 };
 
+dbHandler.prototype.search = function (keyword, page, num, callback) {
+	var self = this;
+	var result = [];
+
+	var priority1 = [];
+	var priority2 = [];
+	var priority3 = [];
+	var priority4 = [];
+
+	var condition = {};
+	var reg = new RegExp(keyword, 'i');
+	condition = {'$or':[{'name': {$regex: reg}},
+						{'productName': {$regex: reg}},
+						{'description': {$regex:reg}}]};
+
+	self.model
+	.find(condition, null, {sort: {_id: -1}})
+	.limit(300)
+	.sort({'id':-1})
+	.exec(function(err, data) {
+		if (err || !data) {
+			callback(err, []);
+		} else {
+			for (var index = 0; index < data.length; index++) {
+				var purchase = data[index];	
+				if (purchase.name && purchase.name.search(keyword) >= 0) {
+					priority1.push(purchase);
+				} else if (purchase.productName && 
+						   purchase.productName.search(keyword) >= 0) {
+					priority2.push(purchase);
+				} else if (purchase.description && 
+						   purchase.description.search(keyword) >= 0) {
+					priority3.push(purchase);
+				} else {
+					priority4.push(purchase);
+				}
+			}
+
+			result = result.concat(priority1).concat(priority2).concat(priority3).
+							concat(priority4);
+			var resultAmount = result.length;
+			var currentPageResult = result.slice(page, page + num);
+			callback(null, {'data':currentPageResult, 'amount':resultAmount});
+		}
+	});
+};
+
 module.exports = new dbHandler();

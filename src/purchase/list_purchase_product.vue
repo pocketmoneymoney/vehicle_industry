@@ -12,7 +12,7 @@
                    <div class="product_list_left">
                        <h4><a>{{ purchase.name }}</a></h4>
 					   <h5>[ {{purchase.type}}] {{purchase.productName}}</h5>
-                       <em><span>尺寸／重量/材质/制造工艺: {{purchase.material}} </span> </em>
+                       <em><span>尺寸/重量/材质/制造工艺: {{purchase.material}} </span> </em>
                        <em><span>年采购量/采购金额: {{purchase.amount}} </span> </em>
                        <em><span>车型: {{purchase.detailType}} </span> </em>
                        <em><span>产品其它描述: {{purchase.description}} </span> </em>

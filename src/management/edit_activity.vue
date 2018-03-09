@@ -1,6 +1,10 @@
 <template>
+  <div>
+	<div class="title_bar">
+	  <span> <a>发布活动</a> </span>
+	</div>
+	<div style="clear:both;"> </div>
     <div class="formbox clearfix">
-        <h3>发布活动</h3>
         <div>
           <dl>
               <dt><b>*</b><span>活动名称：</span></dt>
@@ -21,16 +25,6 @@
           <dl>
               <dt><b>*</b><span>活动地点：</span></dt>
               <dd><input class="text" style="z-index: 9" v-model="curActivity.location" type="text" />
-              </dd>
-          </dl>
-          <dl>
-              <dt><b>*</b><span>活动类型：</span></dt>
-              <dd>
-                  <label>
-                      <input type="radio" name="type" value="meeting" v-model="curActivity.type"/><span class="rad">采购见面会</span></label>
-                  <label style="margin-left: 25px;">
-                      <input type="radio" name="type" value="visiting" v-model="curActivity.type"/><span class="rad">走进主机厂 </span>
-                  </label>
               </dd>
           </dl>
           <dl>
@@ -66,6 +60,7 @@
           <span><a @click="cancelAction">取消</a></span>
           <span><a @click="newActivity">更新</a></span>
         </div>
+      </div>
     </div>
 </template>
 
@@ -109,7 +104,7 @@ export default {
 
 	  var name = trimStr(this.curActivity.name);
 	  var location = trimStr(this.curActivity.location);
-	  var type = this.curActivity.type;
+	  var type = 'meeting';
 
 	  if (this.isNew) {
 		if (!type) {

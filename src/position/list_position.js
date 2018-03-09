@@ -31,7 +31,7 @@ export default {
 	  if (this.keyword) {
 		var params = {};
 	  	params['keyword'] = self.keyword;
-	  	params['page'] = self.curPage - 1;
+	  	params['page'] = page;
 	  	params['num']  = 10;
 
 		get('/api/position/search', params, function (data) {
