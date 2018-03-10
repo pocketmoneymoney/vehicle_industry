@@ -49,6 +49,9 @@ module.exports = {
   node: {
     fs: 'empty'
   },
+  devServer: {
+    disableHostCheck: true
+  },
   module: {
     // 一些特定的编译规则
     // preLoaders: [
