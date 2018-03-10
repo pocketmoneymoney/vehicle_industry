@@ -158,7 +158,7 @@ export default {
 	var self = this;
 	var id = getUrlKey('id');
 	this.type = getUrlKey('tp');
-	if (!id || !this.type) {
+	if (!id || !this.type || id == 'undefined') {
 	  window.location.href="/src/index.html";	
 	}
 

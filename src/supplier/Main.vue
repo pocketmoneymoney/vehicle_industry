@@ -5,11 +5,10 @@
         <main-header></main-header>
       </div>
       <div class="main clearfix">
-         <event-enroll-panel></event-enroll-panel>
-		 <div class="main_middle">
+		 <div class="main2_left">
 		   <supplier-info></supplier-info>
 		 </div>
-	     <right-panel></right-panel>
+		 <right-activity-panel></right-activity-panel>
       </div>
       <last-footer></last-footer>
     </div>
@@ -22,12 +21,13 @@ import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import RightPanel from '../util/right_panel.vue'
+import RightActivityPanel from '../util/right_activity_panel.vue'
 
 import SupplierInfo from './Supplier-info.vue'
 
 export default {
   components: {SupplierInfo, TopBar, MainHeader, MainNav, LastFooter,
-			   EventEnrollPanel, RightPanel} 
+			   EventEnrollPanel, RightPanel, RightActivityPanel} 
 }
 </script>
 

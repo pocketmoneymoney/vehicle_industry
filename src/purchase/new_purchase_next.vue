@@ -4,49 +4,57 @@
      <a class="title_bar_a"> 采购项目发布 (具体要求)</a>
    </div> 
    <div class="new_purchase clearfix">
-    <div class="formbox clearfix" style="border-bottom: 1px dashed #e5e5e5;">
+    <div class="formbox2 clearfix">
           <dl class="clearfix">
-              <dt><span>尺寸／重量/材质/制造工艺：</span></dt>
+              <dt><span>尺寸/重量/材质/制造工艺：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <input v-model="material" class="text" style="z-index: 10000" maxlength="20"
                       type="text" />
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
           <dl class="clearfix">
               <dt><span>年采购量/采购金额：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <input v-model="amount" class="text" style="z-index: 10000" maxlength="20"
                       type="text" />
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
           <dl class="clearfix">
               <dt><span>产品其他描述：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <textarea v-model="description" class="text" style="z-index: 10000;height:99px;" maxlength="200"
                       type="text" />
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
           <dl class="clearfix">
               <dt><span>供应商要求（认证/位置/销售额等）：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <textarea v-model="supplier" class="text" style="z-index: 10000;height:99px;" maxlength="300"
                       type="text" />
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
      </div>
-    <div class="formbox clearfix">
+    <div class="formbox2 clearfix">
           <dl class="clearfix">
               <dt><span>上传产品相关图片：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <input type="file" ref="productImg" /> 
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
     </div>
     <div>
-      <span class="span01" style="margin-left:50px; margin-top:10px;">
-		<a @click="cancelPurchase">取消</a></span>
-      <span class="span01" style="margin-left:50px; margin-top:10px">
-		<a @click="newPurchase">发布</a></span>
+      <span class="span01"> <a @click="cancelPurchase">取消</a></span>
+      <span class="span01"> <a @click="newPurchase">发布</a></span>
     </div>
   </div>
   </div>
@@ -121,25 +129,75 @@ export default {
 	font-weight: normal;
 }
 
-.formbox dl {width:435px;line-height:26px;margin-top:10px;}
-.formbox dt,.formbox dd {float:left;}
-.formbox dt {width:190px;text-align:right;font:bolder 14px/26px arial;color:#222;}
-.formbox dd {width:229px;color:#000;}
-.formbox dd .text {width:222px;height:22px;line-height:22px;border:1px #9D9D9D solid;padding:0  0 0 5px;position:relative;z-index:99;}
-.formbox dd .texta {width:99px;}
-.formbox dd .textb {width:39px;}
-.formbox dd .dda,.formbox dd .ddb,.formbox dd .ddc {float:left;}
-.formbox dd .ddb,.formbox dd .ddc {display:inline;}
-.formbox dd .cc{float:right;margin-left:0px;}
-.formbox dd .rad {font:bold 14px arial;color:#039;line-height:25px;margin-left:5px;margin-left:2px\9;}
-.formbox dd .textc {width:452px;height:22px;line-height:22px;border:1px #9D9D9D solid;padding:0  0 0 5px;position:relative;z-index:99;}
-.formbox b {color:#f00;padding:5px;}
+.formbox2 {
+	float: left;
+	width:400px;
+	text-align: left;
+}
+.formbox2 dl {
+	width:380px;
+	line-height:26px;
+	margin-top:10px;
+	margin-left:5px;
+}
+
+.formbox2 dt,.formbox2 dd {
+	float:left;
+}
+
+.formbox2 dt {
+	width:190px;
+	text-align:left;
+	font:bolder 14px/26px arial;
+	color:#222;
+}
+
+.formbox2 dd {
+	width:250px;
+	margin-left:10px;
+	color:#000;
+}
+
+.formbox2 dd .text {
+	width:222px;
+	height:22px;
+	line-height:22px;
+	border:1px #9D9D9D solid;
+	padding:0  0 0 5px;
+	position:relative;z-index:99;
+}
+.formbox2 dd .texta {width:99px;}
+.formbox2 dd .textb {width:39px;}
+.formbox2 dd .dda,.formbox2 dd .ddb,.formbox2 dd .ddc {float:left;}
+.formbox2 dd .ddb,.formbox2 dd .ddc {display:inline;}
+.formbox2 dd .cc{float:right;margin-left:0px;}
+.formbox2 dd .rad {
+	font:bold 14px arial;
+	color:#039;
+	line-height:25px;
+	margin-left:5px;
+	margin-left:2px\9;
+}
+.formbox2 dd .textc {
+	width:250px;
+	height:22px;
+	line-height:22px;
+	border:1px #9D9D9D solid;
+	padding:0  0 0 5px;
+	position:relative;
+	z-index:99;
+}
+.formbox2 b {
+	color:#f00;
+	padding:5px;
+}
 
 .span01{ 
   	float:left; 
 	display:block; 
 	width: 54px; 
-	margin-left: 150px; 
+	margin-top: 20px; 
+	margin-left: 60px; 
 	background:#e2f5ff; 
 	border:1px solid #c8eafa; 
 	border-radius:0.2em; 

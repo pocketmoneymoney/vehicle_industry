@@ -5,37 +5,46 @@
 	</div> 
 	<div style="clear:both;"> </div>
     <div class="new_purchase clearfix">
-    <div class="formbox clearfix" style="width:400px">
+    <div class="formbox2 clearfix">
           <dl class="clearfix">
-              <dt><b>*</b><span>发布人姓名/公司名称：</span></dt>
+              <dt><b>*</b><span>姓名/公司名称：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <input v-model="name" class="text" style="z-index: 10000" maxlength="20"
                       type="text" />
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>发布人联系电话：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <input v-model="phone" class="text" style="z-index: 10000" maxlength="30"
                       type="text" />
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>发布人联系邮箱：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <input v-model="email" class="text" style="z-index: 10000" maxlength="30"
                       type="text" />
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>采购产品名称：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <input v-model="product" class="text" style="z-index: 10000" maxlength="40"
                       type="text" />
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>采购类型：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <label class="dda">
                       <input type="radio" value="近期采购" v-model="type" /><span class="rad">近期采购&nbsp;</span></label>
@@ -43,13 +52,16 @@
                       <input type="radio" value="储备项目" v-model="type" /><span class="rad">储备项目 </span>
                   </label>
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
           <dl class="clearfix">
               <dt><b>*</b><span>车型(可多选)：</span></dt>
+	      	  <div style="clear:both;"> </div>
               <dd>
                   <label v-for="vehicleType in vehicleTypes" class="dda">
                       <input type="checkbox" :value="vehicleType" v-model="detailType" /><span class="rad">{{ vehicleType }}&nbsp;</span></label>
               </dd>
+	      	  <div style="clear:both;"> </div>
           </dl>
      	</div>
      	<span class="span01"><a @click="newPurchase">发布</a></span>
@@ -134,62 +146,71 @@ export default {
  ***  Form Box 
  ***
  ************************************************/
-.formbox h3 {
+.formbox2 {
+	float: left;
+	width:400px;
+	text-align: left;
+}
+
+.formbox2 h3 {
 	padding-left: 15px;
 	border-left: 6px solid #3d9ccc;
     margin-bottom: 20px;
 }
 
-.formbox dl {
+.formbox2 dl {
 	max-width:380px;
-	height:32px;
 	line-height:26px;
 	margin-top:10px;
 	margin-left:5px;
+	text-align: left;
 }
 
-.formbox dt,.formbox dd {float:left;}
-.formbox dt {
-	padding-left: 20px;
-	width:100px;
-	text-align:left;
+.formbox2 dt,.formbox2 dd {
+	float:left;
+}
+
+.formbox2 dt {
 	font:bolder 14px/26px arial;
 	color:#222;
 }
 
-.formbox dd {
-	max-width:320px;
+.formbox2 dd {
+	max-width:250px;
+	margin-left:10px;
 	color:#000;
 }
 
-.formbox dd .text {
-	width:320px;
+.formbox2 dd .text {
+	width:250px;
 	height:22px;
 	line-height:22px;
 	border:1px #9D9D9D solid;
 	padding:0  0 0 5px;
 	position:relative;
 	z-index:99;
+	text-align: left;
 }
 
-.formbox dd .dda,.formbox dd .ddb,.formbox dd .ddc {float:left;}
-.formbox dd .ddb,.formbox dd .ddc {display:inline;}
-.formbox dd .cc{float:right;margin-left:0px;}
-.formbox dd .rad {font:bold 14px arial;color:#039;line-height:25px;margin-left:5px;margin-left:2px\9;}
+.formbox2 dd .dda,.formbox2 dd .ddb,.formbox2 dd .ddc {float:left;}
+.formbox2 dd .ddb,.formbox2 dd .ddc {display:inline;}
+.formbox2 dd .cc{float:right;margin-left:0px;}
+.formbox2 dd .rad {font:bold 14px arial;color:#039;line-height:25px;margin-left:5px;margin-left:2px\9;}
 
-.formbox dd .textc {
-	width:320px;
+.formbox2 dd .textc {
+	width:250px;
 	height:22px;
 	line-height:22px;
 	border:1px #9D9D9D solid;
 	padding:0  0 0 5px;
 	position:relative;
 	z-index:99;
+	text-align: left;
 }
 
-.formbox b {color:#f00;padding:5px;}
+.formbox2 b {color:#f00;padding:5px;}
 
-.formbox span a{ 
+.formbox2 span a{ 
 	width: 100px; 
 	margin-left: 150px; 
 	margin-top: 20px; 

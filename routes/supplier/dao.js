@@ -366,6 +366,4 @@ function _isNameMatched(names, strval) {
 	return false;
 }
 
-
-
 module.exports = new dbHandler();

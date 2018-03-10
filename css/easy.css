@@ -71,7 +71,6 @@ body {
 	background: #fff;
 }
 
-
 #userlist tbody th {
   font-weight: 400;
 }
@@ -227,7 +226,7 @@ h3{
 	text-align:center; 
 	background:#3d9ccc; 
 	color: #fff;
-	padding: 10px 10px 15px 15px; 
+	padding: 5px 5px 5px 5px; 
 	cursor: pointer;
 }
 
@@ -517,7 +516,7 @@ h3{
 .info_panel2 span a{
 	font-weight: normal;
     margin: 5px 5px 50px 15px;
-	padding: 5px 5px 20px 10px; 
+	padding: 5px 5px 5px 5px; 
 	border-radius:0.2em; 
 	font-size:15px; 
 	line-height:50px; 
@@ -578,7 +577,7 @@ h3{
 }
 
 .title_bar_info{
-	color: #00A6AA;
+	color: #2F4F4F;
   	text-align:center;
 	margin-top:20px;
 	margin-bottom:20px;
@@ -621,7 +620,7 @@ h3{
 .info_panel3 span a{
 	font-weight: normal;
     margin: 5px 5px 50px 15px;
-	padding: 5px 5px 20px 10px; 
+	padding: 5px 5px 5px 5px; 
 	border-radius:0.2em; 
 	font-size:15px; 
 	line-height:50px; 

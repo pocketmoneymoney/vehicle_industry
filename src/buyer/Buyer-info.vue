@@ -1,7 +1,9 @@
 <template>
   <div>
+	<div class="title_bar" style="width:740px"> 
+       <a class="title_bar_a">基本信息</a>
+	</div> 
     <div class="info_panel2">
-	  <h2>基本信息</h2>
 	  <div style="clear:both;"> </div>
 	  <table>
 	    <tr><td>用户名:      </td><td>  {{ username }}</td></tr>

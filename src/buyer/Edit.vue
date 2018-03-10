@@ -1,12 +1,15 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-      <main-nav></main-nav>
-      <div class="main clearfix">
+      <div class="main2_left clearfix">
         <div class="formbox clearfix">
-          <h3>个人信息编辑</h3>
+		  <div class="title_bar" style="width:740px"> 
+            <a class="title_bar_a">个人信息编辑</a>
+		  </div> 
 	      <div style="clear:both;"> </div>
               <dl>
                   <dt><b>*</b><span>真实姓名</span></dt>
@@ -33,6 +36,7 @@
           </div>
         </div>
       </div>
+	  <right-activity-panel></right-activity-panel>
 	  </div>
       <last-footer></last-footer>
     </div>
@@ -43,6 +47,7 @@ import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
 import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
+import RightActivityPanel from '../util/right_activity_panel.vue'
 
 export default {
   data: function() {
@@ -94,7 +99,7 @@ export default {
 	  }
 	});
   },
-  components: {MainHeader, MainNav, TopBar, LastFooter} 
+  components: {MainHeader, MainNav, TopBar, LastFooter, RightActivityPanel}
 }
 </script>
 

@@ -6,7 +6,7 @@
 	</div>
   <div class="list_company clearfix">
 	<div class="crumb">
-		<a href="/src/company/index.html">公司</a> > <a>{{ selectCategory }}</a> > <a>{{ selectSubtype }}</a> > <a> {{ selectItem }} </a>
+		<a href="/src/company/search.html" >公司</a> > <a @click="chooseCategory(selectCategory)">{{ selectCategory }}</a> > <a @click="chooseSubtype(selectSubtype)">{{ selectSubtype }}</a> > <a @click="chooseItem(selectItem)"> {{ selectItem }} </a>
 	</div>
     <div class="screening_box">
         <dl>
@@ -176,14 +176,15 @@
 .crumb{
 	margin: 10px 0;
 	float: none;
-  color: #666;
-  padding-left: 16px;
+  	color: #666;
+  	padding-left: 16px;
 }
 .crumb a {
-  font-size: 12px;
-  line-height: 20px;
-  color: #666;
-  text-decoration: none;
+  	font-size: 12px;
+  	line-height: 20px;
+  	color: #666;
+  	text-decoration: none;
+	cursor:pointer;
 }
 .screening_box{
 	border:1px solid #449cd7;

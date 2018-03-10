@@ -5,12 +5,10 @@
         <main-header></main-header>
       </div>
       <div class="main clearfix">
-	    <div>
-         <event-enroll-panel></event-enroll-panel>
-		 <div class="main_middle">
-          <component :is="currentView"></component>
-		  </div>
+		<div class="main2_left">
+          <component :is="currentView" style="max-width:800px;"></component>
 		</div>
+		<right-activity-panel></right-activity-panel>
       </div>
       <last-footer></last-footer>
     </div>
@@ -24,8 +22,7 @@ import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
 
-import NoAuthorized from '../management/no_authorized.vue'
-
+import RightActivityPanel from '../util/right_activity_panel.vue'
 import ActivityEnroller from '../management/activity_enroller.vue'
 
 export default {
@@ -35,7 +32,7 @@ export default {
     }
   },
   components: {TopBar, MainHeader, MainNav, LastFooter, EventEnrollPanel,
-			   NoAuthorized, RightPanel, ActivityEnroller}
+			   RightActivityPanel, RightPanel, ActivityEnroller}
 }
 </script>
 

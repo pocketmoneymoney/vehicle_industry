@@ -46,6 +46,8 @@ export default {
       id: '',
 	  person: '',
 	  company: '',
+	  customer: '',
+	  product: '',
 	  location: '',
       phone: '',
       email: '',
@@ -81,10 +83,6 @@ export default {
             console.log(data.msg);
           }
       	}, true);
-
-        get('/api/activity/all', {userId: self.id}, function(data) {
-          self.activities = data;
-        });
       } else {
         window.location.href = '/src/redirect/expired.html';
       } 

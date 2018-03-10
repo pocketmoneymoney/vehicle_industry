@@ -5,10 +5,8 @@
         <main-header></main-header>
       </div>
       <div class="main clearfix">
-	    <div>
-         <event-enroll-panel></event-enroll-panel>
-		 <div class="main_middle">
-          <component :is=currentView 
+		<div class="main2_left">
+          <component :is=currentView style="max-width:800px;"
 			@editPosition="editPosition" 
 			@editPositionDone="editPositionDone" 
 			@positionApplication="positionApplication" 
@@ -23,8 +21,8 @@
 			:category="currentCategory" 
 			:position="currentPosition" 
 			:purchase="purchase"></component>
-		  </div>
 		</div>
+		<right-activity-panel></right-activity-panel>
       </div>
       <last-footer></last-footer>
     </div>
@@ -37,6 +35,7 @@ import MainNav from '../util/main_nav.vue'
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
 import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
+import RightActivityPanel from '../util/right_activity_panel.vue'
 
 import NoAuthorized from '../management/no_authorized.vue'
 
@@ -122,7 +121,7 @@ export default {
     },
   },
   components: {TopBar, MainHeader, MainNav, LastFooter, EventEnrollPanel,
-			   NoAuthorized, RightPanel,
+			   NoAuthorized, RightPanel, RightActivityPanel,
 			   Activity, EditActivity, ActivityApplication, 
 			   Purchase, PurchaseApplication, PurchaseBuyer,
          	   Position, PositionApplication}

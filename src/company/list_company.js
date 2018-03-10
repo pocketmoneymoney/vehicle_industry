@@ -29,23 +29,33 @@ export default {
       this.curPage = page;
 	  this.searchCompany(this.lastKeyword);
     },
-	getSearchData: function () {
-	  if (this.selectItem) {
-		return this.selectItem;
-	  }; 
-	  if (this.selectSubtype) {
-		var category = this.totalCategory[this.selectCategory];	
-		var subtype = category[this.selectSubtype];
-		var keyword = this.selectSubtype;
+	flattenSubtype: function(category, subtypeName) {
+		var subtype = category[subtypeName];
+		var keyword = subtypeName;
 		for (var itemName in subtype) {
 			if (itemName != 'id') {
 				keyword = keyword + ' ' + itemName;
 			}
 		}
 		return keyword;
+	},
+	getSearchData: function () {
+	  if (this.selectItem) {
+		return this.selectItem;
+	  }; 
+	  if (this.selectSubtype) {
+		var category = this.totalCategory[this.selectCategory];	
+		return this.flattenSubtype(category, this.selectSubtype);
 	  }; 
 	  if (this.selectCategory) {
-		return this.selectCategory;
+		var category = this.totalCategory[this.selectCategory];
+		var keyword = this.selectCategory;
+		for (var subtypeName in category) {
+			if (subtypeName != 'id') {
+				keyword = keyword + ' ' + this.flattenSubtype(category, subtypeName);
+			}
+		}
+		return keyword;
 	  }; 
 	  return null;
 	},
