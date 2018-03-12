@@ -5,9 +5,7 @@
         <main-header></main-header>
       </div>
       <div class="main clearfix">
-      <div>
-         <event-enroll-panel></event-enroll-panel>
-      <div class="main_middle clearfix">
+      <div class="main2_left clearfix">
         <div class="formbox clearfix">
 		  <div class="title_bar" style="width:750px"> 
             <a class="title_bar_a">公司基本信息编辑</a>
@@ -83,7 +81,7 @@
           </div>
         </div>
       </div>
-	  </div>
+	  <right-activity-panel></right-activity-panel>
 	  </div>
       <last-footer></last-footer>
     </div>
@@ -96,6 +94,7 @@ import MainNav from '../../util/main_nav.vue'
 import EventEnrollPanel from '../../util/event_enroll_panel.vue'
 import RightPanel from '../../util/right_panel.vue'
 import LastFooter from '../../util/footer.vue'
+import RightActivityPanel from '../../util/right_activity_panel.vue'
 
 export default {
   data: function() {
@@ -185,7 +184,8 @@ export default {
 	  }
 	});
   },
-  components: {MainHeader, MainNav, TopBar, EventEnrollPanel, RightPanel, LastFooter} 
+  components: {MainHeader, MainNav, TopBar, EventEnrollPanel, RightPanel, LastFooter,
+			   RightActivityPanel}
 }
 </script>
 

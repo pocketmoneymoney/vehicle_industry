@@ -51,16 +51,18 @@
   </div>
   <div class="company_contact company_right_panel clearfix">
       <h4>联系方式</h4>
-	  <!--hr style="height:5px;border:none;border-top:5px groove skyblue;" /-->
       <span>联系人：{{ company.officalContact }}</span>
       <span>公司电话：{{ company.officalPhone }}</span>
       <span>公司邮箱：{{ company.officalEmail }}</span>
       <span>公司主页：{{ company.link }}</span>
       <span>公司地址：{{ company.address }}</span>
   </div>
-  <list-element type="product" :listElement="products" :isOwner="isOwner"></list-element>
-  <list-element type="equipment" :listElement="equipments" :isOwner="isOwner"></list-element>
-  <list-element type="certification" :listElement="certifications" :isOwner="isOwner"></list-element>
+  <list-element type="product" :listElement="products" :isOwner="isOwner"		
+				:isVerified="isVerified"></list-element>
+  <list-element type="equipment" :listElement="equipments" :isOwner="isOwner"
+				:isVerified="isVerified"></list-element>
+  <list-element type="certification" :listElement="certifications" :isOwner="isOwner"
+				:isVerified="isVerified"></list-element>
   </div>
 </template>
 

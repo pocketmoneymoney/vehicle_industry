@@ -4,9 +4,9 @@
       <h3 v-if="type === 'product'">产品列表</h3>
       <h3 v-if="type === 'equipment'">设备列表</h3>
       <h3 v-if="type === 'certification'">认证列表</h3>
-      <a v-if="isOwner" :href="newUrl">添加</a>
+      <a v-if="isOwner" @click='addElement(newUrl)' 
+		 style="margin-right:20px;cursor:pointer">添加</a>
 	  <div style="clear:both;"> </div>
-	  <!--hr style="height:5px;border:none;border-top:5px groove skyblue;" /-->
     </div>
     <div class="product_list_main clearfix">
       <ul v-for="element in listElement">

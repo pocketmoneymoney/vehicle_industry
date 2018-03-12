@@ -165,6 +165,9 @@ export default {
 				'location': company.company.location,
 				'product': 	company.company.product
 			};
+			if (company.company.brief) {
+			  newCompany['brief'] = company.company.brief.slice(0, 100) + "... ...";
+			}
 		    self.companies.push(newCompany);
 		  }
 		}

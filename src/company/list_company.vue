@@ -40,6 +40,10 @@
                         <em><dt>主要产品</dt></em>
                         <dd>{{ company.product }}</dd>
                     </dl>
+                    <dl>
+                        <em><dt>公司介绍</dt></em>
+                        <dd>{{ company.brief }}</dd>
+                    </dl>
                 </div>
                 <div class="company_list_left">
                    	<p>
@@ -102,7 +106,7 @@
 }
 .company_title{
 	color: #449cd7;
-	font-size: 14px;
+	font-size: 30px;
 	line-height: 22px;	
 	height: 22px;
 	margin-bottom: 15px;
@@ -153,7 +157,7 @@
 
 .company_list_right{
 	float: left;
-	width: 350px;
+	width: 550px;
 }
 .company_list_right dl{
 	overflow: hidden;
@@ -168,7 +172,7 @@
 }
 .company_list_right dl dd{
 	float: left;
-	width: 250px;
+	width: 400px;
 	line-height: 22px;
 	color: #333;
 }

@@ -14,6 +14,7 @@ export default {
       currentItem: {},
       ownerID: '',
 	  isOwner: false,
+	  isVerified: false,
 	  editInfoURL: '/src/redirect/not_authorized.html',
 	  editBriefURL: '/src/redirect/not_authorized.html',
 	  editCerfURL: '/src/redirect/not_authorized.html'
@@ -50,6 +51,7 @@ export default {
           self.company = data.msg.company;
           self.person = data.msg.person;
           self.avatar = data.msg.avatar;
+          self.isVerified = data.msg.privilege.verified;
 
 		  /* Load product list */
 		  if (data.msg.product instanceof Array) {

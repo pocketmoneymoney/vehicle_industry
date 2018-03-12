@@ -105,7 +105,7 @@
 		  </div>
 		  </div>
 		  <div v-else class="title_bar" style="width:850px">
-            <a class="title_bar_a">只有注册用户可以报名，请点击页面右上方报名或登录</a>
+            <a class="title_bar_a">只有注册用户可以报名，请点击页面右上方注册或登录</a>
 		  </div>
         </div>
         </div>
