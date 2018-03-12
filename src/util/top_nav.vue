@@ -13,7 +13,7 @@
       <a class="ws-head-colName" href="/src/activity/meeting.html">OE活动</a>
     </div>
     <div class="am-fl ws-head-col">
-      <a class="ws-head-colName" href="/src/position/index.html">人才猎头</a>
+      <a class="ws-head-colName" href="/src/position/index.html">企业招聘</a>
       <span class="head_new"></span>
     </div>
   </div>
@@ -21,7 +21,8 @@
 
 <style>
 .ws-head-col {
-    font-size: 16px;
+    font-size: 20px;
+	color: #2F4F4F;
     height: 80px;
     line-height: 80px;
     padding: 0 20px;
