@@ -14,7 +14,7 @@
               <a href="/src/activity/meeting.html" :class="{current: currentView === meeting}">OE活动</a>
           </li>
           <li>
-              <a href="/src/position/index.html" :class="{current: currentView === position}">人才猎头</a>
+              <a href="/src/position/index.html" :class="{current: currentView === position}">企业招聘</a>
           </li>
       </ul>
   </div>
@@ -65,7 +65,7 @@ export default {
 .index_nav li a{
 	display: block;
 	color: #fff;
-  	font-size: 15px;
+  	font-size: 18px;
   	line-height: 34px;
 }
 .current {
