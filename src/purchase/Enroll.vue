@@ -109,7 +109,6 @@
 		  </div>
         </div>
         </div>
-	      <right-panel></right-panel>
 	  </div>
       <last-footer></last-footer>
     </div>
