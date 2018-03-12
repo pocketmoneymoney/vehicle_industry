@@ -373,12 +373,13 @@ h3{
  ***
  ************************************************/
 .list_panel{
-	width: 740px;
+	width: 395px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;
 	padding: 19px 20px;
 	margin-bottom: 8px;
+  margin-right: 5px;
 }
 .list_panel h3 span{
 	float: left;

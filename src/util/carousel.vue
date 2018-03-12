@@ -32,7 +32,11 @@ export default {
 	  }
 	  if (this.height) {
 		  $('#' + this.carouselId + ' img').height(this.height);
+		  $('.banner-padding-top').height(this.height);
 	  }
+    else {
+		  $('.banner-padding-top').height(235);
+    }
     }
   },
   watch: {

@@ -34,7 +34,7 @@ a:hover{
 .main_nav{
 	float: left;
 	width: 230px;
-	height: 742px;
+	height: 235px;
 	border: 1px solid #fff;
 	padding: 0 12px;
 	box-shadow:  0 0 3px #999;
