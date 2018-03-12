@@ -158,7 +158,7 @@ module.exports = function(express) {
 		});
 	});
 
-	router.post('/company/:id', upload.single('avatar'), 
+	router.post('/company/:id', upload.fields([{name: 'avatar', maxCount: 1}, {name: 'poster', maxCount: 1}]), 
 	  function (req, res, next) {
 		var name    	= req.body.name;
 		var product		= req.body.product;
@@ -178,15 +178,22 @@ module.exports = function(express) {
 		var operator    = req.body.operator;
 		var assets      = req.body.assets;
 		var avatar		= undefined;
+		var poster    = undefined;
 		var id			= req.params.id;
 
-		if (req.file) {
-			avatar = '/' + path.join(req.file.destination, req.file.filename);
-		}
-
+	  	if ((req.files.poster) && (req.files.poster[0])) {
+      		var posterFile = req.files.poster[0];
+	  		poster = '/' + path.join(posterFile.destination, posterFile.filename);
+	  	}
+      
+	  	if ((req.files.avatar) && (req.files.avatar[0])) {
+      		var avatarFile = req.files.avatar[0];
+	  		avatar = '/' + path.join(avatarFile.destination, avatarFile.filename);
+	  	}
+      
 		dao.modifyCompanyInfo(id, name, product, customer, brief, location, market, 
   		    officalContact, officalPhone, officalEmail, link, address,
-			createTime, operator, assets, avatar, function (err) {
+			createTime, operator, assets, avatar, poster, function (err) {
 			if (err) {
 				res.json({success: false, msg:err});
 			} else {

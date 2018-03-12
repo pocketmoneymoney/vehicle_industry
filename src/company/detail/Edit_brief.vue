@@ -73,6 +73,12 @@
                       <input ref="logofile" type="file" name="file" style="z-index:10000" />
                   </dd>
               </dl>
+              <dl v-if="isVerified" class="clearfix">
+                  <dt><b></b><span>公司海报：</span></dt>
+                  <dd>
+                      <input ref="companyPosterfile" type="file" name="file" style="z-index:10000" />
+                  </dd>
+              </dl>
           </div>
 	      <div style="clear:both;"> </div>
           <div>
@@ -100,7 +106,8 @@ export default {
   data: function() {
     return {
 	  company: {},
-	  id: ''
+	  id: '',
+    isVerified: false
     }
   },
   methods: {
@@ -155,6 +162,7 @@ export default {
        	oMyForm.append("assets", this.company.assets);
 	  }
       oMyForm.append("avatar", this.$refs.logofile.files[0]);
+      oMyForm.append("poster", this.$refs.companyPosterfile.files[0]);
 
       var self = this;
       postWithFile('/api/supplier/company/'+self.id, oMyForm, function(data) {
@@ -175,10 +183,11 @@ export default {
           if (data.success) {
 		    self.company = data.msg;
 		    self.id = pageHostID;
+        self.isVerified = self.company.privilege.verified;
 		  } else {
 			console.log(data.msg);
 		  }
-		}, false);
+		  }, false);
 	  } else {
         window.location.href = '/src/redirect/not_authorized.html';
 	  }

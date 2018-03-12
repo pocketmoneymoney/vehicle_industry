@@ -1,5 +1,6 @@
 <template>
   <div class="clearfix">
+  <img v-if="hasPoster" :src="poster" style="width:1200px"/>
   <div class="company_panel clearfix">
   <h4>公司简介</h4>
   <div class="clearfix company_panel_content">

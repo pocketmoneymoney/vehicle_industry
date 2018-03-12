@@ -40,7 +40,8 @@ function dbHandler() {
 		'product': 			{ type:Array, default:[] },
 		'equipment': 		{ type:Array, default:[] },
 		'certification':	{ type:Array, default:{} },
-		'avatar':			String
+		'avatar':			String,
+    'poster':     String
 	}, 'supplier', 'supplier');
 }
 
@@ -120,7 +121,7 @@ dbHandler.prototype.modifyPrivilegeInfo = function (id, verified, advertise,
 dbHandler.prototype.modifyCompanyInfo = function (
   id, name, product, customer, brief, location, market, 
   officalContact, officalPhone, officalEmail, link, address,
-  createTime, operator, assets, avatar, callback) {
+  createTime, operator, assets, avatar, poster, callback) {
 	var fields = {'company':
 		{'name': name,
 		 'product': product,
@@ -139,6 +140,10 @@ dbHandler.prototype.modifyCompanyInfo = function (
 
 	if (avatar) {
 		fields['avatar'] = avatar;
+	}
+
+	if (poster) {
+		fields['poster'] = poster;
 	}
 
 	this.update({'id':id}, {$set: fields}, {upsert:true}, callback);

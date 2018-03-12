@@ -11,10 +11,12 @@ export default {
 	  equipments: [],
 	  certifications: [],
 	  avatar: '',
+	  poster: '',
       currentItem: {},
       ownerID: '',
 	  isOwner: false,
 	  isVerified: false,
+    hasPoster: false,
 	  editInfoURL: '/src/redirect/not_authorized.html',
 	  editBriefURL: '/src/redirect/not_authorized.html',
 	  editCerfURL: '/src/redirect/not_authorized.html'
@@ -52,6 +54,15 @@ export default {
           self.person = data.msg.person;
           self.avatar = data.msg.avatar;
           self.isVerified = data.msg.privilege.verified;
+          self.poster = data.msg.poster;
+
+          if (self.poster !== undefined && self.poster !== '' && self.isVerified) {
+            self.hasPoster = true;
+          }
+          /*
+   self.hasPoster = true;
+   self.poster = '/img/1.jpg';
+   */
 
 		  /* Load product list */
 		  if (data.msg.product instanceof Array) {
