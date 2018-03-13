@@ -64,6 +64,7 @@ export default {
 .main_right{
 	float: left;
 	width: 740px;
+	height: 300px;
 	margin-bottom: 5px;
 	padding: 0px 12px 10px 10px;
 }

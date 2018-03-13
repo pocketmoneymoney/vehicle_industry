@@ -1,5 +1,9 @@
 <template>
     <div class="main_nav">
+    	<h3>
+        	<span>全部分类</span>
+    	</h3>
+		<hr style="height:5px;border:none;border-top:5px groove skyblue;" />
         <ul class="left_main_nav">
           <li
             v-for="tab in tabs"
@@ -7,7 +11,8 @@
               <a href='#'>{{tab.name}}</a>
               <div class="three_nav three_nav1">
                 <ul>
-                  <li v-for="subtab in subtabs[tab.id]"><a :href="url + tab.id + param + subtab.id">{{ subtab.name }}</a></li>
+                  <li v-for="subtab in subtabs[tab.id]">
+				  <a :href="url + tab.id + param + subtab.id">{{ subtab.name }}</a></li>
                 </ul>
               </div>
           </li>
@@ -34,14 +39,19 @@ a:hover{
 .main_nav{
 	float: left;
 	width: 230px;
-	height: 235px;
+	height: 300px;
 	border: 1px solid #fff;
 	padding: 0 12px;
 	box-shadow:  0 0 3px #999;
-	/*background: #fff url('../../img/main_nav_bg.jpg') right bottom no-repeat;*/
-  background-color: #fff;
+ 	background-color: #fff;
 	z-index: 1000;
 }
+
+.main_nav h3 span{
+	margin-top:10px;
+	float: left;
+}
+
 .main_nav_title{
 	height: 42px;
 	border-bottom:2px solid #449cd7;

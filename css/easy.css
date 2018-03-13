@@ -374,16 +374,19 @@ h3{
  ************************************************/
 .list_panel{
 	width: 395px;
+	height: 450px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;
 	padding: 19px 20px;
 	margin-bottom: 8px;
-  margin-right: 5px;
+ 	margin-right: 5px;
 }
+
 .list_panel h3 span{
 	float: left;
 }
+
 .list_panel h3 a{
 	color: #999999;
 	font-size: 12px;
@@ -393,7 +396,7 @@ h3{
 
 .list_panel li p{
 	margin-left: 2px;
-	padding-left: 20px;
+	padding-left: 5px;
 }
 
 /************************************************
