@@ -35,7 +35,8 @@ export default {
   data: function() {
     return {
 	  getUrl: '',
-      purchases: []
+      purchases: [],
+      table: null
     }
   },
   methods: {
@@ -51,6 +52,7 @@ export default {
 		  if (data.success) {
     		get(self.getUrl, {}, function(data) {
 			  self.purchases = retriveData(data);
+        self.reload();
 			});
 		  } else {
 			console.log(data.msg);
@@ -60,13 +62,18 @@ export default {
     },
     purchaseApplication: function(purchase) {
       this.$emit("purchaseApplication", purchase);
+    },
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#purchaselist').DataTable();
+      }, 100);
     }
   },
   mounted: function() {
-    $('#purchaselist').DataTable({
-      searching: false,
-      ordering:  false
-    });
+    this.table = $('#purchaselist').DataTable();
 
 	var self = this;
 	var publisherID = getUrlKey('id');
@@ -82,6 +89,7 @@ export default {
       }
 	  get(self.getUrl, {}, function(data) {
   	  	self.purchases = retriveData(data);
+        self.reload();
 	  }, false);
 	}, true);
   },

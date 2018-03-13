@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="h3_datatable_list">【申请活动列表】</h3>
-        <table id="purchaselist">
+        <table id="activity_enrolllist">
           <thead>
              <tr>
                 <th>活动名称</th>
@@ -24,14 +24,22 @@
 export default {
   data: function() {
     return {
-      activities: []
+      activities: [],
+      table: null
+    }
+  },
+  methods: {
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#activity_enrolllist').DataTable();
+      }, 100);
     }
   },
   mounted: function() {
-    $('#purchaselist').DataTable({
-      searching: false,
-      ordering:  false
-    });
+    this.table = $('#activity_enrolllist').DataTable();
 
 	var self = this;
 	var publisherID = getUrlKey('id');
@@ -50,6 +58,7 @@ export default {
               activity.type = '走进主机厂';
             }
           }
+          self.reload();
 	    }, false);
 	  } else {
         window.location.href = '/src/redirect/expired.html';

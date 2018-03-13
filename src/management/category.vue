@@ -31,7 +31,8 @@
 export default {
   data: function() {
     return {
-	  categories: []
+	    categories: [],
+      table: null
     }
   },
   methods: {
@@ -57,6 +58,7 @@ export default {
     		get('/api/admin/categoryList', {}, function(data) {
 	  		  if (data.success) {
   				self.categories = data.msg;
+          self.reload();
 			  }
 			});
 		  } else {
@@ -64,18 +66,24 @@ export default {
 		  }
 		}, false);
 	  }
+    },
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#datalist').DataTable();
+      }, 100);
     }
   },
   mounted: function() {
-    $('#datalist').DataTable({
-      searching: false,
-      ordering:  false
-    });
+    this.table = $('#datalist').DataTable();
 
 	var self = this;
     get('/api/admin/categoryList', {}, function(data) {
 	  if (data.success) {
   		self.categories = data.msg;
+      self.reload();
 	  } else {
 		console.log(data.msg);
 	  }

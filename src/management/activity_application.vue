@@ -33,20 +33,27 @@ export default {
   props: ['activity'],
   data: function() {
     return {
-      applications: []
+      applications: [],
+      table: null
     }
   },
   methods: {
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#activity_applicationlist').DataTable();
+      }, 100);
+    }
   },
   mounted: function() {
-    $('#activity_applicationlist').DataTable({
-     searching: false,
-     ordering:  false
-    });
+    this.table = $('#activity_applicationlist').DataTable();
 
     var self = this;
     get('/api/activity/appliers/'+this.position.id, {}, function (data) {
-	  self.applications = retriveData(data);
+	    self.applications = retriveData(data);
+      self.reload();
     }, false);
   },
 }

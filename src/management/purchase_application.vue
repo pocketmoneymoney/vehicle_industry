@@ -31,20 +31,27 @@ export default {
   props: ['purchase'],
   data: function() {
     return {
-      applications: []
+      applications: [],
+      table: null
     }
   },
   methods: {
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#purchase_applicationlist').DataTable();
+      }, 100);
+    }
   },
   mounted: function() {
-    $('#purchase_applicationlist').DataTable({
-      searching: false,
-      ordering:  false
-    });
+    this.table = $('#purchase_applicationlist').DataTable();
 
 	var self = this;
 	get('/api/purchase/appliers/' + this.purchase.id, {}, function(data) {
 	  self.applications = retriveData(data);
+    self.reload();
 	}, false);
   },
 }

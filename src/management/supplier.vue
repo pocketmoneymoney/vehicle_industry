@@ -46,7 +46,8 @@ export default {
        username: "System Architect",
        authenticated: true,
        ad: true,
-       selected: true
+       selected: true,
+       table: null
       },
       {
         name: "Garrett Winters",
@@ -97,6 +98,7 @@ export default {
     		get('/api/supplier/privilege?page=0&num=100', {}, function(data) {
 	  		  if (data.success) {
   				self.users = data.msg;
+          self.reload();
 			  }
 			});
 		  } else {
@@ -115,17 +117,23 @@ export default {
 		function (data) {
           console.log(data);
 	  }, true);
-	}
+	},
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#userlist').DataTable();
+      }, 100);
+    }
   },
   mounted: function() {
     var self = this;
-    $('#userlist').DataTable({
-      searching: false,
-      ordering:  false
-    });
+    this.table = $('#userlist').DataTable();
     get('/api/supplier/privilege?page=0&num=100', {}, function (data) {
 	  if (data.success) {
         self.users = data.msg;
+        self.reload();
       }
 	}, false);
   },

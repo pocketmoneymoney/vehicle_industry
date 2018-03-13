@@ -33,23 +33,30 @@ export default {
   props: ['position'],
   data: function() {
     return {
-      applications: []
+      applications: [],
+      table: null
     }
   },
   methods: {
     downloadResume: function (url) {
       window.open(url);
-	}
+	  },
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#position_applicationlist').DataTable();
+      }, 100);
+    }
   },
   mounted: function() {
-    $('#position_applicationlist').DataTable({
-      searching: false,
-      ordering:  false
-    });
+    this.table = $('#position_applicationlist').DataTable();
 
     var self = this;
     get('/api/position/appliers/'+this.position.id, {}, function (data) {
-	  self.applications = retriveData(data);
+	    self.applications = retriveData(data);
+      self.reload();
     }, false);
   }
 }

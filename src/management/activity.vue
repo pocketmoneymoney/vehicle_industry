@@ -32,7 +32,8 @@
 export default {
   data: function() {
     return {
-      activities: []
+      activities: [],
+      table: null
     }
   },
   methods: {
@@ -55,6 +56,7 @@ export default {
                 activity.type = '走进主机厂';
               }
             }
+            self.reload();
           });
 		}
       }, true);
@@ -63,13 +65,18 @@ export default {
     activityApplication: function(activity) {
       this.$emit("activityApplication", activity);
     },
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#activitylist').DataTable();
+      }, 100);
+    }
   },
   mounted: function() {
       var self = this;
-      $('#activitylist').DataTable({
-      	searching: false,
-      	ordering:  false
-      });
+      this.table = $('#activitylist').DataTable();
       get('/api/activity/all?page=0&num=100', {}, function(data) {
 		if (data.success) {
           self.activities = data.msg;
@@ -82,6 +89,7 @@ export default {
               activity.type = '走进主机厂';
             }
           }
+          self.reload();
 		}
       }, false);
   },

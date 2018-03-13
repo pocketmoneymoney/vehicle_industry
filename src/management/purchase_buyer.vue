@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="h3_datatable_list">【申请采购项目列表】</h3>
-        <table id="purchaselist">
+        <table id="purchase_buyerlist">
           <thead>
              <tr>
                 <th>采购项目名称</th>
@@ -27,14 +27,22 @@ export default {
   data: function() {
     return {
 	  getUrl: '',
-      purchases: []
+      purchases: [],
+      table: null
+    }
+  },
+  methods: {
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#purchase_buyerlist').DataTable();
+      }, 100);
     }
   },
   mounted: function() {
-    $('#purchaselist').DataTable({
-      searching: false,
-      ordering:  false
-    });
+    this.table = $('#purchase_buyerlist').DataTable();
 
 	var self = this;
 	var publisherID = getUrlKey('id');
@@ -44,6 +52,7 @@ export default {
 		self.getUrl = '/api/purchase/list_apply?page=0&num=100&id=' + publisherID;
 	    get(self.getUrl, {}, function(data) {
   	  	  self.purchases = retriveData(data);
+          self.reload();
 	    }, false);
 	  } else {
         window.location.href = '/src/redirect/expired.html';

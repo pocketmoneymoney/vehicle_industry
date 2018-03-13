@@ -32,7 +32,8 @@
 export default {
   data: function() {
     return {
-      positions: []
+      positions: [],
+      table: null
     }
   },
   methods: {
@@ -54,6 +55,7 @@ export default {
     		get('/api/position/list?page=0&num=100', {}, function(data) {
 	  		  if (data.success) {
   				self.positions = data.msg;
+          self.reload();
 			  }
 			});
 		  } else {
@@ -61,18 +63,24 @@ export default {
       	  }
         }, true);
 	  }
-	}
+	},
+    reload: function () {
+      if (this.table) {
+        this.table.destroy();
+      }
+      setTimeout(function() {
+        this.table = $('#positionlist').DataTable();
+      }, 100);
+    }
   },
   mounted: function() {
-    $('#positionlist').DataTable({
-      searching: false,
-      ordering:  false
-    });
+    this.table = $('#positionlist').DataTable();
 
 	var self = this;
     get('/api/position/list?page=0&num=100', {}, function(data) {
 	  if (data.success) {
   		self.positions = data.msg;
+      self.reload();
 	  } else {
 		console.log(data.msg);
 	  }
