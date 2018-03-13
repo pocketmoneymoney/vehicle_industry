@@ -8,8 +8,8 @@ function post(url, param, success, needAuth) {
   }
   $.ajax({
     type: 'POST',
-    //url: 'http://47.104.6.11:3389' + url,
-    url: 'http://localhost:8088' + url,
+    url: 'http://47.104.6.11:3389' + url,
+    //url: 'http://localhost:8088' + url,
     data: param,
     dataType: 'json',
     beforeSend: beforeSend,
