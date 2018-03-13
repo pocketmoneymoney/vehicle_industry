@@ -6,11 +6,11 @@
     </h3>
 	<supplier-recom style="max-width:100px;max-height:80px;" :imgPaths="imgPaths" carouselId="supplier_recom"></supplier-recom>
   </div>
-  <div class="right_panel">
+  <div class="right_panel" style="height:200px">
     <h3>
         <span>关注OE汽车微信公众号</span>
     </h3>
-	<img style="width:100px;height:80px;" :src="qrcode"/>
+	<img style="width:150px;height:150px;" :src="qrcode"/>
   </div>
   </div>
 </template>
