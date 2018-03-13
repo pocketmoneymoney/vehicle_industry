@@ -78,7 +78,7 @@
 
 .position_title{
 	color: #449cd7;
-	font-size: 14px;
+	font-size: 20px;
 	line-height: 22px;	
 	height: 22px;
 	margin-bottom: 15px;

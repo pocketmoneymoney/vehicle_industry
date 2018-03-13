@@ -4,13 +4,13 @@
       <a class="ws-head-colName" href="/src/index.html">首页</a>
     </div>
     <div class="am-fl ws-head-col">
-      <a class="ws-head-colName" href="/src/company/search.html">OE供应商</a>
+      <a class="ws-head-colName" href="/src/company/search.html">供应商</a>
     </div>
     <div class="am-fl ws-head-col">
-      <a class="ws-head-colName" href="/src/purchase/index.html">采购项目专区</a>
+      <a class="ws-head-colName" href="/src/purchase/index.html">采购项目</a>
     </div>
     <div class="am-fl ws-head-col">
-      <a class="ws-head-colName" href="/src/activity/meeting.html">OE活动</a>
+      <a class="ws-head-colName" href="/src/activity/meeting.html">活动专区</a>
     </div>
     <div class="am-fl ws-head-col">
       <a class="ws-head-colName" href="/src/position/index.html">企业招聘</a>

@@ -10,6 +10,7 @@
           	<ListCompany></ListCompany>
 		</div>
       </div>
+	  <div style="clear:both;"> </div>
       <last-footer></last-footer>
     </div>
 </template>
