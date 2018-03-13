@@ -374,11 +374,12 @@ h3{
  ************************************************/
 .list_panel{
 	width: 395px;
-	height: 450px;
+	height: 350px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;
 	padding: 19px 20px;
+	margin-top: 15px;
 	margin-bottom: 8px;
  	margin-right: 5px;
 }

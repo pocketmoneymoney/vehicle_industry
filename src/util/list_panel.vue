@@ -5,7 +5,7 @@
         <a :href="mainUrl">更多</a>
     </h3>
 	<hr style="height:5px;border:none;border-top:5px groove skyblue;" />
-	<div style="margin-top:10px; margin-left:30px">
+	<div style="margin-top:10px; margin-left:10px">
 	<a
 		v-for="component in components">
 		<li style="cursor:pointer; margin-bottom:10px;" 

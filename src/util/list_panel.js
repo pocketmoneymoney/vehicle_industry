@@ -8,8 +8,5 @@ export default {
   	  window.location.href = component.url;
     }
   },
-  mounted: function() {
-    $('.list_panel').height(this.height);
-  },
   components: {}
 }
