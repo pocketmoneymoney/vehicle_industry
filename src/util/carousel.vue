@@ -35,7 +35,7 @@ export default {
 		  $('.banner-padding-top').height(this.height);
 	  }
     else {
-		  $('.banner-padding-top').height(235);
+		  $('.banner-padding-top').height(320);
     }
     }
   },
