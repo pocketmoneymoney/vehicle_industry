@@ -9,7 +9,7 @@
 	<a
 		v-for="component in components">
 		<li style="cursor:pointer; margin-bottom:10px;" 
-			@click="redirectTo(component)">{{component.title}} [[{{component.content}}]] </li>
+			@click="redirectTo(component)">{{component.title}} [{{component.content}}] </li>
 	</a>
 	</div>
   </div>
