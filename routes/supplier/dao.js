@@ -101,7 +101,8 @@ dbHandler.prototype.getRecommendedCompany = function(callback) {
 			for (var index = 0; index < data.length; index++) {
 				var supplier = data[index];
 				if (supplier.avatar) {
-					result.push(supplier.avatar);
+					result.push({'avatar': supplier.avatar,
+								 'id': supplier.id});
 				}
 			}
 			callback(null, result);

@@ -4,8 +4,8 @@
     <h3>
         <span>供应商推荐</span>
     </h3>
-	<supplier-recom style="max-width:120px;max-height:120px;" 
-	 :imgPaths="imgPaths" carouselId="supplier_recom"></supplier-recom>
+	<supplier-recom style="max-width:150px;max-height:120px;" 
+	 :imgPaths="imgPaths" carouselId="supplier_recom" :imgHrefs="imgHrefs"></supplier-recom>
   </div>
   <div class="right_panel">
     <h3>
@@ -24,8 +24,10 @@ export default {
   data: function() {
     var qrcode = '';
     return {
+	  url: '/src/company/detail/detail.html?id=',
       qrcode: '',
-	  imgPaths: []
+	  imgPaths: [],
+	  imgHrefs: {}
     }
   },
   computed: {
@@ -46,9 +48,13 @@ export default {
     }, false);
 
 	self.imgPaths = [];
+	self.imgHrefs = {};
 	get('/api/supplier/recommended', {}, function(data) {
 		if (data.success) {
-		  self.imgPaths = data.msg;
+		  for (var index = 0; index < data.msg.length; index++) {
+			 self.imgPaths.push(data.msg[index].avatar);
+			 self.imgHrefs[data.msg[index].avatar] = self.url + data.msg[index].id;
+		  }
 		} else {
 		  console.log(data.msg);
 		}
