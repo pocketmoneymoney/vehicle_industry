@@ -25,8 +25,8 @@ export default {
 		  var activity = data.msg[index];
 		  self.components.push({
 			'url': self.detailUrl + activity.id + "&tp=" + activity.type,
-			'title': activity.startTime + "-" + activity.endTime,
-			'content': activity.name + "::" +activity.location
+			'title': activity.name,
+			'content': activity.location
 		  });
 		}
 	   }
