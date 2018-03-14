@@ -2,7 +2,7 @@
     <div class="back_wrapper">
       <div class="clearfix topfixed">
         <top-bar></top-bar>
-        <main-header></main-header>
+        <main-header currentView="index"></main-header>
       </div>
       <div class="main clearfix">
         <left-nav @viewchange="viewChange"></left-nav>
@@ -23,7 +23,6 @@
 import TopBar from './util/topbar.vue'
 import LeftNav from './index/left_nav.vue'
 import MainHeader from './util/header.vue'
-import MainNav from './util/main_nav.vue'
 import RightPanel from './util/right_panel.vue'
 import LastFooter from './util/footer.vue'
 
@@ -60,7 +59,7 @@ export default {
 	  }
     }, false);
   },
-  components: {LeftNav, MainHeader, TopBar, MainNav, LatestPurchase, LatestEvent, 
+  components: {LeftNav, MainHeader, TopBar, LatestPurchase, LatestEvent, 
 			   LatestPosition, LatestActivity, RightPanel, LastFooter}
 }
 </script>

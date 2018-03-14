@@ -1,7 +1,7 @@
 <template>
   	<div class="header clearfix">
 		<img style="margin-right:30px; height:78px; float:left;" src="/img/Logo.png">
-    	<top-nav></top-nav>
+    	<top-nav :currentView="currentView"></top-nav>
 		<div class="top_nav">
 			<ul> </ul>
 		</div>
@@ -11,6 +11,7 @@
 <script>
 import TopNav from './top_nav.vue'
 export default {
+  props: ["currentView"],
   components: {TopNav}
 }
 </script>

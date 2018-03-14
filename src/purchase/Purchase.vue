@@ -2,7 +2,7 @@
     <div class="back_wrapper">
       <div class="clearfix topfixed">
         <top-bar></top-bar>
-        <main-header></main-header>
+        <main-header currentView="purchase"></main-header>
       </div>
       <div class="main clearfix">
 			<div style="width:750px; float:left;">
@@ -24,7 +24,6 @@
 <script>
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
-import MainNav from '../util/main_nav.vue'
 import RightPanel from '../util/right_panel.vue'
 import LastFooter from '../util/footer.vue'
 
@@ -64,7 +63,7 @@ export default {
       self.person = person; 
     });
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, 
+  components: {MainHeader, TopBar, EventEnrollPanel, 
 			   ListPurchaseProduct, NewPurchase, NewPurchaseNext, 
 			   RightPanel, LastFooter}
 }

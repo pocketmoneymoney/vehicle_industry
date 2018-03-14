@@ -1,23 +1,38 @@
 <template>
   <div class="clearfix ws-head-nav am-cf">
     <div class="am-fl ws-head-col">
-      <a class="ws-head-colName" href="/src/index.html">首页</a>
+      <a class="ws-head-colName" href="/src/index.html" :class="{current: currentView === index}">首页</a>
     </div>
     <div class="am-fl ws-head-col">
-      <a class="ws-head-colName" href="/src/company/search.html">供应商</a>
+      <a class="ws-head-colName" href="/src/company/search.html" :class="{current: currentView === company}">供应商</a>
     </div>
     <div class="am-fl ws-head-col">
-      <a class="ws-head-colName" href="/src/purchase/index.html">采购项目</a>
+      <a class="ws-head-colName" href="/src/purchase/index.html" :class="{current: currentView === purchase}">采购项目</a>
     </div>
     <div class="am-fl ws-head-col">
-      <a class="ws-head-colName" href="/src/activity/meeting.html">活动专区</a>
+      <a class="ws-head-colName" href="/src/activity/meeting.html" :class="{current: currentView === activity}">活动专区</a>
     </div>
     <div class="am-fl ws-head-col">
-      <a class="ws-head-colName" href="/src/position/index.html">企业招聘</a>
+      <a class="ws-head-colName" href="/src/position/index.html" :class="{current: currentView === position}">企业招聘</a>
       <span class="head_new"></span>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["currentView"],
+  data() {
+    return {
+      index: "index",
+      company: "company",
+      purchase: "purchase",
+      activity: "activity",
+      position: "position"
+    }
+  },
+}
+</script>
 
 <style>
 .ws-head-col {
@@ -175,5 +190,8 @@
 }
 .am-fl {
     float: left;
+}
+.current {
+    color: #f60;
 }
 </style>

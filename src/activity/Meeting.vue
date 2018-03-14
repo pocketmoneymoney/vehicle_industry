@@ -2,7 +2,7 @@
     <div class="back_wrapper">
       <div class="clearfix topfixed">
         <top-bar></top-bar>
-        <main-header></main-header>
+        <main-header currentView="activity"></main-header>
       </div>
       <div class="main clearfix">
         <!--main-nav :currentView="viewName"></main-nav-->
@@ -33,7 +33,6 @@
 <script>
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
-import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
 import RightPanel from '../util/right_panel.vue'
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
@@ -72,7 +71,7 @@ export default {
 	  }
     }, false);
   },
-  components: {MainHeader, TopBar, MainNav, MeetingPanel, HistoryMeeting,
+  components: {MainHeader, TopBar, MeetingPanel, HistoryMeeting,
 			   EventEnrollPanel, RightPanel, LastFooter, MainRight}
 }
 </script>

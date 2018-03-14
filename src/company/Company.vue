@@ -2,7 +2,7 @@
     <div class="back_wrapper">
       <div class="clearfix topfixed">
         <top-bar></top-bar>
-        <main-header></main-header>
+        <main-header currentView="company"></main-header>
       </div>
       <div class="main clearfix">
         <main-nav :currentView="viewName"></main-nav>
@@ -22,7 +22,6 @@
 <script>
 import TopBar from '../util/topbar.vue'
 import MainHeader from '../util/header.vue'
-import MainNav from '../util/main_nav.vue'
 import LastFooter from '../util/footer.vue'
 
 import EventEnrollPanel from '../util/event_enroll_panel.vue'
@@ -42,7 +41,7 @@ export default {
 	  this.itemSeries = this.items[index];
 	}
   },
-  components: {MainHeader, TopBar, MainNav, EventEnrollPanel, LatestPurchase,
+  components: {MainHeader, TopBar, EventEnrollPanel, LatestPurchase,
 			   Category, RightPanel, LastFooter}
 }
 </script>

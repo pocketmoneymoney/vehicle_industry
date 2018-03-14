@@ -69,6 +69,7 @@ export default {
   	line-height: 34px;
 }
 .current {
-  text-decoration:underline;
+  /*text-decoration:underline;*/
+  color: #f60;
 }
 </style>
