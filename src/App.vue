@@ -7,7 +7,8 @@
       <div class="main clearfix">
         <left-nav @viewchange="viewChange"></left-nav>
         <div class="main_right">
-          <latest-activity carouselId="latest-activity-poster" :imgPaths="imgPaths"></latest-activity>
+          <latest-activity carouselId="latest-activity-poster" :imgPaths="imgPaths">
+		  </latest-activity>
         </div>
 		<right-panel></right-panel>
           <latest-purchase></latest-purchase>
@@ -34,24 +35,30 @@ import LatestActivity from './util/carousel.vue'
 
 export default {
   data: function() {
-    var imgPaths = [];
-    get('/api/activity/list', {num:3, page:0}, function(data) {
-	  if (data.success) {
-        for (let index in data.msg) {
-           imgPaths.push(data.msg[index].bigPoster);
-        }
-	  }
-    }, false);
     return {
       viewName: "index",
-      imgPaths: imgPaths
-      //imgPaths: ['/img/1.jpg', '/img/2.jpg']
+      imgPaths: []
     }
   },
   methods: {
 	viewChange: function(index) {
 	  this.itemSeries = this.items[index];
 	}
+  },
+  mounted: function() {
+	var self = this;
+	self.imgPaths = [];
+    get('/api/activity/list', {num:3, page:0}, function(data) {
+	  if (data.success) {
+        for (let index in data.msg) {
+		   if (data.msg[index].bigPoster) {
+             self.imgPaths.push(data.msg[index].bigPoster);
+		   } else if (data.msg[index].smallPoster) {
+             self.imgPaths.push(data.msg[index].smallPoster);
+		   }
+        }
+	  }
+    }, false);
   },
   components: {LeftNav, MainHeader, TopBar, MainNav, LatestPurchase, LatestEvent, 
 			   LatestPosition, LatestActivity, RightPanel, LastFooter}
@@ -64,7 +71,7 @@ export default {
 .main_right{
 	float: left;
 	width: 740px;
-	height: 300px;
+	height: 330px;
 	margin-bottom: 5px;
 	padding: 0px 12px 10px 10px;
 }

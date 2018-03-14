@@ -39,7 +39,7 @@ a:hover{
 .main_nav{
 	float: left;
 	width: 230px;
-	height: 300px;
+	height: 330px;
 	border: 1px solid #fff;
 	padding: 0 12px;
 	box-shadow:  0 0 3px #999;
@@ -48,7 +48,7 @@ a:hover{
 }
 
 .main_nav h3 span{
-	margin-top:10px;
+	margin-top:14px;
 	float: left;
 }
 
