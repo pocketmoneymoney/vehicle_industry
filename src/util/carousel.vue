@@ -2,7 +2,7 @@
   <div class="banner-padding-top">
     <div class="container-lg">
       <div :id="carouselId">
-        <a v-for='imgPath in imgPaths'><img :src="imgPath"></a>
+        <a v-for='imgPath in imgPaths'><img @click=redirectTo(imgPath) :src="imgPath"></a>
       </div>
     </div>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  props: ['carouselId', 'imgPaths', 'width', 'height'],
+  props: ['carouselId', 'imgPaths', 'width', 'height', 'imgHrefs'],
   data() {
     return {
     }
@@ -19,6 +19,11 @@ export default {
     this.showCarousel();
   },
   methods: {
+	redirectTo: function (imgPath) {
+		if (this.imgHrefs && this.imgHrefs[imgPath]) {
+			window.location.href = this.imgHrefs[imgPath];
+		}
+	},
     showCarousel: function() {
       if (this.imgPaths.length === 0) return;
       $('#' + this.carouselId).bxSlider({

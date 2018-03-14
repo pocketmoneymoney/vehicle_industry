@@ -7,8 +7,8 @@
       <div class="main clearfix">
         <left-nav @viewchange="viewChange"></left-nav>
         <div class="main_right">
-          <latest-activity carouselId="latest-activity-poster" :imgPaths="imgPaths">
-		  </latest-activity>
+          <latest-activity carouselId="latest-activity-poster" :imgPaths="imgPaths"
+			:imgHrefs="imgHrefs"> </latest-activity>
         </div>
 		<right-panel></right-panel>
           <latest-purchase></latest-purchase>
@@ -36,7 +36,9 @@ export default {
   data: function() {
     return {
       viewName: "index",
-      imgPaths: []
+	  activityUrl: '/src/activity/enroll.html?tp=meeting&id=',
+      imgPaths: [],
+	  imgHrefs: {}
     }
   },
   methods: {
@@ -47,14 +49,18 @@ export default {
   mounted: function() {
 	var self = this;
 	self.imgPaths = [];
+	self.imgHrefs = {};
     get('/api/activity/list', {num:3, page:0}, function(data) {
 	  if (data.success) {
         for (let index in data.msg) {
+		   var path = '';
 		   if (data.msg[index].bigPoster) {
-             self.imgPaths.push(data.msg[index].bigPoster);
+             path = data.msg[index].bigPoster;
 		   } else if (data.msg[index].smallPoster) {
-             self.imgPaths.push(data.msg[index].smallPoster);
+             path = data.msg[index].smallPoster;
 		   }
+           self.imgPaths.push(path);
+           self.imgHrefs[path] = self.activityUrl + data.msg[index].id;
         }
 	  }
     }, false);

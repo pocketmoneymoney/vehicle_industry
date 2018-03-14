@@ -95,7 +95,7 @@ dbHandler.prototype.getCompanyInfo = function (id, callback) {
 dbHandler.prototype.getRecommendedCompany = function(callback) {
 	this.find({'privilege.advertise': true}, function(err, data) {
 		if (err || !data) {
-			callback([]);
+			callback(null, []);
 		} else {
 			var result = [];
 			for (var index = 0; index < data.length; index++) {
@@ -104,7 +104,7 @@ dbHandler.prototype.getRecommendedCompany = function(callback) {
 					result.push(supplier.avatar);
 				}
 			}
-			callback(result);
+			callback(null, result);
 		}
 	});
 };
