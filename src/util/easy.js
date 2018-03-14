@@ -24,7 +24,7 @@ function trimStr(strVal) {
 }
 
 function specialStrCheck(strVal) {
-	var regEn = /[`~!@#$%^&*()_+<>?:"{},.\/;'[\]]/im,
+	var regEn = /[`~!@#$%^&*()+<>?:"{},.\/;'[\]]/im,
     	regCn = /[·！#￥（——）：；“”‘、，|《。》？、【】[\]]/im;
 
 	if(regEn.test(strVal) || regCn.test(strVal)) {
