@@ -72,7 +72,6 @@ export default {
 	float: left;
 	width: 740px;
 	height: 330px;
-	margin-bottom: 5px;
-	padding: 0px 12px 10px 10px;
+	padding: 0px 0px 10px 10px;
 }
 </style>
