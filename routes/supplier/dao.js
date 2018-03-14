@@ -92,6 +92,23 @@ dbHandler.prototype.getCompanyInfo = function (id, callback) {
     this.findOne({'id':id}, 'company avatar', callback);
 };
 
+dbHandler.prototype.getRecommendedCompany = function(callback) {
+	this.find({'privilege.advertise': true}, function(err, data) {
+		if (err || !data) {
+			callback([]);
+		} else {
+			var result = [];
+			for (var index = 0; index < data.length; index++) {
+				var supplier = data[index];
+				if (supplier.avatar) {
+					result.push(supplier.avatar);
+				}
+			}
+			callback(result);
+		}
+	});
+};
+
 dbHandler.prototype.getPrevilegeInfo = function (page, num, callback) {
     db.daoTemplate.getPageItems.call(this, page, num, callback);
 };

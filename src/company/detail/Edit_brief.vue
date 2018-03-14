@@ -162,7 +162,10 @@ export default {
        	oMyForm.append("assets", this.company.assets);
 	  }
       oMyForm.append("avatar", this.$refs.logofile.files[0]);
-      oMyForm.append("poster", this.$refs.companyPosterfile.files[0]);
+
+	  if (this.$refs.companyPosterfile) {
+        oMyForm.append("poster", this.$refs.companyPosterfile.files[0]);
+	  }
 
       var self = this;
       postWithFile('/api/supplier/company/'+self.id, oMyForm, function(data) {

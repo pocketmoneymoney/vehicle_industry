@@ -25,7 +25,7 @@ export default {
     var qrcode = '';
     return {
       qrcode: '',
-	  imgPaths: ['/img/1.jpg', '/img/2.jpg', '/img/3.jpg']
+	  imgPaths: []
     }
   },
   computed: {
@@ -44,6 +44,15 @@ export default {
 		  console.log(data.msg);
 		}
     }, false);
+
+	self.imgPaths = [];
+	get('/api/supplier/recommended', {}, function(data) {
+		if (data.success) {
+		  self.imgPaths = data.msg;
+		} else {
+		  console.log(data.msg);
+		}
+	}, false);
   },
   components: {SupplierRecom}
 }

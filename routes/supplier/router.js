@@ -68,6 +68,20 @@ module.exports = function(express) {
 		});
 	});
 
+    router.get('/recommended', function (req, res) {
+       	dao.getRecommendedCompany(function (err, result) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+ 				if (result) {
+					res.json({success:true, msg:result});
+				} else {
+					res.json({success:false, msg:"No data found"});
+				}
+			}
+		});
+	});
+
     router.get('/privilege', function (req, res) {
         var page = req.query.page? parseInt(req.query.page) : 0;
         var num = req.query.num? parseInt(req.query.num) : 1;
