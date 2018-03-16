@@ -8,6 +8,7 @@ module.exports = {
 	  inventory: './src/main.js',
 	  register: './src/register/register.js',
 	  expired: './src/redirect/expired.js',
+	  introduction: './src/redirect/introduction.js',
 	  not_authorized: './src/redirect/not_authorized.js',
 	  login: './src/register/login.js',
 	  change_password: './src/register/password.js',

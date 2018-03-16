@@ -52,7 +52,7 @@ export default {
 		  if (data.success) {
     		get(self.getUrl, {}, function(data) {
 			  self.purchases = retriveData(data);
-        self.reload();
+        	  self.reload();
 			});
 		  } else {
 			console.log(data.msg);

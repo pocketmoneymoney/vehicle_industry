@@ -1,17 +1,14 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-        <main-nav></main-nav>
-        <div class="main clearfix">
-		  <div class="redirect_panel">
-            <h2>您没有访问该页面的用户权限， 如果您的用户已过期，请重新登录</h2>
-		    <div>
-              <span><a href="/src/index.html"><<< 返回首页      </a></span>
-              <span><a href="/src/register/login.html">前往登录页面 >>></a></span>
-		    </div>
-		  </div>
+      	<h2>您没有访问该页面的用户权限， 如果您的用户已过期，请重新登录</h2>
+		<div>
+       		<span><a href="/src/index.html"><<< 返回首页      </a></span>
+            <span><a href="/src/register/login.html">前往登录页面 >>></a></span>
 	    </div>
       </div>
       <last-footer></last-footer>

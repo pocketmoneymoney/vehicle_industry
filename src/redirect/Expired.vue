@@ -1,9 +1,10 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-        <main-nav></main-nav>
         <div class="main clearfix">
 		  <div class="redirect_panel">
           <h2>您的用户登录过期，请重新登录 </h2>

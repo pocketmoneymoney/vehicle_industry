@@ -4,7 +4,7 @@
         <dl>
             <dt>联系我们</dt>
             <dd>
-				<a>关于我们</a>
+				<a href="/src/redirect/introduction.html">关于我们</a>
             </dd>
             <dd>
         		<a>Copyright &copy; 2018 OE Co.Ltd. All rights reserved. </a>
@@ -55,7 +55,7 @@
 .footer_message{
 	float: right;
 	width: 350px;
-	font-size: 12px;
+	font-size: 14px;
 }
 .footer_message label{
 	display: block;
@@ -72,12 +72,12 @@
 .footer_message p {
 	line-height: 20px;
 	display: block;
-  margin: 0;
+  	margin: 0;
 }
 .footer_bottom{
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
-	font-size: 12px;
+	font-size: 14px;
 }
 </style>

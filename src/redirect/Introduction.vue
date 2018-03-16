@@ -1,17 +1,16 @@
 <template>
     <div class="back_wrapper">
-      <top-bar></top-bar>
-      <main-header></main-header>
+      <div class="clearfix topfixed">
+        <top-bar></top-bar>
+        <main-header></main-header>
+      </div>
       <div class="main clearfix">
-        <main-nav></main-nav>
-        <div class="main clearfix">
-		  <div class="redirect_panel">
-          <h2>您的用户登录过期，请重新登录 </h2>
-		  <div>
-            <span><a href="/src/index.html"><<< 返回首页      </a></span>
-            <span><a href="/src/register/login.html">前往登录页面 >>></a></span>
-		  </div>
-          </div>
+        <div class="main clearfix" style="margin-left:250px">
+			<img src="/img/introduction_1.jpg"> </img>
+	  	    <div style="clear:both;"> </div>
+			<img src="/img/introduction_2.jpg"> </img>
+	  	    <div style="clear:both;"> </div>
+			<img src="/img/introduction_3.jpg"> </img>
 	    </div>
       </div>
       <last-footer></last-footer>
