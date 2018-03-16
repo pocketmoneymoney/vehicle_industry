@@ -2,9 +2,9 @@
   <div style="background:#00A6AA;">
     <div class="main contact clearfix">
         <dl>
-            <dt></dt>
+            <dt> </dt> 
             <dd>
-				<a href="/src/redirect/introduction.html">关于我们</a>
+				<a href="/src/redirect/introduction.html">关于我们</a> 
             </dd>
             <dd>
         		<a>Copyright &copy; 2018 OE Co.Ltd. All rights reserved. </a>
@@ -27,21 +27,24 @@
 <style>
 .contact{
 	padding: 25px 0 20px 0;
+	color: #fff;
 }
 .contact dl{
 	float: left;
-	width: 220px;
+	width: 400px;
 	padding-right: 30px;
+	color: #fff;
 }
 .contact dl dt{
 	display: block;
-	width: 190px;
+	width: 10px;
 	height: 26px;
 	font-size: 16px;
-	font-weight: bold
+	font-weight: bold;
+	color: #fff;
 }
 .contact dl dd{
-	width: 190px;
+	width: 350px;
 	font-size: 15px;
 }
 .contact dl dd a{
