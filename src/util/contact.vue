@@ -2,7 +2,7 @@
   <div style="background:#00A6AA;">
     <div class="main contact clearfix">
         <dl>
-            <dt>联系我们</dt>
+            <dt></dt>
             <dd>
 				<a href="/src/redirect/introduction.html">关于我们</a>
             </dd>
@@ -42,7 +42,7 @@
 }
 .contact dl dd{
 	width: 190px;
-	font-size: 12px;
+	font-size: 15px;
 }
 .contact dl dd a{
 	line-height: 26px;
@@ -78,6 +78,6 @@
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
-	font-size: 14px;
+	font-size: 15px;
 }
 </style>

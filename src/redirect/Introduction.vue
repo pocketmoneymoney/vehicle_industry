@@ -5,12 +5,12 @@
         <main-header></main-header>
       </div>
       <div class="main clearfix">
-        <div class="main clearfix" style="margin-left:250px">
-			<img src="/img/introduction_1.jpg"> </img>
+        <div class="main clearfix" style="margin-left:200px">
+			<img src="/img/introduction_1.png" style="width:800px"> </img>
 	  	    <div style="clear:both;"> </div>
-			<img src="/img/introduction_2.jpg"> </img>
+			<img src="/img/introduction_2.png" style="width:800px"> </img>
 	  	    <div style="clear:both;"> </div>
-			<img src="/img/introduction_3.jpg"> </img>
+			<img src="/img/introduction_3.png" style="width:800px"> </img>
 	    </div>
       </div>
       <last-footer></last-footer>
