@@ -102,7 +102,8 @@ dbHandler.prototype.getRecommendedCompany = function(callback) {
 				var supplier = data[index];
 				if (supplier.avatar) {
 					result.push({'avatar': supplier.avatar,
-								 'id': supplier.id});
+								 'id': supplier.id,
+								 'title': supplier.company.name});
 				}
 			}
 			callback(null, result);

@@ -2,7 +2,12 @@
   <div class="banner-padding-top">
     <div class="container-lg">
       <div :id="carouselId">
-        <a v-for='imgPath in imgPaths'><img @click=redirectTo(imgPath) :src="imgPath"></a>
+        <div v-for='imgPath in imgPaths'>
+			<img @click=redirectTo(imgPath) :src="imgPath">
+	  	    <div style="clear:both;"> </div>
+			<a v-if=hasTitle @click=redirectTo(imgPath) style="cursor:pointer">
+			 {{ getTitle(imgPath) }} </a>
+		</div>
       </div>
     </div>
   </div>
@@ -10,7 +15,7 @@
 
 <script>
 export default {
-  props: ['carouselId', 'imgPaths', 'width', 'height', 'imgHrefs'],
+  props: ['carouselId', 'imgPaths', 'width', 'height', 'imgHrefs', 'imgTitle', 'hasTitle'],
   data() {
     return {
     }
@@ -19,29 +24,39 @@ export default {
     this.showCarousel();
   },
   methods: {
+	getTitle: function (imgPath) {
+		if (this.imgTitle && this.imgTitle[imgPath]) {
+			return this.imgTitle[imgPath];
+		} else {
+			return "";
+		}
+	},
 	redirectTo: function (imgPath) {
 		if (this.imgHrefs && this.imgHrefs[imgPath]) {
 			window.location.href = this.imgHrefs[imgPath];
 		}
 	},
     showCarousel: function() {
-      if (this.imgPaths.length === 0) return;
-      $('#' + this.carouselId).bxSlider({
-          auto: true,
-          pause: 3000,
-          autoHover: true,
-          wrapSelector: '.slides-thumbnail',
-      });
+      if (this.imgPaths.length === 0) {
+		return;
+	  }
+
 	  if (this.width) {
 		  $('.container-lg').width(this.width);
 	  }
 	  if (this.height) {
 		  $('#' + this.carouselId + ' img').height(this.height);
 		  $('.banner-padding-top').height(this.height);
-	  }
-    else {
+	  } else {
 		  $('.banner-padding-top').height(320);
-    }
+      }
+
+      $('#' + this.carouselId).bxSlider({
+          auto: true,
+          pause: 3000,
+          autoHover: true,
+          wrapSelector: '.slides-thumbnail',
+      });
     }
   },
   watch: {
@@ -58,7 +73,7 @@ export default {
 <style>
 .banner-padding-top{ float:left; overflow:hidden; }
 .container-lg { width:740px;}
-.container, .container-lg { margin-right: auto;  margin-left: auto;}
+.container, .container-lg { margin-right: auto;  margin-left: 20px;}
 .bx-wrapper { position: relative;}
 #slides-thumbnail>div:first-child{ position:static; clip:auto;}
 #slides-thumbnail>div{position:absolute; clip:rect(0 0 0 0);}

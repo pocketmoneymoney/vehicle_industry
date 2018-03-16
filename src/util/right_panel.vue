@@ -5,13 +5,14 @@
         <span>供应商推荐</span>
     </h3>
 	<supplier-recom style="max-width:150px;max-height:120px;" 
-	 :imgPaths="imgPaths" carouselId="supplier_recom" :imgHrefs="imgHrefs"></supplier-recom>
+	 :imgPaths="imgPaths" carouselId="supplier_recom" :imgHrefs="imgHrefs"
+	 width=150px height=100px :imgTitle="imgTitle" :hasTitle="hasTitle"></supplier-recom>
   </div>
   <div class="right_panel">
     <h3>
         <span>关注OE汽车微信公众号</span>
     </h3>
-	<img style="width:120px;height:120px;" :src="qrcode"/>
+	<img style="width:120px;height:120px;margin-left:20px;" :src="qrcode"/>
   </div>
   </div>
 </template>
@@ -27,7 +28,9 @@ export default {
 	  url: '/src/company/detail/detail.html?id=',
       qrcode: '',
 	  imgPaths: [],
-	  imgHrefs: {}
+	  imgHrefs: {},
+	  imgTitle: {},
+	  hasTitle: true
     }
   },
   computed: {
@@ -49,11 +52,13 @@ export default {
 
 	self.imgPaths = [];
 	self.imgHrefs = {};
+	self.imgTitle = {};
 	get('/api/supplier/recommended', {}, function(data) {
 		if (data.success) {
 		  for (var index = 0; index < data.msg.length; index++) {
 			 self.imgPaths.push(data.msg[index].avatar);
 			 self.imgHrefs[data.msg[index].avatar] = self.url + data.msg[index].id;
+			 self.imgTitle[data.msg[index].avatar] = data.msg[index].title;
 		  }
 		} else {
 		  console.log(data.msg);
