@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  props: ['carouselId', 'imgPaths', 'width', 'height', 'imgHrefs', 'imgTitle', 'hasTitle'],
+  props: ['carouselId', 'imgPaths', 'imgHrefs', 'imgTitle', 'hasTitle'],
   data() {
     return {
     }
@@ -41,16 +41,6 @@ export default {
 		return;
 	  }
 
-	  if (this.width) {
-		  $('.container-lg').width(this.width);
-	  }
-	  if (this.height) {
-		  $('#' + this.carouselId + ' img').height(this.height);
-		  $('.banner-padding-top').height(this.height);
-	  } else {
-		  $('.banner-padding-top').height(320);
-      }
-
       $('#' + this.carouselId).bxSlider({
           auto: true,
           pause: 3000,
@@ -71,9 +61,21 @@ export default {
 </script>
 
 <style>
-.banner-padding-top{ float:left; overflow:hidden; }
-.container-lg { width:740px;}
-.container, .container-lg { margin-right: auto;  margin-left: 20px;}
+.banner-padding-top { 
+	float:left; 
+	overflow:hidden; 
+	height:130px;
+}
+.container-lg { 
+	width:150px;
+	height:120px;
+}
+.container-lg img{ 
+	max-width:160px;
+	max-height:100px;
+}
+
+
 .bx-wrapper { position: relative;}
 #slides-thumbnail>div:first-child{ position:static; clip:auto;}
 #slides-thumbnail>div{position:absolute; clip:rect(0 0 0 0);}

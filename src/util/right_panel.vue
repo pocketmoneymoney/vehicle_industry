@@ -6,7 +6,7 @@
     </h3>
 	<supplier-recom style="max-width:150px;max-height:120px;" 
 	 :imgPaths="imgPaths" carouselId="supplier_recom" :imgHrefs="imgHrefs"
-	 width=150px height=100px :imgTitle="imgTitle" :hasTitle="hasTitle"></supplier-recom>
+	 :imgTitle="imgTitle" :hasTitle="hasTitle"></supplier-recom>
   </div>
   <div class="right_panel">
     <h3>

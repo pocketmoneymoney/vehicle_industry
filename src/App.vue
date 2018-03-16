@@ -8,7 +8,7 @@
         <left-nav @viewchange="viewChange"></left-nav>
         <div class="main_right">
           <latest-activity carouselId="latest-activity-poster" :imgPaths="imgPaths"
-			:imgHrefs="imgHrefs" width=720px height=330px> </latest-activity>
+			:imgHrefs="imgHrefs"> </latest-activity>
         </div>
 		<right-panel></right-panel>
           <latest-purchase></latest-purchase>
