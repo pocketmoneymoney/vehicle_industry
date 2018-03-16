@@ -30,7 +30,7 @@ import LatestPurchase from './util/latest_purchase.vue'
 import LatestEvent from './util/latest_event.vue'
 import LatestPosition from './util/latest_position.vue'
 
-import LatestActivity from './util/carousel.vue'
+import LatestActivity from './util/carousel2.vue'
 
 export default {
   data: function() {
