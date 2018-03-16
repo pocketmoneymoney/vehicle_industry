@@ -10,7 +10,8 @@
             <ul class="product_list">
                 <li v-for="purchase in purchases">
                    <div class="product_list_left">
-                       <h4><a :href="enrollUrl + purchase.id">{{ purchase.name }}</a></h4>
+                       <h4><a :href="enrollUrl + purchase.id">{{ purchase.company }}</a></h4>
+					   <h5>[发布人] {{purchase.name}}</h5>
 					   <h5>[ {{purchase.type}}] {{purchase.productName}}</h5>
                        <em><span>尺寸/重量/材质/制造工艺: {{purchase.material}} </span> </em>
                        <em><span>年采购量/采购金额: {{purchase.amount}} </span> </em>

@@ -13,7 +13,11 @@
 		  <div class="info_panel3">
 	      <div style="clear:both;"> </div>
           <dl>
-              <dt><span>姓名/公司名称：</span></dt>
+              <dt><span>公司名称：</span></dt>
+              <dd> <span>{{purchase.company}} </span> </dd>
+          </dl>
+          <dl>
+              <dt><span>姓名：</span></dt>
               <dd> <span>{{purchase.name}} </span> </dd>
           </dl>
           <dl>

@@ -135,6 +135,7 @@ module.exports = function(express) {
 	router.post('/', upload.single('picture'), function (req, res, next) {
 		var basic = {
 			'name': req.body.name,
+			'company': req.body.company,
 			'phone': req.body.phone,
 			'email': req.body.email,
 			'productName': req.body.productName,

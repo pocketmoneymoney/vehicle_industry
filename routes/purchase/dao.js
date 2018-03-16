@@ -9,6 +9,7 @@ function dbHandler() {
      db.handler.call(this, {
 		'id':			{ type:String, unique:true, required:true },
 		'name':			String,
+		'company':		String,
 		'phone':		String,
 		'email':		String,
 		'productName':	String,
@@ -47,6 +48,7 @@ dbHandler.prototype.addPurchase = function(basic, detail, publisher, picture, ca
 	this.create({
 		'id': id,
 		'name': basic.name,
+		'company': basic.company,
 		'phone': basic.phone,
 		'email': basic.email,
 		'productName': basic.productName,
@@ -102,6 +104,7 @@ dbHandler.prototype.getMyPurchaseList = function(page, num, id, callback) {
 dbHandler.prototype.modifyPurchase = function(id, basic, detail, picture, callback) {
 	var fields = {
 		'name': basic.name,
+		'company': basic.company,
 		'phone': basic.phone,
 		'email': basic.email,
 		'productName': basic.productName,

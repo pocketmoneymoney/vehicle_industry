@@ -78,6 +78,7 @@ export default {
       newPurchase: function() {
         var oMyForm = new FormData();
         oMyForm.append("name", this.newPurchaseBasicInfo.name);
+        oMyForm.append("company", this.newPurchaseBasicInfo.company);
 
         oMyForm.append("phone", this.newPurchaseBasicInfo.phone);
         oMyForm.append("email", this.newPurchaseBasicInfo.email);

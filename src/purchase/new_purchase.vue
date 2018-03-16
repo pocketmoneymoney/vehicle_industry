@@ -7,7 +7,16 @@
     <div class="new_purchase clearfix">
     <div class="formbox2 clearfix">
           <dl class="clearfix">
-              <dt><b>*</b><span>姓名/公司名称：</span></dt>
+              <dt><b>*</b><span>公司名称：</span></dt>
+	      	  <div style="clear:both;"> </div>
+              <dd>
+                  <input v-model="company" class="text" style="z-index: 10000" maxlength="20"
+                      type="text" />
+              </dd>
+	      	  <div style="clear:both;"> </div>
+          </dl>
+          <dl class="clearfix">
+              <dt><b>*</b><span>发布人姓名：</span></dt>
 	      	  <div style="clear:both;"> </div>
               <dd>
                   <input v-model="name" class="text" style="z-index: 10000" maxlength="20"
@@ -74,6 +83,7 @@ export default {
   props: ['person'],
   data() {
     return {
+	  company: '',
 	  name: '',
 	  phone: '',
 	  email: '',
@@ -85,18 +95,20 @@ export default {
   },
   methods: {
     newPurchase: function() {
+	  var company = trimStr(this.company);
 	  var name = trimStr(this.name);
 	  var phone = trimStr(this.phone);
 	  var email = trimStr(this.email);
 	  var product = trimStr(this.product);
 
       if (name === '' || phone === '' || product === '' || email == '' ||
-	    this.type === '' || this.detailType === []) {
+	    this.type === '' || this.detailType === [] || company === '') {
         alert('请填写完整资料');
         return;
       }
 		
       var basic = {
+		company: company,
 		name: name, 
 		phone: phone, 
 		email: email,
