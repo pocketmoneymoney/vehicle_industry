@@ -6,6 +6,24 @@
 	
   	  <div style="clear:both;"> </div>
 	  <a class="title_bar_info"> 若您需要发布活动信息，请发送至oe@oeqiche.com</a>	
+  
+  	  <div style="clear:both;"> </div>
+	  <div class="right_panel" style="background:#f9f9f8">
+		<img src="/img/activity_ad.jpg"
+		 style="width:250px; height:90px; margin-top:20px"> </img>
+	  </div>	
+
+  	  <div style="clear:both;"> </div>
+	  <div class="right_panel" style="background:#f9f9f8">
+		<img src="/img/activity_ad.jpg"
+		 style="width:250px; height:90px; margin-top:20px"> </img>
+	  </div>	
+
+  	  <div style="clear:both;"> </div>
+	  <div class="right_panel" style="background:#f9f9f8">
+		<img src="/img/activity_ad.jpg"
+		 style="width:250px; height:90px; margin-top:20px"> </img>
+	  </div>	
 	</div>
 </template>
 

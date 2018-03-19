@@ -15,6 +15,22 @@
           <latest-event></latest-event>
           <latest-position></latest-position>
       </div>
+	  <div style="clear:both;"> </div>
+      <div class="main clearfix">
+	  	<div class="supplier_panel clearfix">
+    		<h3>
+        		<span>合作供应商推荐</span>
+    		</h3>
+      			<ul v-for="element in listElement">
+					<li>
+						<img src="/img/cooperator_ad.jpg"> </img>
+					</li>
+				</ul>
+			<div>
+			</div>
+	  	</div>
+	  </div>
+	  <div style="clear:both;"> </div>
       <last-footer></last-footer>
     </div>
 </template>
@@ -38,6 +54,7 @@ export default {
       viewName: "index",
 	  activityUrl: '/src/activity/enroll.html?tp=meeting&id=',
       imgPaths: [],
+	  listElement: [1,2,3,4,5,6,7,8],
 	  imgHrefs: {}
     }
   },
@@ -78,5 +95,41 @@ export default {
 	width: 740px;
 	height: 330px;
 	padding: 0px 0px 10px 10px;
+}
+
+.supplier_panel{
+	width: 1200px;
+	height: 350px;
+	border: 1px solid #e5e5e5;
+	background: #fff;
+	padding: 19px 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.supplier_panel img{
+	width: 230px;
+	height: 90px;
+}
+
+.supplier_panel ul{
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: 20px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.supplier_panel ul li{
+  float: left;
+  border: 2px solid #f0f0f0;
+  width: 260px;
+  height:120px;
+  margin-left:10px;
+  margin-right:10px;
+  margin-bottom:10px;
+  padding-top:10px;
+  padding-left:10px;
+  padding-right:10px;
 }
 </style>

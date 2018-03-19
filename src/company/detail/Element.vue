@@ -37,23 +37,13 @@
 }
 
 .product_list img{
-  float: right;
+  	float: right;
 	margin:0 auto 5px auto;
 	border:1px solid #e5e5e5;
 	width: 112px;
 	height: 112px;
 }
 .product_list div h3 {
-  /*
-  float:left;
-  font-size: 32px;
-  font-weight: normal;
-  margin-bottom: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 15px;
-  border-left: 6px solid #3d9ccc;
-  */
   color: #fff;
   margin: 0 0 10px 0;
   height: 40px;
