@@ -19,7 +19,7 @@
       <div class="main clearfix">
 	  	<div class="supplier_panel clearfix">
     		<h3>
-        		<span>合作供应商推荐</span>
+        		<span>优质供应商推荐</span>
     		</h3>
       			<ul v-for="element in listElement">
 					<li>
