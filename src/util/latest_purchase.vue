@@ -28,7 +28,7 @@ export default {
 		  self.components.push({
 			'url': self.detailUrl + purchase.id,
 			'title': purchase.productName,
-			'content': purchase.name
+			'content': purchase.company
 		  });
 		}
 	   } 
