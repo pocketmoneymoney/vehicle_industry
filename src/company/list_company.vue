@@ -47,7 +47,7 @@
                 </div>
                 <div class="company_list_left">
                    	<p>
-                   	    <img width="110px" :src='company.avatar' />
+                   	    <img :src='company.avatar' />
                    	</p>
 	  				<div style="clear:both;"> </div>
             		<a :href="detailUrl + company.id" class="contact_btn">更多详情</a>
@@ -120,20 +120,19 @@
 }
 .company_list_left{
 	float:right;
-	width: 200px;
-	height: 165px;
+	width: 250px;
+	height: 130px;
 }
 .company_list_left p{
 	float: right;
-	width: 120px;
-	margin-right: 10px;
+	width: 240px;
 }
-.company_list_left img{
+.company_list_left p img{
 	display: block;
 	margin:0 auto 5px auto;
 	border:1px solid #e5e5e5;
-	width: 112px;
-	height: 112px;
+	max-width: 230px;
+	max-height: 100px;
 }
 .company_list_left em{
 	display: block;

@@ -8,10 +8,10 @@
         <h1>{{ company.name }}</h1>
 	  </div>
       <div style="float:right;">
-        <img stype="max-width:200px; max-height:100px;" :src="avatar"/>
+        <img :src="avatar"/>
 	    <div style="clear:both;"> </div>
         <div v-if="isOwner" style="float:right">
-	  	<a @click="deleteLogo" style="margin-left:10px;cursor:pointer;">删除</a>
+	  	  <a @click="deleteLogo" style="margin-left:10px;cursor:pointer;">删除</a>
 	    </div>
 	  </div>
 	  <div style="clear:both;"> </div>
@@ -154,6 +154,13 @@
 .company_panel_content {
   padding: 0 20px 20px 20px;
 }
+.company_panel_content div img{
+	display: block;
+	margin:0 auto 5px auto;
+	max-width:230px;
+	max-height:100px;
+}
+
 .company_contact span {
   width: 856px;
   float: left;
