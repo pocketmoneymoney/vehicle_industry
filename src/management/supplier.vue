@@ -130,7 +130,7 @@ export default {
   mounted: function() {
     var self = this;
     this.table = $('#userlist').DataTable();
-    get('/api/supplier/privilege?page=0&num=100', {}, function (data) {
+    get('/api/supplier/privilege?page=0&num=10000', {}, function (data) {
 	  if (data.success) {
         self.users = data.msg;
         self.reload();

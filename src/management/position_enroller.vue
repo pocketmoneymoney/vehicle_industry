@@ -46,7 +46,7 @@ export default {
 
     post('/user/book', {}, function(data) {
 	  if ((data.username) && (data.id == publisherID)) {
-		self.getUrl = '/api/position/list_apply?page=0&num=100&id=' + publisherID;
+		self.getUrl = '/api/position/list_apply?page=0&num=10000&id=' + publisherID;
 	    get(self.getUrl, {}, function(data) {
   	  	  self.positions = retriveData(data);
           self.reload();

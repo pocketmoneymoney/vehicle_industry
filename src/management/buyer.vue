@@ -62,7 +62,7 @@ export default {
   mounted: function() {
     var self = this;
     this.table = $('#buyerlist').DataTable();
-    get('/api/buyer/list?page=0&num=100', {}, function (data) {
+    get('/api/buyer/list?page=0&num=10000', {}, function (data) {
 	  if (data.success) {
         self.users = data.msg;
         self.reload();

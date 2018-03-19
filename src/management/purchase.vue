@@ -80,9 +80,9 @@ export default {
 
     post('/user/book', {}, function(data) {
       if ((data.username) && (data.role == 'admin')) {
-		self.getUrl = '/api/purchase/list?page=0&num=100';
+		self.getUrl = '/api/purchase/list?page=0&num=10000';
 	  } else if ((data.username) && (data.id == publisherID)) {
-		self.getUrl = '/api/purchase/list?page=0&num=100&id=' + publisherID;
+		self.getUrl = '/api/purchase/list?page=0&num=10000&id=' + publisherID;
 	  } else {
         window.location.href = '/src/redirect/expired.html';
 		return;

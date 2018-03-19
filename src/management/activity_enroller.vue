@@ -46,7 +46,7 @@ export default {
 
     post('/user/book', {}, function(data) {
 	  if ((data.username) && (data.id == publisherID)) {
-		self.getUrl = '/api/activity/list_apply?page=0&num=100&id=' + publisherID;
+		self.getUrl = '/api/activity/list_apply?page=0&num=10000&id=' + publisherID;
 	    get(self.getUrl, {}, function(data) {
   	  	  self.activities = retriveData(data);
           for (let index in self.activities) {

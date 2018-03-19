@@ -77,7 +77,7 @@ export default {
   mounted: function() {
       var self = this;
       this.table = $('#activitylist').DataTable();
-      get('/api/activity/all?page=0&num=100', {}, function(data) {
+      get('/api/activity/all?page=0&num=10000', {}, function(data) {
 		if (data.success) {
           self.activities = data.msg;
           for (let index in self.activities) {

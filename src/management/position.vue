@@ -77,7 +77,7 @@ export default {
     this.table = $('#positionlist').DataTable();
 
 	var self = this;
-    get('/api/position/list?page=0&num=100', {}, function(data) {
+    get('/api/position/list?page=0&num=10000', {}, function(data) {
 	  if (data.success) {
   		self.positions = data.msg;
       self.reload();
