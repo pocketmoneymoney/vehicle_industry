@@ -80,6 +80,9 @@ export default {
 	display:block; 
 	width:100%; 
 	height:220px;
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .activity_panel p.title{  

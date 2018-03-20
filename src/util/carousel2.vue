@@ -58,11 +58,11 @@ export default {
 	margin-left:20px;
 }
 .container-lg2 { 
-	width:700px;
+	width:720px;
 	height:330px;
 }
 .container-lg2 img{ 
-	max-width:680px;
+	max-width:700px;
 	max-height:330px;
 }
 

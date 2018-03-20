@@ -54,7 +54,7 @@
 			  </dd>
           </dl>
 		  </div>
-		  <div v-if="isUser" class="info_panel3">
+		  <div v-if="isUser">
 		  <div class="title_bar" style="width:850px"> 
             <a class="title_bar_a">我要报名</a>
 		  </div> 

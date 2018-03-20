@@ -11,9 +11,9 @@
 			:imgHrefs="imgHrefs"> </latest-activity>
         </div>
 		<right-panel></right-panel>
-          <latest-purchase></latest-purchase>
-          <latest-event></latest-event>
-          <latest-position></latest-position>
+        <latest-purchase></latest-purchase>
+        <latest-event></latest-event>
+        <latest-position></latest-position>
       </div>
 	  <div style="clear:both;"> </div>
       <div class="main clearfix">
@@ -92,7 +92,7 @@ export default {
 
 .main_right{
 	float: left;
-	width: 740px;
+	width: 760px;
 	height: 330px;
 	padding: 0px 0px 10px 10px;
 }

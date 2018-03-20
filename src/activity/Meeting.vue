@@ -5,12 +5,10 @@
         <main-header currentView="activity"></main-header>
       </div>
       <div class="main clearfix">
-        <!--main-nav :currentView="viewName"></main-nav-->
         <div>
 		  <div class="main_right">
 		  <a style="cursor:pointer;" @click="enroll(latestMeeting)">
-			<img style="width:850px; height:430px; margin-left:30px; float:left;" 
-				 :src="latestMeeting.bigPoster" />
+			<img :src="latestMeeting.bigPoster" />
 		  </a>
 	      <div style="clear:both;"> </div>
 		  <div class="new_meetings">
@@ -86,14 +84,13 @@ export default {
 	padding: 0px 12px 10px 10px;
 }
 
-h3{
-	height: 14px;
-	line-height: 14px;
-	font-size: 14px;
-	color: #333333;
-  margin: 0;
-  font-weight: bold;
+.main_right a img{
+	width:880px;
+	height:430px;
+	margin-left:15px;
+	float:left;
 }
+
 .new_meetings {
 	padding-top: 20px;
 	float: left;

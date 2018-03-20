@@ -1,19 +1,19 @@
 <template>
   <div>
-  <div class="right_panel">
-    <h3>
+  	<div class="right_panel">
+      <h3>
         <span>供应商推荐</span>
-    </h3>
-	<supplier-recom style="max-width:150px;max-height:120px;" 
-	 :imgPaths="imgPaths" carouselId="supplier_recom" :imgHrefs="imgHrefs"
-	 :imgTitle="imgTitle" :hasTitle="hasTitle"></supplier-recom>
-  </div>
-  <div class="right_panel">
-    <h3>
+      </h3>
+	  <supplier-recom
+	   :imgPaths="imgPaths" carouselId="supplier_recom" :imgHrefs="imgHrefs"
+	   :imgTitle="imgTitle" :hasTitle="hasTitle"></supplier-recom>
+    </div>
+    <div class="right_panel">
+      <h3>
         <span>关注OE汽车微信公众号</span>
-    </h3>
-	<img style="width:120px;height:120px;margin-left:20px;" :src="qrcode"/>
-  </div>
+      </h3>
+	  <img :src="qrcode"/>
+    </div>
   </div>
 </template>
 
@@ -70,15 +70,9 @@ export default {
 </script>
 
 <style scoped>
-.right_panel_nav {
-	float: right;
-	width: 200px;
-    height: 400px;
-}
-
 .right_panel{
 	float: right;
-	width: 200px;
+	width: 180px;
     height: 160px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
@@ -88,12 +82,19 @@ export default {
 }
 .right_panel h3 span{
 	float: left;
+	padding-left:10px;
 }
 .right_panel h3 a{
 	color: #999999;
 	font-size: 12px;
 	float: right;
 	font-weight: normal;
+	padding-left:10px;
+}
+.right_panel img{
+	width:120px;
+	height:120px;
+	margin-left:20px;
 }
 
 </style>

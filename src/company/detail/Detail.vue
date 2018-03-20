@@ -32,6 +32,7 @@
     <div><a v-if="isOwner" :href="editBriefURL" style="float:right;">修改</a></div>
   </div>
   </div>
+  <div class="fixed_right_panel">
   <div class="company_right_panel clearfix">
     <h4>公司信息</h4>
     <ul>
@@ -58,6 +59,7 @@
       <span>公司主页：{{ company.link }}</span>
       <span>公司地址：{{ company.address }}</span>
   </div>
+  </div>
   <list-element type="product" :listElement="products" :isOwner="isOwner"		
 				:isVerified="isVerified"></list-element>
   <list-element type="equipment" :listElement="equipments" :isOwner="isOwner"
@@ -77,11 +79,15 @@
 	background: #fff;
 }
 
+.fixed_right_panel{
+	position:fixed;
+	margin-left: 920px;
+}
+
 .company_right_panel{
-	width: 278px;
+	width: 280px;
 	border: 1px solid #00a6aa;
 	background: #fff;
-	float: right;
 	margin-bottom: 15px;
 }
 
@@ -125,7 +131,7 @@
 	display: inline-block;
 	font-size: 13px;
 	line-height: 26px;
-	margin-top: 30px;
+	margin: 20px 10px 10px 10px;
   	border-radius:0.2em; 
   	text-align:center;
   	background:#3d9ccc; 
@@ -157,7 +163,7 @@
 .company_panel_content div img{
 	display: block;
 	margin:0 auto 5px auto;
-	max-width:230px;
+	max-width:250px;
 	max-height:100px;
 }
 

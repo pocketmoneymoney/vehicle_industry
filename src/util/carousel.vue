@@ -67,14 +67,14 @@ export default {
 	height:130px;
 }
 .container-lg { 
-	width:150px;
+	width:160px;
 	height:120px;
+	margin-left:10px;
 }
-.container-lg img{ 
-	max-width:160px;
+.container-lg div img{ 
+	max-width:150px;
 	max-height:100px;
 }
-
 
 .bx-wrapper { position: relative;}
 #slides-thumbnail>div:first-child{ position:static; clip:auto;}
