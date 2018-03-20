@@ -107,12 +107,18 @@ export default {
     return {
 	  company: {},
 	  id: '',
-    isVerified: false
+	  username: '',
+	  isNewCompany: false,
+      isVerified: false
     }
   },
   methods: {
     cancelUpdate: function() {
-      window.location.href = '/src/company/detail/detail.html?id='+this.id;
+      if (self.isNewCompany) {
+      	window.location.href = '/src/management/index.html';
+	  } else {
+      	window.location.href = '/src/company/detail/detail.html?id='+this.id;
+	  }
     },
     updateCompany: function() {
       if (this.companyName === '' || this.product === '' || this.customer === '') {
@@ -166,14 +172,21 @@ export default {
 	  if (this.$refs.companyPosterfile) {
         oMyForm.append("poster", this.$refs.companyPosterfile.files[0]);
 	  }
-
+	  
+	  if (this.isNewCompany) {
+        oMyForm.append("owner", this.username);
+	  }
       var self = this;
       postWithFile('/api/supplier/company/'+self.id, oMyForm, function(data) {
 		if (!data.success) {
 		  console.log(data);
 		}
-        window.location.href = '/src/company/detail/detail.html?id=' + self.id;
-      }, false);
+		if (self.isNewCompany) {
+          window.location.href = '/src/management/index.html';
+		} else {
+          window.location.href = '/src/company/detail/detail.html?id=' + self.id;
+		}
+      }, true);
     }
   },
   mounted: function() {
@@ -181,16 +194,20 @@ export default {
 	var pageHostID = getUrlKey('id');
     verifyToken(function (data) {
       if (((data.id == pageHostID) && (data.role == 'supplier')) ||
-	      (data.role == 'admin')) {
+	      ((pageHostID != null) && (data.role == 'admin'))) {
         get('/api/supplier/company/' + pageHostID, {}, function(data) {
           if (data.success) {
 		    self.company = data.msg;
 		    self.id = pageHostID;
-        self.isVerified = self.company.privilege.verified;
+        	self.isVerified = self.company.privilege.verified;
 		  } else {
 			console.log(data.msg);
 		  }
-		  }, false);
+		}, false);
+	  } else if (data.role == 'admin' && pageHostID == null) {
+		self.isNewCompany = true;
+		self.id = 0;
+		self.username = data.username;
 	  } else {
         window.location.href = '/src/redirect/not_authorized.html';
 	  }

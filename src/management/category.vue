@@ -1,8 +1,8 @@
 <template>
     <div>
+        <h3 class="h3_datatable_list">【目录分类列表】</h3>
         <span><a class="admin_add" @click="editCategory({})">添加新条目</a></span>
 	    <div style="clear:both;"> </div>
-        <h3>目录分类列表</h3>
         <table id="datalist">
           <thead>
              <tr>

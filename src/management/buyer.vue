@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h3>公司列表</h3>
+        <h3 class="h3_datatable_list">【采购商列表】</h3>
+	    <div style="clear:both;"> </div>
         <table id="buyerlist">
           <thead>
              <tr>

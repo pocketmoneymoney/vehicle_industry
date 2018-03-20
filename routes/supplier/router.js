@@ -192,8 +192,9 @@ module.exports = function(express) {
 		var operator    = req.body.operator;
 		var assets      = req.body.assets;
 		var avatar		= undefined;
-		var poster    = undefined;
+		var poster    	= undefined;
 		var id			= req.params.id;
+		var owner		= req.body.owner;
 
 	  	if ((req.files.poster) && (req.files.poster[0])) {
       		var posterFile = req.files.poster[0];
@@ -205,7 +206,7 @@ module.exports = function(express) {
 	  		avatar = '/' + path.join(avatarFile.destination, avatarFile.filename);
 	  	}
       
-		dao.modifyCompanyInfo(id, name, product, customer, brief, location, market, 
+		dao.modifyCompanyInfo(id, owner, name, product, customer, brief, location, market, 
   		    officalContact, officalPhone, officalEmail, link, address,
 			createTime, operator, assets, avatar, poster, function (err) {
 			if (err) {

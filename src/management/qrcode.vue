@@ -1,14 +1,16 @@
 <template>
     <div>
       <div class="list_panel" >
-        <h3>二维码</h3>
-		<img style="max-width:100px; max-height:100px;" :src="qrcode"/>
+        <h3 class="h3_datatable_list">【二维码】</h3>
+	    <div style="clear:both;"> </div>
+		<img style="max-width:300px; max-height:300px;" :src="qrcode"/>
       </div>
       <div class="list_panel" >
-        <h3>更新二维码</h3>
+        <h3 class="h3_datatable_list">【更新二维码】</h3>
+	    <div style="clear:both;"> </div>
         <div> 
             <input ref="file" type="file" name="qrcode" style="z-index:10000">
-            <span class="span01" style="float:right;"><a @click="updateQRCode">更新</a></span>
+            <span><a class="admin_add" @click="updateQRCode">更新</a></span>
         </div>
       </div>
     </div>
@@ -57,18 +59,17 @@ export default {
 <style>
 
 .list_panel{
-	width: 698px;
+	float: left;
+	width: 700px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
-	float: left;
-	padding: 19px 20px;
-	margin-bottom: 8px;
+	margin-bottom: 10px;
 }
-.list_panel h3 span{
-	float: left;
-	padding-left: 15px;
-	border-left: 6px solid #3d9ccc;
+.list_panel div span{
+	float: right;
+	padding-right: 30px;
     margin-bottom: 10px;
+	font-size:16px;
 }
 .list_panel h3 a{
 	color: #999999;

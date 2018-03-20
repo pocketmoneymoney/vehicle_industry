@@ -3,6 +3,7 @@
 
 var mongoose = require('mongoose');
 var db = require('../common/db');
+var helper = require('../common/helper');
 
 function dbHandler() {
      db.handler.call(this, {
@@ -39,9 +40,9 @@ function dbHandler() {
 		},
 		'product': 			{ type:Array, default:[] },
 		'equipment': 		{ type:Array, default:[] },
-		'certification':	{ type:Array, default:{} },
+		'certification':	{ type:Array, default:[] },
 		'avatar':			String,
-    'poster':     String
+    	'poster':     String
 	}, 'supplier', 'supplier');
 }
 
@@ -138,7 +139,7 @@ dbHandler.prototype.modifyPrivilegeInfo = function (id, verified, advertise,
 
 
 dbHandler.prototype.modifyCompanyInfo = function (
-  id, name, product, customer, brief, location, market, 
+  id, owner, name, product, customer, brief, location, market, 
   officalContact, officalPhone, officalEmail, link, address,
   createTime, operator, assets, avatar, poster, callback) {
 	var fields = {'company':
@@ -163,6 +164,14 @@ dbHandler.prototype.modifyCompanyInfo = function (
 
 	if (poster) {
 		fields['poster'] = poster;
+	}
+
+	if (id == 0) {
+		id = helper.uniqueID(name);
+		fields['owner'] = owner;
+		fields['product'] = [];
+		fields['equipment'] = [];
+		fields['certification'] = [];
 	}
 
 	this.update({'id':id}, {$set: fields}, {upsert:true}, callback);

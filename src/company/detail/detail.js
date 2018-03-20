@@ -59,10 +59,6 @@ export default {
           if (self.poster !== undefined && self.poster !== '' && self.isVerified) {
             self.hasPoster = true;
           }
-          /*
-   self.hasPoster = true;
-   self.poster = '/img/1.jpg';
-   */
 
 		  /* Load product list */
 		  if (data.msg.product instanceof Array) {
@@ -89,7 +85,6 @@ export default {
 		  } else {
 			console.log("Failed to get array equipment", data.msg.equipment);
 		  }
-
 		  /* Load certification list */
 		  if (data.msg.certification instanceof Array) {
 			data.msg.certification.forEach(function(certificationID) {

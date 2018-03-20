@@ -1,6 +1,8 @@
 <template>
     <div>
-        <h3>供应商列表</h3>
+        <h3 class="h3_datatable_list">【供应商列表】</h3>
+        <span><a class="admin_add" @click="addCompany()">添加公司</a></span>
+	    <div style="clear:both;"> </div>
         <table id="userlist">
           <thead>
              <tr>
@@ -62,6 +64,9 @@ export default {
     }
   },
   methods: {
+	addCompany: function() {
+		window.location.href = '/src/company/detail/edit_brief.html';
+	},
     redirectToCompany: function(user) {
 	  var companyURL = '/src/company/detail/detail.html?id=' + user.id;
       window.location.href = companyURL;
