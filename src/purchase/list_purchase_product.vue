@@ -52,7 +52,7 @@
 
 .middle_list_content{
 	background: #fff;
-	padding: 20px;
+	padding: 10px;
 }
 
 .product_content_title{
@@ -62,7 +62,7 @@
 }
 .product_list li{
 	border-bottom: 1px dashed #e5e5e5;
-	padding: 20px 0;
+	padding: 10px 0;
 	overflow: hidden;
 }
 .product_list_left{
