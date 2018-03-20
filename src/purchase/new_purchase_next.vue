@@ -47,7 +47,7 @@
               <dt><span>上传产品相关图片：</span></dt>
 	      	  <div style="clear:both;"> </div>
               <dd>
-                  <input type="file" ref="productImg" /> 
+                  <input type="file" ref="productImg" multiple/> 
               </dd>
 	      	  <div style="clear:both;"> </div>
           </dl>
@@ -94,8 +94,8 @@ export default {
         oMyForm.append("personID", this.person.id);
         oMyForm.append("personRole", this.person.role);
 
-		if (this.$refs.productImg.files[0]) {
-          oMyForm.append("picture", this.$refs.productImg.files[0]);
+		for (var index = 0; index < this.$refs.productImg.files.length; index++) {
+          oMyForm.append("picture", this.$refs.productImg.files[index]);
 		}
 
 		postWithFile('/api/purchase', oMyForm, function(data) {

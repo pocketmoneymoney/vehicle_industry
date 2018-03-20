@@ -132,7 +132,7 @@ module.exports = function(express) {
          });
 	});
 
-	router.post('/', upload.single('picture'), function (req, res, next) {
+	router.post('/', upload.array('picture'), function (req, res, next) {
 		var basic = {
 			'name': req.body.name,
 			'company': req.body.company,
@@ -155,8 +155,13 @@ module.exports = function(express) {
 		var id = req.body.id;
 		var picture = undefined;
 		
-		if (req.file) {
-			picture = '/' + path.join(req.file.destination, req.file.filename);
+		if (req.files) {
+			picture = [];
+			for (var index = 0; index < req.files.length; index++) {
+				var inputfile = req.files[index];
+				var uploadpath = '/' + path.join(inputfile.destination, inputfile.filename);
+				picture.push(uploadpath);
+			}
 		}
 
 		if (id) {	

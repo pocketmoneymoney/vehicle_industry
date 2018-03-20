@@ -50,7 +50,12 @@
           </dl>
           <dl>
               <dt><span>产品相关图片:</span></dt>
-              <dd> <img :src="purchase.picture" style="width:150px; height:150px;"> </dd>
+              <dd>
+				<span v-for="pic in purchase.picture"> 
+					<img :src="pic" style="max-width:400px; max-height:400px; 
+						margin-bottom:20px; margin-left:10px; margin-right:10px;"> 
+	      			<div style="clear:both;"> </div>
+				</span>
 			  </dd>
           </dl>
 		  </div>

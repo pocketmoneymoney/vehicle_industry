@@ -21,7 +21,7 @@ function dbHandler() {
 		'supplier':  	String,
 		'publisherID':	String,
 		'publisherRole':String,
-		'picture':			String,
+		'picture':		Array,
 		'createTime':		Date,
 		'apply':			Array
 	}, 'purchase', 'purchase');
