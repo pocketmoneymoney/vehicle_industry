@@ -36,7 +36,6 @@
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	float: left;
-	padding: 19px 20px;
 	margin-bottom: 8px;
 }
 .list_purchase_product h3 span{
