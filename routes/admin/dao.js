@@ -11,6 +11,7 @@ function dbHandler() {
 		'qrcode': 		{ type:String, default: ''},
 		'logo': 		{ type:String, default: ''},
 		'advertise': 	{ type:Array, default: []},
+		'superior': 	{ type:Array, default: []},
 		'category': 	{ type:Schema.Types.Mixed, default: {}}
 	}, 'admin', 'admin');
 }
@@ -308,21 +309,35 @@ dbHandler.prototype.getLogo = function (callback) {
 	});
 };
 
-dbHandler.prototype.addAdvertise = function(ad, callback) {
+dbHandler.prototype.setDefaultAdvertise = function(callback) {
+	this.update({}, {$set: {'advertise': [
+		{'path': '/img/activity_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("activity_1")},
+		{'path': '/img/activity_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("activity_2")},
+		{'path': '/img/activity_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("activity_3")}]}}, callback);
+};
+
+dbHandler.prototype.modifyAdvertise = function(id, name, link, adPath, callback) {
 	var self = this;
-	self.findOne({}, function (err, data) {
+	this.findOne({}, function (err, data) {
 	 	if (err || !data) {
 			callback(err);
 		} else {
 			var ads = data['advertise'];
-
-			if (ads) {
-				ads.push(ad);
-			} else {
-				ads = [ad];
+			for (var index = 0; index < ads.length; index++) {
+				var advertise = ads[index];
+				if (advertise.id == id) {
+					advertise.name = name;
+					advertise.link = link;
+					if (adPath) {
+						advertise.path = adPath;
+					}
+					break;
+				}
 			}
-			self.update({}, {$set: {'advertise':ads}},
-						{upsert:true}, callback);
+			self.update({}, {$set:{'advertise':ads}}, callback);
 		}
 	});
 };
@@ -333,6 +348,59 @@ dbHandler.prototype.getAdvertise = function (callback) {
 			callback(err);
 		} else {
 			callback(null, data['advertise']);
+		}
+	});
+};
+
+dbHandler.prototype.setDefaultSuperior = function(callback) {
+	this.update({}, {$set: {'superior': [
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("superior_1")},
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("superior_2")},
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("superior_3")},
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("superior_4")},
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("superior_5")},
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("superior_6")},
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("superior_7")},
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		 'id': helper.uniqueID("superior_8")}]}}, callback);
+};
+
+dbHandler.prototype.modifySuperior = function(id, name, link, adPath, callback) {
+	var self = this;
+	this.findOne({}, function (err, data) {
+	 	if (err || !data) {
+			callback(err);
+		} else {
+			var ads = data['superior'];
+			for (var index = 0; index < ads.length; index++) {
+				var superior = ads[index];
+				if (superior.id == id) {
+					superior.name = name;
+					superior.link = link;
+					if (adPath) {
+						superior.path = adPath;
+					}
+					break;
+				}
+			}
+			self.update({}, {$set:{'superior':ads}}, callback);
+		}
+	});
+};
+
+dbHandler.prototype.getSuperior = function (callback) {
+    this.findOne({}, function (err, data) {
+	 	if (err || !data) {
+			callback(err);
+		} else {
+			callback(null, data['superior']);
 		}
 	});
 };

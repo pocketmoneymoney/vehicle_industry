@@ -32,9 +32,9 @@ a:hover{
 	height: 742px;
 	border: 1px solid #fff;
 	padding: 0 12px;
+	margin-top:15px;
 	box-shadow:  0 0 3px #999;
-	/*background: #fff url('../../img/main_nav_bg.jpg') right bottom no-repeat;*/
-  background-color: #fff;
+  	background-color: #fff;
 	z-index: 1000;
 }
 .main_nav_title{

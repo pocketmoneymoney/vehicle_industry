@@ -55,14 +55,17 @@
 	padding: 19px 20px;
 	margin-bottom: 8px;
 }
+
 .list_position h3 {
   height: 42px;
 }
+
 .list_position h3 span{
 	float: left;
   padding-top: 15px;
   padding-left: 15px;
 }
+
 .list_position h3 a{
 	color: #999999;
 	font-size: 12px;
@@ -83,6 +86,7 @@
 	height: 22px;
 	margin-bottom: 15px;
 }
+
 .position_title a{
 	color: #449cd7;
 }

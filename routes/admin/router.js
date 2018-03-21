@@ -169,31 +169,117 @@ module.exports = function(express) {
 	router.get('/advertise', function (req, res) {
 		dao.getAdvertise(function (err, data) {
 			if (err) {
-				res.status(422).send(err);
+				res.json({success:false, msg:err});
 			} else {
-				res.status(200).send(JSON.stringify(data));
+				res.json({success:true, msg:data});
 			}
 		});
 	});
 
-	router.post('/advertise', upload.single('avatar'), function (req, res) {
-		if (!req.file) {
-			res.status(422).send("No avatar file attached");
-		} else {
+	router.post('/advertise/default/:id', function (req, res) {
+		var adPath = '/img/activity_ad.jpg';
+		var link = '';
+		var name = 'N/A';
+		var id = req.params.id;
+
+		dao.modifyAdvertise(id, name, link, adPath, function (err) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true});
+			}
+		});
+	});
+
+	router.post('/advertise/default', function (req, res) {
+		dao.setDefaultAdvertise(function (err, data) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:data});
+			}
+		});
+	});
+
+	router.post('/advertise/:id', upload.single('avatar'), function (req, res) {
+		var adPath = undefined;
+		if (req.file) {
 			var adPath = '/' + path.join(req.file.destination, req.file.filename);
-			var link = req.body.link;
-			var newAD = {
-				'path':adPath, 
-				'link':link, 
-				'id': helper.uniqueID(req.file.filename)};
-			dao.addAdvertise(newAD, function (err) {
-				if (err) {
-					res.status(422).send(err);
-				} else {
-					res.status(200).send("OK");
-				}
-			});
 		}
+		var link = req.body.link;
+		var name = req.body.name;
+		var id = req.params.id;
+
+		dao.modifyAdvertise(id, name, link, adPath, function (err) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true});
+			}
+		});
+	});
+
+	router.get('/superior', function (req, res) {
+		dao.getSuperior(function (err, data) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:data});
+			}
+		});
+	});
+
+	router.post('/superior/default/:id', function (req, res) {
+		var adPath = '/img/superior_ad.jpg'
+		var link = '';
+		var name = 'N/A';
+		var id = req.params.id;
+
+		dao.modifySuperior(id, name, link, adPath, function (err) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true});
+			}
+		});
+	});
+
+	router.post('/superior/default', function (req, res) {
+		dao.setDefaultSuperior(function (err, data) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:data});
+			}
+		});
+	});
+
+	router.post('/superior/:id', upload.single('avatar'), function (req, res) {
+		var adPath = undefined;
+		if (req.file) {
+			var adPath = '/' + path.join(req.file.destination, req.file.filename);
+		}
+		var link = req.body.link;
+		var name = req.body.name;
+		var id = req.params.id;
+
+		dao.modifySuperior(id, name, link, adPath, function (err) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true});
+			}
+		});
+	});
+
+	router.get('/superior', function (req, res) {
+		dao.getSuperior(function (err, data) {
+			if (err) {
+				res.json({success:false, msg:err});
+			} else {
+				res.json({success:true, msg:data});
+			}
+		});
 	});
 
     return router;

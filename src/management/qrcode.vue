@@ -60,7 +60,7 @@ export default {
 
 .list_panel{
 	float: left;
-	width: 700px;
+	width: 970px;
 	border: 1px solid #e5e5e5;
 	background: #fff;
 	margin-bottom: 10px;

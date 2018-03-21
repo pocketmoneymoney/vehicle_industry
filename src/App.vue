@@ -17,13 +17,13 @@
       </div>
 	  <div style="clear:both;"> </div>
       <div class="main clearfix">
-	  	<div class="supplier_panel clearfix">
+	  	<div class="suplier_panel clearfix">
     		<h3>
         		<span>优质供应商推荐</span>
     		</h3>
       			<ul v-for="element in listElement">
 					<li>
-						<img src="/img/cooperator_ad.jpg"> </img>
+						<img @click="redirectImg(element)" :src="element.path"> </img>
 					</li>
 				</ul>
 			<div>
@@ -54,13 +54,18 @@ export default {
       viewName: "index",
 	  activityUrl: '/src/activity/enroll.html?tp=meeting&id=',
       imgPaths: [],
-	  listElement: [1,2,3,4,5,6,7,8],
+	  listElement: [],
 	  imgHrefs: {}
     }
   },
   methods: {
 	viewChange: function(index) {
 	  this.itemSeries = this.items[index];
+	},
+	redirectImg: function (element) {
+	  if (element.link) {
+	    window.location.href = element.link;
+	  }
 	}
   },
   mounted: function() {
@@ -81,6 +86,12 @@ export default {
         }
 	  }
     }, false);
+
+	get('/api/admin/superior', {}, function(data) {
+		if (data.success) {	
+			self.listElement = data.msg;
+		}
+	}, false);
   },
   components: {LeftNav, MainHeader, TopBar, LatestPurchase, LatestEvent, 
 			   LatestPosition, LatestActivity, RightPanel, LastFooter}

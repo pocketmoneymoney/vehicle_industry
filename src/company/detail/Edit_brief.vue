@@ -18,18 +18,21 @@
                       <input v-model="company.name" class="text" style="z-index: 10000;" name="email" maxlength="60" type="text"/>
                   </dd>
               </dl>
+	          <div style="clear:both;"> </div>
               <dl>
                   <dt><b>*</b><span>主营产品</span></dt>
                   <dd>
-                      <input v-model="company.product" class="text" style="z-index: 10000;" name="email" maxlength="100" type="text" />
+                      <textarea v-model="company.product" class="text" style="height: 150px; z-index: 10000;" name="email" maxlength="400" type="text" />
                   </dd>
               </dl>
+	          <div style="clear:both;"> </div>
               <dl>
                   <dt><b>*</b><span>配套客户</span></dt>
                   <dd>
-                      <input v-model="company.customer" class="text" style="z-index: 10000;" name="email" maxlength="100" type="text" />
+                      <textarea v-model="company.customer" class="text" style="height: 150px; z-index: 10000;" name="email" maxlength="400" type="text" />
                   </dd>
               </dl>
+	          <div style="clear:both;"> </div>
               <dl>
                   <dt><b></b><span>联系人：</span></dt>
                   <dd>

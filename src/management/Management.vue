@@ -17,9 +17,15 @@
 			@editCategory="editCategory" 
 			@editCategoryDone="editCategoryDone" 
 			@purchaseApplication="purchaseApplication" 
+			@editAdvertise="editAdvertise" 
+			@editAdvertiseDone="editAdvertiseDone" 
+			@editSuperior="editSuperior" 
+			@editSuperiorDone="editSuperiorDone" 
 			:activity="currentActivity" 
 			:category="currentCategory" 
 			:position="currentPosition" 
+			:advertise="currentAdvertise" 
+			:superior="currentSuperior" 
 			:purchase="purchase"></component>
 		</div>
       </div>
@@ -39,6 +45,12 @@ import Supplier from './supplier.vue'
 import Buyer from './buyer.vue'
 import Qrcode from './qrcode.vue'
 
+import Advertise from './advertise.vue'
+import EditAdvertise from './edit_advertise.vue'
+
+import Superior from './superior.vue'
+import EditSuperior from './edit_superior.vue'
+
 import Activity from './activity.vue'
 import EditActivity from './edit_activity.vue'
 import ActivityApplication from './activity_application.vue'
@@ -53,7 +65,6 @@ import PurchaseApplication from './purchase_application.vue'
 import Category from './category.vue'
 import EditCategory from './edit_category.vue'
 
-
 export default {
   data: function() {
     return {
@@ -61,6 +72,8 @@ export default {
 	  currentActivity: "",
 	  currentCategory: "",
 	  currentPosition: "",
+	  currentAdvertise: "",
+	  currentSuperior: "",
 	  activity: {},
 	  purchase: {}
     }
@@ -82,6 +95,10 @@ export default {
           this.currentView = 'qrcode';
         } else if (tab.id === 7) {
           this.currentView = 'category';
+        } else if (tab.id === 8) {
+          this.currentView = 'superior';
+        } else if (tab.id === 9) {
+          this.currentView = 'advertise';
 		}
       }
     },
@@ -110,6 +127,28 @@ export default {
     editActivityDone: function() {
       if (this.currentView != "no-authorized") {
         this.currentView = "activity";
+      }
+    },
+    editAdvertise: function(advertise) {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "edit-advertise";
+		this.currentAdvertise = advertise;
+      }
+    },
+    editAdvertiseDone: function() {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "advertise";
+      }
+    },
+    editSuperior: function(superior) {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "edit-superior";
+		this.currentSuperior = superior;
+      }
+    },
+    editSuperiorDone: function() {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "superior";
       }
     },
     editCategory: function(category) {
@@ -152,9 +191,9 @@ export default {
       }, true);
     }
   },
-  components: {LeftNav, TopBar, MainHeader, MainNav, LastFooter, 
-			   NoAuthorized, 
-			   Supplier, Buyer, 
+  components: {LeftNav, TopBar, MainHeader, MainNav, LastFooter, NoAuthorized, 
+			   Supplier, Buyer, Advertise, EditAdvertise,
+			   Superior, EditSuperior,
 			   Activity, EditActivity, ActivityApplication, 
 			   Purchase, PurchaseApplication,
          	   Position, EditPosition, PositionApplication, 

@@ -68,11 +68,10 @@ export default {
 }
 .container-lg { 
 	width:160px;
-	height:120px;
-	margin-left:10px;
+	height:110px;
 }
 .container-lg div img{ 
-	max-width:150px;
+	max-width:160px;
 	max-height:100px;
 }
 
