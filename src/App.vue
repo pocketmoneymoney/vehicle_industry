@@ -17,7 +17,7 @@
       </div>
 	  <div style="clear:both;"> </div>
       <div class="main clearfix">
-	  	<div class="suplier_panel clearfix">
+	  	<div class="supplier_panel clearfix">
     		<h3>
         		<span>优质供应商推荐</span>
     		</h3>
