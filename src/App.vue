@@ -24,6 +24,7 @@
       			<ul v-for="element in listElement">
 					<li>
 						<img @click="redirectImg(element)" :src="element.path"> </img>
+						<a @click="redirectImg(element)"> {{element.name}} </a>
 					</li>
 				</ul>
 			<div>
@@ -135,7 +136,7 @@ export default {
   float: left;
   border: 2px solid #f0f0f0;
   width: 260px;
-  height:120px;
+  height:130px;
   margin-left:10px;
   margin-right:10px;
   margin-bottom:10px;

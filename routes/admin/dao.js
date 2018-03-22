@@ -311,11 +311,11 @@ dbHandler.prototype.getLogo = function (callback) {
 
 dbHandler.prototype.setDefaultAdvertise = function(callback) {
 	this.update({}, {$set: {'advertise': [
-		{'path': '/img/activity_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/activity_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("activity_1")},
-		{'path': '/img/activity_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/activity_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("activity_2")},
-		{'path': '/img/activity_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/activity_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("activity_3")}]}}, callback);
 };
 
@@ -354,21 +354,21 @@ dbHandler.prototype.getAdvertise = function (callback) {
 
 dbHandler.prototype.setDefaultSuperior = function(callback) {
 	this.update({}, {$set: {'superior': [
-		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("superior_1")},
-		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("superior_2")},
-		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("superior_3")},
-		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("superior_4")},
-		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("superior_5")},
-		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("superior_6")},
-		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("superior_7")},
-		{'path': '/img/superior_ad.jpg', 'link': '', 'name': 'N/A', 
+		{'path': '/img/superior_ad.jpg', 'link': '', 'name': '', 
 		 'id': helper.uniqueID("superior_8")}]}}, callback);
 };
 
