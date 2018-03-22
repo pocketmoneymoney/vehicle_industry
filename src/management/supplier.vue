@@ -10,8 +10,6 @@
                 <th>用户名称</th>
                 <th>认证</th>
                 <th>认证操作</th>
-                <th>广告位</th>
-                <th>广告位操作</th>
                 <th>优质供应商</th>
                 <th>优质供应商操作</th>
                 <th>操作</th>
@@ -25,10 +23,6 @@
               <th v-else>未认证</th>
               <th v-if="user.verified" @click="deAuthenticate(user)" class="delete_button">取消认证</th>
               <th v-else @click="authenticate(user)" class="delete_button">认证</th>
-              <th v-if="user.advertise">已占广告位</th>
-              <th v-else></th>
-              <th v-if="user.advertise" @click="deAd(user)" class="delete_button">取消广告位</th>
-              <th v-else @click="ad(user)" class="delete_button">添加至广告位</th>
               <th v-if="user.superior">是</th>
               <th v-else>否</th>
               <th v-if="user.superior" @click="deSelect(user)" class="delete_button">取消优质供应商</th>
