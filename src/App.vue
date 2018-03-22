@@ -143,5 +143,6 @@ export default {
   padding-top:10px;
   padding-left:10px;
   padding-right:10px;
+  text-align:center;
 }
 </style>
