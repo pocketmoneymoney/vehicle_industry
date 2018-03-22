@@ -1,6 +1,6 @@
 <template>
   	<div class="header clearfix">
-		<img style="margin-right:30px; height:78px; float:left;" src="/img/Logo.png">
+		<img style="margin-right:30px; margin-top:3px; height:75px; float:left;" src="/img/Logo.png">
     	<top-nav :currentView="currentView"></top-nav>
 		<div class="top_nav">
 			<ul> </ul>
