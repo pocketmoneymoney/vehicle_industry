@@ -16,6 +16,7 @@ export default {
 .footer{
 	/*border-top:1px solid #cccccc;*/
   margin-top:35px;
+  width: 100%;
 
   /*blue background version*/
   background-color: #449cd7;
