@@ -94,7 +94,7 @@ dbHandler.prototype.getCompanyInfo = function (id, callback) {
 };
 
 dbHandler.prototype.getRecommendedCompany = function(callback) {
-	this.find({'privilege.advertise': true}, function(err, data) {
+	this.find({'privilege.superior': true}, function(err, data) {
 		if (err || !data) {
 			callback(null, []);
 		} else {
