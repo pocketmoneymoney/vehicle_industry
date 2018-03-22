@@ -86,10 +86,10 @@ export default {
 .bx-controls-direction a, .dots .dot{ width: 8px; height: 8px;  margin: 0 1px; -webkit-transition: width .5s ease-out; -o-transition: width .5s ease-out;  transition: width .5s ease-out; border-radius: 8px; background: #969ba2;}
 .dots .dot{ display: block;}
 .slides-thumbnail .dots .active{width:16px; background:#62b651;}
-.slides-thumbnail .bx-prev { width: 72px; height: 72px; background-image: url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png); background-position: -298px 0; }
-.slides-thumbnail .bx-prev:hover { background-image: url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png);  background-position: -371px 0;  }
-.slides-thumbnail .bx-next { width:72px;  height:72px;background-image:url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png); background-position:-152px 0;}
-.slides-thumbnail .bx-next:hover{background-image: url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png); background-position: -225px 0; }
+.slides-thumbnail .bx-prev { width: 32px; height: 72px; background-image: url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png); background-position: -76px 0; } /*big one -298 0*/
+.slides-thumbnail .bx-prev:hover { background-image: url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png);  background-position: -114px 0;  } /*big one -371 0*/
+.slides-thumbnail .bx-next { width:32px;  height:72px;background-image:url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png); background-position:0 0;} /*big one -152 0*/
+.slides-thumbnail .bx-next:hover{background-image: url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png); background-position: -38px 0; } /*big one -225 0*/
 .slides-multiple-list .bx-next {  width: 37px; height:73px; background-image: url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png);background-position: 0 0; }
 .slides-multiple-list .bx-next:hover { background-image: url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png);  background-position: -38px 0; }
 .slides-multiple-list .bx-prev { width: 37px; height: 73px; background-image: url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/index_login_bg.32.png); background-position: -76px 0; }
