@@ -32,6 +32,7 @@
                 <div class="company_list_right">
                    	<h4 class="company_title">
 						<a :href="detailUrl + company.id">{{ company.name }}</a>
+                <span v-if="company.verified"><img src="/img/verified_company.jpg" style="width:15px"/></span>
 					</h4>
                 	<div class="basic_info">
                     	<span class="address">{{ company.location }}</span>
