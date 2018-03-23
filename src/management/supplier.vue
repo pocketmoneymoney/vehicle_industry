@@ -118,11 +118,12 @@ export default {
 	  }, true);
 	},
     reload: function () {
+      var self = this;
       if (this.table) {
         this.table.destroy();
       }
       setTimeout(function() {
-        this.table = $('#userlist').DataTable();
+        self.table = $('#userlist').DataTable();
       }, 100);
     }
   },

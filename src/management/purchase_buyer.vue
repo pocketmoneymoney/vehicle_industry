@@ -33,11 +33,12 @@ export default {
   },
   methods: {
     reload: function () {
+      var self = this;
       if (this.table) {
         this.table.destroy();
       }
       setTimeout(function() {
-        this.table = $('#purchase_buyerlist').DataTable();
+        self.table = $('#purchase_buyerlist').DataTable();
       }, 100);
     }
   },

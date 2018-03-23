@@ -66,11 +66,12 @@ export default {
       this.$emit("activityApplication", activity);
     },
     reload: function () {
+      var self = this;
       if (this.table) {
         this.table.destroy();
       }
       setTimeout(function() {
-        this.table = $('#activitylist').DataTable();
+        self.table = $('#activitylist').DataTable();
       }, 100);
     }
   },

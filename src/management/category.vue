@@ -68,11 +68,12 @@ export default {
 	  }
     },
     reload: function () {
+      var self = this;
       if (this.table) {
         this.table.destroy();
       }
       setTimeout(function() {
-        this.table = $('#datalist').DataTable();
+        self.table = $('#datalist').DataTable();
       }, 100);
     }
   },

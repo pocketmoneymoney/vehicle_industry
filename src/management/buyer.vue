@@ -52,11 +52,12 @@ export default {
 	  }
     },
     reload: function () {
+      var self = this;
       if (this.table) {
         this.table.destroy();
       }
       setTimeout(function() {
-        this.table = $('#buyerlist').DataTable();
+        self.table = $('#buyerlist').DataTable();
       }, 100);
     }
   },

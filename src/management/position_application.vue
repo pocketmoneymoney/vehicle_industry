@@ -42,11 +42,12 @@ export default {
       window.open(url);
 	  },
     reload: function () {
+      var self = this;
       if (this.table) {
         this.table.destroy();
       }
       setTimeout(function() {
-        this.table = $('#position_applicationlist').DataTable();
+        self.table = $('#position_applicationlist').DataTable();
       }, 100);
     }
   },

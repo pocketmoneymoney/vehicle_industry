@@ -64,11 +64,12 @@ export default {
       this.$emit("purchaseApplication", purchase);
     },
     reload: function () {
+      var self = this;
       if (this.table) {
         this.table.destroy();
       }
       setTimeout(function() {
-        this.table = $('#purchaselist').DataTable();
+        self.table = $('#purchaselist').DataTable();
       }, 100);
     }
   },

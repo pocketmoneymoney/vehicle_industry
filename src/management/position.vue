@@ -65,11 +65,12 @@ export default {
 	  }
 	},
     reload: function () {
+      var self = this;
       if (this.table) {
         this.table.destroy();
       }
       setTimeout(function() {
-        this.table = $('#positionlist').DataTable();
+        self.table = $('#positionlist').DataTable();
       }, 100);
     }
   },
