@@ -6,7 +6,7 @@
   <div class="clearfix company_panel_content">
 	  <div>
         <h1>{{ company.name }}
-        <img v-if="isVerified" src="/img/verified_company.jpg" style="width:15px;"/>
+        <img v-if="isVerified" title="OE会员" src="/img/verified_company.jpg" style="width:15px;"/>
         </h1>
 	  </div>
       <div style="float:right;">
