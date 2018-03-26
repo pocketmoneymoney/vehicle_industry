@@ -128,12 +128,19 @@ dbHandler.prototype.modifyPersonInfo = function (id, person, email, phone, callb
 		
 dbHandler.prototype.modifyPrivilegeInfo = function (id, verified, advertise, 
 	superior, callback) {
-	var fields = {'privilege': {
-		'verified': verified,
-		'advertise': advertise,
-		'superior': superior}
-	};
+	var params = {};
 
+	if (verified) {
+		params['verified'] = verified;
+	}
+	if (advertise) {
+		params['advertise'] = advertise;
+	}
+	if (superior) {
+		params['superior'] = superior;
+	}
+		
+	var fields = {'privilege': params};
 	this.update({'id':id}, {$set: fields}, {upsert:true}, callback);
 };
 
@@ -330,6 +337,7 @@ dbHandler.prototype.search = function (name, page, num, callback) {
 	var self = this;
 	var result = [];
 
+	var priority0 = [];
 	var priority1 = [];
 	var priority2 = [];
 	var priority3 = [];
@@ -364,7 +372,9 @@ dbHandler.prototype.search = function (name, page, num, callback) {
 
 			for (var index = 0; index < data.length; index++) {
 				var supplier = data[index];
-				if (supplier.company && supplier.company.name &&
+				if (supplier.privilege.verified) {
+					priority0.push(supplier);
+				} else if (supplier.company && supplier.company.name &&
 					_isNameMatched(names, supplier.company.name)) {
 					priority1.push(supplier);
 				} else if (supplier.company.product && supplier.company.product &&
@@ -377,8 +387,8 @@ dbHandler.prototype.search = function (name, page, num, callback) {
 					priority4.push(supplier);
 				}
 			}
-			result = result.concat(priority1).concat(priority2).concat(priority3).
-							concat(priority4);
+			result = result.concat(priority0).concat(priority1).concat(priority2).
+						    concat(priority3).concat(priority4);
 			var resultAmount = result.length;
 			var currentPageResult = result.slice(page, page + num);
 			callback(null, {'data':currentPageResult, 'amount':resultAmount});

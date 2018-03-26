@@ -164,7 +164,7 @@ export default {
 				'name': 	company.company.name,
 				'location': company.company.location,
 				'product': 	company.company.product,
-        'verified': company.privilege.verified
+        		'verified': company.privilege.verified
 			};
 			if (company.company.brief) {
 			  newCompany['brief'] = company.company.brief.slice(0, 100) + "... ...";

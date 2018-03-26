@@ -16,7 +16,7 @@ export default {
       ownerID: '',
 	  isOwner: false,
 	  isVerified: false,
-    hasPoster: false,
+      hasPoster: false,
 	  editInfoURL: '/src/redirect/not_authorized.html',
 	  editBriefURL: '/src/redirect/not_authorized.html',
 	  editCerfURL: '/src/redirect/not_authorized.html'

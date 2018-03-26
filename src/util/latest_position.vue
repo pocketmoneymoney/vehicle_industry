@@ -20,14 +20,17 @@ export default {
   },
   mounted: function() {
     var self = this;
-    get('/api/position/list?page=0&num=4', {}, function(data) {
+    get('/api/position/list?page=0&num=8', {}, function(data) {
        if (data.success) {
 		for (var index = 0; index < data.msg.length; index++) {
 		  var position = data.msg[index];
+		  var content = position.name + "[" + position.company + "]";
+		  if (content.length > 50) {
+			content = content.slice(0, 46) + "... ...";
+		  }
 		  self.components.push({
 			'url': self.detailUrl + position.id,
-			'title': position.name,
-			'content': position.company
+			'content': content
 		  });
 		}
 	   } 

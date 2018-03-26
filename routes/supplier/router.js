@@ -145,7 +145,6 @@ module.exports = function(express) {
 		var advertise	= req.body.advertise;
 		var superior	= req.body.superior;
 		var id			= req.params.id;
-
 		dao.modifyPrivilegeInfo(id, verified, advertise, superior, function (err) {
 			if (err) {
 				res.json({success: false, msg:err});
