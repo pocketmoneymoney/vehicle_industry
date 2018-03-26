@@ -17,6 +17,8 @@
 			@editCategory="editCategory" 
 			@editCategoryDone="editCategoryDone" 
 			@purchaseApplication="purchaseApplication" 
+			@editPurchase="editPurchase" 
+			@editPurchaseDone="editPurchaseDone" 
 			@editAdvertise="editAdvertise" 
 			@editAdvertiseDone="editAdvertiseDone" 
 			@editSuperior="editSuperior" 
@@ -60,6 +62,7 @@ import EditPosition from './edit_position.vue'
 import PositionApplication from './position_application.vue'
 
 import Purchase from './purchase.vue'
+import EditPurchase from './edit_purchase.vue'
 import PurchaseApplication from './purchase_application.vue'
 
 import Category from './category.vue'
@@ -180,6 +183,17 @@ export default {
         this.currentView = "purchase-application";
       }
     },
+    editPurchase: function(purchase) {
+      if (this.currentView != "no-authorized") {
+		this.purchase = purchase;
+        this.currentView = "edit-purchase";
+      }
+    },
+    editPurchaseDone: function() {
+      if (this.currentView != "no-authorized") {
+        this.currentView = "purchase";
+      }
+    },
   },
   mounted: function() {
     var self = this;
@@ -195,7 +209,7 @@ export default {
 			   Supplier, Buyer, Advertise, EditAdvertise,
 			   Superior, EditSuperior,
 			   Activity, EditActivity, ActivityApplication, 
-			   Purchase, PurchaseApplication,
+			   Purchase, PurchaseApplication, EditPurchase,
          	   Position, EditPosition, PositionApplication, 
 			   Category, EditCategory, 
 			   Qrcode} 

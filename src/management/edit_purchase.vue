@@ -1,171 +1,151 @@
 <template>
+  <div>
+	<div class="title_bar">
+	  <span> <a> 查看采购项目</a> </span>
+	</div>
+	<div style="clear:both;"> </div>
     <div class="formbox clearfix">
-        <h3>发布活动</h3>
         <div>
           <dl>
-              <dt><b>*</b><span>活动名称：</span></dt>
-              <dd>
-                  <input v-model="curActivity.name" class="text" style="z-index: 9" maxlength="40" type="text" />
+              <dt><span>发布人名称：</span></dt>
+              <dd> <span>{{curPurchase.name}} </span>
               </dd>
           </dl>
+		  <div style="clear:both;"> </div>
           <dl>
-              <dt><b>*</b><span>活动时间：</span></dt>
-              <dd>
-				<label>
-                  <input class="text" v-model="curActivity.startTime" style="z-index: 10000;width:180px;" type="text"/> </label>
-				  <span> 到 </span>
-				<label>
-                  <input class="text" v-model="curActivity.endTime" style="z-index: 10000;width:180px;" type="text"/> </label>
+              <dt><span>发布人联系电话：</span></dt>
+              <dd> <span>{{curPurchase.phone}} </span>
               </dd>
           </dl>
+		  <div style="clear:both;"> </div>
           <dl>
-              <dt><b>*</b><span>活动地点：</span></dt>
-              <dd><input class="text" style="z-index: 9" v-model="curActivity.location" type="text" />
+              <dt><span>发布人联系邮箱：</span></dt>
+              <dd> <span>{{curPurchase.email}} </span>
               </dd>
           </dl>
+		  <div style="clear:both;"> </div>
           <dl>
-              <dt><b>*</b><span>活动类型：</span></dt>
-              <dd>
-                  <label>
-                      <input type="radio" name="type" value="meeting" v-model="curActivity.type"/><span class="rad">采购见面会</span></label>
-                  <label style="margin-left: 25px;">
-                      <input type="radio" name="type" value="visiting" v-model="curActivity.type"/><span class="rad">走进主机厂 </span>
-                  </label>
+              <dt><b>*</b><span>公司名称：</span></dt>
+              <dd> <span>{{curPurchase.company}} </span>
               </dd>
           </dl>
+		  <div style="clear:both;"> </div>
           <dl>
-              <dt><b>*</b><span>活动大海报：</span></dt>
-              <dd>
-                    <input ref="bigActivityPoster" type="file" name="file" style="z-index: 9"/>
+              <dt><b>*</b><span>产品名称：</span></dt>
+              <dd> <span>{{curPurchase.productName}} </span>
+              </dd>
+          </dl>
+		  <div style="clear:both;"> </div>
+          <dl>
+              <dt><b>*</b><span>采购类型：</span></dt>
+              <dd> <span>{{curPurchase.type}} </span>
+              </dd>
+          </dl>
+		  <div style="clear:both;"> </div>
+          <dl>
+              <dt><b>*</b><span>车型(可多选)：</span></dt>
+              <dd> <span>{{curPurchase.detailType}} </span>
+              </dd>
+          </dl>
+		  <div style="clear:both;"> </div>
+		  <dl>
+              <dt><span>尺寸/重量/材质/制造工艺：</span></dt>
+              <dd> <span>{{curPurchase.material}} </span>
+              </dd>
+		  </dl>
+		  <div style="clear:both;"> </div>
+		  <dl>
+              <dt><span>年采购量/采购金额：</span></dt>
+              <dd> <span>{{curPurchase.amount}} </span>
+              </dd>
+		  </dl>
+		  <div style="clear:both;"> </div>
+		  <dl>
+              <dt><span>产品其他描述：</span></dt>
+              <dd> <span>{{curPurchase.description}} </span>
+              </dd>
+		  </dl>
+		  <div style="clear:both;"> </div>
+		  <dl>
+              <dt><span>供应商要求：</span></dt>
+              <dd> <span>{{curPurchase.supplier}} </span>
+              </dd>
+		  </dl>
+		  <div style="clear:both;"> </div>
+          <dl>
+              <dt><b></b><span>产品图片预览：</span></dt>
 			  <dd>
-			  </dd>
-				   <span @click="previewPoster(curActivity.bigPoster)"> 预览: {{curActivity.bigPoster}} </span> 
-              </dd>
-          </dl>
-          <dl class="clearfix">
-              <dt><b>*</b><span>活动小海报：</span></dt>
-              <dd>
-                  <input ref="smallActivityPoster" type="file" name="file" style="z-index: 9" />
-              </dd>
-			  </dd>
-				   <span @click="previewPoster(curActivity.bigPoster)"> 预览: {{curActivity.smallPoster}} </span> 
-              </dd>
-          </dl>
-          <dl>
-              <dt><b>*</b><span>活动预告图：</span></dt>
-              <dd>
-                  <input ref="tinyActivityPoster" type="file" name="file" style="z-index: 9" />
-              </dd>
-			  </dd>
-				   <span @click="previewPoster(curActivity.bigPoster)"> 预览: {{curActivity.tinyPoster}} </span> 
+				<span v-for="pic in curPurchase.picture"> 
+					<img :src="pic" style="max-width:400px; max-height:400px; 
+						margin-bottom:20px; margin-left:10px; margin-right:10px;"> 
+	      			<div style="clear:both;"> </div>
+				</span>
               </dd>
           </dl>
         </div>
 	    <div style="clear:both;"> </div>
 		<div>
-          <span><a @click="cancelAction">取消</a></span>
-          <span><a @click="newActivity">更新</a></span>
+          <span><a @click="cancelAction">返回</a></span>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  props: ['activity'],
+  props: ['purchase'],
   data: function() {
     return {
-	  isNew: false,
-	  hasPreview: true,
-	  curActivity: {},
-	  defaultActivity: {
-		id: '',
-		name: '',
-		location: '',
-		startTime: '',
-		endTime: '',
-		type: '',
-		bigPoster: '',	
-		smallPoster: '',	
-		tinyPoster: '',	
-	  }
+	  vehicleTypes: ['乘用车', '微型车', '卡车', '客车', '工程机械', '其他'],
+	  curPurchase: {}
     }
   },
   methods: {
-  	previewPoster: function (url) {
-      if (url) {
-	    window.open(url);
-	  }
-	},
     cancelAction: function() {
-      this.$emit("editActivityDone");
+      this.$emit("editPurchaseDone");
 	},
-    newActivity: function() {
-      var time1 = trimStr(this.curActivity.startTime);
-      var time2 = trimStr(this.curActivity.endTime);
+    newPurchase: function() {
 
-      var bigPoster = this.$refs.bigActivityPoster.files[0];
-      var smallPoster = this.$refs.smallActivityPoster.files[0];
-      var tinyPoster = this.$refs.tinyActivityPoster.files[0];
+	  var name = trimStr(this.curPurchase.name);
+	  var productName = trimStr(this.curPurchase.productName);
 
-	  var name = trimStr(this.curActivity.name);
-	  var location = trimStr(this.curActivity.location);
-	  var type = this.curActivity.type;
-
-	  if (this.isNew) {
-		if (!type) {
-          alert('请填写活动类型');
-          return;
-        }
-
-		if (bigPoster === undefined && smallPoster === undefined &&
-		    tinyPoster === undefined) {
-          alert('请上传至少一张活动海报');
-          return;
-        }
-	  }
-
-      if (name === '' || time1 === '' || time2 === '' || location === '') {
+      if ((name === '') || (productName === '')) {
         alert('请填写完整资料');
         return;
       }
 
       var oMyForm = new FormData();
       oMyForm.append("name", name);
-      oMyForm.append("location", location);
-      oMyForm.append("startTime", time1);
-      oMyForm.append("endTime", time2);
-      oMyForm.append("type", type);
-      oMyForm.append("bigPoster", bigPoster);
-      oMyForm.append("smallPoster", smallPoster);
-      oMyForm.append("tinyPoster", tinyPoster);
+      oMyForm.append("company", this.curPurchase.company);
+      oMyForm.append("phone", this.curPurchase.phone);
+      oMyForm.append("email", this.curPurchase.email);
+      oMyForm.append("productName", productName);
+      oMyForm.append("type", this.curPurchase.type);
 
-	  if (this.curActivity.id) {
-        oMyForm.append("id", this.curActivity.id);
+	  if (this.detailType) {
+        oMyForm.append("detailType", this.detailType);
+	  } else {
+        oMyForm.append("detailType", this.curPurchase.detailType);
+      }
+
+      oMyForm.append("material", this.curPurchase.material);
+      oMyForm.append("amount", this.curPurchase.amount);
+      oMyForm.append("description", this.curPurchase.description);
+      oMyForm.append("supplier", this.curPurchase.supplier);
+      oMyForm.append("id", this.curPurchase.id);
+	
+      for (var index = 0; index < this.$refs.productImg.files.length; index++) {
+          oMyForm.append("picture", this.$refs.productImg.files[index]);
 	  }
 
       var self = this;
-      postWithFile('/api/activity/new', oMyForm, function(data) {
-        self.$emit("editActivityDone");
+      postWithFile('/api/purchase', oMyForm, function(data) {
+        self.$emit("editPurchaseDone");
       }, true);
     }
   },
   mounted: function() {
-	if (this.activity.id) {
-	  this.isNew = false;
-	  this.curActivity = this.activity;
-	} else {
-	  this.curActivity = this.defaultActivity;
-	  this.isNew = true;
-	}
-
-    $(this.$refs.activityDatepicker).datepicker({
-      format: 'mm/dd/yyyy',
-      startDate: '-3d'
-    });
-    $(this.$refs.activityDatepicker2).datepicker({
-      format: 'mm/dd/yyyy',
-      startDate: '-3d'
-    });
+	this.curPurchase = this.purchase;
   }
 }
 </script>

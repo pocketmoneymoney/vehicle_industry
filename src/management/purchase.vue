@@ -21,7 +21,7 @@
 			  <th>{{purchase.publisherRole}}</th>
               <th>
 				<a @click="purchaseApplication(purchase)" class="admin_op_button">报名情况</a>
-				<a @click="editPurchase(purchase)" class="admin_op_button">编辑 </a>
+				<a @click="editPurchase(purchase)" class="admin_op_button">查看 </a>
 				<a @click="deletePurchase(purchase)" class="admin_op_button">删除</a>
 			  </th>
             </tr>
@@ -44,6 +44,7 @@ export default {
 	  window.location.href = '/src/purchase/enroll.html?id=' + purchase.id;
     },
 	editPurchase: function(purchase) {
+		this.$emit("editPurchase", purchase);
 	},
     deletePurchase: function(purchase) {
       if(confirm("确定删除么?")) {
