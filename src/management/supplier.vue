@@ -115,9 +115,9 @@ export default {
       post('/api/supplier/privilege/' + user.id, params,
 		function (data) {
           console.log(data);
+	        self.reload();
 	  }, true);
 
-	  this.reload();
 	},
     reload: function () {
       var self = this;
