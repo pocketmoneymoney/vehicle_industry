@@ -116,6 +116,8 @@ export default {
 		function (data) {
           console.log(data);
 	  }, true);
+
+	  this.reload();
 	},
     reload: function () {
       var self = this;
