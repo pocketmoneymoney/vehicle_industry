@@ -5,10 +5,12 @@
   <h4>公司简介</h4>
   <div class="clearfix company_panel_content">
 	  <div>
-        <h1>{{ company.name }}</h1>
+        <h1>{{ company.name }}
+        <img v-if="isVerified" src="/img/verified_company.jpg" style="width:15px;"/>
+        </h1>
 	  </div>
       <div style="float:right;">
-        <img :src="avatar"/>
+        <img class="company_avatar" :src="avatar"/>
 	    <div style="clear:both;"> </div>
         <div v-if="isOwner" style="float:right">
 	  	  <a @click="deleteLogo" style="margin-left:10px;cursor:pointer;">删除</a>
@@ -160,11 +162,14 @@
 .company_panel_content {
   padding: 0 20px 20px 20px;
 }
-.company_panel_content div img{
+.company_avatar{
 	display: block;
-	margin:0 auto 5px auto;
+	margin:10px auto 5px auto;
 	max-width:250px;
-	max-height:100px;
+  float: right;
+	border:1px solid #e5e5e5;
+	min-width: 112px;
+	height: 112px;
 }
 
 .company_contact span {
