@@ -58,6 +58,7 @@ a:hover{
 	background: url('../../img/nav_icon.png') 10px 15px no-repeat;
 }
 .left_main_nav{
+  	padding-top: 5px;
   	padding-left: 5px;
 }
 .left_main_nav li{
