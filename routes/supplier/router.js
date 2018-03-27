@@ -194,13 +194,12 @@ module.exports = function(express) {
 		var poster    	= undefined;
 		var id			= req.params.id;
 		var owner		= req.body.owner;
-
-	  	if ((req.files.poster) && (req.files.poster[0])) {
+	  	if ((req.files) && (req.files.poster) && (req.files.poster[0])) {
       		var posterFile = req.files.poster[0];
 	  		poster = '/' + path.join(posterFile.destination, posterFile.filename);
 	  	}
       
-	  	if ((req.files.avatar) && (req.files.avatar[0])) {
+	  	if ((req.files) && (req.files.avatar) && (req.files.avatar[0])) {
       		var avatarFile = req.files.avatar[0];
 	  		avatar = '/' + path.join(avatarFile.destination, avatarFile.filename);
 	  	}

@@ -86,8 +86,7 @@ export default {
         'address': this.company.address,
         'createTime': this.company.createTime,
         'operator': this.company.operator,
-        'assets': this.company.assets,
-        'avatar': this.company.avatar,
+        'assets': this.company.assets
 	  }, function(data) {
 		if (!data.success) {
 		  console.log(data);
