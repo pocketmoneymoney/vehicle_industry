@@ -387,6 +387,10 @@ h3{
 	font-weight: normal;
 }
 
+.list_panel li{
+	color: #333333;
+}
+
 .list_panel li p{
 	margin-left: 2px;
 	padding-left: 5px;
