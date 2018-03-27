@@ -35,9 +35,9 @@ a:hover{
 .main_nav{
 	float: left;
 	width: 230px;
-	height: 330px;
+	height: 340px;
 	border: 1px solid #fff;
-	padding: 0 12px;
+	padding: 0 10px;
 	box-shadow:  0 0 3px #999;
  	background-color: #fff;
 	z-index: 1000;
@@ -58,7 +58,6 @@ a:hover{
 	background: url('../../img/nav_icon.png') 10px 15px no-repeat;
 }
 .left_main_nav{
-	padding-top: 5px;
   	padding-left: 5px;
 }
 .left_main_nav li{
