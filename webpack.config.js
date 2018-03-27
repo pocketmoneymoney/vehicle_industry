@@ -1,6 +1,7 @@
 var FriendlyErrors = require('friendly-errors-webpack-plugin')
 var path = require('path')
 var projectRoot = path.resolve(__dirname, './')
+var webpack = require('webpack')
 
 module.exports = {
 
@@ -117,6 +118,11 @@ module.exports = {
 	  extensions: ['', '.js']
   },
   plugins: [
-    new FriendlyErrors()
+    new FriendlyErrors(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    })
   ]
 }
