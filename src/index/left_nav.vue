@@ -1,9 +1,5 @@
 <template>
     <div class="main_nav">
-    	<h3>
-        	<span>全部分类</span>
-    	</h3>
-		<hr style="height:5px;border:none;border-top:5px groove skyblue;" />
         <ul class="left_main_nav">
           <li
             v-for="tab in tabs"
@@ -63,8 +59,7 @@ a:hover{
 }
 .left_main_nav{
 	padding-top: 5px;
-  padding-left: 5px;
-
+  	padding-left: 5px;
 }
 .left_main_nav li{
 	/*width: 202px;*/
