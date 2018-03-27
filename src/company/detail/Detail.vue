@@ -35,9 +35,13 @@
   </div>
   </div>
   <div class="fixed_right_panel">
-  <div class="company_right_panel clearfix">
+  <div class="company_right_panel company_contact clearfix">
     <h4>公司信息</h4>
-    <ul>
+      <span>公司地区：{{ company.location }}</span>
+      <span>成立时间：{{ company.createTime }}</span>
+      <span>法人代表：{{ company.operator }}</span>
+      <span>总资产：{{ company.assets }}</span>
+    <!--ul>
       <li>
         <h5>公司地区</h5> <span>{{company.location}} </span>
       </li>
@@ -50,7 +54,7 @@
       <li>
         <h5>总资产</h5> <span>{{company.assets}} </span>
       </li>
-    </ul>
+    </ul-->
     <div><a v-if="isOwner" :href="editInfoURL">修改</a></div>
   </div>
   <div class="company_contact company_right_panel clearfix">
