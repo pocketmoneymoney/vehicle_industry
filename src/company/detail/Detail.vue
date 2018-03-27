@@ -173,9 +173,10 @@
 }
 
 .company_contact span {
-  width: 856px;
   float: left;
-  padding-top:10px;
+  padding-top:5px;
   padding-left:15px;
+  padding-right:15px;
+  padding-bottom:5px;
 }
 </style>
