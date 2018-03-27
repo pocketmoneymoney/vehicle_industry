@@ -62,8 +62,8 @@ a:hover{
 }
 .left_main_nav li{
 	/*width: 202px;*/
-	height: 44px;
-	line-height: 44px;
+	height: 40px;
+	line-height: 40px;
 	padding-left: 0px;
 	background:#fff url('../../img/nav_arrow.jpg') right center no-repeat;
 	border:1px solid #fff;
