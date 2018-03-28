@@ -52,7 +52,7 @@ export default {
     this.table = $('#activity_applicationlist').DataTable();
 
     var self = this;
-    get('/api/activity/appliers/'+this.position.id, {}, function (data) {
+    get('/api/activity/appliers/'+this.activity.id, {}, function (data) {
 	    self.applications = retriveData(data);
       self.reload();
     }, false);
