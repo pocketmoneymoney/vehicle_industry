@@ -10,7 +10,9 @@
              <div class="position_list_right">
                  <dl>
                      <dt>职位名称</dt>
-                     <dd><h4 class="position_title"> {{ position.name }}</h4>
+                     <dd>
+						<h4 class="position_title" @click=applyPosition(position)> 
+						   {{ position.name }}</h4>
 					 </dd>
                  </dl>
 			 </div>
@@ -85,6 +87,7 @@
 	line-height: 22px;	
 	height: 22px;
 	margin-bottom: 15px;
+	cursor:pointer;
 }
 
 .position_title a{
