@@ -79,7 +79,7 @@
   float: left;
   border-bottom: 1px solid #f0f0f0;
   border-right: 1px solid #f0f0f0;
-  width: 298.5px;
+  width: 270px;
   padding: 23px 25px;
 }
 .product_list_main {
