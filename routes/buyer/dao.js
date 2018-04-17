@@ -3,6 +3,7 @@
 
 var mongoose = require('mongoose');
 var db = require('../common/db');
+var userDB = require("../user/dao");
 
 function dbHandler() {
      db.handler.call(this, {
@@ -50,7 +51,10 @@ dbHandler.prototype.modifyBuyer = function (id, person, email, phone, callback) 
 };
 		
 dbHandler.prototype.deleteBuyer = function (id, callback) {
-    this.remove({'id':id}, callback);
+	var self = this;
+	userDB.deleteUser(id, function() {
+    	self.remove({'id':id}, callback);
+	});
 };
 
 module.exports = new dbHandler();

@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var db = require('../common/db');
 var helper = require('../common/helper');
+var userDB = require("../user/dao");
 
 function dbHandler() {
      db.handler.call(this, {
@@ -185,7 +186,10 @@ dbHandler.prototype.modifyCompanyInfo = function (
 };
 
 dbHandler.prototype.deleteSupplier = function (id, callback) {
-    this.remove({'id':id}, callback);
+	var self = this;
+	userDB.deleteUser(id, function() {
+    	self.remove({'id':id}, callback);
+	});
 };
 
 dbHandler.prototype.addProduct = function (id, productID, callback) {
