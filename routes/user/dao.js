@@ -16,6 +16,10 @@ function dbHandler() {
 dbHandler.prototype = Object.create(db.handler.prototype);
 dbHandler.prototype.constructor = dbHandler;
 
+dbHandler.prototype.findUser = function (name, callback) {
+	this.findOne({'username':name}, callback);
+}
+
 dbHandler.prototype.deleteUser = function (id, callback) {
     this.remove({'id':id}, callback);
 };

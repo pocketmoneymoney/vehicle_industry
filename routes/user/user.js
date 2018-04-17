@@ -6,6 +6,7 @@ var config = require('../../config');
 var helper = require('../common/helper');
 var supplier = require('../supplier');
 var buyer = require('../buyer');
+var dao = require('./dao');
 
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
@@ -31,6 +32,15 @@ module.exports = function () {
             return null;
         }
     };
+
+    router.get('/get/:name', function(req, res) {
+		var name = req.params.name;
+		dao.findUser(name, function(err, data) {
+            res.json({success:err, 
+					  name:data.username,
+					  id:data.id});
+		});
+	});
 
     router.post('/register', function(req, res) {
         if (!req.body.username || !req.body.password) {
