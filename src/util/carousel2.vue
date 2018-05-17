@@ -62,8 +62,8 @@ export default {
 	height:330px;
 }
 .container-lg2 img{ 
-	max-width:700px;
-	max-height:330px;
+	width:720px;
+	height:330px;
 }
 
 .bx-wrapper { position: relative;}
