@@ -13,6 +13,7 @@ module.exports = {
 	  not_authorized: './src/redirect/not_authorized.js',
 	  login: './src/register/login.js',
 	  change_password: './src/register/password.js',
+	  forget: './src/register/forget.js',
 	  company: './src/company/company.js',
 	  company_search: './src/company/search.js',
 	  company_detail: './src/company/company_detail.js',

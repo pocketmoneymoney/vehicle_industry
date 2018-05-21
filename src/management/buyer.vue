@@ -9,6 +9,7 @@
                 <th>用户名称</th>
                 <th>联系电话</th>
                 <th>邮箱</th>
+                <th>重置密码</th>
                 <th>操作</th>
              </tr>
           </thead>
@@ -18,6 +19,7 @@
 			  <th>{{user.name}} </th>
 			  <th>{{user.phone}} </th>
 			  <th>{{user.email}} </th>
+              <th @click="modifyPassword(user)" class="delete_button">重置</th>
               <th @click="deleteUser(user)" class="delete_button">删除</th>
             </tr>
           </tbody>
@@ -34,6 +36,11 @@ export default {
     }
   },
   methods: {
+    modifyPassword: function(user) {
+      if(confirm("确定重置么?")) {
+		window.location.href = '/src/register/forget.html?uid=' + user.id;
+	  }
+	},
     deleteUser: function(user) {
       if(confirm("确定删除么?")) {
 		var self = this;

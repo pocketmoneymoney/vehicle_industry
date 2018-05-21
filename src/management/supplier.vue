@@ -12,6 +12,7 @@
                 <th>认证操作</th>
                 <th>优质供应商</th>
                 <th>优质供应商操作</th>
+                <th>重置密码</th>
                 <th>操作</th>
              </tr>
           </thead>
@@ -27,6 +28,7 @@
               <th v-else>否</th>
               <th v-if="user.superior" @click="deSelect(user)" class="delete_button">取消优质供应商</th>
               <th v-else @click="select(user)" class="delete_button">添加至优质供应商</th>
+              <th @click="modifyPassword(user)" class="delete_button">重置</th>
               <th @click="deleteUser(user)" class="delete_button">删除</th>
             </tr>
           </tbody>
@@ -89,6 +91,11 @@ export default {
       user.superior = false;
 	  this.updatePrivilege(user);
     },
+    modifyPassword: function(user) {
+      if(confirm("确定重置么?")) {
+		window.location.href = '/src/register/forget.html?uid=' + user.id;
+	  }
+	},
     deleteUser: function(user) {
       if(confirm("确定删除么?")) {
 		var self = this;
@@ -97,7 +104,7 @@ export default {
     		get('/api/supplier/privilege?page=0&num=100', {}, function(data) {
 	  		  if (data.success) {
   				self.users = data.msg;
-          self.reload();
+          		self.reload();
 			  }
 			});
 		  } else {

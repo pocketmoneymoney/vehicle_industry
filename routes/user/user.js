@@ -42,6 +42,34 @@ module.exports = function () {
 		});
 	});
 
+    router.get('/name/:id', function(req, res) {
+		var id = req.params.id;
+		dao.findUsername(id, function(err, data) {
+			if ((err) || (!data)) {
+            	res.json({success:false});
+			} else {
+            	res.json({success:true, 
+					  	  name:data.username,
+					  	  id:data.id});
+			}
+		});
+	});
+
+    router.post('/reset/password', function(req, res) {
+        if (!req.body.username || !req.body.password || !req.body.id) {
+            res.json({success: false, msg: '修改失败，信息失效.'});
+		} else {
+			dao.updatePassword(req.body.username, req.body.id, req.body.password,
+			  function(err, data) {
+				if (err) {
+            		res.json({success:false});
+				} else {
+            		res.json({success:true});
+				}
+			});
+		}
+	});
+
     router.post('/register', function(req, res) {
         if (!req.body.username || !req.body.password) {
             res.json({success: false, msg: '请输入用户名和密码.'});

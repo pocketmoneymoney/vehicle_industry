@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var UserSchema = new Schema({
     username: {
         type: String,
-        unique: true,
+		unique: true,
         required: true
     },
     password: {
@@ -49,6 +49,10 @@ UserSchema.methods.comparePassword = function (passw, cb) {
         }
         cb(null, isMatch);
     });
+};
+
+UserSchema.methods.remove = function (id, cb) {
+    this.remove({'id':id}, cb);
 };
 
 module.exports = mongoose.model('User', UserSchema);
